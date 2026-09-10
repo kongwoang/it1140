@@ -109,7 +109,7 @@
 
   function getWorker() {
     if (!worker) {
-      worker = new Worker("./assets/js/python-worker.js", { type: "module" });
+      worker = new Worker("./assets/js/python-worker.js?v=4", { type: "module" });
       worker.addEventListener("message", handleWorkerMessage);
       worker.addEventListener("error", () => finishWithError("Không khởi động được môi trường Python."));
     }
