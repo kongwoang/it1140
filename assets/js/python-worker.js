@@ -1,13 +1,11 @@
+import { loadPyodide } from "https://cdn.jsdelivr.net/pyodide/v314.0.6/full/pyodide.mjs";
+
 const PYODIDE_VERSION = "314.0.6";
 const PYODIDE_BASE_URL = `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`;
 
-let pyodidePromise;
+let pyodidePromise = loadPyodide({ indexURL: PYODIDE_BASE_URL });
 
 async function getPyodide() {
-  if (!pyodidePromise) {
-    importScripts(`${PYODIDE_BASE_URL}pyodide.js`);
-    pyodidePromise = loadPyodide({ indexURL: PYODIDE_BASE_URL });
-  }
   return pyodidePromise;
 }
 
