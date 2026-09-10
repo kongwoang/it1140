@@ -46,3 +46,5 @@ Prompt dùng để sinh dữ liệu bằng LLM nằm tại `PROMPT_TAO_CAU_HOI.m
 ## Thêm bài thực hành Python
 
 Thêm một phần tử vào mảng `exercises` trong `python-exercises.json`. Mỗi bài gồm đề bài, mã khởi đầu, gợi ý và các phép `assert` dùng để chấm tự động. Mã kiểm tra chạy trong cùng phạm vi với mã của người học.
+
+Các bài hiện tại được biên soạn từ `IT1140_Tai_lieu_Giang_vien.pdf` và chia theo trường `section` để danh sách trên giao diện dễ theo dõi. Bài xử lý tệp nhận nội dung mẫu dưới dạng chuỗi để chạy được trong website tĩnh; khi thực hành ngoài trình duyệt có thể thay phần dữ liệu mẫu bằng `open(...)`. Các bài Turtle được chuyển sang bài tọa độ/Matplotlib tương đương để vẫn xem và kiểm tra kết quả trong trình duyệt.

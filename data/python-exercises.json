@@ -1,125 +1,1756 @@
 {
-  "version": 1,
+  "version": 2,
+  "source": "IT1140_Tai_lieu_Giang_vien.pdf",
   "exercises": [
     {
-      "id": "py-list-comprehension",
-      "title": "Lọc và biến đổi danh sách",
+      "id": "py-pdf-1-1-1",
+      "title": "1.1.1 · Đổi nhiệt độ",
       "level": "Cơ bản",
-      "library": "Python",
-      "description": "Ôn vòng lặp, điều kiện và list comprehension.",
-      "task": "Viết hàm binh_phuong_so_chan(ds) trả về bình phương của các số chẵn, giữ nguyên thứ tự ban đầu.",
-      "starterCode": "def binh_phuong_so_chan(ds):\n    # Viết lời giải của bạn ở đây\n    pass\n\nprint(binh_phuong_so_chan([1, 2, 3, 4, 5, 6]))",
-      "hint": "Có thể dùng biểu thức [x ** 2 for x in ds if ...].",
+      "library": "Python cơ bản",
+      "description": "Nhập xuất và phép toán với số thực.",
+      "task": "Viết hàm doi_nhiet_do(c) trả về Fahrenheit theo công thức F = C × 9 / 5 + 32.",
+      "starterCode": "def doi_nhiet_do(c):\n    pass\n\nprint('{:.2f}'.format(doi_nhiet_do(37)))",
+      "hint": "Áp dụng công thức C * 9 / 5 + 32.",
       "tests": [
-        { "label": "Danh sách hỗn hợp", "code": "assert binh_phuong_so_chan([1, 2, 3, 4, 5, 6]) == [4, 16, 36]" },
-        { "label": "Không có số chẵn", "code": "assert binh_phuong_so_chan([1, 3, 5]) == []" },
-        { "label": "Có số âm và số 0", "code": "assert binh_phuong_so_chan([-2, 0, 3]) == [4, 0]" }
-      ]
+        {
+          "label": "0 độ C",
+          "code": "assert doi_nhiet_do(0) == 32"
+        },
+        {
+          "label": "37 độ C",
+          "code": "assert abs(doi_nhiet_do(37) - 98.6) < 1e-9"
+        },
+        {
+          "label": "-40 độ C",
+          "code": "assert doi_nhiet_do(-40) == -40"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
     },
     {
-      "id": "py-math-distance",
-      "title": "Khoảng cách hai điểm",
+      "id": "py-pdf-1-1-2",
+      "title": "1.1.2 · Tính tiền điện đơn giản",
       "level": "Cơ bản",
-      "library": "math",
-      "description": "Làm quen với căn bậc hai và thư viện math.",
-      "task": "Viết hàm khoang_cach(x1, y1, x2, y2) tính khoảng cách Euclid giữa hai điểm.",
-      "starterCode": "import math\n\ndef khoang_cach(x1, y1, x2, y2):\n    pass\n\nprint(khoang_cach(0, 0, 3, 4))",
-      "hint": "Khoảng cách bằng căn bậc hai của (x2 - x1)² + (y2 - y1)².",
+      "library": "Python cơ bản",
+      "description": "Nhân số điện tiêu thụ với đơn giá.",
+      "task": "Viết hàm tien_dien(n, p) trả về tổng tiền điện cho n kWh với đơn giá p.",
+      "starterCode": "def tien_dien(n, p):\n    pass\n\nprint(tien_dien(100, 2000))",
+      "hint": "Tổng tiền bằng số kWh nhân đơn giá.",
       "tests": [
-        { "label": "Tam giác 3–4–5", "code": "assert math.isclose(khoang_cach(0, 0, 3, 4), 5.0)" },
-        { "label": "Hai điểm trùng nhau", "code": "assert math.isclose(khoang_cach(2, -1, 2, -1), 0.0)" },
-        { "label": "Tọa độ âm", "code": "assert math.isclose(khoang_cach(-1, -1, 2, 3), 5.0)" }
-      ]
+        {
+          "label": "100 kWh",
+          "code": "assert tien_dien(100, 2000) == 200000"
+        },
+        {
+          "label": "Không tiêu thụ",
+          "code": "assert tien_dien(0, 3000) == 0"
+        },
+        {
+          "label": "Giá trị lớn",
+          "code": "assert tien_dien(999, 1500) == 1498500"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
     },
     {
-      "id": "py-statistics-summary",
-      "title": "Thống kê điểm số",
+      "id": "py-pdf-1-1-3",
+      "title": "1.1.3 · Đổi thời gian",
       "level": "Cơ bản",
-      "library": "statistics",
-      "description": "Tính các đại lượng mô tả với statistics.",
-      "task": "Viết hàm thong_ke(ds) trả về tuple gồm trung bình và trung vị của danh sách.",
-      "starterCode": "import statistics\n\ndef thong_ke(ds):\n    # Trả về (trung_binh, trung_vi)\n    pass\n\nprint(thong_ke([6, 7, 8, 9, 10]))",
-      "hint": "Dùng statistics.mean và statistics.median.",
+      "library": "Python cơ bản",
+      "description": "Luyện phép chia nguyên và chia dư.",
+      "task": "Viết hàm doi_thoi_gian(n) trả về tuple (giờ, phút, giây) từ tổng số giây n.",
+      "starterCode": "def doi_thoi_gian(n):\n    pass\n\nprint(doi_thoi_gian(3672))",
+      "hint": "Giờ = n // 3600; dùng phần dư để tách phút và giây.",
       "tests": [
-        { "label": "Số phần tử lẻ", "code": "assert thong_ke([6, 7, 8, 9, 10]) == (8, 8)" },
-        { "label": "Số phần tử chẵn", "code": "assert thong_ke([1, 2, 8, 9]) == (5, 5.0)" },
-        { "label": "Dữ liệu thập phân", "code": "assert thong_ke([1.5, 2.5, 3.5]) == (2.5, 2.5)" }
-      ]
+        {
+          "label": "0 giây",
+          "code": "assert doi_thoi_gian(0) == (0, 0, 0)"
+        },
+        {
+          "label": "3672 giây",
+          "code": "assert doi_thoi_gian(3672) == (1, 1, 12)"
+        },
+        {
+          "label": "Một ngày",
+          "code": "assert doi_thoi_gian(86400) == (24, 0, 0)"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
     },
     {
-      "id": "py-counter-words",
-      "title": "Đếm tần suất từ",
+      "id": "py-pdf-1-2-1",
+      "title": "1.2.1 · Kiểm tra chẵn lẻ",
       "level": "Cơ bản",
-      "library": "collections",
-      "description": "Sử dụng Counter để tổng hợp dữ liệu.",
-      "task": "Viết hàm dem_tu(van_ban) trả về Counter đếm từ, không phân biệt chữ hoa và chữ thường.",
-      "starterCode": "from collections import Counter\n\ndef dem_tu(van_ban):\n    pass\n\nprint(dem_tu(\"Python dễ học và Python mạnh mẽ\"))",
-      "hint": "Chuyển chuỗi về chữ thường, tách bằng split(), rồi truyền danh sách vào Counter.",
+      "library": "Rẽ nhánh",
+      "description": "Phân loại số nguyên bằng phép chia lấy dư.",
+      "task": "Viết hàm chan_le(n) trả về CHAN nếu n chẵn và LE nếu n lẻ.",
+      "starterCode": "def chan_le(n):\n    pass\n\nprint(chan_le(18))",
+      "hint": "Số chẵn có n % 2 == 0.",
       "tests": [
-        { "label": "Không phân biệt hoa thường", "code": "assert dem_tu('Python python PYTHON')['python'] == 3" },
-        { "label": "Đếm nhiều từ", "code": "assert dem_tu('a b a c b a') == Counter({'a': 3, 'b': 2, 'c': 1})" },
-        { "label": "Chuỗi rỗng", "code": "assert dem_tu('') == Counter()" }
-      ]
+        {
+          "label": "Số chẵn",
+          "code": "assert chan_le(18) == 'CHAN'"
+        },
+        {
+          "label": "Số lẻ âm",
+          "code": "assert chan_le(-7) == 'LE'"
+        },
+        {
+          "label": "Số 0",
+          "code": "assert chan_le(0) == 'CHAN'"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
     },
     {
-      "id": "py-random-simulation",
-      "title": "Mô phỏng tung xúc xắc",
-      "level": "Vừa",
-      "library": "random",
-      "description": "Tạo dữ liệu giả lập có thể tái lập bằng seed.",
-      "task": "Viết hàm tung_xuc_xac(so_lan, seed) trả về danh sách kết quả từ 1 đến 6. Hàm phải dùng random.Random(seed).",
-      "starterCode": "import random\n\ndef tung_xuc_xac(so_lan, seed):\n    pass\n\nprint(tung_xuc_xac(10, 1140))",
-      "hint": "Tạo rng = random.Random(seed), sau đó gọi rng.randint(1, 6) trong một vòng lặp.",
+      "id": "py-pdf-1-2-2",
+      "title": "1.2.2 · Số lớn nhất trong 3 số",
+      "level": "Cơ bản",
+      "library": "Rẽ nhánh",
+      "description": "So sánh lần lượt ba giá trị.",
+      "task": "Viết hàm lon_nhat_ba(a, b, c) trả về số lớn nhất.",
+      "starterCode": "def lon_nhat_ba(a, b, c):\n    pass\n\nprint(lon_nhat_ba(1, 2, 3))",
+      "hint": "Khởi đầu bằng a rồi cập nhật khi b hoặc c lớn hơn.",
       "tests": [
-        { "label": "Đúng số lượng", "code": "assert len(tung_xuc_xac(20, 1140)) == 20" },
-        { "label": "Giá trị hợp lệ", "code": "assert all(1 <= x <= 6 for x in tung_xuc_xac(100, 1))" },
-        { "label": "Có thể tái lập", "code": "assert tung_xuc_xac(10, 42) == tung_xuc_xac(10, 42)" }
-      ]
+        {
+          "label": "Ba số tăng",
+          "code": "assert lon_nhat_ba(1, 2, 3) == 3"
+        },
+        {
+          "label": "Có số âm",
+          "code": "assert lon_nhat_ba(-1, -5, -3) == -1"
+        },
+        {
+          "label": "Bằng nhau",
+          "code": "assert lon_nhat_ba(4, 4, 2) == 4"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
     },
     {
-      "id": "py-numpy-normalize",
-      "title": "Chuẩn hóa mảng số",
-      "level": "Vừa",
-      "library": "NumPy",
-      "description": "Thực hành phép toán vector với NumPy.",
-      "task": "Viết hàm chuan_hoa(ds) trả về mảng NumPy đã chuẩn hóa min–max về đoạn [0, 1]. Nếu mọi phần tử bằng nhau, trả về mảng toàn số 0.",
-      "starterCode": "import numpy as np\n\ndef chuan_hoa(ds):\n    arr = np.asarray(ds, dtype=float)\n    # Hoàn thiện phần còn lại\n    pass\n\nprint(chuan_hoa([10, 20, 30, 40]))",
-      "hint": "Công thức: (arr - arr.min()) / (arr.max() - arr.min()). Nhớ xử lý trường hợp mẫu số bằng 0.",
+      "id": "py-pdf-1-2-3",
+      "title": "1.2.3 · Xếp loại điểm",
+      "level": "Cơ bản",
+      "library": "Rẽ nhánh",
+      "description": "Rẽ nhánh theo các mốc điểm.",
+      "task": "Viết hàm xep_loai(d) trả về XUAT_SAC, GIOI, KHA, TRUNG_BINH hoặc KHONG_DAT theo mốc 9, 8, 6.5 và 5.",
+      "starterCode": "def xep_loai(d):\n    pass\n\nprint(xep_loai(7.25))",
+      "hint": "Kiểm tra mốc từ cao xuống thấp.",
       "tests": [
-        { "label": "Chuẩn hóa cơ bản", "code": "assert np.allclose(chuan_hoa([10, 20, 30]), [0.0, 0.5, 1.0])" },
-        { "label": "Mảng hằng", "code": "assert np.allclose(chuan_hoa([7, 7, 7]), [0.0, 0.0, 0.0])" },
-        { "label": "Không sửa dữ liệu đầu vào", "code": "du_lieu = [2, 4, 6]; chuan_hoa(du_lieu); assert du_lieu == [2, 4, 6]" }
-      ]
+        {
+          "label": "Xuất sắc",
+          "code": "assert xep_loai(9.5) == 'XUAT_SAC'"
+        },
+        {
+          "label": "Khá",
+          "code": "assert xep_loai(7.25) == 'KHA'"
+        },
+        {
+          "label": "Không đạt",
+          "code": "assert xep_loai(4.99) == 'KHONG_DAT'"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
     },
     {
-      "id": "py-pandas-filter",
-      "title": "Lọc bảng điểm",
-      "level": "Vừa",
-      "library": "pandas",
-      "description": "Lọc và sắp xếp dữ liệu dạng bảng với pandas.",
-      "task": "Viết hàm sinh_vien_dat(df) lấy các dòng có diem >= 5, sắp xếp điểm giảm dần và đặt lại chỉ số dòng.",
-      "starterCode": "import pandas as pd\n\ndef sinh_vien_dat(df):\n    pass\n\ndf = pd.DataFrame({\n    'ten': ['An', 'Bình', 'Chi', 'Dũng'],\n    'diem': [8.5, 4.0, 9.0, 5.0]\n})\nprint(sinh_vien_dat(df))",
-      "hint": "Kết hợp lọc df[df['diem'] >= 5], sort_values và reset_index(drop=True).",
+      "id": "py-pdf-1-2-4",
+      "title": "1.2.4 · Kiểm tra năm nhuận",
+      "level": "Cơ bản",
+      "library": "Rẽ nhánh",
+      "description": "Kết hợp toán tử logic and/or.",
+      "task": "Viết hàm nam_nhuan(y) trả về NAM_NHUAN hoặc KHONG_NHUAN.",
+      "starterCode": "def nam_nhuan(y):\n    pass\n\nprint(nam_nhuan(2024))",
+      "hint": "Chia hết 400, hoặc chia hết 4 nhưng không chia hết 100.",
       "tests": [
-        { "label": "Lọc đúng điều kiện", "code": "kq = sinh_vien_dat(df); assert (kq['diem'] >= 5).all()" },
-        { "label": "Sắp xếp giảm dần", "code": "kq = sinh_vien_dat(df); assert kq['diem'].tolist() == [9.0, 8.5, 5.0]" },
-        { "label": "Đặt lại chỉ số", "code": "kq = sinh_vien_dat(df); assert kq.index.tolist() == [0, 1, 2]" }
-      ]
+        {
+          "label": "2024",
+          "code": "assert nam_nhuan(2024) == 'NAM_NHUAN'"
+        },
+        {
+          "label": "1900",
+          "code": "assert nam_nhuan(1900) == 'KHONG_NHUAN'"
+        },
+        {
+          "label": "2000",
+          "code": "assert nam_nhuan(2000) == 'NAM_NHUAN'"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
     },
     {
-      "id": "py-matplotlib-chart",
-      "title": "Vẽ biểu đồ đường",
-      "level": "Vừa",
-      "library": "Matplotlib",
-      "description": "Tạo biểu đồ dữ liệu và xem kết quả ngay trong trình duyệt.",
-      "task": "Dùng matplotlib.pyplot để vẽ đường biểu diễn y = x² với x từ 0 đến 5. Đặt nhãn trục x là 'x' và trục y là 'x²'.",
-      "starterCode": "import matplotlib.pyplot as plt\n\nx = list(range(6))\ny = [value ** 2 for value in x]\n\n# Vẽ biểu đồ và đặt nhãn hai trục\n\nplt.title('Đồ thị y = x²')",
-      "hint": "Dùng plt.plot(x, y), plt.xlabel('x') và plt.ylabel('x²').",
+      "id": "py-pdf-1-3-1",
+      "title": "1.3.1 · Tổng từ 1 đến n",
+      "level": "Cơ bản",
+      "library": "Vòng lặp",
+      "description": "Dùng biến tích lũy trong vòng lặp.",
+      "task": "Viết hàm tong_1_den_n(n) tính 1 + 2 + ... + n bằng vòng lặp.",
+      "starterCode": "def tong_1_den_n(n):\n    pass\n\nprint(tong_1_den_n(10))",
+      "hint": "Khởi tạo tổng bằng 0 rồi cộng range(1, n + 1).",
       "tests": [
-        { "label": "Có một đường dữ liệu", "code": "ax = plt.gca(); assert len(ax.lines) == 1" },
-        { "label": "Dữ liệu đúng", "code": "ax = plt.gca(); assert list(ax.lines[0].get_ydata()) == [0, 1, 4, 9, 16, 25]" },
-        { "label": "Có nhãn hai trục", "code": "ax = plt.gca(); assert ax.get_xlabel() == 'x' and ax.get_ylabel() == 'x²'" }
-      ]
+        {
+          "label": "n = 1",
+          "code": "assert tong_1_den_n(1) == 1"
+        },
+        {
+          "label": "n = 10",
+          "code": "assert tong_1_den_n(10) == 55"
+        },
+        {
+          "label": "n = 100",
+          "code": "assert tong_1_den_n(100) == 5050"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
+    },
+    {
+      "id": "py-pdf-1-3-2",
+      "title": "1.3.2 · Đếm số chẵn trong đoạn",
+      "level": "Cơ bản",
+      "library": "Vòng lặp",
+      "description": "Duyệt đoạn đóng và đếm có điều kiện.",
+      "task": "Viết hàm dem_chan_doan(a, b) đếm số chẵn trong đoạn [a, b].",
+      "starterCode": "def dem_chan_doan(a, b):\n    pass\n\nprint(dem_chan_doan(1, 10))",
+      "hint": "Duyệt range(a, b + 1) và đếm khi x % 2 == 0.",
+      "tests": [
+        {
+          "label": "1 đến 10",
+          "code": "assert dem_chan_doan(1, 10) == 5"
+        },
+        {
+          "label": "Một số lẻ",
+          "code": "assert dem_chan_doan(3, 3) == 0"
+        },
+        {
+          "label": "Có số âm",
+          "code": "assert dem_chan_doan(-4, 4) == 5"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
+    },
+    {
+      "id": "py-pdf-1-3-3",
+      "title": "1.3.3 · Kiểm tra số nguyên tố",
+      "level": "Cơ bản",
+      "library": "Vòng lặp",
+      "description": "Dùng cờ hiệu để kiểm tra ước số.",
+      "task": "Viết hàm la_nguyen_to(n) trả về True khi n là số nguyên tố.",
+      "starterCode": "def la_nguyen_to(n):\n    pass\n\nprint(la_nguyen_to(17))",
+      "hint": "Loại n < 2; thử ước i với i * i <= n.",
+      "tests": [
+        {
+          "label": "Số 1",
+          "code": "assert la_nguyen_to(1) is False"
+        },
+        {
+          "label": "Số 17",
+          "code": "assert la_nguyen_to(17) is True"
+        },
+        {
+          "label": "Số 100",
+          "code": "assert la_nguyen_to(100) is False"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
+    },
+    {
+      "id": "py-pdf-1-4",
+      "title": "1.4 · Phân loại chỉ số BMI",
+      "level": "Cơ bản",
+      "library": "Rẽ nhánh",
+      "description": "Tính BMI và phân loại theo bốn khoảng.",
+      "task": "Viết hàm phan_loai_bmi(m, h) trả về tuple (bmi, loai).",
+      "starterCode": "def phan_loai_bmi(m, h):\n    pass\n\nprint(phan_loai_bmi(68, 1.7))",
+      "hint": "BMI = m / (h * h); xét mốc 18.5, 25 và 30.",
+      "tests": [
+        {
+          "label": "Thiếu cân",
+          "code": "bmi, loai = phan_loai_bmi(50, 1.7); assert round(bmi, 2) == 17.3 and loai == 'THIEU_CAN'"
+        },
+        {
+          "label": "Bình thường",
+          "code": "assert phan_loai_bmi(68, 1.7)[1] == 'BINH_THUONG'"
+        },
+        {
+          "label": "Béo phì",
+          "code": "assert phan_loai_bmi(95, 1.7)[1] == 'BEO_PHI'"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
+    },
+    {
+      "id": "py-pdf-1-5",
+      "title": "1.5 · Tiền điện theo bậc thang",
+      "level": "Tự luyện",
+      "library": "Rẽ nhánh",
+      "description": "Tính tiền điện theo ba bậc giá.",
+      "task": "Viết hàm tien_dien_bac_thang(n): 50 kWh đầu giá 1800, 50 kWh tiếp giá 2000, phần còn lại giá 2500.",
+      "starterCode": "def tien_dien_bac_thang(n):\n    pass\n\nprint(tien_dien_bac_thang(51))",
+      "hint": "Tách phần điện ở từng bậc rồi cộng lại.",
+      "tests": [
+        {
+          "label": "0 kWh",
+          "code": "assert tien_dien_bac_thang(0) == 0"
+        },
+        {
+          "label": "Mốc 50",
+          "code": "assert tien_dien_bac_thang(50) == 90000"
+        },
+        {
+          "label": "Trên 100",
+          "code": "assert tien_dien_bac_thang(250) == 565000"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
+    },
+    {
+      "id": "py-pdf-1-6",
+      "title": "1.6 · Giải phương trình bậc nhất",
+      "level": "Tự luyện",
+      "library": "Rẽ nhánh",
+      "description": "Xử lý nghiệm duy nhất và trường hợp đặc biệt.",
+      "task": "Viết hàm giai_pt_bac_nhat(a, b) cho ax + b = 0; trả về nghiệm 2 chữ số, VO_SO_NGHIEM hoặc VO_NGHIEM.",
+      "starterCode": "def giai_pt_bac_nhat(a, b):\n    pass\n\nprint(giai_pt_bac_nhat(2, -6))",
+      "hint": "Nếu a khác 0, nghiệm là -b/a; nếu a bằng 0 xét b.",
+      "tests": [
+        {
+          "label": "Có nghiệm",
+          "code": "assert giai_pt_bac_nhat(2, -6) == '3.00'"
+        },
+        {
+          "label": "Vô số nghiệm",
+          "code": "assert giai_pt_bac_nhat(0, 0) == 'VO_SO_NGHIEM'"
+        },
+        {
+          "label": "Vô nghiệm",
+          "code": "assert giai_pt_bac_nhat(0, 5) == 'VO_NGHIEM'"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
+    },
+    {
+      "id": "py-pdf-1-7",
+      "title": "1.7 · Tổng, trung bình, lớn nhất, nhỏ nhất",
+      "level": "Tự luyện",
+      "library": "Vòng lặp",
+      "description": "Duyệt dãy và cập nhật nhiều biến.",
+      "task": "Viết hàm thong_ke_day(so) trả về (tổng, lớn nhất, nhỏ nhất, trung bình 2 chữ số), không dùng sum/max/min.",
+      "starterCode": "def thong_ke_day(so):\n    pass\n\nprint(thong_ke_day([1, 2, 3, 4, 5]))",
+      "hint": "Khởi tạo max/min bằng phần tử đầu; cập nhật trong vòng lặp.",
+      "tests": [
+        {
+          "label": "Dãy tăng",
+          "code": "assert thong_ke_day([1, 2, 3, 4, 5]) == (15, 5, 1, '3.00')"
+        },
+        {
+          "label": "Có số âm",
+          "code": "assert thong_ke_day([-1, -2, -3, -4]) == (-10, -1, -4, '-2.50')"
+        },
+        {
+          "label": "Phần tử lặp",
+          "code": "assert thong_ke_day([10, 10, 10]) == (30, 10, 10, '10.00')"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
+    },
+    {
+      "id": "py-pdf-1-8",
+      "title": "1.8 · Bảng cửu chương",
+      "level": "Tự luyện",
+      "library": "Vòng lặp lồng nhau",
+      "description": "Sinh nhiều bảng cửu chương và chèn dòng trống.",
+      "task": "Viết hàm bang_cuu_chuong(a, b) trả về chuỗi các bảng từ a đến b, mỗi bảng 10 dòng và cách nhau một dòng trống.",
+      "starterCode": "def bang_cuu_chuong(a, b):\n    pass\n\nprint(bang_cuu_chuong(2, 2))",
+      "hint": "Vòng ngoài chạy i; vòng trong chạy j từ 1 đến 10.",
+      "tests": [
+        {
+          "label": "Một bảng",
+          "code": "assert bang_cuu_chuong(2, 2).splitlines()[0] == '2 x 1 = 2'"
+        },
+        {
+          "label": "Đủ 10 dòng",
+          "code": "assert len(bang_cuu_chuong(3, 3).splitlines()) == 10"
+        },
+        {
+          "label": "Có dòng trống",
+          "code": "assert '' in bang_cuu_chuong(2, 3).splitlines()"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
+    },
+    {
+      "id": "py-pdf-1-9",
+      "title": "1.9 · Số ngày trong tháng",
+      "level": "Tự luyện",
+      "library": "Rẽ nhánh",
+      "description": "Tính số ngày theo tháng và năm nhuận.",
+      "task": "Viết hàm so_ngay_trong_thang(t, y) trả về số ngày hoặc KHONG_HOP_LE.",
+      "starterCode": "def so_ngay_trong_thang(t, y):\n    pass\n\nprint(so_ngay_trong_thang(2, 2024))",
+      "hint": "Nhóm tháng 30 ngày; riêng tháng 2 kiểm tra năm nhuận.",
+      "tests": [
+        {
+          "label": "Tháng 1",
+          "code": "assert so_ngay_trong_thang(1, 2025) == 31"
+        },
+        {
+          "label": "Tháng 2 nhuận",
+          "code": "assert so_ngay_trong_thang(2, 2024) == 29"
+        },
+        {
+          "label": "Tháng sai",
+          "code": "assert so_ngay_trong_thang(13, 2025) == 'KHONG_HOP_LE'"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
+    },
+    {
+      "id": "py-pdf-1-10",
+      "title": "1.10 · Đếm chữ số và tổng chữ số",
+      "level": "Tự luyện",
+      "library": "Vòng lặp while",
+      "description": "Tách chữ số bằng chia nguyên và chia dư.",
+      "task": "Viết hàm dem_tong_chu_so(n) trả về (số chữ số, tổng chữ số), bỏ qua dấu âm và coi 0 có một chữ số.",
+      "starterCode": "def dem_tong_chu_so(n):\n    pass\n\nprint(dem_tong_chu_so(-9081))",
+      "hint": "Xử lý n = 0 riêng; lặp lấy n % 10 rồi n //= 10.",
+      "tests": [
+        {
+          "label": "Số 0",
+          "code": "assert dem_tong_chu_so(0) == (1, 0)"
+        },
+        {
+          "label": "Số âm",
+          "code": "assert dem_tong_chu_so(-9081) == (4, 18)"
+        },
+        {
+          "label": "Nhiều số 0",
+          "code": "assert dem_tong_chu_so(1000000) == (7, 1)"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
+    },
+    {
+      "id": "py-pdf-1-11",
+      "title": "1.11 · Dãy Fibonacci",
+      "level": "Tự luyện",
+      "library": "Vòng lặp",
+      "description": "Sinh n số đầu tiên của dãy Fibonacci.",
+      "task": "Viết hàm fibonacci(n) trả về danh sách n số đầu tiên, bắt đầu bằng 0 và 1.",
+      "starterCode": "def fibonacci(n):\n    pass\n\nprint(fibonacci(10))",
+      "hint": "Giữ hai số a, b rồi cập nhật a, b = b, a + b.",
+      "tests": [
+        {
+          "label": "Một số",
+          "code": "assert fibonacci(1) == [0]"
+        },
+        {
+          "label": "Năm số",
+          "code": "assert fibonacci(5) == [0, 1, 1, 2, 3]"
+        },
+        {
+          "label": "Mười số",
+          "code": "assert fibonacci(10)[-1] == 34"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
+    },
+    {
+      "id": "py-pdf-1-12",
+      "title": "1.12 · UCLN và BCNN",
+      "level": "Tự luyện",
+      "library": "Thuật toán Euclid",
+      "description": "Tính UCLN bằng Euclid rồi suy ra BCNN.",
+      "task": "Viết hàm ucln_bcnn(a, b) trả về (UCLN, BCNN).",
+      "starterCode": "def ucln_bcnn(a, b):\n    pass\n\nprint(ucln_bcnn(12, 18))",
+      "hint": "Lặp x, y = y, x % y; BCNN = a * b // UCLN.",
+      "tests": [
+        {
+          "label": "12 và 18",
+          "code": "assert ucln_bcnn(12, 18) == (6, 36)"
+        },
+        {
+          "label": "Nguyên tố cùng nhau",
+          "code": "assert ucln_bcnn(7, 13) == (1, 91)"
+        },
+        {
+          "label": "Một số là bội",
+          "code": "assert ucln_bcnn(100, 25) == (25, 100)"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
+    },
+    {
+      "id": "py-pdf-1-13",
+      "title": "1.13 · Vẽ tam giác sao",
+      "level": "Tự luyện",
+      "library": "Chuỗi",
+      "description": "Tạo chuỗi nhiều dòng bằng phép nhân chuỗi.",
+      "task": "Viết hàm tam_giac_sao(n) trả về tam giác cân n dòng; dòng i có n-i dấu cách và 2i-1 dấu sao.",
+      "starterCode": "def tam_giac_sao(n):\n    pass\n\nprint(tam_giac_sao(3))",
+      "hint": "Dùng ' ' * (n-i) nối với '*' * (2*i-1).",
+      "tests": [
+        {
+          "label": "Một dòng",
+          "code": "assert tam_giac_sao(1) == '*'"
+        },
+        {
+          "label": "Ba dòng",
+          "code": "assert tam_giac_sao(3) == '  *\\n ***\\n*****'"
+        },
+        {
+          "label": "Không có khoảng trắng cuối",
+          "code": "assert all([not line.endswith(' ') for line in tam_giac_sao(5).splitlines()])"
+        }
+      ],
+      "section": "Phần 1 · Cú pháp, biểu thức và luồng điều khiển"
+    },
+    {
+      "id": "py-pdf-2-1",
+      "title": "2.1 · Chu vi và diện tích hình chữ nhật",
+      "level": "Cơ bản",
+      "library": "Hàm",
+      "description": "Hàm có tham số và giá trị trả về.",
+      "task": "Viết hai hàm chu_vi(a, b) và dien_tich(a, b) trả về chu vi và diện tích hình chữ nhật.",
+      "starterCode": "def chu_vi(a, b):\n    pass\n\ndef dien_tich(a, b):\n    pass\n\nprint(chu_vi(3, 4))\nprint(dien_tich(3, 4))",
+      "hint": "Chu vi = 2 * (a + b); diện tích = a * b.",
+      "tests": [
+        {
+          "label": "3 x 4",
+          "code": "assert chu_vi(3, 4) == 14 and dien_tich(3, 4) == 12"
+        },
+        {
+          "label": "Số thập phân",
+          "code": "assert abs(dien_tich(1.5, 2.5) - 3.75) < 1e-9"
+        },
+        {
+          "label": "Hình vuông",
+          "code": "assert chu_vi(10, 10) == 40"
+        }
+      ],
+      "section": "Phần 2 · Hàm và chuỗi"
+    },
+    {
+      "id": "py-pdf-2-2",
+      "title": "2.2 · Liệt kê số nguyên tố trong đoạn",
+      "level": "Cơ bản",
+      "library": "Hàm",
+      "description": "Đóng gói kiểm tra số nguyên tố thành hàm Boolean.",
+      "task": "Viết hàm liet_ke_nguyen_to(a, b) trả về danh sách số nguyên tố trong đoạn [a, b].",
+      "starterCode": "def liet_ke_nguyen_to(a, b):\n    pass\n\nprint(liet_ke_nguyen_to(1, 20))",
+      "hint": "Trong hàm kiểm tra, chỉ cần thử ước i khi i * i <= n.",
+      "tests": [
+        {
+          "label": "1 đến 20",
+          "code": "assert liet_ke_nguyen_to(1, 20) == [2, 3, 5, 7, 11, 13, 17, 19]"
+        },
+        {
+          "label": "Không có số nguyên tố",
+          "code": "assert liet_ke_nguyen_to(20, 22) == []"
+        },
+        {
+          "label": "Có số âm",
+          "code": "assert liet_ke_nguyen_to(-5, 3) == [2, 3]"
+        }
+      ],
+      "section": "Phần 2 · Hàm và chuỗi"
+    },
+    {
+      "id": "py-pdf-2-3",
+      "title": "2.3 · Rút gọn phân số",
+      "level": "Cơ bản",
+      "library": "Hàm",
+      "description": "Thuật toán Euclid và quy ước dấu.",
+      "task": "Viết hàm rut_gon_phan_so(a, b) trả về phân số tối giản dạng tu/mau; mẫu luôn dương và 0 viết là 0/1.",
+      "starterCode": "def rut_gon_phan_so(a, b):\n    pass\n\nprint(rut_gon_phan_so(6, 8))",
+      "hint": "Tìm UCLN của trị tuyệt đối; nếu mẫu âm thì đổi dấu cả tử và mẫu.",
+      "tests": [
+        {
+          "label": "6/8",
+          "code": "assert rut_gon_phan_so(6, 8) == '3/4'"
+        },
+        {
+          "label": "Mẫu âm",
+          "code": "assert rut_gon_phan_so(3, -9) == '-1/3'"
+        },
+        {
+          "label": "Tử bằng 0",
+          "code": "assert rut_gon_phan_so(0, 7) == '0/1'"
+        }
+      ],
+      "section": "Phần 2 · Hàm và chuỗi"
+    },
+    {
+      "id": "py-pdf-2-4",
+      "title": "2.4 · Máy tính bỏ túi",
+      "level": "Cơ bản",
+      "library": "Chuỗi và rẽ nhánh",
+      "description": "Tách toán tử từ một biểu thức đơn giản.",
+      "task": "Viết hàm may_tinh(a, op, b) xử lý +, -, *, /; phép chia trả về chuỗi 2 chữ số hoặc LOI_CHIA_0.",
+      "starterCode": "def may_tinh(a, op, b):\n    pass\n\nprint(may_tinh(7, '+', 3))",
+      "hint": "Chọn nhánh theo op; kiểm tra b bằng 0 trước khi chia.",
+      "tests": [
+        {
+          "label": "Cộng",
+          "code": "assert may_tinh(7, '+', 3) == '10'"
+        },
+        {
+          "label": "Chia",
+          "code": "assert may_tinh(7, '/', 2) == '3.50'"
+        },
+        {
+          "label": "Chia 0",
+          "code": "assert may_tinh(5, '/', 0) == 'LOI_CHIA_0'"
+        }
+      ],
+      "section": "Phần 2 · Hàm và chuỗi"
+    },
+    {
+      "id": "py-pdf-2-5",
+      "title": "2.5 · Chuẩn hóa họ tên",
+      "level": "Cơ bản",
+      "library": "Chuỗi",
+      "description": "Dùng split và join để làm sạch khoảng trắng.",
+      "task": "Viết hàm chuan_hoa_ho_ten(ho_ten) bỏ khoảng trắng thừa và viết hoa chữ đầu mỗi từ.",
+      "starterCode": "def chuan_hoa_ho_ten(ho_ten):\n    pass\n\nprint(chuan_hoa_ho_ten('  nguyen   VAN an  '))",
+      "hint": "split() tự bỏ khoảng trắng thừa; chuẩn hóa từng từ rồi join bằng một dấu cách.",
+      "tests": [
+        {
+          "label": "Nhiều khoảng trắng",
+          "code": "assert chuan_hoa_ho_ten('  nguyen   VAN an  ') == 'Nguyen Van An'"
+        },
+        {
+          "label": "Một từ",
+          "code": "assert chuan_hoa_ho_ten('mai') == 'Mai'"
+        },
+        {
+          "label": "Tên viết hoa",
+          "code": "assert chuan_hoa_ho_ten('TRAN THI BINH') == 'Tran Thi Binh'"
+        }
+      ],
+      "section": "Phần 2 · Hàm và chuỗi"
+    },
+    {
+      "id": "py-pdf-2-6",
+      "title": "2.6 · Thống kê từ trong câu",
+      "level": "Cơ bản",
+      "library": "Chuỗi",
+      "description": "Đếm từ và tìm từ dài nhất.",
+      "task": "Viết hàm thong_ke_tu(cau) trả về tuple (số từ, từ dài nhất, độ dài); nếu hòa, lấy từ đầu tiên.",
+      "starterCode": "def thong_ke_tu(cau):\n    pass\n\nprint(thong_ke_tu('Tin hoc dai cuong'))",
+      "hint": "Tách bằng split(); chỉ thay từ dài nhất khi len(t) lớn hơn.",
+      "tests": [
+        {
+          "label": "Câu mẫu",
+          "code": "assert thong_ke_tu('Tin hoc dai cuong') == (4, 'cuong', 5)"
+        },
+        {
+          "label": "Hòa độ dài",
+          "code": "assert thong_ke_tu('mot hai ba') == (3, 'mot', 3)"
+        },
+        {
+          "label": "Một từ",
+          "code": "assert thong_ke_tu('abc') == (1, 'abc', 3)"
+        }
+      ],
+      "section": "Phần 2 · Hàm và chuỗi"
+    },
+    {
+      "id": "py-pdf-2-7",
+      "title": "2.7 · Nút gốc chữ số",
+      "level": "Tự luyện",
+      "library": "Hàm và while",
+      "description": "Lặp cộng chữ số tới khi còn một chữ số.",
+      "task": "Viết hàm nut_goc_chu_so(n) trả về chữ số cuối cùng sau các lần cộng chữ số.",
+      "starterCode": "def nut_goc_chu_so(n):\n    pass\n\nprint(nut_goc_chu_so(9875))",
+      "hint": "Viết hàm phụ cộng các chữ số, rồi lặp khi n >= 10.",
+      "tests": [
+        {
+          "label": "9875",
+          "code": "assert nut_goc_chu_so(9875) == 2"
+        },
+        {
+          "label": "99999",
+          "code": "assert nut_goc_chu_so(99999) == 9"
+        },
+        {
+          "label": "Một chữ số",
+          "code": "assert nut_goc_chu_so(5) == 5"
+        }
+      ],
+      "section": "Phần 2 · Hàm và chuỗi"
+    },
+    {
+      "id": "py-pdf-2-8",
+      "title": "2.8 · Đếm số chẵn bằng hàm",
+      "level": "Tự luyện",
+      "library": "Hàm Boolean",
+      "description": "Dùng hàm la_chan để đếm trong dãy.",
+      "task": "Viết hàm dem_so_chan(so) trả về số lượng phần tử chẵn trong danh sách.",
+      "starterCode": "def dem_so_chan(so):\n    pass\n\nprint(dem_so_chan([1, 2, 3, 4, 5]))",
+      "hint": "Một số là chẵn khi x % 2 == 0.",
+      "tests": [
+        {
+          "label": "Dãy hỗn hợp",
+          "code": "assert dem_so_chan([1, 2, 3, 4, 5]) == 2"
+        },
+        {
+          "label": "Toàn số chẵn",
+          "code": "assert dem_so_chan([2, 4, 6]) == 3"
+        },
+        {
+          "label": "Số âm",
+          "code": "assert dem_so_chan([-2, -1, 0, 1]) == 2"
+        }
+      ],
+      "section": "Phần 2 · Hàm và chuỗi"
+    },
+    {
+      "id": "py-pdf-2-9",
+      "title": "2.9 · Hàm tính lũy thừa",
+      "level": "Tự luyện",
+      "library": "Hàm và vòng lặp",
+      "description": "Nhân dồn để tính lũy thừa, không dùng toán tử mũ.",
+      "task": "Viết hàm luy_thua(a, n) trả về a mũ n bằng vòng lặp; quy ước a mũ 0 bằng 1.",
+      "starterCode": "def luy_thua(a, n):\n    pass\n\nprint(luy_thua(2, 10))",
+      "hint": "Khởi tạo kết quả bằng 1 và nhân a đúng n lần.",
+      "tests": [
+        {
+          "label": "2 mũ 10",
+          "code": "assert luy_thua(2, 10) == 1024"
+        },
+        {
+          "label": "Mũ 0",
+          "code": "assert luy_thua(3, 0) == 1"
+        },
+        {
+          "label": "Số âm",
+          "code": "assert luy_thua(-2, 3) == -8"
+        }
+      ],
+      "section": "Phần 2 · Hàm và chuỗi"
+    },
+    {
+      "id": "py-pdf-2-10",
+      "title": "2.10 · Đếm số câu",
+      "level": "Tự luyện",
+      "library": "Chuỗi",
+      "description": "Đếm các ký tự kết thúc câu.",
+      "task": "Viết hàm dem_so_cau(s) đếm số dấu chấm, chấm than và chấm hỏi trong văn bản.",
+      "starterCode": "def dem_so_cau(s):\n    pass\n\nprint(dem_so_cau('Hello. How are you?'))",
+      "hint": "Duyệt từng ký tự và kiểm tra c có thuộc '.!?'.",
+      "tests": [
+        {
+          "label": "Hai câu",
+          "code": "assert dem_so_cau('Hello. How are you?') == 2"
+        },
+        {
+          "label": "Không có dấu câu",
+          "code": "assert dem_so_cau('Khong co dau cau') == 0"
+        },
+        {
+          "label": "Ba dấu chấm than",
+          "code": "assert dem_so_cau('A! B! C!') == 3"
+        }
+      ],
+      "section": "Phần 2 · Hàm và chuỗi"
+    },
+    {
+      "id": "py-pdf-2-11",
+      "title": "2.11 · Phân loại chuỗi",
+      "level": "Tự luyện",
+      "library": "Chuỗi",
+      "description": "Phân biệt chữ số, chữ cái và chuỗi hỗn hợp.",
+      "task": "Viết hàm phan_loai_chuoi(s) trả về SO, CHU, HON_HOP hoặc KHAC.",
+      "starterCode": "def phan_loai_chuoi(s):\n    pass\n\nprint(phan_loai_chuoi('abc123'))",
+      "hint": "Dùng isdigit(), isalpha() và isalnum() theo đúng thứ tự.",
+      "tests": [
+        {
+          "label": "Chỉ số",
+          "code": "assert phan_loai_chuoi('12345') == 'SO'"
+        },
+        {
+          "label": "Chỉ chữ",
+          "code": "assert phan_loai_chuoi('Python') == 'CHU'"
+        },
+        {
+          "label": "Hỗn hợp",
+          "code": "assert phan_loai_chuoi('abc123') == 'HON_HOP'"
+        }
+      ],
+      "section": "Phần 2 · Hàm và chuỗi"
+    },
+    {
+      "id": "py-pdf-2-12",
+      "title": "2.12 · Đếm chuỗi con không chồng lấp",
+      "level": "Tự luyện",
+      "library": "Chuỗi",
+      "description": "Dùng count để đếm số lần xuất hiện chuỗi con.",
+      "task": "Viết hàm dem_chuoi_con(s, t) trả về số lần t xuất hiện trong s, không chồng lấp và phân biệt hoa thường.",
+      "starterCode": "def dem_chuoi_con(s, t):\n    pass\n\nprint(dem_chuoi_con('ababab', 'ab'))",
+      "hint": "Có thể dùng s.count(t).",
+      "tests": [
+        {
+          "label": "ababab / ab",
+          "code": "assert dem_chuoi_con('ababab', 'ab') == 3"
+        },
+        {
+          "label": "aaaa / aa",
+          "code": "assert dem_chuoi_con('aaaa', 'aa') == 2"
+        },
+        {
+          "label": "Phân biệt hoa thường",
+          "code": "assert dem_chuoi_con('Tin hoc tin', 'tin') == 1"
+        }
+      ],
+      "section": "Phần 2 · Hàm và chuỗi"
+    },
+    {
+      "id": "py-pdf-3-1",
+      "title": "3.1 · Đổi sang hệ nhị phân",
+      "level": "Cơ bản",
+      "library": "Chuỗi",
+      "description": "Đổi số nguyên không âm sang chuỗi nhị phân, không dùng bin.",
+      "task": "Viết hàm doi_nhi_phan(n) trả về biểu diễn nhị phân của n; số 0 trả về '0'.",
+      "starterCode": "def doi_nhi_phan(n):\n    pass\n\nprint(doi_nhi_phan(10))",
+      "hint": "Lặp lấy n % 2, ghép chữ số vào đầu chuỗi rồi chia n //= 2.",
+      "tests": [
+        {
+          "label": "Số 0",
+          "code": "assert doi_nhi_phan(0) == '0'"
+        },
+        {
+          "label": "Số 5",
+          "code": "assert doi_nhi_phan(5) == '101'"
+        },
+        {
+          "label": "Số 255",
+          "code": "assert doi_nhi_phan(255) == '11111111'"
+        }
+      ],
+      "section": "Phần 3 · Chuỗi, tuple, list, set và dictionary"
+    },
+    {
+      "id": "py-pdf-3-2",
+      "title": "3.2 · Bảng điểm lớp học",
+      "level": "Cơ bản",
+      "library": "Tuple",
+      "description": "Lưu thông tin sinh viên bằng tuple và tổng hợp dữ liệu.",
+      "task": "Viết hàm thong_ke_lop(lop) với lop là danh sách (tên, điểm), trả về (điểm trung bình, tên cao nhất, số đạt).",
+      "starterCode": "def thong_ke_lop(lop):\n    pass\n\nprint(thong_ke_lop([('An', 8.5), ('Binh', 6), ('Cuong', 4.5)]))",
+      "hint": "Duyệt tuple; chỉ thay sinh viên cao nhất khi điểm lớn hơn, không thay khi bằng nhau.",
+      "tests": [
+        {
+          "label": "Lớp mẫu",
+          "code": "assert thong_ke_lop([('An', 8.5), ('Binh', 6), ('Cuong', 4.5)]) == (6.33, 'An', 2)"
+        },
+        {
+          "label": "Hòa điểm cao nhất",
+          "code": "assert thong_ke_lop([('A', 9.25), ('B', 3), ('C', 9.25)])[1] == 'A'"
+        },
+        {
+          "label": "Tất cả đạt",
+          "code": "assert thong_ke_lop([('A', 5), ('B', 5)]) == (5.0, 'A', 2)"
+        }
+      ],
+      "section": "Phần 3 · Chuỗi, tuple, list, set và dictionary"
+    },
+    {
+      "id": "py-pdf-3-3",
+      "title": "3.3 · Kiểm tra mật khẩu mạnh",
+      "level": "Cơ bản",
+      "library": "List",
+      "description": "Duyệt ký tự và dùng các cờ Boolean.",
+      "task": "Viết hàm mat_khau_manh(mk) trả về True khi mật khẩu dài ít nhất 8 ký tự, có chữ hoa, chữ thường và chữ số.",
+      "starterCode": "def mat_khau_manh(mk):\n    pass\n\nprint(mat_khau_manh('Python2025'))",
+      "hint": "Theo dõi ba cờ co_hoa, co_thuong, co_so trong khi duyệt chuỗi.",
+      "tests": [
+        {
+          "label": "Mật khẩu mạnh",
+          "code": "assert mat_khau_manh('Abcdef12') is True"
+        },
+        {
+          "label": "Quá ngắn",
+          "code": "assert mat_khau_manh('abc123') is False"
+        },
+        {
+          "label": "Thiếu chữ thường",
+          "code": "assert mat_khau_manh('ABCDEFGH1') is False"
+        }
+      ],
+      "section": "Phần 3 · Chuỗi, tuple, list, set và dictionary"
+    },
+    {
+      "id": "py-pdf-3-4",
+      "title": "3.4 · Loại bỏ phần tử trùng lặp",
+      "level": "Cơ bản",
+      "library": "Set",
+      "description": "Giữ thứ tự xuất hiện đầu tiên khi loại trùng.",
+      "task": "Viết hàm loai_trung(ds) trả về danh sách giá trị khác nhau theo đúng thứ tự xuất hiện.",
+      "starterCode": "def loai_trung(ds):\n    pass\n\nprint(loai_trung([1, 2, 2, 3, 1, 4]))",
+      "hint": "Dùng một set để kiểm tra đã gặp và một list kết quả để giữ thứ tự.",
+      "tests": [
+        {
+          "label": "Dãy mẫu",
+          "code": "assert loai_trung([1, 2, 2, 3, 1, 4]) == [1, 2, 3, 4]"
+        },
+        {
+          "label": "Toàn trùng",
+          "code": "assert loai_trung([7, 7, 7]) == [7]"
+        },
+        {
+          "label": "Có số âm",
+          "code": "assert loai_trung([-1, 3, -1, 0, 3, 5, 0]) == [-1, 3, 0, 5]"
+        }
+      ],
+      "section": "Phần 3 · Chuỗi, tuple, list, set và dictionary"
+    },
+    {
+      "id": "py-pdf-3-5",
+      "title": "3.5 · Sổ điểm có cập nhật",
+      "level": "Cơ bản",
+      "library": "Dictionary",
+      "description": "Ghi đè điểm cũ và tra cứu bằng dictionary.",
+      "task": "Viết hàm tra_cuu_diem(du_lieu, ten) với du_lieu là danh sách (tên, điểm); lấy điểm nhập sau cùng và trả về chuỗi 2 chữ số hoặc KHONG_CO.",
+      "starterCode": "def tra_cuu_diem(du_lieu, ten):\n    pass\n\nprint(tra_cuu_diem([('An', 8), ('An', 9)], 'An'))",
+      "hint": "Gán diem[ten] = d để lần nhập sau ghi đè; kiểm tra ten có trong dict.",
+      "tests": [
+        {
+          "label": "Cập nhật điểm",
+          "code": "assert tra_cuu_diem([('An', 8), ('Binh', 6), ('An', 9)], 'An') == '9.00'"
+        },
+        {
+          "label": "Không có tên",
+          "code": "assert tra_cuu_diem([('An', 7)], 'Cuong') == 'KHONG_CO'"
+        },
+        {
+          "label": "Số thập phân",
+          "code": "assert tra_cuu_diem([('X', 9.5)], 'X') == '9.50'"
+        }
+      ],
+      "section": "Phần 3 · Chuỗi, tuple, list, set và dictionary"
+    },
+    {
+      "id": "py-pdf-3-6",
+      "title": "3.6 · Kiểm tra chuỗi đối xứng",
+      "level": "Tự luyện",
+      "library": "Chuỗi",
+      "description": "Bỏ khoảng trắng và không phân biệt hoa thường.",
+      "task": "Viết hàm doi_xung(s) trả về True nếu chuỗi đối xứng sau khi chuẩn hóa.",
+      "starterCode": "def doi_xung(s):\n    pass\n\nprint(doi_xung('abba'))",
+      "hint": "Chuẩn hóa bằng replace(' ', '').lower() rồi so sánh với s[::-1].",
+      "tests": [
+        {
+          "label": "abba",
+          "code": "assert doi_xung('abba') is True"
+        },
+        {
+          "label": "Python",
+          "code": "assert doi_xung('Python') is False"
+        },
+        {
+          "label": "Có khoảng trắng",
+          "code": "assert doi_xung('A man a') is True"
+        }
+      ],
+      "section": "Phần 3 · Chuỗi, tuple, list, set và dictionary"
+    },
+    {
+      "id": "py-pdf-3-7",
+      "title": "3.7 · Đếm nguyên âm, phụ âm và ký tự khác",
+      "level": "Tự luyện",
+      "library": "Chuỗi",
+      "description": "Phân loại ký tự bằng isalpha.",
+      "task": "Viết hàm dem_ky_tu(s) trả về (nguyên âm, phụ âm, ký tự không phải chữ cái), không phân biệt hoa thường.",
+      "starterCode": "def dem_ky_tu(s):\n    pass\n\nprint(dem_ky_tu('Hello World'))",
+      "hint": "Nếu isalpha(), kiểm tra ký tự thường có thuộc 'aeiou' không; ngược lại tính vào nhóm khác.",
+      "tests": [
+        {
+          "label": "Hello World",
+          "code": "assert dem_ky_tu('Hello World') == (3, 7, 1)"
+        },
+        {
+          "label": "Chỉ số",
+          "code": "assert dem_ky_tu('12345') == (0, 0, 5)"
+        },
+        {
+          "label": "Nguyên âm",
+          "code": "assert dem_ky_tu('aeiou AEIOU') == (10, 0, 1)"
+        }
+      ],
+      "section": "Phần 3 · Chuỗi, tuple, list, set và dictionary"
+    },
+    {
+      "id": "py-pdf-3-8",
+      "title": "3.8 · Thống kê và chuẩn hóa câu",
+      "level": "Tự luyện",
+      "library": "Chuỗi và list",
+      "description": "Kết hợp đếm từ, tìm từ dài nhất và viết hoa đầu từ.",
+      "task": "Viết hàm thong_ke_cau(cau) trả về (số từ, từ dài nhất, câu chuẩn hóa); nếu hòa, lấy từ đầu tiên.",
+      "starterCode": "def thong_ke_cau(cau):\n    pass\n\nprint(thong_ke_cau('tin hoc dai cuong'))",
+      "hint": "Dùng split(), tìm từ dài nhất bằng so sánh len, rồi chuẩn hóa từng từ bằng upper/lower.",
+      "tests": [
+        {
+          "label": "Câu mẫu",
+          "code": "assert thong_ke_cau('tin hoc dai cuong') == (4, 'cuong', 'Tin Hoc Dai Cuong')"
+        },
+        {
+          "label": "Hòa độ dài",
+          "code": "assert thong_ke_cau('mot hai ba')[1] == 'mot'"
+        },
+        {
+          "label": "Nhiều khoảng trắng",
+          "code": "assert thong_ke_cau('  PYTHON   la thu vi ') == (4, 'PYTHON', 'Python La Thu Vi')"
+        }
+      ],
+      "section": "Phần 3 · Chuỗi, tuple, list, set và dictionary"
+    },
+    {
+      "id": "py-pdf-3-9",
+      "title": "3.9 · Kiểm tra tính đơn điệu",
+      "level": "Tự luyện",
+      "library": "List",
+      "description": "So sánh các phần tử liền kề.",
+      "task": "Viết hàm tinh_don_dieu(ds) trả về TANG, GIAM hoặc KHONG; dãy một phần tử là TANG.",
+      "starterCode": "def tinh_don_dieu(ds):\n    pass\n\nprint(tinh_don_dieu([1, 2, 3]))",
+      "hint": "Dùng hai cờ tang và giam; kiểm tra nghiêm ngặt bằng <= và >=.",
+      "tests": [
+        {
+          "label": "Tăng",
+          "code": "assert tinh_don_dieu([1, 2, 3, 4, 5]) == 'TANG'"
+        },
+        {
+          "label": "Giảm",
+          "code": "assert tinh_don_dieu([9, 7, 3, 1]) == 'GIAM'"
+        },
+        {
+          "label": "Một phần tử",
+          "code": "assert tinh_don_dieu([7]) == 'TANG'"
+        }
+      ],
+      "section": "Phần 3 · Chuỗi, tuple, list, set và dictionary"
+    },
+    {
+      "id": "py-pdf-3-10",
+      "title": "3.10 · Trộn hai dãy đã sắp xếp",
+      "level": "Tự luyện",
+      "library": "List",
+      "description": "Trộn hai dãy bằng hai con trỏ, không dùng sort.",
+      "task": "Viết hàm tron_day(a, b) trả về dãy tăng dần chứa tất cả phần tử của hai dãy đã sắp xếp.",
+      "starterCode": "def tron_day(a, b):\n    pass\n\nprint(tron_day([1, 3, 5], [2, 4, 6]))",
+      "hint": "Duyệt song song; luôn lấy phần tử nhỏ hơn rồi nối phần còn lại.",
+      "tests": [
+        {
+          "label": "Hai dãy xen kẽ",
+          "code": "assert tron_day([1, 3, 5], [2, 4, 6]) == [1, 2, 3, 4, 5, 6]"
+        },
+        {
+          "label": "Một dãy rỗng",
+          "code": "assert tron_day([], [1, 2, 3]) == [1, 2, 3]"
+        },
+        {
+          "label": "Có phần tử trùng",
+          "code": "assert tron_day([1, 4, 4, 7], [2, 4, 8]) == [1, 2, 4, 4, 4, 7, 8]"
+        }
+      ],
+      "section": "Phần 3 · Chuỗi, tuple, list, set và dictionary"
+    },
+    {
+      "id": "py-pdf-3-11",
+      "title": "3.11 · Trung bình sau khi loại đỉnh",
+      "level": "Tự luyện",
+      "library": "List",
+      "description": "Loại đúng một giá trị lớn nhất và nhỏ nhất.",
+      "task": "Viết hàm trung_binh_loai_dinh(ds) trả về trung bình 2 chữ số sau khi bỏ một max và một min.",
+      "starterCode": "def trung_binh_loai_dinh(ds):\n    pass\n\nprint(trung_binh_loai_dinh([10, 2, 8, 4, 6]))",
+      "hint": "Tính tổng trừ max và min, sau đó chia cho len(ds) - 2.",
+      "tests": [
+        {
+          "label": "Dãy mẫu",
+          "code": "assert trung_binh_loai_dinh([10, 2, 8, 4, 6]) == '6.00'"
+        },
+        {
+          "label": "Các giá trị bằng nhau",
+          "code": "assert trung_binh_loai_dinh([5, 5, 5, 5]) == '5.00'"
+        },
+        {
+          "label": "Có số âm",
+          "code": "assert trung_binh_loai_dinh([-5, 0, 5]) == '0.00'"
+        }
+      ],
+      "section": "Phần 3 · Chuỗi, tuple, list, set và dictionary"
+    },
+    {
+      "id": "py-pdf-3-12",
+      "title": "3.12 · Xử lý danh sách số",
+      "level": "Tự luyện",
+      "library": "List",
+      "description": "Tổng hợp các thao tác thường dùng trên list.",
+      "task": "Viết hàm xu_ly_danh_sach(ds) trả về (tổng, lớn nhất, số chẵn, danh sách đã sắp xếp).",
+      "starterCode": "def xu_ly_danh_sach(ds):\n    pass\n\nprint(xu_ly_danh_sach([5, 3, 8, 1, 9]))",
+      "hint": "Đếm số chẵn trước khi dùng sort() để sắp xếp bản sao hoặc danh sách.",
+      "tests": [
+        {
+          "label": "Dãy mẫu",
+          "code": "assert xu_ly_danh_sach([5, 3, 8, 1, 9]) == (26, 9, 1, [1, 3, 5, 8, 9])"
+        },
+        {
+          "label": "Một phần tử",
+          "code": "assert xu_ly_danh_sach([42]) == (42, 42, 1, [42])"
+        },
+        {
+          "label": "Có số âm",
+          "code": "assert xu_ly_danh_sach([-4, 7, 0, -1, 2, 2]) == (6, 7, 4, [-4, -1, 0, 2, 2, 7])"
+        }
+      ],
+      "section": "Phần 3 · Chuỗi, tuple, list, set và dictionary"
+    },
+    {
+      "id": "py-pdf-3-13",
+      "title": "3.13 · Tìm vị trí xuất hiện",
+      "level": "Tự luyện",
+      "library": "List",
+      "description": "Duyệt theo chỉ số để tìm mọi vị trí.",
+      "task": "Viết hàm tim_vi_tri(ds, k) trả về các vị trí (từ 0) của k hoặc chuỗi KHONG_TIM_THAY.",
+      "starterCode": "def tim_vi_tri(ds, k):\n    pass\n\nprint(tim_vi_tri([1, 2, 3, 2, 1], 2))",
+      "hint": "Duyệt enumerate(ds), không dùng index().",
+      "tests": [
+        {
+          "label": "Nhiều vị trí",
+          "code": "assert tim_vi_tri([1, 2, 3, 2, 1], 2) == [1, 3]"
+        },
+        {
+          "label": "Không tìm thấy",
+          "code": "assert tim_vi_tri([1, 2, 3], 9) == 'KHONG_TIM_THAY'"
+        },
+        {
+          "label": "Tất cả giống nhau",
+          "code": "assert tim_vi_tri([7, 7, 7], 7) == [0, 1, 2]"
+        }
+      ],
+      "section": "Phần 3 · Chuỗi, tuple, list, set và dictionary"
+    },
+    {
+      "id": "py-pdf-4-1",
+      "title": "4.1 · Thống kê tệp văn bản",
+      "level": "Cơ bản",
+      "library": "Tệp văn bản",
+      "description": "Đếm dòng, từ và ký tự; bản chạy trên trình duyệt nhận nội dung tệp dạng chuỗi.",
+      "task": "Viết hàm thong_ke_van_ban(noi_dung) trả về (số dòng, số từ, số ký tự), không tính ký tự xuống dòng.",
+      "starterCode": "def thong_ke_van_ban(noi_dung):\n    pass\n\nprint(thong_ke_van_ban('Tin hoc dai cuong\\nLap trinh Python\\n'))",
+      "hint": "Dùng splitlines(); đếm từ bằng split() và ký tự trên từng dòng.",
+      "tests": [
+        {
+          "label": "Hai dòng",
+          "code": "assert thong_ke_van_ban('Tin hoc dai cuong\\nLap trinh Python\\n') == (2, 7, 33)"
+        },
+        {
+          "label": "Dòng trống",
+          "code": "assert thong_ke_van_ban('a b c\\n\\nd') == (3, 4, 6)"
+        },
+        {
+          "label": "Chuỗi rỗng",
+          "code": "assert thong_ke_van_ban('') == (0, 0, 0)"
+        }
+      ],
+      "section": "Phần 4 · Module và tập tin"
+    },
+    {
+      "id": "py-pdf-4-2",
+      "title": "4.2 · Ghi danh sách vào tệp",
+      "level": "Cơ bản",
+      "library": "Tệp văn bản",
+      "description": "Tạo nội dung có đánh số dòng để ghi ra tệp.",
+      "task": "Viết hàm danh_so_dong(ds) trả về chuỗi các dòng theo mẫu 'i. noi_dung', bắt đầu từ 1.",
+      "starterCode": "def danh_so_dong(ds):\n    pass\n\nprint(danh_so_dong(['Hoc Python', 'Hoc thuat toan']))",
+      "hint": "Duyệt enumerate(ds, start=1) và ghép bằng ký tự xuống dòng.",
+      "tests": [
+        {
+          "label": "Hai dòng",
+          "code": "assert danh_so_dong(['Hoc Python', 'Hoc thuat toan']) == '1. Hoc Python\\n2. Hoc thuat toan'"
+        },
+        {
+          "label": "Một dòng",
+          "code": "assert danh_so_dong(['Mot dong']) == '1. Mot dong'"
+        },
+        {
+          "label": "Danh sách rỗng",
+          "code": "assert danh_so_dong([]) == ''"
+        }
+      ],
+      "section": "Phần 4 · Module và tập tin"
+    },
+    {
+      "id": "py-pdf-4-3",
+      "title": "4.3 · Tính toán trên tệp số",
+      "level": "Cơ bản",
+      "library": "Tệp văn bản",
+      "description": "Đọc các số nguyên, bỏ qua dòng trống và tổng hợp dữ liệu.",
+      "task": "Viết hàm thong_ke_tep_so(noi_dung) trả về (tổng, lớn nhất, nhỏ nhất, trung bình 2 chữ số) hoặc 'TEP_RONG'.",
+      "starterCode": "def thong_ke_tep_so(noi_dung):\n    pass\n\nprint(thong_ke_tep_so('1\\n2\\n3\\n4\\n5\\n'))",
+      "hint": "Lọc dòng sau strip() rồi ép int; xử lý danh sách rỗng riêng.",
+      "tests": [
+        {
+          "label": "Năm số",
+          "code": "assert thong_ke_tep_so('1\\n2\\n3\\n4\\n5\\n') == (15, 5, 1, '3.00')"
+        },
+        {
+          "label": "Bỏ dòng trống",
+          "code": "assert thong_ke_tep('10\\n\\n-4\\n7\\n') == (13, 10, -4, '4.33')"
+        },
+        {
+          "label": "Tệp rỗng",
+          "code": "assert thong_ke_tep_so(' \\n\\n') == 'TEP_RONG'"
+        }
+      ],
+      "section": "Phần 4 · Module và tập tin"
+    },
+    {
+      "id": "py-pdf-4-4",
+      "title": "4.4 · Tìm dòng chứa từ khóa",
+      "level": "Cơ bản",
+      "library": "Tệp và chuỗi",
+      "description": "Tìm không phân biệt hoa thường và giữ số dòng.",
+      "task": "Viết hàm tim_dong_tu_khoa(noi_dung, tu_khoa) trả về tuple (danh sách dòng dạng 'i: nội dung', số dòng tìm thấy).",
+      "starterCode": "def tim_dong_tu_khoa(noi_dung, tu_khoa):\n    pass\n\nprint(tim_dong_tu_khoa('Hoc Python\\nThuat toan\\nPYTHON nang cao', 'python'))",
+      "hint": "Đánh số từ 1; so khớp bằng lower().",
+      "tests": [
+        {
+          "label": "Hai dòng khớp",
+          "code": "assert tim_dong_tu_khoa('Hoc Python\\nThuat toan\\nPYTHON nang cao', 'python') == (['1: Hoc Python', '3: PYTHON nang cao'], 2)"
+        },
+        {
+          "label": "Không khớp",
+          "code": "assert tim_dong_tu_khoa('Hoc Python\\nThuat toan', 'java') == ([], 0)"
+        },
+        {
+          "label": "Không phân biệt hoa",
+          "code": "assert tim_dong_tu_khoa('Tin hoc\\ntin hoc', 'TIN HOC')[1] == 2"
+        }
+      ],
+      "section": "Phần 4 · Module và tập tin"
+    },
+    {
+      "id": "py-pdf-4-5",
+      "title": "4.5 · Đếm tần suất từ trong tệp",
+      "level": "Tự luyện",
+      "library": "Tệp và list",
+      "description": "Đếm từ theo thứ tự xuất hiện đầu tiên, không dùng dictionary.",
+      "task": "Viết hàm tan_suat_tu_tep(noi_dung) trả về danh sách tuple (từ, số lần) theo thứ tự xuất hiện.",
+      "starterCode": "def tan_suat_tu_tep(noi_dung):\n    pass\n\nprint(tan_suat_tu_tep('hoc hoc nua hoc mai'))",
+      "hint": "Chuyển về chữ thường; dùng hai danh sách song song hoặc list tuple.",
+      "tests": [
+        {
+          "label": "Từ lặp",
+          "code": "assert tan_suat_tu_tep('hoc hoc nua hoc mai') == [('hoc', 3), ('nua', 1), ('mai', 1)]"
+        },
+        {
+          "label": "Hoa thường",
+          "code": "assert tan_suat_tu_tep('Python python PYTHON') == [('python', 3)]"
+        },
+        {
+          "label": "Nhiều dòng",
+          "code": "assert tan_suat_tu_tep('a b\\nb c\\nc') == [('a', 1), ('b', 2), ('c', 2)]"
+        }
+      ],
+      "section": "Phần 4 · Module và tập tin"
+    },
+    {
+      "id": "py-pdf-4-6",
+      "title": "4.6 · Chuẩn hóa văn bản",
+      "level": "Tự luyện",
+      "library": "Tệp văn bản",
+      "description": "Bỏ dòng trống và gộp khoảng trắng khi đọc-ghi.",
+      "task": "Viết hàm chuan_hoa_van_ban(noi_dung) trả về nội dung đã bỏ dòng trống và chuẩn hóa từng dòng.",
+      "starterCode": "def chuan_hoa_van_ban(noi_dung):\n    pass\n\nprint(chuan_hoa_van_ban(' Tin   hoc\\n\\n dai cuong '))",
+      "hint": "Dùng split() rồi ' '.join(tu); chỉ thêm dòng có nội dung.",
+      "tests": [
+        {
+          "label": "Hai dòng",
+          "code": "assert chuan_hoa_van_ban(' Tin   hoc\\n\\n dai cuong ') == 'Tin hoc\\ndai cuong'"
+        },
+        {
+          "label": "Một dòng",
+          "code": "assert chuan_hoa_van_ban('a b    c') == 'a b c'"
+        },
+        {
+          "label": "Toàn dòng trống",
+          "code": "assert chuan_hoa_van_ban(' \\n\\n') == ''"
+        }
+      ],
+      "section": "Phần 4 · Module và tập tin"
+    },
+    {
+      "id": "py-pdf-4-7",
+      "title": "4.7 · Gộp hai tệp",
+      "level": "Tự luyện",
+      "library": "Tệp văn bản",
+      "description": "Nối nội dung hai tệp và bảo đảm mỗi dòng kết thúc đúng cách.",
+      "task": "Viết hàm gop_hai_tep(noi_dung_a, noi_dung_b) trả về tuple (nội dung gộp, tổng số dòng).",
+      "starterCode": "def gop_hai_tep(noi_dung_a, noi_dung_b):\n    pass\n\nprint(gop_hai_tep('1\\n2', '3\\n'))",
+      "hint": "Tách dòng bằng splitlines(keepends=True), thêm newline nếu dòng thiếu.",
+      "tests": [
+        {
+          "label": "Hai tệp",
+          "code": "assert gop_hai_tep('1\\n2', '3\\n') == ('1\\n2\\n3\\n', 3)"
+        },
+        {
+          "label": "Tệp thứ hai rỗng",
+          "code": "assert gop_hai_tep('x\\n', '') == ('x\\n', 1)"
+        },
+        {
+          "label": "Không có newline cuối",
+          "code": "assert gop_hai_tep('x', 'y') == ('x\\ny\\n', 2)"
+        }
+      ],
+      "section": "Phần 4 · Module và tập tin"
+    },
+    {
+      "id": "py-pdf-4-8",
+      "title": "4.8 · Bảng điểm CSV",
+      "level": "Tự luyện",
+      "library": "CSV",
+      "description": "Tách trường CSV và tính điểm trung bình.",
+      "task": "Viết hàm bang_diem_csv(noi_dung) trả về tuple (danh sách dòng 'tên điểm_tb', điểm trung bình lớp).",
+      "starterCode": "def bang_diem_csv(noi_dung):\n    pass\n\nprint(bang_diem_csv('ho_ten,toan,ly,hoa\\nAn,8,7,9\\nBinh,5,6,4'))",
+      "hint": "Bỏ dòng tiêu đề; tách bằng dấu phẩy và tính trung bình ba môn.",
+      "tests": [
+        {
+          "label": "Hai sinh viên",
+          "code": "assert bang_diem_csv('ho_ten,toan,ly,hoa\\nAn,8,7,9\\nBinh,5,6,4') == (['An 8.00', 'Binh 5.00'], '6.50')"
+        },
+        {
+          "label": "Một sinh viên",
+          "code": "assert bang_diem_csv('ho_ten,toan,ly,hoa\\nCuong,10,10,10') == (['Cuong 10.00'], '10.00')"
+        },
+        {
+          "label": "Có dòng trống",
+          "code": "assert bang_diem_csv('ho_ten,toan,ly,hoa\\nA,4.5,5.5,6\\n\\n') == (['A 5.33'], '5.33')"
+        }
+      ],
+      "section": "Phần 4 · Module và tập tin"
+    },
+    {
+      "id": "py-pdf-4-9",
+      "title": "4.9 · Lọc và ghi báo cáo điểm",
+      "level": "Tự luyện",
+      "library": "CSV",
+      "description": "Lọc sinh viên đạt và sắp xếp giảm dần theo điểm trung bình.",
+      "task": "Viết hàm tao_bao_cao_diem(noi_dung) trả về (số đạt, số chưa đạt, danh sách báo cáo).",
+      "starterCode": "def tao_bao_cao_diem(noi_dung):\n    pass\n\nprint(tao_bao_cao_diem('ho_ten,toan,ly,hoa\\nAn,8,7,9\\nBinh,4,4,4'))",
+      "hint": "Tính trung bình, lọc từ 5 trở lên, sắp xếp giảm dần rồi định dạng 2 chữ số.",
+      "tests": [
+        {
+          "label": "Lớp mẫu",
+          "code": "assert tao_bao_cao_diem('ho_ten,toan,ly,hoa\\nAn,8,7,9\\nBinh,4,4,4\\nCuong,6,6,6') == (2, 1, ['An 8.00', 'Cuong 6.00'])"
+        },
+        {
+          "label": "Không đạt",
+          "code": "assert tao_bao_cao_diem('ho_ten,toan,ly,hoa\\nA,1,2,3') == (0, 1, [])"
+        },
+        {
+          "label": "Hòa điểm",
+          "code": "assert tao_bao_cao_diem('ho_ten,toan,ly,hoa\\nX,5,5,5\\nY,10,10,10')[2] == ['Y 10.00', 'X 5.00']"
+        }
+      ],
+      "section": "Phần 4 · Module và tập tin"
+    },
+    {
+      "id": "py-pdf-4-10",
+      "title": "4.10 · Nhật ký nhiệt độ",
+      "level": "Tự luyện",
+      "library": "Tệp và tuple",
+      "description": "Tìm ngày nóng nhất, mát nhất và nhiệt độ trung bình.",
+      "task": "Viết hàm thong_ke_nhiet_do(noi_dung) trả về tuple (dòng nóng nhất, dòng mát nhất, trung bình 2 chữ số); hòa thì lấy ngày đầu tiên.",
+      "starterCode": "def thong_ke_nhiet_do(noi_dung):\n    pass\n\nprint(thong_ke_nhiet_do('01/09 31.5\\n02/09 28.0\\n03/09 33.2'))",
+      "hint": "Mỗi dòng tạo tuple (ngày, nhiệt độ); chỉ cập nhật max/min khi lớn hơn hoặc nhỏ hơn.",
+      "tests": [
+        {
+          "label": "Ba ngày",
+          "code": "assert thong_ke_nhiet_do('01/09 31.5\\n02/09 28.0\\n03/09 33.2') == ('NONG_NHAT 03/09 33.2', 'MAT_NHAT 02/09 28.0', '30.90')"
+        },
+        {
+          "label": "Hòa giá trị",
+          "code": "assert thong_ke_nhiet_do('01/01 20.0\\n02/01 20.0\\n03/01 25.0')[1] == 'MAT_NHAT 01/01 20.0'"
+        },
+        {
+          "label": "Một ngày",
+          "code": "assert thong_ke_nhiet_do('10/12 18.0') == ('NONG_NHAT 10/12 18.0', 'MAT_NHAT 10/12 18.0', '18.00')"
+        }
+      ],
+      "section": "Phần 4 · Module và tập tin"
+    },
+    {
+      "id": "py-pdf-5-1",
+      "title": "5.1 · Đa giác đều n cạnh",
+      "level": "Cơ bản",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Bài Turtle được chuyển sang tọa độ để chạy trực tiếp trong trình duyệt.",
+      "task": "Viết hàm tao_da_giac(n, canh) trả về n đỉnh của đa giác đều cạnh canh; với n từ 3 đến 12.",
+      "starterCode": "import math\n\ndef tao_da_giac(n, canh=100):\n    pass\n\nprint(tao_da_giac(8))",
+      "hint": "Bán kính đường tròn ngoại tiếp là canh / (2 * sin(pi / n)); dùng cos và sin để tạo đỉnh.",
+      "tests": [
+        {
+          "label": "Đủ số đỉnh",
+          "code": "assert len(tao_da_giac(8)) == 8"
+        },
+        {
+          "label": "Đúng cạnh",
+          "code": "p = tao_da_giac(6, 100); assert abs(math.hypot(p[1][0]-p[0][0], p[1][1]-p[0][1]) - 100) < 1e-6"
+        },
+        {
+          "label": "Đa giác lớn",
+          "code": "assert len(tao_da_giac(12)) == 12"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-2",
+      "title": "5.2 · Đồ thị gấp khúc doanh thu",
+      "level": "Cơ bản",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Vẽ doanh thu 6 tháng bằng đường có dấu tròn, nhãn và lưới.",
+      "task": "Viết hàm ve_doanh_thu() tạo biểu đồ đường cho dữ liệu [10, 14, 9, 17, 20, 16], có marker tròn, tiêu đề, nhãn trục và lưới.",
+      "starterCode": "import matplotlib.pyplot as plt\n\ndef ve_doanh_thu():\n    pass\n\nve_doanh_thu()",
+      "hint": "Dùng plt.plot(thang, doanh_thu, marker='o'), thêm title, xlabel, ylabel và grid(True).",
+      "tests": [
+        {
+          "label": "Một đường",
+          "code": "ax = plt.gca(); assert len(ax.lines) == 1"
+        },
+        {
+          "label": "Sáu điểm",
+          "code": "ax = plt.gca(); assert list(ax.lines[0].get_ydata()) == [10, 14, 9, 17, 20, 16]"
+        },
+        {
+          "label": "Có marker",
+          "code": "assert plt.gca().lines[0].get_marker() == 'o'"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-3",
+      "title": "5.3 · Các hình cơ bản",
+      "level": "Cơ bản",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Mô phỏng ba hình Turtle bằng các danh sách tọa độ.",
+      "task": "Viết hàm tao_ba_hinh() trả về ba đa tuyến khép kín: hình vuông cạnh 80, tam giác đều cạnh 80 và hình chữ nhật 120 x 60.",
+      "starterCode": "def tao_ba_hinh():\n    pass\n\nprint([len(h) for h in tao_ba_hinh()])",
+      "hint": "Mỗi hình nên lặp lại điểm đầu ở cuối để khép kín.",
+      "tests": [
+        {
+          "label": "Có ba hình",
+          "code": "assert len(tao_ba_hinh()) == 3"
+        },
+        {
+          "label": "Hình vuông",
+          "code": "assert len(tao_ba_hinh()[0]) == 5"
+        },
+        {
+          "label": "Đủ điểm khép kín",
+          "code": "assert all(h[0] == h[-1] for h in tao_ba_hinh())"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-4",
+      "title": "5.4 · Đường bậc thang",
+      "level": "Cơ bản",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Tạo đường bậc thang gồm các đoạn ngang và đứng.",
+      "task": "Viết hàm tao_bac_thang(so_bac=6, do_dai=40) trả về danh sách điểm của đường bậc thang.",
+      "starterCode": "def tao_bac_thang(so_bac=6, do_dai=40):\n    pass\n\nprint(tao_bac_thang())",
+      "hint": "Mỗi bậc thêm một đoạn ngang rồi một đoạn đứng.",
+      "tests": [
+        {
+          "label": "Đủ bậc",
+          "code": "assert len(tao_bac_thang()) == 13"
+        },
+        {
+          "label": "Bước đầu",
+          "code": "assert tao_bac_thang()[1] == (40, 0)"
+        },
+        {
+          "label": "Điểm cuối",
+          "code": "assert tao_bac_thang()[-1] == (240, 240)"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-5",
+      "title": "5.5 · Hình xoắn ốc vuông",
+      "level": "Cơ bản",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Tạo các đoạn xoắn ốc có độ dài tăng dần.",
+      "task": "Viết hàm tao_xoan_oc(so_doan=40, bat_dau=5, tang=5) trả về các điểm liên tiếp của xoắn ốc vuông.",
+      "starterCode": "def tao_xoan_oc(so_doan=40, bat_dau=5, tang=5):\n    pass\n\nprint(len(tao_xoan_oc()))",
+      "hint": "Sau mỗi đoạn quay 90 độ, tăng độ dài thêm tang.",
+      "tests": [
+        {
+          "label": "Đủ điểm",
+          "code": "assert len(tao_xoan_oc()) == 41"
+        },
+        {
+          "label": "Đoạn đầu",
+          "code": "assert tao_xoan_oc(2, 5, 5)[1] == (5, 0)"
+        },
+        {
+          "label": "Độ mở rộng",
+            "code": "assert tao_xoan_oc(3, 5, 5)[-1] == (-10, 10)"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-6",
+      "title": "5.6 · Hoa văn nhiều màu",
+      "level": "Tự luyện",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Vẽ 36 hình vuông xoay dần và đổi màu theo chu kỳ.",
+      "task": "Viết hàm ve_hoa_van() vẽ 36 hình vuông cạnh 100, mỗi hình xoay thêm 10 độ và dùng 6 màu lặp lại; trả về trục vẽ.",
+      "starterCode": "import math\nimport matplotlib.pyplot as plt\n\ndef ve_hoa_van():\n    pass\n\nve_hoa_van()",
+      "hint": "Dùng vòng lặp ngoài 36 lần, tạo bốn đỉnh bằng sin/cos rồi plot từng hình.",
+      "tests": [
+        {
+          "label": "Đủ 36 hình",
+          "code": "assert len(plt.gca().lines) == 36"
+        },
+        {
+          "label": "Bốn cạnh mỗi hình",
+          "code": "assert len(plt.gca().lines[0].get_xdata()) == 5"
+        },
+        {
+          "label": "Có dữ liệu",
+          "code": "assert len(plt.gca().lines[-1].get_ydata()) == 5"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-7",
+      "title": "5.7 · Lưới ô vuông",
+      "level": "Tự luyện",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Dùng hai vòng lặp để tạo lưới 4 x 4.",
+      "task": "Viết hàm tao_luoi(so_hang=4, so_cot=4, canh=50) trả về 16 hình vuông khép kín đặt sát nhau.",
+      "starterCode": "def tao_luoi(so_hang=4, so_cot=4, canh=50):\n    pass\n\nprint(len(tao_luoi()))",
+      "hint": "Với mỗi hàng và cột, tạo bốn góc bắt đầu tại (cot*canh, hang*canh).",
+      "tests": [
+        {
+          "label": "Đủ 16 ô",
+          "code": "assert len(tao_luoi()) == 16"
+        },
+        {
+          "label": "Mỗi ô khép kín",
+          "code": "assert all(h[0] == h[-1] for h in tao_luoi())"
+        },
+        {
+          "label": "Đúng cạnh",
+          "code": "h = tao_luoi()[0]; assert h[1][0] - h[0][0] == 50"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-8",
+      "title": "5.8 · Biểu đồ cột điểm môn học",
+      "level": "Tự luyện",
+      "library": "Đồ họa · Matplotlib",
+      "description": "So sánh điểm năm môn bằng biểu đồ cột.",
+      "task": "Viết hàm ve_bieu_do_cot() vẽ điểm Toán 8.5, Lý 7.0, Hóa 9.0, Văn 6.5, Anh 8.0; giới hạn trục tung 0 đến 10.",
+      "starterCode": "import matplotlib.pyplot as plt\n\ndef ve_bieu_do_cot():\n    pass\n\nve_bieu_do_cot()",
+      "hint": "Dùng plt.bar và plt.ylim(0, 10).",
+      "tests": [
+        {
+          "label": "Năm cột",
+          "code": "assert len(plt.gca().patches) == 5"
+        },
+        {
+          "label": "Giá trị Hóa",
+          "code": "assert abs(plt.gca().patches[2].get_height() - 9.0) < 1e-9"
+        },
+        {
+          "label": "Trục tung",
+          "code": "assert plt.gca().get_ylim() == (0.0, 10.0)"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-9",
+      "title": "5.9 · Biểu đồ hình quạt",
+      "level": "Tự luyện",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Biểu diễn thị phần hệ điều hành bằng biểu đồ quạt.",
+      "task": "Viết hàm ve_bieu_do_quat() vẽ Android 70%, iOS 25%, Khác 5% và hiển thị phần trăm.",
+      "starterCode": "import matplotlib.pyplot as plt\n\ndef ve_bieu_do_quat():\n    pass\n\nve_bieu_do_quat()",
+      "hint": "Dùng plt.pie(gia_tri, labels=nhan, autopct='%1.1f%%').",
+      "tests": [
+        {
+          "label": "Ba phần",
+          "code": "assert len(plt.gca().patches) == 3"
+        },
+        {
+          "label": "Phần lớn nhất",
+          "code": "assert plt.gca().patches[0].get_theta2() - plt.gca().patches[0].get_theta1() > 200"
+        },
+        {
+          "label": "Có nhãn",
+          "code": "assert len(plt.gca().texts) >= 3"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-10",
+      "title": "5.10 · Biểu đồ điểm rải",
+      "level": "Tự luyện",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Quan sát quan hệ giữa giờ tự học và điểm thi.",
+      "task": "Viết hàm ve_diem_rai() vẽ scatter cho 10 cặp dữ liệu giờ học và điểm thi trong tài liệu, có tiêu đề, nhãn trục và lưới.",
+      "starterCode": "import matplotlib.pyplot as plt\n\ndef ve_diem_rai():\n    pass\n\nve_diem_rai()",
+      "hint": "Dùng plt.scatter(gio_hoc, diem); dữ liệu có xu hướng đi lên.",
+      "tests": [
+        {
+          "label": "Mười điểm",
+          "code": "ax = plt.gca(); assert len(ax.collections) == 1 and len(ax.collections[0].get_offsets()) == 10"
+        },
+        {
+          "label": "Điểm cuối",
+          "code": "assert list(plt.gca().collections[0].get_offsets()[-1]) == [8, 9]"
+        },
+        {
+          "label": "Có lưới",
+          "code": "assert any(line.get_visible() for line in plt.gca().get_xgridlines())"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-11",
+      "title": "5.11 · Đồ thị hàm số bậc hai và bậc ba",
+      "level": "Tự luyện",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Vẽ y = x² và y = x³ trên cùng hệ trục.",
+      "task": "Viết hàm ve_hai_ham() tự sinh x từ -10 đến 10 rồi vẽ hai đường y=x² và y=x³, có chú giải.",
+      "starterCode": "import matplotlib.pyplot as plt\n\ndef ve_hai_ham():\n    pass\n\nve_hai_ham()",
+      "hint": "Tạo danh sách bằng vòng lặp; dùng plot(..., label=...) và legend().",
+      "tests": [
+        {
+          "label": "Hai đường",
+          "code": "assert len(plt.gca().lines) == 2"
+        },
+        {
+          "label": "Đủ 21 điểm",
+          "code": "assert len(plt.gca().lines[0].get_xdata()) == 21"
+        },
+        {
+          "label": "Có chú giải",
+          "code": "assert plt.gca().get_legend() is not None"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-12",
+      "title": "5.12 · Đồ thị sin và cos",
+      "level": "Tự luyện",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Vẽ sin và cos theo góc 0 đến 360 độ, bước 5 độ.",
+      "task": "Viết hàm ve_sin_cos() đổi độ sang radian rồi vẽ hai đường sin/cos trên cùng hệ trục.",
+      "starterCode": "import math\nimport matplotlib.pyplot as plt\n\ndef ve_sin_cos():\n    pass\n\nve_sin_cos()",
+      "hint": "Dùng math.radians, math.sin và math.cos; tạo góc bằng vòng lặp.",
+      "tests": [
+        {
+          "label": "Hai đường",
+          "code": "assert len(plt.gca().lines) == 2"
+        },
+        {
+          "label": "73 góc",
+          "code": "assert len(plt.gca().lines[0].get_xdata()) == 73"
+        },
+        {
+          "label": "Giá trị đầu",
+          "code": "assert abs(plt.gca().lines[0].get_ydata()[0]) < 1e-9"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-13",
+      "title": "5.13 · Biểu đồ tần suất điểm",
+      "level": "Tự luyện",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Xem phân bố điểm bằng histogram với năm khoảng.",
+      "task": "Viết hàm ve_histogram() dùng dữ liệu 20 điểm trong tài liệu và các mốc [0, 2, 4, 6, 8, 10].",
+      "starterCode": "import matplotlib.pyplot as plt\n\ndef ve_histogram():\n    pass\n\nve_histogram()",
+      "hint": "Dùng plt.hist(diem, bins=[0, 2, 4, 6, 8, 10], edgecolor='black').",
+      "tests": [
+        {
+          "label": "Năm khoảng",
+          "code": "assert len(plt.gca().patches) == 5"
+        },
+        {
+          "label": "Có dữ liệu",
+          "code": "assert sum(p.get_height() for p in plt.gca().patches) == 20"
+        },
+        {
+          "label": "Có nhãn trục",
+          "code": "assert plt.gca().get_xlabel() != '' and plt.gca().get_ylabel() != ''"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-14",
+      "title": "5.14 · Kết hợp nhiều biểu đồ con",
+      "level": "Tự luyện",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Đặt biểu đồ đường và biểu đồ cột cạnh nhau trong một cửa sổ.",
+      "task": "Viết hàm ve_hai_bieu_do() tạo hai subplot: doanh thu 5 tháng và số lượng ba sản phẩm.",
+      "starterCode": "import matplotlib.pyplot as plt\n\ndef ve_hai_bieu_do():\n    pass\n\nve_hai_bieu_do()",
+      "hint": "Dùng plt.subplots(1, 2); vẽ đường ở trục đầu và cột ở trục thứ hai.",
+      "tests": [
+        {
+          "label": "Hai subplot",
+          "code": "assert len(plt.gcf().axes) == 2"
+        },
+        {
+          "label": "Biểu đồ đường",
+          "code": "assert len(plt.gcf().axes[0].lines) == 1"
+        },
+        {
+          "label": "Biểu đồ cột",
+          "code": "assert len(plt.gcf().axes[1].patches) == 3"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
+    },
+    {
+      "id": "py-pdf-5-15",
+      "title": "5.15 · Đường cong tham số",
+      "level": "Tự luyện",
+      "library": "Đồ họa · Matplotlib",
+      "description": "Vẽ đường tròn và hoa hồng tám cánh từ tọa độ tham số.",
+      "task": "Viết hàm ve_duong_cong() vẽ đường tròn bán kính 1 và hoa hồng r = cos(4t) trên hai subplot, giữ tỉ lệ trục bằng nhau.",
+      "starterCode": "import math\nimport matplotlib.pyplot as plt\n\ndef ve_duong_cong():\n    pass\n\nve_duong_cong()",
+      "hint": "Đổi độ sang radian; với hoa hồng tính r rồi x=r*cos(t), y=r*sin(t), dùng set_aspect('equal').",
+      "tests": [
+        {
+          "label": "Hai trục",
+          "code": "assert len(plt.gcf().axes) == 2"
+        },
+        {
+          "label": "Đủ điểm",
+          "code": "assert len(plt.gcf().axes[0].lines[0].get_xdata()) == 361"
+        },
+        {
+          "label": "Không méo",
+            "code": "assert all(ax.get_aspect() == 1.0 for ax in plt.gcf().axes)"
+        }
+      ],
+      "section": "Phần 5 · Đồ họa với Python"
     }
   ]
 }

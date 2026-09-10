@@ -1,5 +1,5 @@
 (function () {
-  const storageKey = "it1140-python-lab:v1";
+  const storageKey = "it1140-python-lab:v2";
   const runTimeoutMs = 60000;
   const els = {
     list: document.getElementById("exerciseList"),
@@ -60,7 +60,15 @@
 
   function renderList() {
     els.list.innerHTML = "";
+    let lastSection = "";
     exercises.forEach((exercise, index) => {
+      if (exercise.section && exercise.section !== lastSection) {
+        const section = document.createElement("div");
+        section.className = "exercise-section";
+        section.textContent = exercise.section;
+        els.list.append(section);
+        lastSection = exercise.section;
+      }
       const button = document.createElement("button");
       button.type = "button";
       button.className = "exercise-item";

@@ -692,6 +692,19 @@ button {
   scrollbar-width: thin;
 }
 
+.exercise-section {
+  margin-top: 10px;
+  padding: 5px 6px 2px;
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.exercise-section:first-child {
+  margin-top: 0;
+}
+
 .exercise-item {
   display: grid;
   grid-template-columns: 28px minmax(0, 1fr);
