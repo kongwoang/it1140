@@ -10,7 +10,6 @@
       "library": "Python cơ bản",
       "description": "Nhập nhiệt độ Celsius C (số thực). In nhiệt độ Fahrenheit theo công thức F = C × 9 / 5 + 32, làm tròn 2 chữ số thập phân.",
       "task": "Nhập nhiệt độ Celsius C (số thực). In nhiệt độ Fahrenheit theo công thức F = C × 9 / 5 + 32, làm tròn 2 chữ số thập phân.",
-      "starterCode": "c = float(input())\nf = c * 9 / 5 + 32\nprint(f\"{f:.2f}\")",
       "hint": "Đọc số thực bằng float(input()), áp công thức F = C×9/5+32 và in với 2 chữ số thập phân bằng f-string.",
       "tests": [
         {
@@ -38,7 +37,6 @@
       "library": "Python cơ bản",
       "description": "Nhập số điện tiêu thụ n (kWh) và đơn giá p (đồng/kWh). Tính tổng tiền điện.",
       "task": "Nhập số điện tiêu thụ n (kWh) và đơn giá p (đồng/kWh). Tính tổng tiền điện.",
-      "starterCode": "n, p = map(int, input().split())\nprint(n * p)",
       "hint": "Đọc hai số nguyên trên một dòng bằng map(int, input().split()), rồi nhân số điện với đơn giá.",
       "tests": [
         {
@@ -66,7 +64,6 @@
       "library": "Python cơ bản",
       "description": "Nhập số nguyên n là tổng số giây. Đổi thành giờ, phút, giây.",
       "task": "Nhập số nguyên n là tổng số giây. Đổi thành giờ, phút, giây.",
-      "starterCode": "n = int(input())\n\ngio = n // 3600\n\nn %= 3600\nphut = n // 60\ngiay = n % 60\n\nprint(gio, phut, giay)",
       "hint": "Dùng // để lấy giờ, % để lấy phần dư, sau đó tách tiếp phút và giây từ phần dư.",
       "tests": [
         {
@@ -94,7 +91,6 @@
       "library": "Rẽ nhánh",
       "description": "Nhập số nguyên n. In CHAN nếu n là số chẵn, ngược lại in LE.",
       "task": "Nhập số nguyên n. In CHAN nếu n là số chẵn, ngược lại in LE.",
-      "starterCode": "n = int(input())\n\nif n % 2 == 0:\n    print(\"CHAN\")\nelse:\n    print(\"LE\")",
       "hint": "Kiểm tra n % 2 == 0 để phân biệt số chẵn và số lẻ.",
       "tests": [
         {
@@ -122,7 +118,6 @@
       "library": "Rẽ nhánh",
       "description": "Nhập ba số nguyên a, b, c. In số lớn nhất.",
       "task": "Nhập ba số nguyên a, b, c. In số lớn nhất.",
-      "starterCode": "a, b, c = map(int, input().split())\n\n\n\nmax_value = a\nif b > max_value:\n    max_value = b\nif c > max_value:\n    max_value = c\n\nprint(max_value)",
       "hint": "Giả sử số đầu là lớn nhất, so sánh lần lượt với hai số còn lại và cập nhật khi gặp số lớn hơn.",
       "tests": [
         {
@@ -150,7 +145,6 @@
       "library": "Rẽ nhánh",
       "description": "Nhập điểm tổng kết d trong khoảng từ 0 đến 10. In XUAT_SAC nếu d >= 9; GIOI nếu 8 <= d < 9; KHA nếu 6.5 <= d < 8; TRUNG_BINH nếu 5 <= d < 6.5; KHONG_DAT nếu d < 5.",
       "task": "Nhập điểm tổng kết d trong khoảng từ 0 đến 10. In XUAT_SAC nếu d >= 9; GIOI nếu 8 <= d < 9; KHA nếu 6.5 <= d < 8; TRUNG_BINH nếu 5 <= d < 6.5; KHONG_DAT nếu d < 5.",
-      "starterCode": "d = float(input())\n\nif d >= 9:\n    print(\"XUAT_SAC\")\nelif d >= 8:\n    print(\"GIOI\")\nelif d >= 6.5:\n    print(\"KHA\")\nelif d >= 5:\n    print(\"TRUNG_BINH\")\nelse:\n    print(\"KHONG_DAT\")",
       "hint": "Chuỗi if–elif xếp theo thứ tự giảm dần của mốc điểm; nhánh đúng đầu tiên quyết định xếp loại.",
       "tests": [
         {
@@ -178,7 +172,6 @@
       "library": "Rẽ nhánh",
       "description": "Nhập năm y. Một năm là năm nhuận nếu chia hết cho 400, hoặc chia hết cho 4 nhưng không chia hết cho 100.",
       "task": "Nhập năm y. Một năm là năm nhuận nếu chia hết cho 400, hoặc chia hết cho 4 nhưng không chia hết cho 100.",
-      "starterCode": "y = int(input())\n\nif y % 400 == 0 or (y % 4 == 0 and y % 100 != 0):\n    print(\"NAM_NHUAN\")\nelse:\n    print(\"KHONG_NHUAN\")",
       "hint": "Năm nhuận khi chia hết 400, hoặc chia hết 4 mà không chia hết 100; ghép điều kiện bằng and/or.",
       "tests": [
         {
@@ -206,7 +199,6 @@
       "library": "Vòng lặp",
       "description": "Nhập số nguyên dương n. Dùng vòng lặp để tính tổng S = 1 + 2 + ... + n.",
       "task": "Nhập số nguyên dương n. Dùng vòng lặp để tính tổng S = 1 + 2 + ... + n.",
-      "starterCode": "n = int(input())\n\ntong = 0\nfor i in range(1, n + 1):\n    tong += i\n\nprint(tong)",
       "hint": "Khởi tạo tong = 0 rồi cộng dồn i qua range(1, n+1).",
       "tests": [
         {
@@ -234,7 +226,6 @@
       "library": "Vòng lặp",
       "description": "Nhập hai số nguyên a, b với a <= b. Đếm số lượng số chẵn thuộc đoạn đóng [a, b].",
       "task": "Nhập hai số nguyên a, b với a <= b. Đếm số lượng số chẵn thuộc đoạn đóng [a, b].",
-      "starterCode": "a, b = map(int, input().split())\n\ndem = 0\nfor i in range(a, b + 1):\n    if i % 2 == 0:\n        dem += 1\n\nprint(dem)",
       "hint": "Duyệt từ a đến b, tăng biến đếm mỗi khi gặp số chẵn.",
       "tests": [
         {
@@ -262,7 +253,6 @@
       "library": "Vòng lặp",
       "description": "Nhập số nguyên dương n. In SO_NGUYEN_TO nếu n là số nguyên tố; ngược lại in KHONG_PHAI_SO_NGUYEN_TO. Số nguyên tố là số lớn hơn 1 và chỉ có hai ước dương là 1 và chính nó.",
       "task": "Nhập số nguyên dương n. In SO_NGUYEN_TO nếu n là số nguyên tố; ngược lại in KHONG_PHAI_SO_NGUYEN_TO. Số nguyên tố là số lớn hơn 1 và chỉ có hai ước dương là 1 và chính nó.",
-      "starterCode": "n = int(input())\n\nla_nguyen_to = n >= 2\n\nfor i in range(2, n):\n    if n % i == 0:\n        la_nguyen_to = False\n        break\n\nif la_nguyen_to:\n    print(\"SO_NGUYEN_TO\")\nelse:\n    print(\"KHONG_PHAI_SO_NGUYEN_TO\")",
       "hint": "Dùng biến cờ Boolean; thử chia n cho các số nhỏ hơn, nếu chia hết thì không phải số nguyên tố.",
       "tests": [
         {
@@ -290,7 +280,6 @@
       "library": "Rẽ nhánh",
       "description": "Nhập cân nặng m (kg) và chiều cao h (m). Tính BMI = m / h². In BMI với 2 chữ số thập phân, sau đó xuống dòng in phân loại: THIEU_CAN nếu BMI < 18.5; BINH_THUONG nếu 18.5 ≤ BMI < 25; THUA_CAN nếu 25 ≤ BMI < 30; BEO_PHI nếu BMI ≥ 30.",
       "task": "Nhập cân nặng m (kg) và chiều cao h (m). Tính BMI = m / h². In BMI với 2 chữ số thập phân, sau đó xuống dòng in phân loại: THIEU_CAN nếu BMI < 18.5; BINH_THUONG nếu 18.5 ≤ BMI < 25; THUA_CAN nếu 25 ≤ BMI < 30; BEO_PHI nếu BMI ≥ 30.",
-      "starterCode": "m, h = map(float, input().split())\nbmi = m / (h * h)\nprint(f\"{bmi:.2f}\")\nif bmi < 18.5:\n    print(\"THIEU_CAN\")\nelif bmi < 25:\n    print(\"BINH_THUONG\")\nelif bmi < 30:\n    print(\"THUA_CAN\")\nelse:\n    print(\"BEO_PHI\")",
       "hint": "Tính BMI = m/h² rồi phân loại bằng chuỗi if–elif theo các mốc 18.5/25/30.",
       "tests": [
         {
@@ -318,7 +307,6 @@
       "library": "Rẽ nhánh",
       "description": "Nhập số điện tiêu thụ n (kWh, số nguyên không âm). Tính tiền điện theo ba bậc: 50 kWh đầu tiên giá 1800 đồng/kWh; 50 kWh tiếp theo giá 2000 đồng/kWh; từ kWh thứ 101 trở đi giá 2500 đồng/kWh. In tổng tiền (số nguyên).",
       "task": "Nhập số điện tiêu thụ n (kWh, số nguyên không âm). Tính tiền điện theo ba bậc: 50 kWh đầu tiên giá 1800 đồng/kWh; 50 kWh tiếp theo giá 2000 đồng/kWh; từ kWh thứ 101 trở đi giá 2500 đồng/kWh. In tổng tiền (số nguyên).",
-      "starterCode": "n = int(input())\nif n <= 50:\n    tien = n * 1800\nelif n <= 100:\n    tien = 50 * 1800 + (n - 50) * 2000\nelse:\n    tien = 50 * 1800 + 50 * 2000 + (n - 100) * 2500\nprint(tien)",
       "hint": "Chia ba bậc, mỗi bậc tính phần điện thuộc bậc đó rồi cộng lại; điều kiện lồng theo mức tiêu thụ.",
       "tests": [
         {
@@ -346,7 +334,6 @@
       "library": "Rẽ nhánh",
       "description": "Nhập hai số nguyên a và b. Giải phương trình ax + b = 0. Nếu a khác 0, in nghiệm x với 2 chữ số thập phân. Nếu a = 0 và b = 0, in VO_SO_NGHIEM. Nếu a = 0 và b khác 0, in VO_NGHIEM.",
       "task": "Nhập hai số nguyên a và b. Giải phương trình ax + b = 0. Nếu a khác 0, in nghiệm x với 2 chữ số thập phân. Nếu a = 0 và b = 0, in VO_SO_NGHIEM. Nếu a = 0 và b khác 0, in VO_NGHIEM.",
-      "starterCode": "a, b = map(int, input().split())\nif a != 0:\n    x = -b / a\n    print(f\"{x:.2f}\")\nelif b == 0:\n    print(\"VO_SO_NGHIEM\")\nelse:\n    print(\"VO_NGHIEM\")",
       "hint": "a khác 0 cho nghiệm −b/a; khi a = 0 tách hai trường hợp vô số nghiệm và vô nghiệm.",
       "tests": [
         {
@@ -374,7 +361,6 @@
       "library": "Vòng lặp",
       "description": "Nhập số nguyên dương n, sau đó nhập n số nguyên trên cùng một dòng. In tổng, giá trị lớn nhất, giá trị nhỏ nhất và trung bình cộng (2 chữ số thập phân), mỗi giá trị trên một dòng. Không dùng các hàm sum, max, min có sẵn.",
       "task": "Nhập số nguyên dương n, sau đó nhập n số nguyên trên cùng một dòng. In tổng, giá trị lớn nhất, giá trị nhỏ nhất và trung bình cộng (2 chữ số thập phân), mỗi giá trị trên một dòng. Không dùng các hàm sum, max, min có sẵn.",
-      "starterCode": "n = int(input())\nso = input().split()\ntong = 0\nlon_nhat = int(so[0])\nnho_nhat = int(so[0])\nfor i in range(n):\n    x = int(so[i])\n    tong += x\n    if x > lon_nhat:\n        lon_nhat = x\n    if x < nho_nhat:\n        nho_nhat = x\nprint(tong)\nprint(lon_nhat)\nprint(nho_nhat)\nprint(f\"{tong / n:.2f}\")",
       "hint": "Khởi tạo lớn nhất/nhỏ nhất bằng phần tử đầu, vừa cộng dồn tổng vừa cập nhật max/min trong một vòng lặp.",
       "tests": [
         {
@@ -402,7 +388,6 @@
       "library": "Vòng lặp lồng nhau",
       "description": "Nhập hai số nguyên a và b với 1 ≤ a ≤ b ≤ 9. In bảng cửu chương của các số từ a đến b. Mỗi bảng gồm 10 dòng theo mẫu i x j = k, giữa hai bảng liên tiếp in một dòng trống.",
       "task": "Nhập hai số nguyên a và b với 1 ≤ a ≤ b ≤ 9. In bảng cửu chương của các số từ a đến b. Mỗi bảng gồm 10 dòng theo mẫu i x j = k, giữa hai bảng liên tiếp in một dòng trống.",
-      "starterCode": "a, b = map(int, input().split())\nfor i in range(a, b + 1):\n    if i > a:\n        print()\n    for j in range(1, 11):\n        print(f\"{i} x {j} = {i * j}\")",
       "hint": "Vòng ngoài chạy từ a đến b, vòng trong in 10 dòng; in một dòng trống giữa các bảng.",
       "tests": [
         {
@@ -430,7 +415,6 @@
       "library": "Rẽ nhánh",
       "description": "Nhập tháng t và năm y. In số ngày của tháng đó. Tháng 4, 6, 9, 11 có 30 ngày; tháng 2 có 29 ngày nếu y là năm nhuận và 28 ngày nếu ngược lại; các tháng còn lại có 31 ngày. Nếu t không thuộc đoạn [1, 12], in KHONG_HOP_LE.",
       "task": "Nhập tháng t và năm y. In số ngày của tháng đó. Tháng 4, 6, 9, 11 có 30 ngày; tháng 2 có 29 ngày nếu y là năm nhuận và 28 ngày nếu ngược lại; các tháng còn lại có 31 ngày. Nếu t không thuộc đoạn [1, 12], in KHONG_HOP_LE.",
-      "starterCode": "t, y = map(int, input().split())\nif t < 1 or t > 12:\n    print(\"KHONG_HOP_LE\")\nelif t in (4, 6, 9, 11):\n    print(30)\nelif t == 2:\n    if y % 400 == 0 or (y % 4 == 0 and y % 100 != 0):\n        print(29)\n    else:\n        print(28)\nelse:\n    print(31)",
       "hint": "Dùng in để gom nhóm tháng 30 ngày; tháng 2 kiểm tra năm nhuận; các tháng còn lại 31 ngày.",
       "tests": [
         {
@@ -458,7 +442,6 @@
       "library": "Vòng lặp while",
       "description": "Nhập số nguyên n (có thể âm). Đếm số chữ số của n và tính tổng các chữ số (bỏ qua dấu âm). Quy ước số 0 có một chữ số và tổng chữ số bằng 0.",
       "task": "Nhập số nguyên n (có thể âm). Đếm số chữ số của n và tính tổng các chữ số (bỏ qua dấu âm). Quy ước số 0 có một chữ số và tổng chữ số bằng 0.",
-      "starterCode": "n = int(input())\nif n < 0:\n    n = -n\nif n == 0:\n    print(1, 0)\nelse:\n    dem = 0\n    tong = 0\n    while n > 0:\n        tong += n % 10\n        n //= 10\n        dem += 1\n    print(dem, tong)",
       "hint": "Dùng % 10 lấy chữ số cuối, // 10 để bỏ đi, lặp tới khi hết; số 0 xử lý riêng.",
       "tests": [
         {
@@ -486,7 +469,6 @@
       "library": "Vòng lặp",
       "description": "Nhập số nguyên dương n. In n số đầu tiên của dãy Fibonacci trên một dòng, cách nhau bởi dấu cách. Dãy Fibonacci bắt đầu bằng 0 và 1; mỗi số tiếp theo bằng tổng hai số liền trước.",
       "task": "Nhập số nguyên dương n. In n số đầu tiên của dãy Fibonacci trên một dòng, cách nhau bởi dấu cách. Dãy Fibonacci bắt đầu bằng 0 và 1; mỗi số tiếp theo bằng tổng hai số liền trước.",
-      "starterCode": "n = int(input())\na = 0\nb = 1\nket_qua = \"\"\nfor i in range(n):\n    ket_qua += str(a) + \" \"\n    a, b = b, a + b\nprint(ket_qua.strip())",
       "hint": "Giữ hai số liền trước, mỗi bước cập nhật a, b = b, a + b.",
       "tests": [
         {
@@ -514,7 +496,6 @@
       "library": "Thuật toán Euclid",
       "description": "Nhập hai số nguyên dương a và b. Dùng thuật toán Euclid để tính ước chung lớn nhất, sau đó tính bội chung nhỏ nhất theo công thức BCNN = a × b / UCLN.",
       "task": "Nhập hai số nguyên dương a và b. Dùng thuật toán Euclid để tính ước chung lớn nhất, sau đó tính bội chung nhỏ nhất theo công thức BCNN = a × b / UCLN.",
-      "starterCode": "a, b = map(int, input().split())\nx = a\ny = b\nwhile y != 0:\n    x, y = y, x % y\nprint(x, a * b // x)",
       "hint": "Lặp x, y = y, x % y đến khi y = 0 được UCLN; BCNN = a×b // UCLN.",
       "tests": [
         {
@@ -542,7 +523,6 @@
       "library": "Chuỗi",
       "description": "Nhập số nguyên dương n (n ≤ 20). In một tam giác cân bằng dấu sao có n dòng: dòng thứ i gồm n - i dấu cách rồi 2i - 1 dấu sao. Không có dấu cách thừa ở cuối mỗi dòng.",
       "task": "Nhập số nguyên dương n (n ≤ 20). In một tam giác cân bằng dấu sao có n dòng: dòng thứ i gồm n - i dấu cách rồi 2i - 1 dấu sao. Không có dấu cách thừa ở cuối mỗi dòng.",
-      "starterCode": "n = int(input())\nfor i in range(1, n + 1):\n    print(\" \" * (n - i) + \"*\" * (2 * i - 1))",
       "hint": "Dòng i gồm (n−i) dấu cách và (2i−1) dấu sao, tạo nhanh bằng phép nhân chuỗi. BÀI THỰC HÀNH SỐ 2: HÀM VÀ CHUỖI Tóm tắt kiến thức Mục tiêu: Sau buổi thực hành, sinh viên viết được hàm có tham số và giá trị trả về, và xử lý chuỗi ký tự bằng các phương thức thông dụng. 1. Vì sao cần hàm Hàm là một khối lệnh có tên, nhận dữ liệu đầu vào và trả về kết quả. Chia chương trình thành hàm giúp tránh viết lặp, đặt tên cho từng bước xử lý và kiểm thử độc lập. def dien_tich_hinh_tron(ban_kinh): return 3.14159 * ban_kinh ** 2 r = float(input()) print(f\"{dien_tich_hinh_tron(r):.2f}\") Từ khóa def mở đầu định nghĩa; thân hàm phải thụt vào. return trả kết quả về nơi gọi và kết thúc hàm ngay; hàm không có return trả về None. Hàm phải được định nghĩa trước khi gọi. 2. Tham số, biến cục bộ, hàm Boolean Tên trong dòng def là tham số; giá trị truyền vào khi gọi là đối số. Biến tạo bên trong hàm là biến cục bộ, tách biệt với biến cùng tên bên ngoài. Hàm trả True/False gọi là hàm Boolean; đặt tên để câu điều kiện đọc lên như một câu tiếng Việt. Có thể dùng kết quả hàm này làm đối số cho hàm khác (composition). def la_nam_nhuan(y): return y % 400 == 0 or (y % 4 == 0 and y % 100 != 0) if la_nam_nhuan(int(input())): print(\"NAM_NHUAN\") 3. Chuỗi ký tự Chuỗi là dãy ký tự, đánh chỉ số từ 0; chỉ số âm đếm từ cuối (s[-1] là ký tự cuối). Chuỗi không thay đổi được. Cú pháp cắt lát s[bat_dau:ket_thuc] lấy đến trước vị trí kết thúc; bước nhảy -1 cho chuỗi đảo ngược. s = \"Python\" print(s[0], s[-1], len(s)) print(s[0:3]) # Pyt print(s[::-1]) # nohtyP 4. Các phương thức chuỗi thông dụng Phương thức Tác dụng Ví dụ s.upper() / s.lower() Chữ hoa / chữ thường \"abc\".upper() → \"ABC\" s.strip() Bỏ dấu cách hai đầu \" a \".strip() → \"a\" s.split() Tách thành danh sách từ \"a b\".split() → [\"a\",\"b\"] s.replace(a, b) Thay chuỗi con \"a-b\".replace(\"-\",\"\") → \"ab\" s.count(x) / s.find(x) Đếm / vị trí xuất hiện \"abab\".count(\"a\") → 2 s.isalpha() / s.isdigit() Kiểm tra loại ký tự \"123\".isdigit() → True \" \".join(ds) Nối danh sách thành chuỗi \" \".join([\"a\",\"b\"]) → \"a b\" find trả về -1 khi không tìm thấy. Toán tử in cho biết một chuỗi con có xuất hiện hay không. Duyệt từng ký tự bằng for ky_tu in s. Lưu ý và lỗi thường gặp • Quên return, khiến hàm luôn trả về None. • Gọi hàm nhưng không dùng kết quả (viết tinh(x) mà không gán hay in). • Truy cập chỉ số vượt phạm vi (IndexError); nhớ chỉ số cuối là len(s) - 1. • Dùng dấu cộng để nối chuỗi với số mà chưa str(). • Quên rằng split() không tham số đã tự bỏ qua khoảng trắng thừa. Ghi nhớ trước khi nộp bài Định nghĩa hàm đặt trước phần chương trình chính; đặt tên hàm/biến gợi nghĩa; thử lại với chuỗi rỗng hoặc một ký tự; kiểm tra định dạng từng dòng kết quả. Thực hành trên lớp",
       "tests": [
         {
@@ -570,7 +550,6 @@
       "library": "Hàm",
       "description": "Viết hai hàm chu_vi(a, b) và dien_tich(a, b) trả về chu vi và diện tích của hình chữ nhật có hai cạnh a và b. Chương trình chính nhập a, b rồi in kết quả của hai hàm, mỗi giá trị trên một dòng, với 2 chữ số thập phân.",
       "task": "Viết hai hàm chu_vi(a, b) và dien_tich(a, b) trả về chu vi và diện tích của hình chữ nhật có hai cạnh a và b. Chương trình chính nhập a, b rồi in kết quả của hai hàm, mỗi giá trị trên một dòng, với 2 chữ số thập phân.",
-      "starterCode": "def chu_vi(a, b):\n    return 2 * (a + b)\n\n\ndef dien_tich(a, b):\n    return a * b\n\n\na, b = map(float, input().split())\nprint(f\"{chu_vi(a, b):.2f}\")\nprint(f\"{dien_tich(a, b):.2f}\")",
       "hint": "Hai hàm nhận hai cạnh và trả về công thức tương ứng; chương trình chính gọi và in kết quả.",
       "tests": [
         {
@@ -598,7 +577,6 @@
       "library": "Hàm",
       "description": "Viết hàm Boolean la_nguyen_to(n) trả về True nếu n là số nguyên tố. Chương trình chính nhập hai số nguyên a và b (a ≤ b), in tất cả các số nguyên tố thuộc đoạn [a, b] trên một dòng, cách nhau bởi dấu cách. Nếu không có số nào, in KHONG_CO.",
       "task": "Viết hàm Boolean la_nguyen_to(n) trả về True nếu n là số nguyên tố. Chương trình chính nhập hai số nguyên a và b (a ≤ b), in tất cả các số nguyên tố thuộc đoạn [a, b] trên một dòng, cách nhau bởi dấu cách. Nếu không có số nào, in KHONG_CO.",
-      "starterCode": "def la_nguyen_to(n):\n    if n < 2:\n        return False\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 1\n    return True\n\n\na, b = map(int, input().split())\nket_qua = []\nfor x in range(a, b + 1):\n    if la_nguyen_to(x):\n        ket_qua.append(str(x))\nif len(ket_qua) == 0:\n    print(\"KHONG_CO\")\nelse:\n    print(\" \".join(ket_qua))",
       "hint": "Đóng gói việc kiểm tra số nguyên tố thành một hàm trả True/False, tối ưu bằng điều kiện i*i <= n.",
       "tests": [
         {
@@ -626,7 +604,6 @@
       "library": "Hàm",
       "description": "Nhập tử số a và mẫu số b (b khác 0) của một phân số. Rút gọn phân số về dạng tối giản và in theo mẫu tu/mau. Dấu âm nếu có luôn đặt ở tử số; nếu phân số bằng 0 thì in 0/1.",
       "task": "Nhập tử số a và mẫu số b (b khác 0) của một phân số. Rút gọn phân số về dạng tối giản và in theo mẫu tu/mau. Dấu âm nếu có luôn đặt ở tử số; nếu phân số bằng 0 thì in 0/1.",
-      "starterCode": "def ucln(x, y):\n    x = abs(x)\n    y = abs(y)\n    while y != 0:\n        x, y = y, x % y\n    return x\n\n\na, b = map(int, input().split())\nif a == 0:\n    print(\"0/1\")\nelse:\n    if b < 0:\n        a = -a\n        b = -b\n    g = ucln(a, b)\n    print(f\"{a // g}/{b // g}\")",
       "hint": "Rút gọn bằng UCLN; đưa dấu âm về tử số và xử lý riêng phân số bằng 0.",
       "tests": [
         {
@@ -654,7 +631,6 @@
       "library": "Chuỗi và rẽ nhánh",
       "description": "Nhập một biểu thức dạng a op b trên một dòng, trong đó a và b là số nguyên, op là một trong bốn phép +, -, *, /. In kết quả. Với phép chia, in kết quả 2 chữ số thập phân; nếu chia cho 0 thì in LOI_CHIA_0.",
       "task": "Nhập một biểu thức dạng a op b trên một dòng, trong đó a và b là số nguyên, op là một trong bốn phép +, -, *, /. In kết quả. Với phép chia, in kết quả 2 chữ số thập phân; nếu chia cho 0 thì in LOI_CHIA_0.",
-      "starterCode": "a, op, b = input().split()\na = int(a)\nb = int(b)\nif op == \"+\":\n    print(a + b)\nelif op == \"-\":\n    print(a - b)\nelif op == \"*\":\n    print(a * b)\nelse:\n    if b == 0:\n        print(\"LOI_CHIA_0\")\n    else:\n        print(f\"{a / b:.2f}\")",
       "hint": "Tách 'a op b', chọn phép tính theo op; xử lý chia cho 0 riêng.",
       "tests": [
         {
@@ -682,7 +658,6 @@
       "library": "Chuỗi",
       "description": "Nhập một họ tên có thể chứa nhiều dấu cách thừa ở đầu, ở cuối và giữa các từ. In lại họ tên đã chuẩn hóa: mỗi từ cách nhau đúng một dấu cách, chữ cái đầu mỗi từ viết hoa, các chữ còn lại viết thường.",
       "task": "Nhập một họ tên có thể chứa nhiều dấu cách thừa ở đầu, ở cuối và giữa các từ. In lại họ tên đã chuẩn hóa: mỗi từ cách nhau đúng một dấu cách, chữ cái đầu mỗi từ viết hoa, các chữ còn lại viết thường.",
-      "starterCode": "ho_ten = input()\ntu = ho_ten.split()\nket_qua = []\nfor t in tu:\n    ket_qua.append(t[0].upper() + t[1:].lower())\nprint(\" \".join(ket_qua))",
       "hint": "split() bỏ khoảng trắng thừa, viết hoa chữ cái đầu mỗi từ rồi nối lại bằng join.",
       "tests": [
         {
@@ -710,7 +685,6 @@
       "library": "Chuỗi",
       "description": "Nhập một câu. In số từ trong câu, từ dài nhất và độ dài của nó. Nếu có nhiều từ cùng độ dài lớn nhất, lấy từ xuất hiện đầu tiên. Các từ được phân tách bởi dấu cách.",
       "task": "Nhập một câu. In số từ trong câu, từ dài nhất và độ dài của nó. Nếu có nhiều từ cùng độ dài lớn nhất, lấy từ xuất hiện đầu tiên. Các từ được phân tách bởi dấu cách.",
-      "starterCode": "cau = input()\ntu = cau.split()\ndai_nhat = tu[0]\nfor t in tu:\n    if len(t) > len(dai_nhat):\n        dai_nhat = t\nprint(len(tu))\nprint(dai_nhat, len(dai_nhat))",
       "hint": "Tách câu thành danh sách từ, tìm từ dài nhất bằng cách so sánh len.",
       "tests": [
         {
@@ -738,7 +712,6 @@
       "library": "Hàm và while",
       "description": "Nhập số nguyên dương n. Viết một hàm có chức năng cộng dồn các chữ số của n để được một số mới; lặp lại cho tới khi còn một chữ số duy nhất, rồi in ra. Ví dụ 9875 cho 9+8+7+5=29, rồi 2+9=11, rồi 1+1=2.",
       "task": "Nhập số nguyên dương n. Viết một hàm có chức năng cộng dồn các chữ số của n để được một số mới; lặp lại cho tới khi còn một chữ số duy nhất, rồi in ra. Ví dụ 9875 cho 9+8+7+5=29, rồi 2+9=11, rồi 1+1=2.",
-      "starterCode": "def tong_chu_so(x):\n    tong = 0\n    while x > 0:\n        tong += x % 10\n        x //= 10\n    return tong\n\n\nn = int(input())\nwhile n >= 10:\n    n = tong_chu_so(n)\nprint(n)",
       "hint": "Một hàm tính tổng chữ số; lặp gọi hàm đó tới khi còn một chữ số duy nhất.",
       "tests": [
         {
@@ -766,7 +739,6 @@
       "library": "Hàm Boolean",
       "description": "Viết hàm la_chan(n) trả về True nếu n là số chẵn. Chương trình chính nhập số nguyên dương m và m số nguyên, dùng hàm đó để đếm số lượng số chẵn trong dãy.",
       "task": "Viết hàm la_chan(n) trả về True nếu n là số chẵn. Chương trình chính nhập số nguyên dương m và m số nguyên, dùng hàm đó để đếm số lượng số chẵn trong dãy.",
-      "starterCode": "def la_chan(n):\n    return n % 2 == 0\n\n\nm = int(input())\nso = list(map(int, input().split()))\ndem = 0\nfor x in so:\n    if la_chan(x):\n        dem += 1\nprint(dem)",
       "hint": "Đóng gói việc kiểm tra chẵn thành hàm trả True/False, rồi đếm bằng vòng lặp.",
       "tests": [
         {
@@ -794,7 +766,6 @@
       "library": "Hàm và vòng lặp",
       "description": "Viết hàm luy_thua(a, n) trả về a lũy thừa n bằng vòng lặp, không dùng toán tử . Chương trình chính nhập a và n rồi in kết quả. Quy ước a mũ 0 bằng 1.",
       "task": "Viết hàm luy_thua(a, n) trả về a lũy thừa n bằng vòng lặp, không dùng toán tử . Chương trình chính nhập a và n rồi in kết quả. Quy ước a mũ 0 bằng 1.",
-      "starterCode": "def luy_thua(a, n):\n    kq = 1\n    for i in range(n):\n        kq *= a\n    return kq\n\n\na, n = map(int, input().split())\nprint(luy_thua(a, n))",
       "hint": "Nhân dồn a đúng n lần trong hàm; a mũ 0 = 1 nhờ vòng lặp chạy 0 lần.",
       "tests": [
         {
@@ -822,7 +793,6 @@
       "library": "Chuỗi",
       "description": "Nhập một đoạn văn bản. Đếm số câu bằng cách đếm số ký tự kết thúc câu, gồm dấu chấm, dấu chấm than và dấu chấm hỏi.",
       "task": "Nhập một đoạn văn bản. Đếm số câu bằng cách đếm số ký tự kết thúc câu, gồm dấu chấm, dấu chấm than và dấu chấm hỏi.",
-      "starterCode": "s = input()\ndem = 0\nfor c in s:\n    if c in \".!?\":\n        dem += 1\nprint(dem)",
       "hint": "Đếm các ký tự kết thúc câu gồm dấu chấm, chấm than và chấm hỏi.",
       "tests": [
         {
@@ -850,7 +820,6 @@
       "library": "Chuỗi",
       "description": "Nhập một chuỗi không rỗng. In SO nếu chuỗi chỉ gồm chữ số; CHU nếu chỉ gồm chữ cái; HON_HOP nếu chỉ gồm chữ cái và chữ số nhưng có cả hai loại; KHAC nếu có bất kỳ ký tự nào khác (kể cả dấu cách).",
       "task": "Nhập một chuỗi không rỗng. In SO nếu chuỗi chỉ gồm chữ số; CHU nếu chỉ gồm chữ cái; HON_HOP nếu chỉ gồm chữ cái và chữ số nhưng có cả hai loại; KHAC nếu có bất kỳ ký tự nào khác (kể cả dấu cách).",
-      "starterCode": "s = input()\nif s.isdigit():\n    print(\"SO\")\nelif s.isalpha():\n    print(\"CHU\")\nelif s.isalnum():\n    print(\"HON_HOP\")\nelse:\n    print(\"KHAC\")",
       "hint": "Phân loại bằng isdigit/isalpha/isalnum theo thứ tự để tách SO, CHU, HON_HOP, KHAC.",
       "tests": [
         {
@@ -878,7 +847,6 @@
       "library": "Chuỗi",
       "description": "Nhập chuỗi s ở dòng thứ nhất và chuỗi t ở dòng thứ hai. Đếm số lần chuỗi t xuất hiện trong s (các lần xuất hiện không chồng lấp), có phân biệt chữ hoa chữ thường.",
       "task": "Nhập chuỗi s ở dòng thứ nhất và chuỗi t ở dòng thứ hai. Đếm số lần chuỗi t xuất hiện trong s (các lần xuất hiện không chồng lấp), có phân biệt chữ hoa chữ thường.",
-      "starterCode": "s = input()\nt = input()\nprint(s.count(t))",
       "hint": "Dùng s.count(t) đếm số lần chuỗi con xuất hiện không chồng lấp. BÀI THỰC HÀNH SỐ 3: CHUỖI (TIẾP), TUPLE, LIST, SET, DICTIONARY Tóm tắt kiến thức Mục tiêu: Sau buổi thực hành, sinh viên dùng được list và tuple để lưu trữ, duyệt và biến đổi dữ liệu; làm quen với set và dictionary (nội dung nâng cao). 1. List List là dãy giá trị có thứ tự và thay đổi được, đánh chỉ số từ 0. diem = [8.5, 6.0, 9.25, 4.75] print(diem[0], diem[-1], len(diem)) diem[1] = 7.0 Thao tác Tác dụng ds.append(x) / ds.insert(i, x) Thêm vào cuối / chèn vào vị trí i ds.remove(x) / ds.pop() Xóa giá trị x / lấy và xóa phần tử cuối ds.sort() / ds.reverse() Sắp xếp tăng dần / đảo thứ tự (sửa trực tiếp) len(ds), sum(ds), max(ds), min(ds) Số phần tử, tổng, lớn nhất, nhỏ nhất x in ds Kiểm tra thuộc danh sách Lưu ý ds.sort() không trả về giá trị; viết ds = ds.sort() sẽ làm mất dữ liệu. 2. Tuple Tuple giống list nhưng không thay đổi được; thích hợp gom một nhóm thông tin thuộc cùng một đối tượng. sinh_vien = (\"An\", 8.5) ten, diem = sinh_vien # giải nén tuple lop = [(\"An\", 8.5), (\"Binh\", 6.0)] for ten, diem in lop: print(ten, diem) Kỹ thuật gán nhiều biến như trên cũng chính là cơ chế của câu lệnh hoán đổi a, b = b, a. 3. Chuỗi và list làm việc cùng nhau Hai phương thức split và join là cầu nối giữa chuỗi và list, xuất hiện trong hầu hết bài xử lý văn bản. Khi in một danh sách số, chuyển từng phần tử sang chuỗi trước: \" \".join(map(str, ds)). 4. Set (nâng cao) Set là tập hợp không thứ tự, không trùng. Các phép: & (giao), | (hợp), - (hiệu), ^ (đối xứng), <= (tập con), a.isdisjoint(b) (rời nhau). Vì không có thứ tự, luôn sorted() trước khi in để kết quả ổn định. a = set(map(int, input().split())) b = set(map(int, input().split())) print(sorted(a & b)) # giao, tăng dần print(len(set(ds))) # số giá trị khác nhau 5. Dictionary (nâng cao) Dictionary ánh xạ khóa → giá trị. Từ Python 3.7, dict giữ thứ tự thêm phần tử. d = {} for t in cau.split(): d[t] = d.get(t, 0) + 1 # đếm tần suất for k in d: print(k, d[k]) print(d.get(key, \"KHONG_CO\")) # tra cứu có mặc định Lưu ý và lỗi thường gặp • ds.sort() trả về None; đừng gán lại. Đừng sửa list trong khi đang duyệt nó. • Truy cập chỉ số vượt phạm vi (IndexError). • Set không có thứ tự → nhớ sorted(); dictionary in theo thứ tự thêm. • Truy cập khóa không tồn tại bằng d[k] gây KeyError; dùng d.get(k, mặc_định). Ghi nhớ trước khi nộp bài Thử lại bài với dữ liệu chỉ một phần tử và với dữ liệu có phần tử trùng nhau; kiểm tra kỹ định dạng từng dòng kết quả. Thực hành trên lớp",
       "tests": [
         {
@@ -906,7 +874,6 @@
       "library": "Chuỗi",
       "description": "Nhập số nguyên không âm n. In biểu diễn nhị phân của n mà không dùng hàm bin. Quy ước số 0 in ra 0.",
       "task": "Nhập số nguyên không âm n. In biểu diễn nhị phân của n mà không dùng hàm bin. Quy ước số 0 in ra 0.",
-      "starterCode": "n = int(input())\nif n == 0:\n    print(\"0\")\nelse:\n    ket_qua = \"\"\n    while n > 0:\n        ket_qua = str(n % 2) + ket_qua\n        n //= 2\n    print(ket_qua)",
       "hint": "Lặp lấy dư 2 rồi ghép vào đầu chuỗi kết quả, đồng thời chia đôi n.",
       "tests": [
         {
@@ -934,7 +901,6 @@
       "library": "Tuple",
       "description": "Nhập số sinh viên n. Mỗi dòng tiếp theo gồm họ tên (không chứa dấu cách) và điểm số thực, cách nhau bởi dấu cách. Lưu mỗi sinh viên thành một tuple trong danh sách. In điểm trung bình của lớp (2 chữ số thập phân), tên sinh viên có điểm cao nhất, và số sinh viên đạt (điểm ≥ 5). Nếu nhiều sinh viên cùng điểm cao nhất, lấy người xuất hiện đầu tiên.",
       "task": "Nhập số sinh viên n. Mỗi dòng tiếp theo gồm họ tên (không chứa dấu cách) và điểm số thực, cách nhau bởi dấu cách. Lưu mỗi sinh viên thành một tuple trong danh sách. In điểm trung bình của lớp (2 chữ số thập phân), tên sinh viên có điểm cao nhất, và số sinh viên đạt (điểm ≥ 5). Nếu nhiều sinh viên cùng điểm cao nhất, lấy người xuất hiện đầu tiên.",
-      "starterCode": "n = int(input())\nlop = []\nfor i in range(n):\n    ten, diem = input().split()\n    lop.append((ten, float(diem)))\n\ntong = 0\ncao_nhat = lop[0]\ndat = 0\nfor ten, diem in lop:\n    tong += diem\n    if diem > cao_nhat[1]:\n        cao_nhat = (ten, diem)\n    if diem >= 5:\n        dat += 1\nprint(f\"{tong / n:.2f}\")\nprint(cao_nhat[0])\nprint(dat)",
       "hint": "Lưu mỗi sinh viên thành tuple (tên, điểm); duyệt để tính trung bình, tìm cao nhất và đếm đạt.",
       "tests": [
         {
@@ -962,7 +928,6 @@
       "library": "List",
       "description": "Nhập một chuỗi mật khẩu (không chứa dấu cách). Mật khẩu được coi là mạnh nếu thỏa cả bốn điều kiện: dài ít nhất 8 ký tự, có ít nhất một chữ hoa, một chữ thường và một chữ số. In MANH hoặc YEU.",
       "task": "Nhập một chuỗi mật khẩu (không chứa dấu cách). Mật khẩu được coi là mạnh nếu thỏa cả bốn điều kiện: dài ít nhất 8 ký tự, có ít nhất một chữ hoa, một chữ thường và một chữ số. In MANH hoặc YEU.",
-      "starterCode": "def manh(mk):\n    if len(mk) < 8:\n        return False\n    co_hoa = False\n    co_thuong = False\n    co_so = False\n    for c in mk:\n        if c.isupper():\n            co_hoa = True\n        elif c.islower():\n            co_thuong = True\n        elif c.isdigit():\n            co_so = True\n    return co_hoa and co_thuong and co_so\n\n\nmat_khau = input()\nif manh(mat_khau):\n    print(\"MANH\")\nelse:\n    print(\"YEU\")",
       "hint": "Duyệt ký tự, dùng cờ cho chữ hoa/thường/số; kiểm tra đủ bốn điều kiện cùng độ dài.",
       "tests": [
         {
@@ -990,7 +955,6 @@
       "library": "Set",
       "description": "Nhập số nguyên dương n và n số nguyên. In danh sách các giá trị khác nhau theo đúng thứ tự xuất hiện lần đầu, sau đó in số lượng giá trị khác nhau.",
       "task": "Nhập số nguyên dương n và n số nguyên. In danh sách các giá trị khác nhau theo đúng thứ tự xuất hiện lần đầu, sau đó in số lượng giá trị khác nhau.",
-      "starterCode": "n = int(input())\ndanh_sach = list(map(int, input().split()))\nket_qua = []\nfor x in danh_sach:\n    if x not in ket_qua:\n        ket_qua.append(x)\nprint(\" \".join(map(str, ket_qua)))\nprint(len(ket_qua))",
       "hint": "Duyệt và chỉ thêm phần tử chưa có trong danh sách kết quả để giữ thứ tự xuất hiện đầu.",
       "tests": [
         {
@@ -1018,7 +982,6 @@
       "library": "Dictionary",
       "description": "Nhập số nguyên dương n, sau đó n dòng, mỗi dòng gồm tên (không chứa dấu cách) và điểm số thực; nếu một tên xuất hiện nhiều lần thì lấy điểm nhập sau cùng. Dòng cuối là một tên cần tra cứu. In điểm của tên đó với 2 chữ số thập phân, hoặc KHONG_CO nếu không có.",
       "task": "Nhập số nguyên dương n, sau đó n dòng, mỗi dòng gồm tên (không chứa dấu cách) và điểm số thực; nếu một tên xuất hiện nhiều lần thì lấy điểm nhập sau cùng. Dòng cuối là một tên cần tra cứu. In điểm của tên đó với 2 chữ số thập phân, hoặc KHONG_CO nếu không có.",
-      "starterCode": "n = int(input())\ndiem = {}\n\nfor i in range(n):\n    ten, d = input().split()\n    diem[ten] = float(d)\ncan_tra = input().strip()\nif can_tra in diem:\n    print(f\"{diem[can_tra]:.2f}\")\nelse:\n    print(\"KHONG_CO\")",
       "hint": "Ghi đè điểm khi tên trùng; dùng get để tra cứu.",
       "tests": [
         {
@@ -1046,7 +1009,6 @@
       "library": "Chuỗi",
       "description": "Nhập một chuỗi. Kiểm tra chuỗi có đối xứng hay không sau khi bỏ hết dấu cách và không phân biệt chữ hoa chữ thường. Viết hàm doi_xung(s) trả về giá trị Boolean.",
       "task": "Nhập một chuỗi. Kiểm tra chuỗi có đối xứng hay không sau khi bỏ hết dấu cách và không phân biệt chữ hoa chữ thường. Viết hàm doi_xung(s) trả về giá trị Boolean.",
-      "starterCode": "def doi_xung(s):\n    s = s.replace(\" \", \"\").lower()\n    return s == s[::-1]\n\n\nvan_ban = input()\nif doi_xung(van_ban):\n    print(\"DOI_XUNG\")\nelse:\n    print(\"KHONG_DOI_XUNG\")",
       "hint": "Bỏ dấu cách và hạ chữ thường, so sánh chuỗi với bản đảo ngược s[::-1].",
       "tests": [
         {
@@ -1074,7 +1036,6 @@
       "library": "Chuỗi",
       "description": "Nhập một chuỗi bất kỳ. Đếm số nguyên âm (a, e, i, o, u, không phân biệt chữ hoa chữ thường), số chữ cái khác và số ký tự không phải chữ cái.",
       "task": "Nhập một chuỗi bất kỳ. Đếm số nguyên âm (a, e, i, o, u, không phân biệt chữ hoa chữ thường), số chữ cái khác và số ký tự không phải chữ cái.",
-      "starterCode": "s = input()\nnguyen_am = 0\nphu_am = 0\nkhac = 0\nfor ky_tu in s:\n    if ky_tu.isalpha():\n        if ky_tu.lower() in \"aeiou\":\n            nguyen_am += 1\n        else:\n            phu_am += 1\n    else:\n        khac += 1\nprint(nguyen_am, phu_am, khac)",
       "hint": "Duyệt từng ký tự, dùng isalpha và kiểm tra ký tự thuộc 'aeiou' để phân loại nguyên âm/phụ âm.",
       "tests": [
         {
@@ -1102,7 +1063,6 @@
       "library": "Chuỗi và list",
       "description": "Nhập một câu. In số từ trong câu, từ dài nhất (nếu nhiều từ cùng độ dài lớn nhất thì lấy từ đầu tiên), và câu sau khi viết hoa chữ cái đầu mỗi từ, các chữ còn lại viết thường. Ba kết quả trên ba dòng.",
       "task": "Nhập một câu. In số từ trong câu, từ dài nhất (nếu nhiều từ cùng độ dài lớn nhất thì lấy từ đầu tiên), và câu sau khi viết hoa chữ cái đầu mỗi từ, các chữ còn lại viết thường. Ba kết quả trên ba dòng.",
-      "starterCode": "cau = input()\ntu = cau.split()\ndai_nhat = tu[0]\nfor t in tu:\n    if len(t) > len(dai_nhat):\n        dai_nhat = t\nchuan = []\nfor t in tu:\n    chuan.append(t[0].upper() + t[1:].lower())\nprint(len(tu))\nprint(dai_nhat)\nprint(\" \".join(chuan))",
       "hint": "Đếm số từ, tìm từ dài nhất và chuẩn hóa viết hoa chữ đầu mỗi từ.",
       "tests": [
         {
@@ -1130,7 +1090,6 @@
       "library": "List",
       "description": "Nhập số nguyên n và n số nguyên. In TANG nếu dãy tăng dần nghiêm ngặt, GIAM nếu giảm dần nghiêm ngặt, và KHONG nếu không thuộc hai loại trên. Dãy một phần tử coi là TANG.",
       "task": "Nhập số nguyên n và n số nguyên. In TANG nếu dãy tăng dần nghiêm ngặt, GIAM nếu giảm dần nghiêm ngặt, và KHONG nếu không thuộc hai loại trên. Dãy một phần tử coi là TANG.",
-      "starterCode": "n = int(input())\nso = list(map(int, input().split()))\ntang = True\ngiam = True\nfor i in range(1, n):\n    if so[i] <= so[i - 1]:\n        tang = False\n    if so[i] >= so[i - 1]:\n        giam = False\nif tang:\n    print(\"TANG\")\nelif giam:\n    print(\"GIAM\")\nelse:\n    print(\"KHONG\")",
       "hint": "Dùng hai cờ tăng/giảm, duyệt so sánh mỗi phần tử với phần tử liền trước.",
       "tests": [
         {
@@ -1158,7 +1117,6 @@
       "library": "List",
       "description": "Cho hai dãy số nguyên đã sắp xếp tăng dần. Trộn chúng thành một dãy tăng dần duy nhất mà không dùng hàm sort. Dòng 1 và dòng 2 lần lượt là hai dãy; nếu một dãy rỗng thì dòng tương ứng để trống.",
       "task": "Cho hai dãy số nguyên đã sắp xếp tăng dần. Trộn chúng thành một dãy tăng dần duy nhất mà không dùng hàm sort. Dòng 1 và dòng 2 lần lượt là hai dãy; nếu một dãy rỗng thì dòng tương ứng để trống.",
-      "starterCode": "a = input().split()\nb = input().split()\na = [int(x) for x in a]\nb = [int(x) for x in b]\ni = 0\nj = 0\nket_qua = []\nwhile i < len(a) and j < len(b):\n    if a[i] <= b[j]:\n        ket_qua.append(a[i])\n        i += 1\n    else:\n        ket_qua.append(b[j])\n        j += 1\nwhile i < len(a):\n    ket_qua.append(a[i])\n    i += 1\nwhile j < len(b):\n    ket_qua.append(b[j])\n    j += 1\nprint(\" \".join(map(str, ket_qua)))",
       "hint": "Dùng hai chỉ số duyệt song song hai dãy đã sắp, luôn lấy phần tử nhỏ hơn trước.",
       "tests": [
         {
@@ -1186,7 +1144,6 @@
       "library": "List",
       "description": "Nhập số nguyên n (n ≥ 3) và n số nguyên. Loại bỏ đúng một giá trị lớn nhất và một giá trị nhỏ nhất (mỗi loại một lần), rồi in trung bình cộng của các số còn lại với 2 chữ số thập phân.",
       "task": "Nhập số nguyên n (n ≥ 3) và n số nguyên. Loại bỏ đúng một giá trị lớn nhất và một giá trị nhỏ nhất (mỗi loại một lần), rồi in trung bình cộng của các số còn lại với 2 chữ số thập phân.",
-      "starterCode": "n = int(input())\nso = list(map(int, input().split()))\ntong = sum(so) - max(so) - min(so)\nprint(f\"{tong / (n - 2):.2f}\")",
       "hint": "Tổng trừ đi max và min rồi chia cho (n−2).",
       "tests": [
         {
@@ -1214,7 +1171,6 @@
       "library": "List",
       "description": "Nhập số nguyên dương n và n số nguyên trên dòng tiếp theo. Tạo danh sách, sau đó in: tổng của danh sách, giá trị lớn nhất, số lượng phần tử chẵn và danh sách sau khi sắp xếp tăng dần. Được phép dùng các hàm có sẵn của Python.",
       "task": "Nhập số nguyên dương n và n số nguyên trên dòng tiếp theo. Tạo danh sách, sau đó in: tổng của danh sách, giá trị lớn nhất, số lượng phần tử chẵn và danh sách sau khi sắp xếp tăng dần. Được phép dùng các hàm có sẵn của Python.",
-      "starterCode": "n = int(input())\ndanh_sach = list(map(int, input().split()))\ndem_chan = 0\nfor x in danh_sach:\n    if x % 2 == 0:\n        dem_chan += 1\ndanh_sach.sort()\nprint(sum(danh_sach))\n\nprint(max(danh_sach))\nprint(dem_chan)\nprint(\" \".join(map(str, danh_sach)))",
       "hint": "Dùng sum/max, đếm số chẵn bằng vòng lặp, và sort() để sắp xếp danh sách.",
       "tests": [
         {
@@ -1242,7 +1198,6 @@
       "library": "List",
       "description": "Nhập số nguyên dương n, n số nguyên và một giá trị cần tìm k. In tất cả các vị trí (đánh số từ 0) mà k xuất hiện trong danh sách, cách nhau bởi dấu cách. Nếu k không có mặt, in KHONG_TIM_THAY. Không dùng phương thức index.",
       "task": "Nhập số nguyên dương n, n số nguyên và một giá trị cần tìm k. In tất cả các vị trí (đánh số từ 0) mà k xuất hiện trong danh sách, cách nhau bởi dấu cách. Nếu k không có mặt, in KHONG_TIM_THAY. Không dùng phương thức index.",
-      "starterCode": "n = int(input())\ndanh_sach = list(map(int, input().split()))\nk = int(input())\nvi_tri = []\nfor i in range(n):\n    if danh_sach[i] == k:\n        vi_tri.append(str(i))\nif len(vi_tri) == 0:\n    print(\"KHONG_TIM_THAY\")\nelse:\n    print(\" \".join(vi_tri))",
       "hint": "Duyệt theo chỉ số, ghi lại mọi vị trí có giá trị bằng giá trị cần tìm. BÀI THỰC HÀNH SỐ 4: MODULE VÀ TẬP TIN Tóm tắt kiến thức Mục tiêu: Sau buổi thực hành, sinh viên sử dụng được module, đọc và ghi tệp văn bản, xử lý dữ liệu theo dòng và theo trường, và xử lý được tình huống tệp không tồn tại. 1. Module và thư viện Module là mã viết sẵn để tái sử dụng. Thư viện chuẩn (math, random, os, statistics...) dùng ngay; gói bên thứ ba cài thêm bằng pip. import math from math import sqrt import matplotlib.pyplot as plt # đặt tên rút gọn 2. Tệp văn bản và cách mở Tệp văn bản chứa ký tự đọc được, chia thành dòng (.txt, .csv). Khi có tiếng Việt, luôn ghi rõ encoding=\"utf-8\". Cách được khuyến nghị là dùng with để tệp tự đóng. Chế độ Ý nghĩa Lưu ý \"r\" Đọc (mặc định) Báo lỗi nếu tệp không tồn tại \"w\" Ghi mới Xóa sạch nội dung cũ khi mở \"a\" Ghi nối vào cuối Giữ nguyên nội dung cũ with open(\"dulieu.txt\", \"r\", encoding=\"utf-8\") as f: for dong in f: dong = dong.rstrip(\"\\n\") # bỏ ký tự xuống dòng print(dong) Có thể đọc cả tệp bằng f.read() hoặc thành danh sách dòng bằng f.readlines(). 3. Ghi dữ liệu ra tệp f.write ghi đúng chuỗi truyền vào và không tự thêm ký tự xuống dòng; phải tự viết \\n. Dữ liệu số phải str() trước khi ghi. with open(\"ketqua.txt\", \"w\", encoding=\"utf-8\") as f: for i in range(len(diem)): f.write(f\"Sinh vien {i + 1}: {diem[i]:.2f}\\n\") 4. Tách dữ liệu theo trường (CSV) Mỗi dòng là một bản ghi, các trường cách nhau bởi dấu phẩy. Dùng split(\",\") để tách, bỏ dòng tiêu đề, ép kiểu cho trường số. with open(\"diem.csv\", \"r\", encoding=\"utf-8\") as f: dong = f.readlines() for i in range(1, len(dong)): # bỏ dòng tiêu đề truong = dong[i].strip().split(\",\") tb = (float(truong[1]) + float(truong[2])) / 2 5. Xử lý lỗi Chương trình đọc tệp phải tính đến khả năng tệp không tồn tại. Khối try / except bắt lỗi thay vì để chương trình dừng đột ngột. try: with open(\"dulieu.txt\", \"r\", encoding=\"utf-8\") as f: noi_dung = f.read() except FileNotFoundError: print(\"KHONG_TIM_THAY_TEP\") 6. An toàn và bản quyền khi dùng dữ liệu số • Sao lưu dữ liệu gốc trước khi chạy chương trình có thao tác ghi hoặc xóa. • Không mở/chạy tệp từ nguồn không rõ ràng; kiểm tra dữ liệu đọc từ tệp trước khi dùng. • Không đưa thông tin cá nhân của người khác vào bài; ghi rõ nguồn và giấy phép của tập dữ liệu lấy trên mạng. Lưu ý và lỗi thường gặp • Mở chế độ \"w\" khi chỉ muốn đọc → mất toàn bộ dữ liệu. • Quên rstrip(\"\\n\") nên chuỗi còn ký tự xuống dòng, so sánh luôn sai. • Xử lý cả dòng tiêu đề CSV như dữ liệu; quên ép kiểu cho trường số. • Đọc hết tệp một lần rồi đọc lại mà không mở lại (lần hai không còn dữ liệu). • Sai tên tệp hoặc sai thư mục làm việc (FileNotFoundError). Ghi nhớ trước khi nộp bài Nộp kèm tệp dữ liệu mẫu; dùng đường dẫn tương đối và đúng tên tệp; chạy lại hai lần liên tiếp để chắc kết quả không bị nhân đôi; mở tệp kết quả lên xem trực tiếp. Thực hành trên lớp",
       "tests": [
         {
@@ -1270,7 +1225,6 @@
       "library": "Tệp văn bản",
       "description": "Đọc tệp dulieu.txt trong cùng thư mục với chương trình. In số dòng, số từ và số ký tự của tệp, mỗi giá trị trên một dòng. Không tính ký tự xuống dòng vào số ký tự. Nếu tệp không tồn tại, in KHONG_TIM_THAY_TEP.",
       "task": "Đọc tệp dulieu.txt trong cùng thư mục với chương trình. In số dòng, số từ và số ký tự của tệp, mỗi giá trị trên một dòng. Không tính ký tự xuống dòng vào số ký tự. Nếu tệp không tồn tại, in KHONG_TIM_THAY_TEP.",
-      "starterCode": "try:\n    f = open(\"dulieu.txt\", \"r\", encoding=\"utf-8\")\nexcept FileNotFoundError:\n    print(\"KHONG_TIM_THAY_TEP\")\nelse:\n    so_dong = 0\n    so_tu = 0\n    so_ky_tu = 0\n    for dong in f:\n        dong = dong.rstrip(\"\\n\")\n        so_dong += 1\n        so_tu += len(dong.split())\n        so_ky_tu += len(dong)\n    f.close()\n    print(so_dong)\n    print(so_tu)\n    print(so_ky_tu)",
       "hint": "Mở tệp trong khối try và bắt FileNotFoundError; duyệt từng dòng để đếm dòng, từ, ký tự.",
       "tests": [
         {
@@ -1307,7 +1261,6 @@
       "library": "Tệp văn bản",
       "description": "Nhập số nguyên dương n, sau đó nhập n dòng văn bản. Ghi n dòng đó vào tệp ketqua.txt, mỗi dòng được đánh số theo mẫu i. noi_dung (bắt đầu từ 1). Sau khi ghi xong, in DA_GHI kèm số dòng đã ghi.",
       "task": "Nhập số nguyên dương n, sau đó nhập n dòng văn bản. Ghi n dòng đó vào tệp ketqua.txt, mỗi dòng được đánh số theo mẫu i. noi_dung (bắt đầu từ 1). Sau khi ghi xong, in DA_GHI kèm số dòng đã ghi.",
-      "starterCode": "n = int(input())\nwith open(\"ketqua.txt\", \"w\", encoding=\"utf-8\") as f:\n    for i in range(1, n + 1):\n        noi_dung = input()\n        f.write(f\"{i}. {noi_dung}\\n\")\n\nprint(\"DA_GHI\", n)",
       "hint": "Mở tệp chế độ 'w', ghi từng dòng đã đánh số kèm ký tự xuống dòng.",
       "tests": [
         {
@@ -1347,7 +1300,6 @@
       "library": "Tệp văn bản",
       "description": "Tệp so.txt chứa nhiều dòng, mỗi dòng một số nguyên. Đọc tệp và in tổng, giá trị lớn nhất, giá trị nhỏ nhất và trung bình cộng (2 chữ số thập phân). Bỏ qua các dòng trống. Nếu tệp không có số nào, in TEP_RONG.",
       "task": "Tệp so.txt chứa nhiều dòng, mỗi dòng một số nguyên. Đọc tệp và in tổng, giá trị lớn nhất, giá trị nhỏ nhất và trung bình cộng (2 chữ số thập phân). Bỏ qua các dòng trống. Nếu tệp không có số nào, in TEP_RONG.",
-      "starterCode": "danh_sach = []\nwith open(\"so.txt\", \"r\", encoding=\"utf-8\") as f:\n    for dong in f:\n        dong = dong.strip()\n        if dong != \"\":\n            danh_sach.append(int(dong))\n\nif len(danh_sach) == 0:\n    print(\"TEP_RONG\")\nelse:\n    print(sum(danh_sach))\n    print(max(danh_sach))\n    print(min(danh_sach))\n    print(f\"{sum(danh_sach) / len(danh_sach):.2f}\")",
       "hint": "Đọc từng dòng, bỏ dòng trống, ép sang int; xử lý riêng trường hợp tệp không có số nào.",
       "tests": [
         {
@@ -1384,7 +1336,6 @@
       "library": "Tệp và chuỗi",
       "description": "Nhập một từ khóa từ bàn phím, sau đó đọc tệp vanban.txt. In số thứ tự và nội dung của mọi dòng có chứa từ khóa (không phân biệt chữ hoa chữ thường) theo mẫu i: noi_dung, với i bắt đầu từ 1. Cuối cùng in tổng số dòng tìm được theo mẫu TIM_THAY k.",
       "task": "Nhập một từ khóa từ bàn phím, sau đó đọc tệp vanban.txt. In số thứ tự và nội dung của mọi dòng có chứa từ khóa (không phân biệt chữ hoa chữ thường) theo mẫu i: noi_dung, với i bắt đầu từ 1. Cuối cùng in tổng số dòng tìm được theo mẫu TIM_THAY k.",
-      "starterCode": "tu_khoa = input().strip().lower()\ndem = 0\nwith open(\"vanban.txt\", \"r\", encoding=\"utf-8\") as f:\n    so_dong = 0\n    for dong in f:\n        so_dong += 1\n        dong = dong.rstrip(\"\\n\")\n        if tu_khoa in dong.lower():\n            print(f\"{so_dong}: {dong}\")\n            dem += 1\nprint(\"TIM_THAY\", dem)",
       "hint": "Duyệt từng dòng, so khớp không phân biệt hoa thường bằng lower(), đếm số dòng khớp.",
       "tests": [
         {
@@ -1421,7 +1372,6 @@
       "library": "Tệp và list",
       "description": "Đọc tệp vanban.txt, tách toàn bộ nội dung thành các từ (phân tách bởi dấu cách và ký tự xuống dòng), chuyển về chữ thường. Đếm số lần xuất hiện của mỗi từ và in ra theo thứ tự xuất hiện lần đầu, mỗi dòng theo mẫu tu so_lan. Gợi ý: dùng hai danh sách song song, một danh sách lưu từ và một danh sách lưu số đếm tương ứng.",
       "task": "Đọc tệp vanban.txt, tách toàn bộ nội dung thành các từ (phân tách bởi dấu cách và ký tự xuống dòng), chuyển về chữ thường. Đếm số lần xuất hiện của mỗi từ và in ra theo thứ tự xuất hiện lần đầu, mỗi dòng theo mẫu tu so_lan. Gợi ý: dùng hai danh sách song song, một danh sách lưu từ và một danh sách lưu số đếm tương ứng.",
-      "starterCode": "tu = []\nso_lan = []\nwith open(\"vanban.txt\", \"r\", encoding=\"utf-8\") as f:\n    noi_dung = f.read()\n\nfor t in noi_dung.lower().split():\n    if t in tu:\n        vi_tri = tu.index(t)\n        so_lan[vi_tri] += 1\n    else:\n        tu.append(t)\n        so_lan.append(1)\n\nfor i in range(len(tu)):\n    print(tu[i], so_lan[i])",
       "hint": "Đọc cả tệp rồi tách từ; đếm bằng một list từ và một list số đếm song song, không dùng dict.",
       "tests": [
         {
@@ -1458,7 +1408,6 @@
       "library": "Tệp văn bản",
       "description": "Đọc tệp thô goc.txt, bỏ các dòng trống, bỏ dấu cách thừa ở hai đầu mỗi dòng và thay nhiều dấu cách liên tiếp giữa các từ bằng đúng một dấu cách. Ghi kết quả vào tệp chuanhoa.txt và in số dòng đã ghi.",
       "task": "Đọc tệp thô goc.txt, bỏ các dòng trống, bỏ dấu cách thừa ở hai đầu mỗi dòng và thay nhiều dấu cách liên tiếp giữa các từ bằng đúng một dấu cách. Ghi kết quả vào tệp chuanhoa.txt và in số dòng đã ghi.",
-      "starterCode": "dem = 0\nwith open(\"goc.txt\", \"r\", encoding=\"utf-8\") as f_in:\n    with open(\"chuanhoa.txt\", \"w\", encoding=\"utf-8\") as f_out:\n        for dong in f_in:\n            tu = dong.split()\n            if len(tu) > 0:\n                f_out.write(\" \".join(tu) + \"\\n\")\n                dem += 1\nprint(dem)",
       "hint": "Mở đồng thời tệp nguồn và tệp đích; bỏ dòng trống và gộp khoảng trắng bằng split rồi join.",
       "tests": [
         {
@@ -1504,7 +1453,6 @@
       "library": "Tệp văn bản",
       "description": "Đọc hai tệp a.txt và b.txt, ghi toàn bộ nội dung của a.txt rồi đến b.txt vào tệp gop.txt. In tổng số dòng của tệp kết quả. Nếu một trong hai tệp không tồn tại, in THIEU_TEP và không tạo tệp kết quả.",
       "task": "Đọc hai tệp a.txt và b.txt, ghi toàn bộ nội dung của a.txt rồi đến b.txt vào tệp gop.txt. In tổng số dòng của tệp kết quả. Nếu một trong hai tệp không tồn tại, in THIEU_TEP và không tạo tệp kết quả.",
-      "starterCode": "try:\n    with open(\"a.txt\", \"r\", encoding=\"utf-8\") as f:\n        dong_a = f.readlines()\n    with open(\"b.txt\", \"r\", encoding=\"utf-8\") as f:\n        dong_b = f.readlines()\nexcept FileNotFoundError:\n    print(\"THIEU_TEP\")\nelse:\n    tat_ca = dong_a + dong_b\n    with open(\"gop.txt\", \"w\", encoding=\"utf-8\") as f:\n        for dong in tat_ca:\n            if not dong.endswith(\"\\n\"):\n                dong += \"\\n\"\n            f.write(dong)\n    print(len(tat_ca))",
       "hint": "Đọc readlines hai tệp rồi nối; bắt lỗi thiếu tệp; bảo đảm mỗi dòng kết thúc bằng ký tự xuống dòng.",
       "tests": [
         {
@@ -1550,7 +1498,6 @@
       "library": "CSV",
       "description": "Tệp diem.csv có dòng đầu là tiêu đề ho_ten,toan,ly,hoa và các dòng sau là dữ liệu, các trường cách nhau bởi dấu phẩy. Tính điểm trung bình ba môn của từng sinh viên và in mỗi sinh viên trên một dòng theo mẫu ho_ten diem_tb, với điểm trung bình lấy 2 chữ số thập phân. Cuối cùng in điểm trung bình của cả lớp theo mẫu LOP diem_tb.",
       "task": "Tệp diem.csv có dòng đầu là tiêu đề ho_ten,toan,ly,hoa và các dòng sau là dữ liệu, các trường cách nhau bởi dấu phẩy. Tính điểm trung bình ba môn của từng sinh viên và in mỗi sinh viên trên một dòng theo mẫu ho_ten diem_tb, với điểm trung bình lấy 2 chữ số thập phân. Cuối cùng in điểm trung bình của cả lớp theo mẫu LOP diem_tb.",
-      "starterCode": "with open(\"diem.csv\", \"r\", encoding=\"utf-8\") as f:\n    dong = f.readlines()\n\ntong_lop = 0\nso_sv = 0\nfor i in range(1, len(dong)):\n    noi_dung = dong[i].strip()\n    if noi_dung == \"\":\n        continue\n    truong = noi_dung.split(\",\")\n    ho_ten = truong[0]\n    diem_tb = (float(truong[1]) + float(truong[2]) + float(truong[3])) / 3\n    print(f\"{ho_ten} {diem_tb:.2f}\")\n    tong_lop += diem_tb\n    so_sv += 1\n\nprint(f\"LOP {tong_lop / so_sv:.2f}\")",
       "hint": "Bỏ dòng tiêu đề, tách trường bằng dấu phẩy, ép float rồi tính điểm trung bình.",
       "tests": [
         {
@@ -1587,7 +1534,6 @@
       "library": "CSV",
       "description": "Đọc tệp diem.csv có cùng định dạng như bài 8. Ghi vào tệp baocao.txt danh sách các sinh viên có điểm trung bình từ 5 trở lên theo mẫu ho_ten diem_tb (2 chữ số thập phân), sắp xếp giảm dần theo điểm trung bình. Trên màn hình in số sinh viên đạt và số sinh viên chưa đạt, cách nhau bởi dấu cách.",
       "task": "Đọc tệp diem.csv có cùng định dạng như bài 8. Ghi vào tệp baocao.txt danh sách các sinh viên có điểm trung bình từ 5 trở lên theo mẫu ho_ten diem_tb (2 chữ số thập phân), sắp xếp giảm dần theo điểm trung bình. Trên màn hình in số sinh viên đạt và số sinh viên chưa đạt, cách nhau bởi dấu cách.",
-      "starterCode": "ket_qua = []\nwith open(\"diem.csv\", \"r\", encoding=\"utf-8\") as f:\n    dong = f.readlines()\n\nchua_dat = 0\nfor i in range(1, len(dong)):\n    noi_dung = dong[i].strip()\n    if noi_dung == \"\":\n        continue\n    truong = noi_dung.split(\",\")\n    diem_tb = (float(truong[1]) + float(truong[2]) + float(truong[3])) / 3\n    if diem_tb >= 5:\n        ket_qua.append((diem_tb, truong[0]))\n    else:\n        chua_dat += 1\n\nket_qua.sort(reverse=True)\nwith open(\"baocao.txt\", \"w\", encoding=\"utf-8\") as f:\n    for diem_tb, ho_ten in ket_qua:\n        f.write(f\"{ho_ten} {diem_tb:.2f}\\n\")\n\nprint(len(ket_qua), chua_dat)",
       "hint": "Tính trung bình, lọc từ 5 trở lên, sắp xếp giảm dần bằng list tuple rồi ghi ra tệp báo cáo.",
       "tests": [
         {
@@ -1633,7 +1579,6 @@
       "library": "Tệp và tuple",
       "description": "Tệp nhietdo.txt gồm nhiều dòng, mỗi dòng có dạng ngay nhiet_do, ví dụ 01/09 31.5. In ngày nóng nhất, ngày mát nhất và nhiệt độ trung bình (2 chữ số thập phân), mỗi kết quả trên một dòng theo mẫu NONG_NHAT ngay nhiet_do, MAT_NHAT ngay nhiet_do và TRUNG_BINH gia_tri. Nếu có nhiều ngày cùng giá trị, lấy ngày xuất hiện đầu tiên.",
       "task": "Tệp nhietdo.txt gồm nhiều dòng, mỗi dòng có dạng ngay nhiet_do, ví dụ 01/09 31.5. In ngày nóng nhất, ngày mát nhất và nhiệt độ trung bình (2 chữ số thập phân), mỗi kết quả trên một dòng theo mẫu NONG_NHAT ngay nhiet_do, MAT_NHAT ngay nhiet_do và TRUNG_BINH gia_tri. Nếu có nhiều ngày cùng giá trị, lấy ngày xuất hiện đầu tiên.",
-      "starterCode": "ban_ghi = []\nwith open(\"nhietdo.txt\", \"r\", encoding=\"utf-8\") as f:\n    for dong in f:\n        dong = dong.strip()\n        if dong == \"\":\n            continue\n        ngay, nhiet_do = dong.split()\n        ban_ghi.append((ngay, float(nhiet_do)))\n\nnong_nhat = ban_ghi[0]\nmat_nhat = ban_ghi[0]\ntong = 0\nfor ngay, nhiet_do in ban_ghi:\n    if nhiet_do > nong_nhat[1]:\n        nong_nhat = (ngay, nhiet_do)\n    if nhiet_do < mat_nhat[1]:\n        mat_nhat = (ngay, nhiet_do)\n    tong += nhiet_do\n\nprint(\"NONG_NHAT\", nong_nhat[0], nong_nhat[1])\nprint(\"MAT_NHAT\", mat_nhat[0], mat_nhat[1])\nprint(f\"TRUNG_BINH {tong / len(ban_ghi):.2f}\")",
       "hint": "Mỗi dòng tách thành tuple (ngày, nhiệt độ); duyệt tìm ngày nóng nhất, mát nhất và trung bình. BÀI THỰC HÀNH SỐ 5: ĐỒ HỌA VỚI PYTHON Tóm tắt kiến thức Mục tiêu: Sau buổi thực hành, sinh viên vẽ được hình bằng turtle, biểu diễn dữ liệu bằng matplotlib, và trình bày kết quả trong báo cáo có trích dẫn nguồn. 1. Thư viện và cách cài đặt turtle có sẵn trong Python; matplotlib phải cài thêm bằng pip install matplotlib hoặc qua giao diện PyCharm/Thonny. Chỉ cài từ kho chính thức PyPI và gõ đúng tên gói. 2. Vẽ hình với turtle turtle mô phỏng một chú rùa cầm bút; mọi hình tạo từ lệnh di chuyển và quay. Lệnh Tác dụng t.forward(d) / t.right(g) / t.left(g) Đi tới / quay phải / quay trái t.penup() / t.pendown() / t.goto(x, y) Nhấc/hạ bút, di chuyển t.pencolor(m) / t.speed(0) Màu nét / tốc độ nhanh nhất turtle.Screen().exitonclick() Giữ cửa sổ tới khi bấm chuột import turtle t = turtle.Turtle() for i in range(4): t.forward(100) t.right(90) turtle.Screen().exitonclick() Tổng các góc quay khi vẽ một hình khép kín luôn bằng 360°, nên đa giác đều n cạnh quay 360 / n độ mỗi đỉnh. Thiếu exitonclick() thì cửa sổ đóng ngay và tưởng như không vẽ gì. 3. Vẽ biểu đồ với matplotlib Một biểu đồ gồm dữ liệu, loại biểu đồ và phần chú thích (tiêu đề, nhãn trục, chú giải). Hàm Loại biểu đồ / tác dụng plt.plot(x, y, marker=\"o\") Đường (dữ liệu theo thời gian) plt.bar(x, y) / plt.pie(gt, labels=..) Cột / hình quạt plt.scatter(x, y) / plt.hist(ds, bins=..) Điểm rải / tần suất plt.subplots(1, 2) Nhiều biểu đồ con plt.title / xlabel / ylabel / legend / grid Chú thích plt.savefig(\"h.png\") rồi plt.show() Lưu rồi hiển thị import matplotlib.pyplot as plt plt.plot([1, 2, 3], [1, 4, 9], marker=\"o\") plt.title(\"Vi du\") plt.xlabel(\"x\"); plt.ylabel(\"y\") plt.savefig(\"h.png\", dpi=120) plt.show() Luôn gọi savefig trước show: sau khi cửa sổ đóng, hình đã bị xóa và tệp lưu ra sẽ trắng. Chọn đúng loại biểu đồ quan trọng hơn trang trí. 4. Sử dụng tài nguyên số an toàn và hợp pháp Ghi rõ nguồn và giấy phép của dữ liệu; được tham khảo mã nguồn công khai nhưng phải ghi nguồn; nếu dùng công cụ AI hỗ trợ phải nêu rõ và tự giải thích được toàn bộ mã của mình. Lưu ý và lỗi thường gặp • Thiếu exitonclick() nên cửa sổ turtle đóng ngay. • Nhầm góc quay: dùng 360 / n chứ không phải góc trong của đa giác. • Gọi savefig sau show khiến ảnh trắng. • Vẽ biểu đồ trực tiếp từ chuỗi đọc trong tệp mà quên ép kiểu số. • Biểu đồ thiếu tiêu đề, nhãn trục hoặc đơn vị. • Chạy turtle và matplotlib trong cùng một chương trình gây xung đột cửa sổ; nên tách hai tệp. Ghi nhớ trước khi nộp bài Lập trình trên máy, chạy thử, lưu/chụp ảnh kết quả; nộp mã nguồn (dạng văn bản) kèm ảnh và một nhận xét ngắn; kiểm tra mọi đường dẫn trong mã là đường dẫn tương đối. Thực hành trên lớp",
       "tests": [
         {
@@ -1670,7 +1615,6 @@
       "library": "Đồ họa · Turtle",
       "description": "Nhập số nguyên n (3 ≤ n ≤ 12) từ bàn phím. Vẽ một đa giác đều n cạnh, mỗi cạnh dài 100. Góc quay tại mỗi đỉnh là 360 chia n độ.",
       "task": "Nhập số nguyên n (3 ≤ n ≤ 12) từ bàn phím. Vẽ một đa giác đều n cạnh, mỗi cạnh dài 100. Góc quay tại mỗi đỉnh là 360 chia n độ.",
-      "starterCode": "import turtle\n\nn = int(input(\"Nhap so canh: \"))\nt = turtle.Turtle()\nt.speed(5)\n\nfor i in range(n):\n    t.forward(100)\n    t.left(360 / n)\n\nturtle.Screen().exitonclick()",
       "hint": "Đa giác đều n cạnh có góc quay 360/n độ tại mỗi đỉnh.",
       "tests": [],
       "section": "Phần 5 · Đồ họa với Python",
@@ -1684,11 +1628,10 @@
       "library": "Đồ họa · Matplotlib",
       "description": "Cho doanh thu 6 tháng: 10, 14, 9, 17, 20, 16 (triệu đồng). Vẽ biểu đồ đường thể hiện doanh thu theo tháng, có dấu tròn tại mỗi điểm, tiêu đề, nhãn hai trục và lưới. Lưu hình ra tệp.",
       "task": "Cho doanh thu 6 tháng: 10, 14, 9, 17, 20, 16 (triệu đồng). Vẽ biểu đồ đường thể hiện doanh thu theo tháng, có dấu tròn tại mỗi điểm, tiêu đề, nhãn hai trục và lưới. Lưu hình ra tệp.",
-      "starterCode": "import matplotlib.pyplot as plt\n\nthang = [1, 2, 3, 4, 5, 6]\ndoanh_thu = [10, 14, 9, 17, 20, 16]\n\nplt.plot(thang, doanh_thu, marker=\"o\")\nplt.title(\"Doanh thu 6 thang dau nam\")\nplt.xlabel(\"Thang\")\nplt.ylabel(\"Doanh thu (trieu dong)\")\nplt.grid(True)\nplt.savefig(\"b1.png\", dpi=120)\nplt.show()",
       "hint": "Vẽ đường bằng plot, thêm tiêu đề/nhãn; nhớ savefig trước show.",
       "tests": [
         {
-          "label": "Kiểm tra mã mẫu và hình sinh ra",
+          "label": "Kiểm tra biểu đồ và hình sinh ra",
           "input": "",
           "output": "",
           "checks": [
@@ -1709,7 +1652,6 @@
       "library": "Đồ họa · Turtle",
       "description": "Dùng thư viện turtle vẽ ba hình trên cùng một màn hình: một hình vuông cạnh 80, một tam giác đều cạnh 80, và một hình chữ nhật 120 x 60. Ba hình đặt cạnh nhau, không chồng lên nhau.",
       "task": "Dùng thư viện turtle vẽ ba hình trên cùng một màn hình: một hình vuông cạnh 80, một tam giác đều cạnh 80, và một hình chữ nhật 120 x 60. Ba hình đặt cạnh nhau, không chồng lên nhau.",
-      "starterCode": "import turtle\n\nt = turtle.Turtle()\nt.speed(3)\n\n# Hinh vuong canh 80\nfor i in range(4):\n    t.forward(80)\n    t.right(90)\n\n# Tam giac deu canh 80\nt.penup()\nt.goto(150, 0)\nt.pendown()\nfor i in range(3):\n    t.forward(80)\n    t.left(120)\n\n# Hinh chu nhat 120 x 60\nt.penup()\n\nt.goto(300, 0)\nt.pendown()\nfor i in range(2):\n    t.forward(120)\n    t.right(90)\n    t.forward(60)\n    t.right(90)\n\nturtle.Screen().exitonclick()",
       "hint": "Dùng penup/goto để đặt ba hình rời nhau; chú ý góc quay ngoài của đa giác.",
       "tests": [],
       "section": "Phần 5 · Đồ họa với Python",
@@ -1723,7 +1665,6 @@
       "library": "Đồ họa · Turtle",
       "description": "Vẽ một đường bậc thang gồm 6 bậc. Mỗi bậc là một đoạn đi ngang 40 rồi một đoạn đi lên 40.",
       "task": "Vẽ một đường bậc thang gồm 6 bậc. Mỗi bậc là một đoạn đi ngang 40 rồi một đoạn đi lên 40.",
-      "starterCode": "import turtle\n\nt = turtle.Turtle()\nt.speed(5)\n\nfor i in range(6):\n    t.forward(40)\n    t.left(90)\n    t.forward(40)\n    t.right(90)\n\nturtle.Screen().exitonclick()",
       "hint": "Lặp cặp forward–quay–forward–quay để tạo từng bậc.",
       "tests": [],
       "section": "Phần 5 · Đồ họa với Python",
@@ -1737,7 +1678,6 @@
       "library": "Đồ họa · Turtle",
       "description": "Vẽ một hình xoắn ốc vuông: bắt đầu từ một đoạn ngắn, sau mỗi lần quay trái 90 độ thì độ dài đoạn thẳng tăng thêm 5. Vẽ khoảng 40 đoạn.",
       "task": "Vẽ một hình xoắn ốc vuông: bắt đầu từ một đoạn ngắn, sau mỗi lần quay trái 90 độ thì độ dài đoạn thẳng tăng thêm 5. Vẽ khoảng 40 đoạn.",
-      "starterCode": "import turtle\n\nt = turtle.Turtle()\nt.speed(0)\n\n\ndo_dai = 5\nfor i in range(40):\n    t.forward(do_dai)\n    t.left(90)\n    do_dai += 5\n\nturtle.Screen().exitonclick()",
       "hint": "Tăng dần độ dài cạnh sau mỗi lần quay để tạo xoắn ốc.",
       "tests": [],
       "section": "Phần 5 · Đồ họa với Python",
@@ -1751,7 +1691,6 @@
       "library": "Đồ họa · Turtle",
       "description": "Vẽ một hoa văn gồm 36 hình vuông cạnh 100, mỗi hình xoay thêm 10 độ so với hình trước. Mỗi hình vuông tô một màu lấy lần lượt từ một danh sách màu.",
       "task": "Vẽ một hoa văn gồm 36 hình vuông cạnh 100, mỗi hình xoay thêm 10 độ so với hình trước. Mỗi hình vuông tô một màu lấy lần lượt từ một danh sách màu.",
-      "starterCode": "import turtle\n\nt = turtle.Turtle()\nt.speed(0)\nmau = [\"red\", \"orange\", \"gold\", \"green\", \"blue\", \"purple\"]\n\nfor i in range(36):\n    t.pencolor(mau[i % len(mau)])\n    for j in range(4):\n        t.forward(100)\n        t.right(90)\n    t.right(10)\n\nturtle.Screen().exitonclick()",
       "hint": "Xoay hình vuông quanh tâm và đổi màu theo chu kỳ bằng phép chia lấy dư.",
       "tests": [],
       "section": "Phần 5 · Đồ họa với Python",
@@ -1765,7 +1704,6 @@
       "library": "Đồ họa · Turtle",
       "description": "Viết hàm o_vuong(canh) vẽ một hình vuông. Dùng hàm đó và hai vòng lặp lồng nhau để vẽ một lưới 4 x 4 gồm 16 ô vuông cạnh 50, các ô đặt sát nhau.",
       "task": "Viết hàm o_vuong(canh) vẽ một hình vuông. Dùng hàm đó và hai vòng lặp lồng nhau để vẽ một lưới 4 x 4 gồm 16 ô vuông cạnh 50, các ô đặt sát nhau.",
-      "starterCode": "import turtle\n\nt = turtle.Turtle()\nt.speed(0)\n\n\ndef o_vuong(canh):\n    for i in range(4):\n        t.forward(canh)\n        t.right(90)\n\n\nfor hang in range(4):\n    for cot in range(4):\n        t.penup()\n        t.goto(cot * 50, hang * 50)\n        t.pendown()\n        o_vuong(50)\n\nturtle.Screen().exitonclick()",
       "hint": "Viết hàm vẽ ô vuông rồi dùng hai vòng lặp lồng đặt các ô thành lưới.",
       "tests": [],
       "section": "Phần 5 · Đồ họa với Python",
@@ -1779,11 +1717,10 @@
       "library": "Đồ họa · Matplotlib",
       "description": "Cho điểm năm môn học: Toán 8.5, Lý 7.0, Hóa 9.0, Văn 6.5, Anh 8.0. Vẽ biểu đồ cột so sánh điểm các môn, trục tung giới hạn từ 0 đến 10, có tiêu đề và nhãn trục.",
       "task": "Cho điểm năm môn học: Toán 8.5, Lý 7.0, Hóa 9.0, Văn 6.5, Anh 8.0. Vẽ biểu đồ cột so sánh điểm các môn, trục tung giới hạn từ 0 đến 10, có tiêu đề và nhãn trục.",
-      "starterCode": "import matplotlib.pyplot as plt\n\nmon = [\"Toan\", \"Ly\", \"Hoa\", \"Van\", \"Anh\"]\ndiem = [8.5, 7.0, 9.0, 6.5, 8.0]\n\nplt.bar(mon, diem, color=\"skyblue\")\nplt.title(\"Diem cac mon hoc\")\nplt.xlabel(\"Mon hoc\")\nplt.ylabel(\"Diem\")\nplt.ylim(0, 10)\nplt.savefig(\"b2.png\", dpi=120)\nplt.show()",
       "hint": "Vẽ cột bằng bar, dùng ylim cố định trục tung.",
       "tests": [
         {
-          "label": "Kiểm tra mã mẫu và hình sinh ra",
+          "label": "Kiểm tra biểu đồ và hình sinh ra",
           "input": "",
           "output": "",
           "checks": [
@@ -1803,11 +1740,10 @@
       "library": "Đồ họa · Matplotlib",
       "description": "Cho thị phần hệ điều hành di động: Android 70%, iOS 25%, Khác 5%. Vẽ biểu đồ hình quạt thể hiện tỉ lệ, hiển thị phần trăm trên mỗi phần và có tiêu đề.",
       "task": "Cho thị phần hệ điều hành di động: Android 70%, iOS 25%, Khác 5%. Vẽ biểu đồ hình quạt thể hiện tỉ lệ, hiển thị phần trăm trên mỗi phần và có tiêu đề.",
-      "starterCode": "import matplotlib.pyplot as plt\n\nnhan = [\"Android\", \"iOS\", \"Khac\"]\nty_le = [70, 25, 5]\n\nplt.pie(ty_le, labels=nhan, autopct=\"%1.1f%%\")\nplt.title(\"Thi phan he dieu hanh di dong\")\nplt.savefig(\"b3.png\", dpi=120)\nplt.show()",
       "hint": "Vẽ hình quạt bằng pie với autopct để hiện phần trăm.",
       "tests": [
         {
-          "label": "Kiểm tra mã mẫu và hình sinh ra",
+          "label": "Kiểm tra biểu đồ và hình sinh ra",
           "input": "",
           "output": "",
           "checks": [
@@ -1824,13 +1760,12 @@
       "title": "5.10 · Biểu đồ điểm rải",
       "level": "Tự luyện",
       "library": "Đồ họa · Matplotlib",
-      "description": "Cho số giờ tự học và điểm thi của 10 sinh viên (dữ liệu trong code mẫu). Vẽ biểu đồ điểm rải để quan sát quan hệ giữa giờ học và điểm, có tiêu đề, nhãn trục và lưới. Viết một câu nhận xét về xu hướng.",
-      "task": "Cho số giờ tự học và điểm thi của 10 sinh viên (dữ liệu trong code mẫu). Vẽ biểu đồ điểm rải để quan sát quan hệ giữa giờ học và điểm, có tiêu đề, nhãn trục và lưới. Viết một câu nhận xét về xu hướng.",
-      "starterCode": "import matplotlib.pyplot as plt\n\ngio_hoc = [1, 2, 2, 3, 4, 4, 5, 6, 7, 8]\ndiem = [3, 4, 5, 5, 6, 7, 6, 8, 9, 9]\n\nplt.scatter(gio_hoc, diem, color=\"red\")\nplt.title(\"Quan he giua gio tu hoc va diem thi\")\nplt.xlabel(\"So gio tu hoc\")\nplt.ylabel(\"Diem thi\")\nplt.grid(True)\nplt.savefig(\"b4.png\", dpi=120)\nplt.show()",
+      "description": "Cho số giờ tự học [1, 2, 2, 3, 4, 4, 5, 6, 7, 8] và điểm thi [3, 4, 5, 5, 6, 7, 6, 8, 9, 9] của 10 sinh viên. Vẽ biểu đồ điểm rải để quan sát quan hệ giữa giờ học và điểm, có tiêu đề, nhãn trục và lưới. Viết một câu nhận xét về xu hướng.",
+      "task": "Cho số giờ tự học [1, 2, 2, 3, 4, 4, 5, 6, 7, 8] và điểm thi [3, 4, 5, 5, 6, 7, 6, 8, 9, 9] của 10 sinh viên. Vẽ biểu đồ điểm rải để quan sát quan hệ giữa giờ học và điểm, có tiêu đề, nhãn trục và lưới. Viết một câu nhận xét về xu hướng.",
       "hint": "Vẽ điểm rải bằng scatter để quan sát quan hệ hai đại lượng.",
       "tests": [
         {
-          "label": "Kiểm tra mã mẫu và hình sinh ra",
+          "label": "Kiểm tra biểu đồ và hình sinh ra",
           "input": "",
           "output": "",
           "checks": [
@@ -1850,11 +1785,10 @@
       "library": "Đồ họa · Matplotlib",
       "description": "Vẽ đồ thị hai hàm số y = x mũ 2 và y = x mũ 3 trên cùng một hệ trục, với x chạy từ -10 đến 10 (bước nhảy 1). Có chú giải phân biệt hai đường, tiêu đề, nhãn trục và lưới. Tự sinh danh sách x và y bằng vòng lặp.",
       "task": "Vẽ đồ thị hai hàm số y = x mũ 2 và y = x mũ 3 trên cùng một hệ trục, với x chạy từ -10 đến 10 (bước nhảy 1). Có chú giải phân biệt hai đường, tiêu đề, nhãn trục và lưới. Tự sinh danh sách x và y bằng vòng lặp.",
-      "starterCode": "import matplotlib.pyplot as plt\n\nx = []\ny2 = []\ny3 = []\ngia_tri = -10\nwhile gia_tri <= 10:\n    x.append(gia_tri)\n    y2.append(gia_tri ** 2)\n    y3.append(gia_tri ** 3)\n    gia_tri += 1\n\nplt.plot(x, y2, label=\"y = x^2\")\nplt.plot(x, y3, label=\"y = x^3\")\nplt.title(\"Do thi ham so bac hai va bac ba\")\nplt.xlabel(\"x\")\nplt.ylabel(\"y\")\nplt.legend()\nplt.grid(True)\nplt.savefig(\"b5.png\", dpi=120)\nplt.show()",
       "hint": "Tự sinh danh sách x, y bằng vòng lặp rồi vẽ hai đường kèm legend.",
       "tests": [
         {
-          "label": "Kiểm tra mã mẫu và hình sinh ra",
+          "label": "Kiểm tra biểu đồ và hình sinh ra",
           "input": "",
           "output": "",
           "checks": [
@@ -1874,11 +1808,10 @@
       "library": "Đồ họa · Matplotlib",
       "description": "Vẽ đồ thị hai hàm sin và cos theo góc từ 0 đến 360 độ (bước nhảy 5 độ) trên cùng một hệ trục, có chú giải, tiêu đề, nhãn trục và lưới. Nhớ đổi độ sang radian trước khi tính.",
       "task": "Vẽ đồ thị hai hàm sin và cos theo góc từ 0 đến 360 độ (bước nhảy 5 độ) trên cùng một hệ trục, có chú giải, tiêu đề, nhãn trục và lưới. Nhớ đổi độ sang radian trước khi tính.",
-      "starterCode": "import matplotlib.pyplot as plt\nimport math\n\nx = []\ngia_tri_sin = []\ngia_tri_cos = []\ngoc = 0\nwhile goc <= 360:\n    radian = math.radians(goc)\n    x.append(goc)\n    gia_tri_sin.append(math.sin(radian))\n    gia_tri_cos.append(math.cos(radian))\n    goc += 5\n\nplt.plot(x, gia_tri_sin, label=\"sin\")\nplt.plot(x, gia_tri_cos, label=\"cos\")\nplt.title(\"Do thi ham sin va cos\")\nplt.xlabel(\"Goc (do)\")\n\nplt.ylabel(\"Gia tri\")\nplt.legend()\nplt.grid(True)\nplt.savefig(\"b6.png\", dpi=120)\nplt.show()",
       "hint": "Dùng math.radians đổi độ sang radian rồi vẽ hai đường sóng sin, cos.",
       "tests": [
         {
-          "label": "Kiểm tra mã mẫu và hình sinh ra",
+          "label": "Kiểm tra biểu đồ và hình sinh ra",
           "input": "",
           "output": "",
           "checks": [
@@ -1896,13 +1829,12 @@
       "title": "5.13 · Biểu đồ tần suất điểm",
       "level": "Tự luyện",
       "library": "Đồ họa · Matplotlib",
-      "description": "Cho danh sách điểm của 20 sinh viên (trong code mẫu). Vẽ biểu đồ tần suất (histogram) với các khoảng 0-2, 2-4, 4-6, 6-8, 8-10 để xem phân bố điểm, có tiêu đề, nhãn trục và viền cột.",
-      "task": "Cho danh sách điểm của 20 sinh viên (trong code mẫu). Vẽ biểu đồ tần suất (histogram) với các khoảng 0-2, 2-4, 4-6, 6-8, 8-10 để xem phân bố điểm, có tiêu đề, nhãn trục và viền cột.",
-      "starterCode": "import matplotlib.pyplot as plt\n\ndiem = [5, 6, 6, 7, 7, 7, 8, 8, 9, 10, 4, 6, 7, 8, 5, 9, 7, 6, 8, 7]\n\nplt.hist(diem, bins=[0, 2, 4, 6, 8, 10], color=\"green\", edgecolor=\"black\")\nplt.title(\"Phan bo diem cua lop\")\nplt.xlabel(\"Khoang diem\")\nplt.ylabel(\"So sinh vien\")\nplt.savefig(\"b7.png\", dpi=120)\nplt.show()",
+      "description": "Cho danh sách điểm [5, 6, 6, 7, 7, 7, 8, 8, 9, 10, 4, 6, 7, 8, 5, 9, 7, 6, 8, 7] của 20 sinh viên. Vẽ biểu đồ tần suất với các khoảng 0-2, 2-4, 4-6, 6-8, 8-10 để xem phân bố điểm, có tiêu đề, nhãn trục và viền cột.",
+      "task": "Cho danh sách điểm [5, 6, 6, 7, 7, 7, 8, 8, 9, 10, 4, 6, 7, 8, 5, 9, 7, 6, 8, 7] của 20 sinh viên. Vẽ biểu đồ tần suất với các khoảng 0-2, 2-4, 4-6, 6-8, 8-10 để xem phân bố điểm, có tiêu đề, nhãn trục và viền cột.",
       "hint": "Vẽ biểu đồ tần suất bằng hist với danh sách bins chia khoảng.",
       "tests": [
         {
-          "label": "Kiểm tra mã mẫu và hình sinh ra",
+          "label": "Kiểm tra biểu đồ và hình sinh ra",
           "input": "",
           "output": "",
           "checks": [
@@ -1921,11 +1853,10 @@
       "library": "Đồ họa · Matplotlib",
       "description": "Trong một cửa sổ, vẽ hai biểu đồ nằm cạnh nhau: bên trái là biểu đồ đường doanh thu 5 tháng, bên phải là biểu đồ cột số lượng ba sản phẩm. Mỗi biểu đồ có tiêu đề riêng.",
       "task": "Trong một cửa sổ, vẽ hai biểu đồ nằm cạnh nhau: bên trái là biểu đồ đường doanh thu 5 tháng, bên phải là biểu đồ cột số lượng ba sản phẩm. Mỗi biểu đồ có tiêu đề riêng.",
-      "starterCode": "import matplotlib.pyplot as plt\n\nthang = [1, 2, 3, 4, 5]\ndoanh_thu = [10, 12, 9, 15, 14]\nsan_pham = [\"A\", \"B\", \"C\"]\nso_luong = [5, 9, 4]\n\n\n\nhinh, truc = plt.subplots(1, 2, figsize=(10, 4))\ntruc[0].plot(thang, doanh_thu, marker=\"o\")\ntruc[0].set_title(\"Doanh thu theo thang\")\ntruc[0].set_xlabel(\"Thang\")\ntruc[0].set_ylabel(\"Trieu dong\")\ntruc[1].bar(san_pham, so_luong, color=\"orange\")\ntruc[1].set_title(\"So luong san pham\")\ntruc[1].set_xlabel(\"San pham\")\ntruc[1].set_ylabel(\"So luong\")\nplt.tight_layout()\nplt.savefig(\"b8.png\", dpi=120)\nplt.show()",
       "hint": "Dùng plt.subplots đặt hai biểu đồ cạnh nhau trong một hình.",
       "tests": [
         {
-          "label": "Kiểm tra mã mẫu và hình sinh ra",
+          "label": "Kiểm tra biểu đồ và hình sinh ra",
           "input": "",
           "output": "",
           "checks": [
@@ -1944,11 +1875,10 @@
       "library": "Đồ họa · Matplotlib",
       "description": "Dùng tọa độ tham số theo góc t từ 0 đến 360 độ để vẽ hai hình cạnh nhau: bên trái là một đường tròn bán kính 1 (x = cos t, y = sin t), bên phải là một đường hoa hồng tám cánh với bán kính r = cos(4t), rồi x = r cos t, y = r sin t. Đặt tỉ lệ trục bằng nhau để hình không bị méo.",
       "task": "Dùng tọa độ tham số theo góc t từ 0 đến 360 độ để vẽ hai hình cạnh nhau: bên trái là một đường tròn bán kính 1 (x = cos t, y = sin t), bên phải là một đường hoa hồng tám cánh với bán kính r = cos(4t), rồi x = r cos t, y = r sin t. Đặt tỉ lệ trục bằng nhau để hình không bị méo.",
-      "starterCode": "import matplotlib.pyplot as plt\nimport math\n\nx_tron = []\ny_tron = []\nx_hoa = []\ny_hoa = []\ngoc = 0\nwhile goc <= 360:\n    t = math.radians(goc)\n    x_tron.append(math.cos(t))\n    y_tron.append(math.sin(t))\n    r = math.cos(4 * t)\n    x_hoa.append(r * math.cos(t))\n    y_hoa.append(r * math.sin(t))\n    goc += 1\n\nhinh, truc = plt.subplots(1, 2, figsize=(10, 5))\ntruc[0].plot(x_tron, y_tron)\ntruc[0].set_title(\"Duong tron\")\ntruc[0].set_aspect(\"equal\")\ntruc[1].plot(x_hoa, y_hoa, color=\"purple\")\ntruc[1].set_title(\"Duong hoa hong r = cos(4t)\")\ntruc[1].set_aspect(\"equal\")\nplt.savefig(\"b9.png\", dpi=120)\nplt.show()",
       "hint": "Dùng tọa độ tham số theo góc và set_aspect('equal') để hình không méo.",
       "tests": [
         {
-          "label": "Kiểm tra mã mẫu và hình sinh ra",
+          "label": "Kiểm tra biểu đồ và hình sinh ra",
           "input": "",
           "output": "",
           "checks": [

@@ -1,5 +1,5 @@
 (function () {
-  const storageKey = "it1140-python-lab:v3";
+  const storageKey = "it1140-python-lab:v4";
   const runTimeoutMs = 60000;
   const els = {
     list: document.getElementById("exerciseList"),
@@ -102,7 +102,7 @@
     els.task.textContent = exercise.task;
     els.library.textContent = exercise.library;
     els.level.textContent = exercise.level;
-    els.editor.value = state.code[id] ?? exercise.starterCode;
+    els.editor.value = state.code[id] ?? "";
     els.input.value = state.input[id] ?? exercise.tests?.[0]?.input ?? "";
     els.hintBox.textContent = exercise.hint;
     els.hintBox.hidden = true;
@@ -268,7 +268,7 @@
   els.reset.addEventListener("click", () => {
     const exercise = currentExercise();
     if (!exercise) return;
-    els.editor.value = exercise.starterCode;
+    els.editor.value = "";
     els.input.value = exercise.tests?.[0]?.input ?? "";
     delete state.code[exercise.id];
     delete state.input[exercise.id];

@@ -45,7 +45,7 @@ Prompt dùng để sinh dữ liệu bằng LLM nằm tại `PROMPT_TAO_CAU_HOI.m
 
 ## Thêm bài thực hành Python
 
-Thêm một phần tử vào mảng `exercises` trong `python-exercises.json`. `starterCode` phải là đúng chương trình mẫu của tài liệu (giữ cách dùng `input()`, đọc tệp và cách in kết quả), không bọc lại thành một API hàm riêng cho bộ chấm.
+Thêm một phần tử vào mảng `exercises` trong `python-exercises.json`. Người học tự viết chương trình trong ô soạn thảo; dữ liệu bài không chứa mã mẫu để tránh biến phần thực hành thành bài chép lại.
 
 Mỗi ca kiểm thử có dạng:
 
@@ -57,7 +57,7 @@ Mỗi ca kiểm thử có dạng:
 }
 ```
 
-Với bài đọc/ghi tệp, thêm `files` để tạo tệp đầu vào và `expectedFiles` để kiểm tra tệp đầu ra. Với bài đồ họa Matplotlib, dùng `checks` để kiểm tra đối tượng biểu đồ và ảnh đã lưu. Bài không thể chạy trong trình duyệt (hiện là Turtle) đặt `browserRunnable: false` và `tests: []`; giao diện sẽ hướng dẫn người học chạy mã mẫu trên máy.
+Với bài đọc/ghi tệp, thêm `files` để tạo tệp đầu vào và `expectedFiles` để kiểm tra tệp đầu ra. Với bài đồ họa Matplotlib, dùng `checks` để kiểm tra đối tượng biểu đồ và ảnh đã lưu. Bài không thể chạy trong trình duyệt (hiện là Turtle) đặt `browserRunnable: false` và `tests: []`; giao diện sẽ hướng dẫn người học chạy chương trình trên máy.
 
 Các bài hiện tại được lấy theo `IT1140_Tai_lieu_Giang_vien.pdf` và chia theo trường `section`. Chạy lệnh sau để kiểm tra schema trước khi đưa lên GitHub:
 

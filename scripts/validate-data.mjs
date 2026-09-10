@@ -107,7 +107,7 @@ for (const exercise of pythonData.exercises) {
   requireText(exercise.id, "exercises[].id");
   requireValue(!exerciseIds.has(exercise.id), `Trùng mã bài Python: ${exercise.id}`);
   exerciseIds.add(exercise.id);
-  for (const field of ["title", "level", "library", "description", "task", "starterCode", "hint"]) {
+  for (const field of ["title", "level", "library", "description", "task", "hint"]) {
     requireText(exercise[field], `${exercise.id}.${field}`);
   }
   const browserRunnable = exercise.browserRunnable !== false;
