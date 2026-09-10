@@ -1,0 +1,2595 @@
+{
+  "id": "compiler-it3323e",
+  "code": "IT3323E",
+  "title": "Xây dựng chương trình dịch",
+  "language": "vi",
+  "sources": [
+    {
+      "id": "exam-20241",
+      "label": "Cuối kỳ 20241",
+      "type": "exam"
+    },
+    {
+      "id": "leak-bank",
+      "label": "Tổng hợp CTD",
+      "type": "leak"
+    },
+    {
+      "id": "lecture-units",
+      "label": "Bài giảng IT3323E",
+      "type": "lecture"
+    },
+    {
+      "id": "pdf-compiler-quiz",
+      "label": "Bộ câu hỏi chương trình dịch",
+      "type": "quiz"
+    },
+    {
+      "id": "pdf-compiler-20221",
+      "label": "Cuối kỳ 20221",
+      "type": "exam"
+    }
+  ],
+  "topics": [
+    {
+      "id": "overview",
+      "label": "Tổng quan & pha dịch"
+    },
+    {
+      "id": "lexical",
+      "label": "Phân tích từ vựng"
+    },
+    {
+      "id": "grammar",
+      "label": "Văn phạm, BNF, EBNF"
+    },
+    {
+      "id": "topdown",
+      "label": "Top-down, LL(k)"
+    },
+    {
+      "id": "bottomup",
+      "label": "Bottom-up, LR"
+    },
+    {
+      "id": "semantic",
+      "label": "Phân tích ngữ nghĩa"
+    },
+    {
+      "id": "intermediate",
+      "label": "Mã trung gian"
+    },
+    {
+      "id": "codegen",
+      "label": "Sinh mã & runtime"
+    },
+    {
+      "id": "optimization",
+      "label": "Tối ưu mã"
+    },
+    {
+      "id": "kpl",
+      "label": "KPL"
+    }
+  ],
+  "questions": [
+    {
+      "id": "c-20241-001",
+      "topic": "semantic",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong những chủ đề dưới đây, chủ đề nào không liên quan đến phân tích ngữ nghĩa?",
+      "choices": [
+        "Đảm bảo trong mỗi khối không chứa 2 khai báo khác nhau cho cùng 1 định danh",
+        "Đảm bảo biến điều khiển chu trình for phải có kiểu nguyên",
+        "Kiểm tra sự tương ứng giữa việc sử dụng hàm với khai báo của chúng",
+        "Phân chia chương trình thành các khối cơ bản"
+      ],
+      "answer": 3,
+      "explanation": "Khối cơ bản thuộc phân tích dòng điều khiển và tối ưu mã. Các lựa chọn còn lại đều là kiểm tra ngữ nghĩa hoặc quản lý bảng ký hiệu.",
+      "tags": [
+        "semantic analysis",
+        "basic block"
+      ]
+    },
+    {
+      "id": "c-20241-002",
+      "topic": "optimization",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Tại sao thường tối ưu mã trên mã trung gian?",
+      "choices": [
+        "Vì mã trung gian không phụ thuộc máy",
+        "Vì chương trình tối ưu chạy trên mã trung gian nhanh hơn mã đích",
+        "Vì không thể sử dụng thông tin tối ưu khi phân tích dòng dữ liệu",
+        "Vì không thể tối ưu mã nguồn"
+      ],
+      "answer": 0,
+      "explanation": "Mã trung gian độc lập với máy đích nên có thể áp dụng tối ưu một lần rồi dùng lại cho nhiều bộ sinh mã đích.",
+      "tags": [
+        "intermediate code",
+        "optimization"
+      ]
+    },
+    {
+      "id": "c-20241-003",
+      "topic": "semantic",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Việc kiểm tra sự tương ứng về kiểu giữa biến điều khiển chu trình và các biểu thức giới hạn trong lệnh for của KPL được thực hiện trong pha nào?",
+      "choices": [
+        "Phân tích từ vựng",
+        "Sinh mã đích",
+        "Phân tích cú pháp",
+        "Phân tích ngữ nghĩa"
+      ],
+      "answer": 3,
+      "explanation": "Quan hệ kiểu là ràng buộc vượt ra ngoài cú pháp, nên được kiểm tra trong phân tích ngữ nghĩa.",
+      "tags": [
+        "type checking",
+        "KPL"
+      ]
+    },
+    {
+      "id": "c-20241-004",
+      "topic": "codegen",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Dãy lệnh mã đích `LA 0,4; LV 0,4; LC 1; AD; ST` tương ứng với lệnh nào?\n\nProgram Example1;\nVar i: integer;\nBegin\n  i := 5;\n  i := i + 1;\n  if i + 1 = 5 then i := 1;\nEnd.",
+      "choices": [
+        "i := 1",
+        "if i + 1 = 5 then i := 1",
+        "i := i + 1",
+        "i := 5"
+      ],
+      "answer": 2,
+      "explanation": "`LA` lấy địa chỉ biến đích, `LV` nạp giá trị i, `LC 1` nạp hằng 1, `AD` cộng, `ST` lưu lại: đó là `i := i + 1`.",
+      "tags": [
+        "stack machine",
+        "assignment"
+      ]
+    },
+    {
+      "id": "c-20241-005",
+      "topic": "optimization",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Việc loại bỏ mã chết trong tối ưu mã trung gian nhằm mục đích gì?",
+      "choices": [
+        "Loại bỏ tất cả các nhãn",
+        "Loại bỏ các đoạn mã không bao giờ được thực hiện hoặc kết quả không còn được sử dụng",
+        "Loại bỏ các module chương trình sau khi thực hiện nó",
+        "Loại bỏ các hàm không liên quan đến chương trình"
+      ],
+      "answer": 1,
+      "explanation": "Dead code elimination xóa lệnh không ảnh hưởng đến kết quả quan sát được của chương trình.",
+      "tags": [
+        "dead code"
+      ]
+    },
+    {
+      "id": "c-20241-006",
+      "topic": "optimization",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Khẳng định nào dưới đây là sai?",
+      "choices": [
+        "Phân tích quá trình sống của biến có thể dùng trong loại bỏ mã chết",
+        "Thay thế `x = 4 * 5` bởi `x = 20` là ví dụ của loại bỏ biểu thức con chung",
+        "Phân tích biểu thức có thể được dùng trong chiến lược loại bỏ biểu thức con chung",
+        "Khối cơ sở là dãy lệnh mà điều khiển đi vào ở lệnh đầu và đi ra ở lệnh cuối"
+      ],
+      "answer": 1,
+      "explanation": "`x = 4 * 5` thành `x = 20` là constant folding, không phải common subexpression elimination.",
+      "tags": [
+        "constant folding",
+        "CSE"
+      ]
+    },
+    {
+      "id": "c-20241-007",
+      "topic": "kpl",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Cho lệnh KPL `a := 1;`. Nếu thay dấu chấm phẩy bằng dấu chấm thì lỗi nào sẽ xảy ra?",
+      "choices": [
+        "Lỗi ngữ nghĩa",
+        "Lỗi từ vựng",
+        "Lỗi trong quá trình sinh mã",
+        "Lỗi cú pháp"
+      ],
+      "answer": 3,
+      "explanation": "Dấu `.` là một token hợp lệ, nhưng đặt ở vị trí kết thúc câu lệnh gán làm cấu trúc cú pháp không khớp.",
+      "tags": [
+        "syntax error",
+        "KPL"
+      ]
+    },
+    {
+      "id": "c-20241-008",
+      "topic": "topdown",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Kết quả của bộ phân tích cú pháp top-down quay lui là gì?",
+      "choices": [
+        "Nghịch đảo của phân tích phải",
+        "Nghịch đảo của phân tích trái",
+        "Phân tích phải",
+        "Phân tích trái"
+      ],
+      "answer": 3,
+      "explanation": "Phân tích top-down xây cây từ gốc và áp dụng suy dẫn trái nhất, nên kết quả là phân tích trái.",
+      "tags": [
+        "top-down",
+        "left parse"
+      ]
+    },
+    {
+      "id": "c-20241-009",
+      "topic": "optimization",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Việc xác định các biểu thức con chung và thay thế trong thời gian dịch thay vì tính toán vào thời gian thực hiện thường được làm trong giai đoạn nào?",
+      "choices": [
+        "Tối ưu cục bộ",
+        "Tính giá trị hằng",
+        "Tối ưu trong khối cơ bản",
+        "Phân tích dòng điều khiển"
+      ],
+      "answer": 2,
+      "explanation": "Common subexpression elimination là tối ưu kinh điển ở mức khối cơ bản, nơi quan hệ giữa các biểu thức dễ theo dõi.",
+      "tags": [
+        "CSE",
+        "basic block"
+      ]
+    },
+    {
+      "id": "c-20241-010",
+      "topic": "topdown",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Khẳng định nào sau đây là đúng?",
+      "choices": [
+        "FIRST(ε) = {ε}",
+        "FOLLOW(S) với S là ký hiệu đầu chứa $",
+        "Nếu A -> w là một sản xuất thì FIRST(A) chứa FIRST(w)",
+        "Tất cả khẳng định trên đều đúng"
+      ],
+      "answer": 3,
+      "explanation": "Ba mệnh đề đều là tính chất chuẩn khi tính FIRST/FOLLOW cho văn phạm phi ngữ cảnh.",
+      "tags": [
+        "FIRST",
+        "FOLLOW"
+      ]
+    },
+    {
+      "id": "c-20241-011",
+      "topic": "overview",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Khẳng định nào dưới đây là một nguyên tắc mà mọi compiler phải tuân thủ?",
+      "choices": [
+        "Compiler phải đưa ra mọi lỗi về kiểu của chương trình nguồn",
+        "Compiler không được sử dụng giải thuật có độ phức tạp lớn hơn đa thức",
+        "Compiler phải sinh mã đích hiệu quả hơn mã đích được sinh bằng tay",
+        "Compiler phải giữ nguyên ý nghĩa của chương trình sau khi dịch"
+      ],
+      "answer": 3,
+      "explanation": "Tính đúng đắn của compiler đòi hỏi chương trình đích giữ nguyên ngữ nghĩa của chương trình nguồn.",
+      "tags": [
+        "compiler correctness"
+      ]
+    },
+    {
+      "id": "c-20241-012",
+      "topic": "optimization",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 3,
+      "prompt": "Đoạn mã sau gồm bao nhiêu khối cơ sở?\n\ngoto L2\nL1: x := x + 1\nL2: x := x + 1\nL3: x := x + 1\nif x = 1 then goto L1\nif x = 2 then goto L3\nif x = 3 then goto L5\nL4: x := x + 1\nL5: x := x + 1\nif x = 4 then goto L4",
+      "choices": [
+        "7",
+        "9",
+        "1",
+        "8"
+      ],
+      "answer": 3,
+      "explanation": "Các leader gồm lệnh đầu, các nhãn đích L1/L2/L3/L4/L5 và lệnh ngay sau các nhánh có điều kiện, tạo thành 8 khối cơ sở.",
+      "tags": [
+        "basic block",
+        "leader"
+      ]
+    },
+    {
+      "id": "c-20241-013",
+      "topic": "codegen",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Lệnh duy nhất được sinh ra cho lệnh gán sau khi đã sinh mã cho biến hoặc hàm ở vế trái và biểu thức ở vế phải là lệnh nào?",
+      "choices": [
+        "FJ q",
+        "ST",
+        "WLN",
+        "HL"
+      ],
+      "answer": 1,
+      "explanation": "`ST` lưu giá trị đã tính vào địa chỉ đích trên stack machine.",
+      "tags": [
+        "assignment",
+        "stack machine"
+      ]
+    },
+    {
+      "id": "c-20241-014",
+      "topic": "overview",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Thao tác nào dưới đây không thuộc giai đoạn biên dịch?",
+      "choices": [
+        "Chuyển mã nguồn thành mã của ngôn ngữ ba địa chỉ",
+        "Phân phối bộ nhớ vật lý",
+        "Quản lý bảng ký hiệu",
+        "Kiểm tra sự tương ứng về kiểu"
+      ],
+      "answer": 1,
+      "explanation": "Compiler có thể gán offset hoặc layout, nhưng phân phối bộ nhớ vật lý là trách nhiệm của hệ điều hành/runtime.",
+      "tags": [
+        "compiler phases"
+      ]
+    },
+    {
+      "id": "c-20241-015",
+      "topic": "optimization",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Kỹ thuật tối ưu nào có thể ứng dụng cho vòng lặp?",
+      "choices": [
+        "Tính giá trị hằng",
+        "Chuyển các tính toán bất biến trong vòng lặp ra ngoài vòng lặp",
+        "Tất cả các kỹ thuật được nói đến trong câu hỏi",
+        "Thay thế một toán tử bằng toán tử có chi phí tính toán nhỏ hơn"
+      ],
+      "answer": 2,
+      "explanation": "Vòng lặp có thể hưởng lợi từ constant folding, loop-invariant code motion và strength reduction.",
+      "tags": [
+        "loop optimization"
+      ]
+    },
+    {
+      "id": "c-20241-016",
+      "topic": "optimization",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Trong tối ưu mã, giảm chi phí tính toán nghĩa là gì?",
+      "choices": [
+        "Thay thế tính toán trong thời gian thực hiện bằng tính toán trong thời gian dịch",
+        "Loại bỏ các biểu thức con chung",
+        "Thay thế một phép toán có chi phí cao bằng phép toán khác có chi phí thấp hơn",
+        "Đưa những tính toán bất biến ra ngoài vòng lặp"
+      ],
+      "answer": 2,
+      "explanation": "Đây là strength reduction, ví dụ thay nhân bởi dịch bit hoặc cộng lặp khi phù hợp.",
+      "tags": [
+        "strength reduction"
+      ]
+    },
+    {
+      "id": "c-20241-017",
+      "topic": "semantic",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Trong một compiler, nơi chứa thông tin về các biến và thuộc tính của chúng là gì?",
+      "choices": [
+        "Stack ngữ nghĩa",
+        "Bảng ký hiệu",
+        "Cây phân tích cú pháp có chú giải",
+        "Bảng phân tích cú pháp"
+      ],
+      "answer": 1,
+      "explanation": "Bảng ký hiệu lưu tên, loại, kiểu, phạm vi, địa chỉ/offset và các thuộc tính khác của định danh.",
+      "tags": [
+        "symbol table"
+      ]
+    },
+    {
+      "id": "c-20241-018",
+      "topic": "grammar",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Mỗi sơ đồ cú pháp thường được xây dựng cho một đối tượng nào?",
+      "choices": [
+        "Ký hiệu không kết thúc",
+        "Ký hiệu của văn phạm",
+        "Ký hiệu kết thúc",
+        "Sản xuất"
+      ],
+      "answer": 0,
+      "explanation": "Syntax diagram mô tả cách sinh ra một nonterminal, tương tự một luật BNF cho ký hiệu không kết thúc.",
+      "tags": [
+        "syntax diagram"
+      ]
+    },
+    {
+      "id": "c-20241-019",
+      "topic": "intermediate",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong các lệnh dưới đây, lệnh nào viết đúng dạng mã ba địa chỉ được giới thiệu trong môn học?",
+      "choices": [
+        "t[1] := x[2]",
+        "t[i] := x",
+        "a := t[1] + b",
+        "t[i] := 1 + 2"
+      ],
+      "answer": 1,
+      "explanation": "`t[i] := x` là dạng gán qua chỉ số mảng với một giá trị nguồn. Các lựa chọn khác trộn nhiều thao tác hơn trong một lệnh.",
+      "tags": [
+        "three-address code"
+      ]
+    },
+    {
+      "id": "c-20241-020",
+      "topic": "grammar",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Loại văn phạm phi ngữ cảnh nào cho nhiều cây phân tích cú pháp cho một xâu đưa vào?",
+      "choices": [
+        "Văn phạm đơn nghĩa",
+        "Văn phạm nhập nhằng",
+        "Văn phạm đệ quy phải",
+        "Văn phạm đệ quy trái"
+      ],
+      "answer": 1,
+      "explanation": "Văn phạm nhập nhằng là văn phạm có ít nhất một câu có nhiều cây phân tích cú pháp hoặc nhiều suy dẫn trái/phải.",
+      "tags": [
+        "ambiguity"
+      ]
+    },
+    {
+      "id": "c-20241-021",
+      "topic": "lexical",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Khi nào compiler xem xét đến các ký tự được phép sử dụng trong một token?",
+      "choices": [
+        "Khi phân tích cú pháp",
+        "Khi phân tích dạng dữ liệu",
+        "Khi sinh mã",
+        "Khi phân tích từ vựng"
+      ],
+      "answer": 3,
+      "explanation": "Scanner kiểm tra chuỗi ký tự đầu vào để nhận diện token và báo lỗi từ vựng nếu gặp ký tự/mẫu không hợp lệ.",
+      "tags": [
+        "scanner"
+      ]
+    },
+    {
+      "id": "c-20241-022",
+      "topic": "topdown",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 3,
+      "prompt": "Cho văn phạm:\nS -> A B C D\nA -> C D A | a | ε\nB -> B C | b\nC -> A\nD -> A C\n\nTập FOLLOW(A) là gì?",
+      "choices": [
+        "{b, $}",
+        "{$}",
+        "{a, $}",
+        "{a, b, $}"
+      ],
+      "answer": 3,
+      "explanation": "A xuất hiện trước B nên có b; thông qua C/D có thể kéo theo a và ký hiệu kết thúc $. Kết quả đóng là {a, b, $}.",
+      "tags": [
+        "FOLLOW"
+      ]
+    },
+    {
+      "id": "c-leak-001",
+      "topic": "lexical",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Biểu thức nào dưới đây không là biểu thức chính quy theo các phép toán đã học?",
+      "choices": [
+        "((a+b)*(aa+bb))*",
+        "(01+11+10)*",
+        "(1+2+0)*(1+2)*",
+        "((0+1)-(0b+a1)*(a+b))*"
+      ],
+      "answer": 3,
+      "explanation": "Dấu trừ tập hợp không thuộc bộ phép toán biểu thức chính quy cơ bản trong môn: hợp, nối, lặp Kleene và ngoặc.",
+      "tags": [
+        "regular expression"
+      ]
+    },
+    {
+      "id": "c-leak-002",
+      "topic": "kpl",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Biểu thức nào dưới đây là đúng cú pháp của KPL?",
+      "choices": [
+        "5 + f(a) - g()",
+        "A + -b",
+        "A-- - --b",
+        "-5 + a * b"
+      ],
+      "answer": 3,
+      "explanation": "Trong các lựa chọn, `-5 + a * b` phù hợp nhất với biểu thức số học có hằng âm và phép nhân ưu tiên cao hơn cộng.",
+      "tags": [
+        "KPL expression"
+      ]
+    },
+    {
+      "id": "c-leak-003",
+      "topic": "bottomup",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Bộ phân tích cú pháp LR thuộc nhóm nào?",
+      "choices": [
+        "Trên xuống",
+        "Dưới lên",
+        "Lùi",
+        "Tiến"
+      ],
+      "answer": 1,
+      "explanation": "LR parser là bộ phân tích dưới lên, đọc input từ trái sang phải và xây suy dẫn phải theo chiều ngược.",
+      "tags": [
+        "LR"
+      ]
+    },
+    {
+      "id": "c-leak-004",
+      "topic": "lexical",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Bộ phân tích từ vựng được xây dựng dựa trên mô hình nào?",
+      "choices": [
+        "Ôtômat đẩy xuống",
+        "Ôtômat hữu hạn",
+        "Ôtômat tuyến tính giới nội",
+        "Ôtômat đẩy xuống mở rộng"
+      ],
+      "answer": 1,
+      "explanation": "Token thường được mô tả bằng biểu thức chính quy và nhận dạng bằng ôtômat hữu hạn.",
+      "tags": [
+        "finite automata"
+      ]
+    },
+    {
+      "id": "c-leak-005",
+      "topic": "grammar",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Cách thông thường để mô tả cú pháp của một ngôn ngữ lập trình là gì?",
+      "choices": [
+        "Dùng cây cú pháp có chú giải",
+        "Dùng một tệp văn bản",
+        "Dùng dạng chuẩn BNF",
+        "Dùng mảng"
+      ],
+      "answer": 2,
+      "explanation": "BNF và các biến thể của BNF là ký pháp phổ biến để mô tả cú pháp ngôn ngữ lập trình.",
+      "tags": [
+        "BNF"
+      ]
+    },
+    {
+      "id": "c-leak-006",
+      "topic": "codegen",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Cấu trúc dữ liệu nào thích hợp để lưu trữ mã đích trong bộ sinh mã đơn giản của môn học?",
+      "choices": [
+        "Mảng",
+        "Stack",
+        "Tệp",
+        "Danh sách liên kết"
+      ],
+      "answer": 0,
+      "explanation": "Code buffer thường được cài bằng mảng để truy cập lệnh theo chỉ số và cập nhật nhãn/địa chỉ dễ dàng.",
+      "tags": [
+        "code buffer"
+      ]
+    },
+    {
+      "id": "c-leak-007",
+      "topic": "optimization",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Chiến lược tối ưu nào có thể áp dụng cho đoạn mã?\n\n(1) i = 4\n(2) t1 = i + 1\n(3) t2 = b[t1]\n(4) a[t1] = t2",
+      "choices": [
+        "Loại những đoạn mã dư thừa bộ phận",
+        "Tính giá trị hằng",
+        "Loại mã chết",
+        "Loại biểu thức con chung"
+      ],
+      "answer": 1,
+      "explanation": "Biết `i = 4` cho phép thay `t1 = i + 1` bằng `t1 = 5`, đây là propagation/folding hằng.",
+      "tags": [
+        "constant propagation"
+      ]
+    },
+    {
+      "id": "c-leak-008",
+      "topic": "optimization",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Chiến lược tối ưu nào phù hợp nhất cho đoạn mã?\n\ntemp6 = 4 * i\nx = a[temp6]\ntemp8 = 4 * j\ntemp9 = a[temp8]\na[temp6] = temp9\ntemp10 = 4 * j\na[temp10] = x\ngoto 100",
+      "choices": [
+        "Loại bỏ biểu thức con chung",
+        "Loại mã chết",
+        "Tính giá trị hằng",
+        "Copy propagation"
+      ],
+      "answer": 0,
+      "explanation": "`4 * j` được tính hai lần (`temp8` và `temp10`), có thể tái sử dụng kết quả đã tính.",
+      "tags": [
+        "CSE"
+      ]
+    },
+    {
+      "id": "c-leak-009",
+      "topic": "topdown",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong hàm phân tích danh sách chỉ số của KPL, cần điền gì vào vị trí #####?\n\nvoid compileIndexes(void) {\n  ##### {\n    eat(SB_LSEL);\n    compileExpression();\n    eat(SB_RSEL);\n  }\n}",
+      "choices": [
+        "if (lookAhead->tokenType == SB_LSEL)",
+        "while (lookAhead->tokenType == SB_LSEL)",
+        "while (lookAhead->tokenType == SB_LPAR)",
+        "if (lookAhead->tokenType == TK_IDENT)"
+      ],
+      "answer": 1,
+      "explanation": "Một biến mảng có thể có nhiều cặp chỉ số liên tiếp, nên parser cần vòng lặp theo token mở chỉ số.",
+      "tags": [
+        "recursive descent",
+        "KPL"
+      ]
+    },
+    {
+      "id": "c-leak-010",
+      "topic": "semantic",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Cho lệnh KPL `a := 1;`. Nếu `a` là tên của một thủ tục thì lỗi nào sẽ xảy ra?",
+      "choices": [
+        "Lỗi từ vựng",
+        "Lỗi cú pháp",
+        "Lỗi ngữ nghĩa",
+        "Lỗi trong quá trình sinh mã"
+      ],
+      "answer": 2,
+      "explanation": "Tên thủ tục là định danh hợp lệ và câu lệnh có dạng cú pháp đúng, nhưng thủ tục không phải biến gán được.",
+      "tags": [
+        "assignable",
+        "semantic error"
+      ]
+    },
+    {
+      "id": "c-leak-011",
+      "topic": "lexical",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Cho lệnh KPL `a := 1;`. Nếu thay dấu chấm phẩy bằng dấu chấm hỏi thì lỗi nào sẽ xảy ra?",
+      "choices": [
+        "Lỗi từ vựng",
+        "Lỗi cú pháp",
+        "Lỗi ngữ nghĩa",
+        "Lỗi trong quá trình sinh mã"
+      ],
+      "answer": 0,
+      "explanation": "Dấu `?` không thuộc tập token hợp lệ của KPL trong bài học, nên scanner báo lỗi từ vựng.",
+      "tags": [
+        "lexical error",
+        "KPL"
+      ]
+    },
+    {
+      "id": "c-leak-012",
+      "topic": "topdown",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cho văn phạm:\nA -> B x | y C | ε\nB -> C z\nC -> x B\n\nTập FIRST(A) là gì?",
+      "choices": [
+        "{y, ε}",
+        "{x, y, ε}",
+        "{y, z, ε}",
+        "{x, y, z, ε}"
+      ],
+      "answer": 1,
+      "explanation": "A có thể sinh ε, sinh bắt đầu bằng y, hoặc qua B -> C z và C -> x B nên bắt đầu bằng x.",
+      "tags": [
+        "FIRST"
+      ]
+    },
+    {
+      "id": "c-leak-013",
+      "topic": "grammar",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cho văn phạm:\nE -> E - F | E + F | F\nF -> F * F | id\n\nKhẳng định nào đúng?",
+      "choices": [
+        "`-` có thứ tự ưu tiên cao hơn `+`",
+        "`-` có thứ tự ưu tiên cao hơn `*`",
+        "`+` và `-` có cùng thứ tự ưu tiên",
+        "`+`, `*` và `-` có cùng thứ tự ưu tiên"
+      ],
+      "answer": 2,
+      "explanation": "`+` và `-` cùng nằm ở nonterminal E; `*` nằm trong F nên có mức ưu tiên cao hơn.",
+      "tags": [
+        "operator precedence"
+      ]
+    },
+    {
+      "id": "c-leak-014",
+      "topic": "topdown",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cho văn phạm `S -> AB`, `A -> aA | b`, `B -> bB | c`. Ô M[S, a] của bảng phân tích tiền định là gì?",
+      "choices": [
+        "A -> aA",
+        "B -> bB",
+        "S -> AB",
+        "Tất cả các lựa chọn đều sai"
+      ],
+      "answer": 2,
+      "explanation": "FIRST(AB) chứa a do A có sản xuất bắt đầu bằng a, nên M[S,a] chọn sản xuất `S -> AB`.",
+      "tags": [
+        "predictive parsing table"
+      ]
+    },
+    {
+      "id": "c-leak-015",
+      "topic": "topdown",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cho văn phạm `S -> AB`, `A -> aA | b`, `B -> bB | c`. Ô M[B, a] của bảng phân tích tiền định có giá trị gì?",
+      "choices": [
+        "Lỗi",
+        "B -> bB",
+        "S -> AB",
+        "Tất cả các lựa chọn đều sai"
+      ],
+      "answer": 0,
+      "explanation": "FIRST(B) = {b, c}; token nhìn trước a không khớp sản xuất nào của B.",
+      "tags": [
+        "predictive parsing table"
+      ]
+    },
+    {
+      "id": "c-leak-016",
+      "topic": "topdown",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cho văn phạm:\nS -> F R\nR -> * S | ε\nF -> id\n\nTrong bảng phân tích M, hai ô M[S, id] và M[R, *] tương ứng là gì?",
+      "choices": [
+        "{S -> FR} và {R -> ε}",
+        "{S -> FR} và lỗi",
+        "{F -> id} và {R -> ε}",
+        "{S -> FR} và {R -> *S}"
+      ],
+      "answer": 3,
+      "explanation": "S bắt đầu bằng F nên với id chọn `S -> FR`; R với lookahead `*` chọn sản xuất `R -> *S`.",
+      "tags": [
+        "LL(1)",
+        "parse table"
+      ]
+    },
+    {
+      "id": "c-leak-017",
+      "topic": "optimization",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Có bao nhiêu khối cơ sở trong đoạn mã trung gian sau?\n\n(1) prod := 0\n(2) I := 1\n(3) t1 := 4 * I\n(4) t2 := a[t1]\n(5) t3 := 4 * I\n(6) t4 := b[t3]\n(7) t5 := t2 * t4\n(8) t6 := prod + t5\n(9) prod := t6\n(10) t7 := I + 1\n(11) I := t7\n(12) if I <= 20 goto (3)\n(13) t8 := t7 + 1",
+      "choices": [
+        "5",
+        "4",
+        "3",
+        "2"
+      ],
+      "answer": 2,
+      "explanation": "Các leader là (1), đích nhảy (3), và lệnh sau nhảy có điều kiện (13), nên có 3 khối.",
+      "tags": [
+        "basic block"
+      ]
+    },
+    {
+      "id": "c-leak-018",
+      "topic": "overview",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Compiler có thể phát hiện loại lỗi nào trong các lựa chọn dưới đây?",
+      "choices": [
+        "Cả lỗi cú pháp và lỗi logic",
+        "Lỗi cú pháp",
+        "Không loại nào nói trên",
+        "Lỗi logic"
+      ],
+      "answer": 1,
+      "explanation": "Compiler phát hiện lỗi từ vựng/cú pháp/ngữ nghĩa tĩnh, nhưng không thể đảm bảo phát hiện lỗi logic của thuật toán.",
+      "tags": [
+        "error detection"
+      ]
+    },
+    {
+      "id": "c-leak-019",
+      "topic": "lexical",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Công cụ nào thích hợp nhất để mô tả các từ tố của một ngôn ngữ lập trình?",
+      "choices": [
+        "Văn phạm chính quy",
+        "Bộ phân tích từ vựng",
+        "Biểu thức chính quy",
+        "Ôtômat hữu hạn"
+      ],
+      "answer": 2,
+      "explanation": "Biểu thức chính quy là ký pháp mô tả mẫu token; sau đó có thể chuyển sang ôtômat hữu hạn để nhận dạng.",
+      "tags": [
+        "regular expression",
+        "token"
+      ]
+    },
+    {
+      "id": "c-leak-020",
+      "topic": "kpl",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Dòng nào dưới đây đúng cú pháp khai báo biến của KPL?",
+      "choices": [
+        "const a = integer;",
+        "var a: integer;",
+        "const a = 1; b = a * 2;",
+        "const a := 1; b = a;"
+      ],
+      "answer": 1,
+      "explanation": "Khai báo biến KPL dùng dạng `var <ident> : <type>;`.",
+      "tags": [
+        "KPL declaration"
+      ]
+    },
+    {
+      "id": "c-leak-021",
+      "topic": "lexical",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Thao tác nào thuộc phân tích từ vựng?",
+      "choices": [
+        "Kiểm tra xem một chú thích có điểm kết thúc không",
+        "Kiểm tra số chiều của mảng đang sử dụng có đúng khai báo không",
+        "Kiểm tra xem trong lệnh while có chứa từ khóa do hay không",
+        "Tìm địa chỉ phần tử của mảng trong stack"
+      ],
+      "answer": 0,
+      "explanation": "Nhận diện và bỏ qua chú thích là công việc của scanner. Các lựa chọn còn lại lần lượt là ngữ nghĩa, cú pháp và sinh mã.",
+      "tags": [
+        "scanner",
+        "comment"
+      ]
+    },
+    {
+      "id": "c-leak-022",
+      "topic": "semantic",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Hệ thống nào dùng để mô tả một số thuộc tính liên quan đến ngữ nghĩa của ngôn ngữ lập trình?",
+      "choices": [
+        "Ôtômat hữu hạn",
+        "Định nghĩa tựa cú pháp",
+        "Stack",
+        "Văn phạm hình thức"
+      ],
+      "answer": 1,
+      "explanation": "Syntax-directed definition gắn thuộc tính và luật tính thuộc tính vào văn phạm để mô tả ngữ nghĩa tĩnh hoặc sinh mã.",
+      "tags": [
+        "syntax-directed definition"
+      ]
+    },
+    {
+      "id": "c-leak-023",
+      "topic": "bottomup",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Kết quả của bộ phân tích cú pháp bottom-up quay lui là gì?",
+      "choices": [
+        "Phân tích phải",
+        "Nghịch đảo của phân tích phải",
+        "Nghịch đảo của phân tích trái",
+        "Phân tích trái"
+      ],
+      "answer": 1,
+      "explanation": "Bộ phân tích dưới lên shift-reduce rút gọn các cán (handle) về ký hiệu đầu; dãy phép rút gọn dựng lại suy dẫn phải nhưng theo thứ tự ngược, nên thu được nghịch đảo của phân tích phải.",
+      "tags": [
+        "bottom-up",
+        "right parse"
+      ]
+    },
+    {
+      "id": "c-leak-024",
+      "topic": "topdown",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Kết quả của bộ phân tích cú pháp trên xuống là gì?",
+      "choices": [
+        "Phân tích phải",
+        "Phân tích trái",
+        "Nghịch đảo của phân tích trái",
+        "Nghịch đảo của phân tích phải"
+      ],
+      "answer": 1,
+      "explanation": "Bộ phân tích trên xuống xây cây từ gốc và luôn mở rộng ký hiệu không kết thúc trái nhất trước, ứng với suy dẫn trái nhất, nên kết quả là phân tích trái.",
+      "tags": [
+        "top-down",
+        "left parse"
+      ]
+    },
+    {
+      "id": "c-leak-025",
+      "topic": "grammar",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Khẳng định nào đúng về tính nhập nhằng?",
+      "choices": [
+        "Một ngôn ngữ là nhập nhằng nếu mỗi câu có 2 hoặc nhiều cây phân tích cú pháp",
+        "Một văn phạm phi ngữ cảnh là không nhập nhằng nếu mỗi câu được sinh bởi văn phạm đó chỉ có 1 suy dẫn trái",
+        "Một văn phạm phi ngữ cảnh là nhập nhằng nếu vế phải của một sản xuất bắt đầu bởi ký hiệu không kết thúc xuất hiện ở vế trái",
+        "Cả 3 khẳng định đều sai"
+      ],
+      "answer": 1,
+      "explanation": "Với văn phạm phi ngữ cảnh, tính đơn nghĩa nghĩa là mỗi câu sinh ra có đúng một cây phân tích, tương đương đúng một suy dẫn trái (và đúng một suy dẫn phải). Khẳng định đầu định nghĩa sai tính nhập nhằng của ngôn ngữ, khẳng định thứ ba nhầm nhập nhằng với đệ quy trái, nên chỉ khẳng định thứ hai đúng.",
+      "tags": [
+        "ambiguity"
+      ]
+    },
+    {
+      "id": "c-leak-026",
+      "topic": "overview",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Khẳng định nào không thể hiện đúng sự khác biệt giữa compiler và interpreter?",
+      "choices": [
+        "Compiler thường báo lỗi sau khi phân tích toàn bộ chương trình, interpreter báo lỗi tại dòng lệnh gặp lỗi",
+        "Compiler dịch chương trình nguồn ra chương trình đích, interpreter phân tích và thực hiện trực tiếp",
+        "Chương trình dùng compiler chạy chậm hơn chương trình dùng interpreter",
+        "Đầu vào của compiler thường là toàn bộ chương trình, còn interpreter xử lý từng lệnh"
+      ],
+      "answer": 2,
+      "explanation": "Mã đã biên dịch được dịch sang mã đích một lần rồi thực thi, còn interpreter phân tích và thực hiện lại từng lệnh trong lúc chạy. Do đó chương trình biên dịch thường nhanh hơn, không mặc định chậm hơn, nên khẳng định 'chạy chậm hơn' là sai.",
+      "tags": [
+        "compiler",
+        "interpreter"
+      ]
+    },
+    {
+      "id": "c-leak-027",
+      "topic": "topdown",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Khẳng định nào dưới đây không đúng cho lớp ngôn ngữ LL(1)?",
+      "choices": [
+        "Không ngôn ngữ LL(1) nào là ngôn ngữ chính quy",
+        "Mọi ngôn ngữ LL(1) là ngôn ngữ phi ngữ cảnh",
+        "Mọi ngôn ngữ LL(1) là đơn nghĩa",
+        "Lớp LL(1) được chứa trong lớp LR(1)"
+      ],
+      "answer": 0,
+      "explanation": "Văn phạm LL(1) định nghĩa một lớp con của các ngôn ngữ phi ngữ cảnh, đơn nghĩa, và LL(1) được chứa thực sự trong LR(1). Nhiều ngôn ngữ chính quy cũng có văn phạm LL(1), nên khẳng định 'không ngôn ngữ LL(1) nào là chính quy' là sai.",
+      "tags": [
+        "LL(1)",
+        "regular language"
+      ]
+    },
+    {
+      "id": "c-leak-028",
+      "topic": "bottomup",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Khẳng định nào dưới đây không đúng cho lớp ngôn ngữ LR(1)?",
+      "choices": [
+        "Được chứa trong lớp LR(k)",
+        "Hầu hết các ngôn ngữ lập trình phổ biến thuộc lớp này hoặc biến thể gần với lớp này",
+        "Là lớp con của lớp ngôn ngữ phi ngữ cảnh",
+        "Thích hợp để phân tích cú pháp quay lui từ dưới lên"
+      ],
+      "answer": 3,
+      "explanation": "Phân tích LR(1) là phân tích dưới lên quyết định, điều khiển bằng bảng phân tích với một token nhìn trước, không bao giờ quay lui. Cụm 'phân tích quay lui từ dưới lên' mâu thuẫn với tính quyết định của LR(1), nên khẳng định đó sai.",
+      "tags": [
+        "LR(1)"
+      ]
+    },
+    {
+      "id": "c-leak-029",
+      "topic": "semantic",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Khẳng định nào không đúng với luật phạm vi gần nhất?",
+      "choices": [
+        "Toán tử edit chỉ được tham chiếu phạm vi gần nhất",
+        "Toán tử delete chỉ được xóa các lối vào xuất hiện trong khai báo gần nhất",
+        "Toán tử insert vào bảng ký hiệu không được ghi đè những khai báo trước trong cùng phạm vi",
+        "Toán tử lookup vào bảng ký hiệu luôn luôn chỉ tham chiếu phạm vi hiện hành"
+      ],
+      "answer": 3,
+      "explanation": "Theo luật phạm vi gần nhất (lồng gần nhất), lookup phải tìm từ phạm vi hiện hành ra các phạm vi bao ngoài cho đến khi gặp khai báo khớp gần nhất. Nếu chỉ giới hạn ở phạm vi hiện hành thì không thể phân giải tham chiếu tới biến bên ngoài, nên khẳng định đó sai.",
+      "tags": [
+        "scope",
+        "symbol table"
+      ]
+    },
+    {
+      "id": "c-leak-030",
+      "topic": "overview",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Khẳng định nào không đúng về trình thông dịch?",
+      "choices": [
+        "Trình thông dịch phân tích và thực hiện từng lệnh",
+        "Trình thông dịch sinh ra chương trình đích trên Assembly",
+        "Trình thông dịch là một loại trình dịch",
+        "Chương trình biên dịch thường có tốc độ thực thi cao hơn chương trình thông dịch"
+      ],
+      "answer": 1,
+      "explanation": "Trình thông dịch phân tích và thực hiện trực tiếp chương trình nguồn, có thể qua một biểu diễn trung gian, mà không sinh ra chương trình đích độc lập. Việc sinh mã Assembly là nhiệm vụ của trình biên dịch, không phải trình thông dịch, nên khẳng định đó sai.",
+      "tags": [
+        "interpreter"
+      ]
+    },
+    {
+      "id": "c-leak-031",
+      "topic": "lexical",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Ký tự nào không được bộ phân tích từ vựng bỏ qua?",
+      "choices": [
+        "Ký tự xuất hiện trong chú thích",
+        "Khoảng trắng",
+        "Ký tự kết thúc câu lệnh",
+        "Ký tự xuống dòng"
+      ],
+      "answer": 2,
+      "explanation": "Scanner loại bỏ các ký tự định dạng và nội dung chú thích vì chúng không mang ý nghĩa cú pháp. Dấu kết thúc câu lệnh như `;` là một token thật mà parser cần, nên phải trả về chứ không bỏ qua.",
+      "tags": [
+        "scanner",
+        "token"
+      ]
+    },
+    {
+      "id": "c-leak-032",
+      "topic": "codegen",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Lệnh nào có mô tả thao tác: `s[t+2] := b; s[t+3] := pc; s[t+4] := base(p); b := t+1; pc := q;`?",
+      "choices": [
+        "EQ",
+        "CALL",
+        "EP",
+        "EF"
+      ],
+      "answer": 1,
+      "explanation": "Các thao tác này lưu liên kết động (base cũ b), địa chỉ trả về (pc) và liên kết tĩnh (base(p)) vào bản ghi kích hoạt mới, rồi đặt thanh ghi base b sang khung mới và nhảy tới điểm vào chương trình con q. Đó chính là hành vi của lệnh CALL.",
+      "tags": [
+        "CALL",
+        "activation record"
+      ]
+    },
+    {
+      "id": "c-leak-033",
+      "topic": "overview",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Loại chương trình hệ thống nào tích hợp các mô-đun được biên dịch riêng lẻ thành một dạng có thể thực thi?",
+      "choices": [
+        "Debugger",
+        "Linker",
+        "Assembler",
+        "Compiler"
+      ],
+      "answer": 1,
+      "explanation": "Linker kết hợp các module đối tượng và thư viện được biên dịch riêng lẻ, phân giải các tham chiếu ký hiệu liên module và các định vị lại, rồi tạo ra một chương trình thực thi duy nhất. Compiler hay assembler chỉ xử lý một đơn vị dịch, debugger chỉ quan sát lúc chạy, nên linker là đáp án đúng.",
+      "tags": [
+        "linker"
+      ]
+    },
+    {
+      "id": "c-leak-034",
+      "topic": "bottomup",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Loại văn phạm nào không thể phân tích cú pháp theo phương pháp từ dưới lên quyết định?",
+      "choices": [
+        "Chứa epsilon sản xuất",
+        "Nhập nhằng",
+        "LR",
+        "Đệ quy trái"
+      ],
+      "answer": 1,
+      "explanation": "Phân tích shift-reduce quyết định đòi hỏi mỗi hình trạng có một hành động duy nhất. Văn phạm nhập nhằng có câu với nhiều cách phân tích, gây ra xung đột shift-reduce hoặc reduce-reduce không tránh được, nên không thể phân tích quyết định. Epsilon sản xuất, văn phạm LR và đệ quy trái đều phù hợp với phân tích dưới lên.",
+      "tags": [
+        "ambiguity",
+        "bottom-up"
+      ]
+    },
+    {
+      "id": "c-leak-035",
+      "topic": "grammar",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Lớp văn phạm nào tương đương với ôtômat hữu hạn?",
+      "choices": [
+        "Loại 1",
+        "Loại 0",
+        "Loại 2",
+        "Loại 3"
+      ],
+      "answer": 3,
+      "explanation": "Trong phân cấp Chomsky, văn phạm loại 3 là văn phạm chính quy, và lớp ngôn ngữ chính quy chính là lớp được nhận dạng bởi ôtômat hữu hạn. Loại 0, 1, 2 ứng với các ôtômat mạnh hơn (máy Turing, ôtômat tuyến tính giới nội, ôtômat đẩy xuống), nên loại 3 là đáp án.",
+      "tags": [
+        "regular grammar",
+        "finite automata"
+      ]
+    },
+    {
+      "id": "c-leak-036",
+      "topic": "overview",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Chọn ánh xạ đúng giữa công cụ và giai đoạn compiler:\nA. Biểu thức chính quy\nB. Ôtômat đẩy xuống\nC. Đồ thị dòng điều khiển\nD. Phân phối thanh ghi\n\n1. Phân tích cú pháp\n2. Sinh mã\n3. Phân tích từ vựng\n4. Tối ưu mã",
+      "choices": [
+        "A-4, B-1, C-2, D-3",
+        "A-3, B-1, C-4, D-2",
+        "A-3, B-4, C-1, D-2",
+        "A-2, B-1, C-4, D-3"
+      ],
+      "answer": 1,
+      "explanation": "Biểu thức chính quy mô tả token trong phân tích từ vựng (A-3); ôtômat đẩy xuống mô hình hóa phân tích phi ngữ cảnh (B-1); đồ thị dòng điều khiển là cấu trúc dùng cho phân tích dòng dữ liệu và tối ưu (C-4); phân phối thanh ghi thuộc sinh mã đích (D-2). Chỉ A-3, B-1, C-4, D-2 khớp cả bốn.",
+      "tags": [
+        "compiler phases"
+      ]
+    },
+    {
+      "id": "c-leak-037",
+      "topic": "bottomup",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong phân tích dưới lên, cán (handle) là gì?",
+      "choices": [
+        "Ký hiệu không kết thúc ở vế trái của sản xuất sẽ reduce tiếp theo",
+        "Vế phải của sản xuất chuẩn bị được dùng cho hành động reduce tiếp theo",
+        "Vị trí của ký hiệu sẽ shift hoặc reduce trên dạng câu hiện tại",
+        "Vế phải của một sản xuất có thể reduce ở một thời điểm tương lai bất kỳ"
+      ],
+      "answer": 1,
+      "explanation": "Cán của một dạng câu phải là đoạn con khớp với vế phải của một sản xuất, mà việc rút gọn nó lùi đúng một bước trong suy dẫn phải. Trong phân tích shift-reduce, đó chính là vế phải sẽ được rút gọn ở bước reduce tiếp theo, nên lựa chọn thứ hai đúng.",
+      "tags": [
+        "handle",
+        "shift-reduce"
+      ]
+    },
+    {
+      "id": "c-leak-038",
+      "topic": "intermediate",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Mã lệnh ba địa chỉ bao gồm bao nhiêu địa chỉ?",
+      "choices": [
+        "Đúng 3 địa chỉ",
+        "Ít nhất 3 địa chỉ",
+        "Nhiều nhất 3 địa chỉ",
+        "Luôn nhiều hơn 3 khi truy cập mảng"
+      ],
+      "answer": 2,
+      "explanation": "Mã ba địa chỉ cho phép tối đa ba địa chỉ trên mỗi lệnh: thường là một kết quả và tối đa hai toán hạng. Các lệnh như sao chép hay phép một ngôi dùng ít hơn, nên cận trên ba mới là tính chất đặc trưng.",
+      "tags": [
+        "three-address code"
+      ]
+    },
+    {
+      "id": "c-leak-039",
+      "topic": "overview",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Một lập trình viên viết nhầm chương trình thành nhân hai số thay vì chia hai số đó. Loại trình dịch nào phát hiện được lỗi này?",
+      "choices": [
+        "Interpreter",
+        "Compiler",
+        "Cả compiler lẫn interpreter",
+        "Không loại trình dịch nào"
+      ],
+      "answer": 3,
+      "explanation": "Nhân thay vì chia là lỗi logic: chương trình vẫn đúng từ vựng, cú pháp và kiểu. Trình dịch chỉ kiểm tra sự tuân thủ luật của ngôn ngữ chứ không biết ý định của lập trình viên, nên cả compiler lẫn interpreter đều không phát hiện được.",
+      "tags": [
+        "logic error"
+      ]
+    },
+    {
+      "id": "c-leak-040",
+      "topic": "overview",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Ngôn ngữ dùng để viết chương trình dịch được gọi là gì?",
+      "choices": [
+        "Ngôn ngữ đích",
+        "Ngôn ngữ điều khiển",
+        "Ngôn ngữ thực hiện",
+        "Ngôn ngữ nguồn"
+      ],
+      "answer": 2,
+      "explanation": "Ngôn ngữ thực hiện (implementation language) là ngôn ngữ dùng để viết chính trình biên dịch hay thông dịch. Ngôn ngữ nguồn là ngôn ngữ được dịch đi, ngôn ngữ đích là ngôn ngữ được dịch tới, nên cả hai đều không chỉ ngôn ngữ viết bản thân trình dịch.",
+      "tags": [
+        "implementation language"
+      ]
+    },
+    {
+      "id": "c-leak-041",
+      "topic": "overview",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Ngôn ngữ nào dưới đây có trình dịch truyền thống là compiler?",
+      "choices": [
+        "Python",
+        "Pascal",
+        "Ruby",
+        "Visual Basic"
+      ],
+      "answer": 1,
+      "explanation": "Pascal là ví dụ kinh điển của ngôn ngữ biên dịch, được dịch trước thành mã máy hoặc mã đối tượng. Python và Ruby theo truyền thống là ngôn ngữ thông dịch, nên Pascal là lựa chọn đúng.",
+      "tags": [
+        "compiler"
+      ]
+    },
+    {
+      "id": "c-leak-042",
+      "topic": "overview",
+      "source": "leak-bank",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Phần mềm dịch từ một ngôn ngữ nào đó sang mã máy hoặc chương trình đích thực thi được gọi là gì?",
+      "choices": [
+        "Bộ xử lý ngôn ngữ",
+        "Trình thông dịch",
+        "Trình biên dịch",
+        "Assembler"
+      ],
+      "answer": 2,
+      "explanation": "Trình biên dịch dịch toàn bộ chương trình nguồn thành chương trình đích tương đương, thường là mã máy, assembly hoặc bytecode. Trình thông dịch thực thi trực tiếp mà không sinh chương trình đích, còn assembler chỉ dịch ngôn ngữ assembly, nên trình biên dịch là thuật ngữ chung đúng.",
+      "tags": [
+        "compiler"
+      ]
+    },
+    {
+      "id": "c-unit-001",
+      "topic": "overview",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Pha phân tích từ vựng nhận đầu vào và tạo đầu ra chính là gì?",
+      "choices": [
+        "Nhận chuỗi ký tự nguồn và nhóm thành các token",
+        "Nhận token và sinh mã máy",
+        "Nhận cây cú pháp và tối ưu mã",
+        "Nhận mã đích và liên kết thư viện"
+      ],
+      "answer": 0,
+      "explanation": "Phân tích từ vựng là pha đầu tiên: scanner đọc chuỗi ký tự nguồn thô từ trái sang phải, gom ký tự thành các từ tố và phát ra dòng token cho parser, đồng thời bỏ qua khoảng trắng và chú thích.",
+      "tags": [
+        "unit2",
+        "unit5"
+      ]
+    },
+    {
+      "id": "c-unit-002",
+      "topic": "lexical",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Scanner thường bỏ qua nhóm ký tự nào?",
+      "choices": [
+        "Khoảng trắng, tab, xuống dòng và chú thích",
+        "Tên biến, hằng số và từ khóa",
+        "Dấu chấm phẩy và dấu ngoặc",
+        "Mọi ký tự không phải chữ cái"
+      ],
+      "answer": 0,
+      "explanation": "Khoảng trắng và chú thích chỉ phân tách hoặc ghi chú cho token, không mang nội dung cú pháp, nên scanner bỏ qua. Từ khóa, định danh, hằng số và các dấu phân cách như chấm phẩy, ngoặc là những token thật phải trả về cho parser.",
+      "tags": [
+        "scanner",
+        "unit5"
+      ]
+    },
+    {
+      "id": "c-unit-003",
+      "topic": "lexical",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Phân biệt đúng giữa token và lexeme là gì?",
+      "choices": [
+        "Token là chuỗi ký tự thật trong source, lexeme là lớp cú pháp",
+        "Token là lớp/loại từ tố, lexeme là chuỗi ký tự cụ thể khớp token",
+        "Token chỉ dùng cho parser, lexeme chỉ dùng cho code generator",
+        "Token và lexeme là hai tên gọi giống hệt nhau"
+      ],
+      "answer": 1,
+      "explanation": "Token là phạm trù trừu tượng (như định danh hay số), còn lexeme là chuỗi ký tự thật trong nguồn được token đó phân loại. Ví dụ lexeme `count` được phân loại bởi token `TK_IDENT`, nên khẳng định thứ hai đúng.",
+      "tags": [
+        "token",
+        "lexeme"
+      ]
+    },
+    {
+      "id": "c-unit-004",
+      "topic": "grammar",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Trong BNF, ký hiệu không kết thúc thường biểu diễn điều gì?",
+      "choices": [
+        "Ký tự xuất hiện trực tiếp trong chương trình nguồn",
+        "Một token không thể phân rã thêm",
+        "Một thành phần cú pháp cần được định nghĩa bằng các sản xuất",
+        "Một lỗi cú pháp trong văn phạm"
+      ],
+      "answer": 2,
+      "explanation": "Trong BNF, ký hiệu không kết thúc đặt tên cho các phạm trù cú pháp như `<expression>` hay `<statement>`, được định nghĩa bằng các luật sản xuất, còn ký hiệu kết thúc là các token thật xuất hiện trong đầu vào. Vậy nonterminal là một thành phần cú pháp được định nghĩa bằng các sản xuất.",
+      "tags": [
+        "BNF",
+        "nonterminal"
+      ]
+    },
+    {
+      "id": "c-unit-005",
+      "topic": "topdown",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Cách khử đệ quy trái trực tiếp cho `A -> A α | β` là gì?",
+      "choices": [
+        "A -> β A'; A' -> α A' | ε",
+        "A -> A' β; A' -> A α | ε",
+        "A -> α β; A' -> β α",
+        "A -> β | α; A' -> A"
+      ],
+      "answer": 0,
+      "explanation": "Parser trên xuống không xử lý được đệ quy trái vì sẽ mở rộng A vô hạn mà không tiêu thụ đầu vào. Phép biến đổi chuẩn cho ra văn phạm đệ quy phải tương đương `A -> β A'` với `A' -> α A' | ε`, sinh đúng các xâu β, βα, βαα, ... mà không còn đệ quy trái.",
+      "tags": [
+        "left recursion",
+        "LL(1)"
+      ]
+    },
+    {
+      "id": "c-unit-006",
+      "topic": "topdown",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Trong LL(k), hai chữ L và tham số k lần lượt có ý nghĩa gì?",
+      "choices": [
+        "Left recursion, left factoring, k production",
+        "Đọc input từ trái sang phải, sinh suy dẫn trái nhất, nhìn trước k token",
+        "Đọc input từ phải sang trái, sinh suy dẫn trái nhất, nhìn trước k ký tự",
+        "Dùng stack bên trái, parse tree bên trái, k trạng thái"
+      ],
+      "answer": 1,
+      "explanation": "LL(k) nghĩa là quét đầu vào từ trái sang phải (Left-to-right), dựng suy dẫn trái nhất (Leftmost), dùng k token nhìn trước để chọn sản xuất áp dụng. Đó đúng là lựa chọn thứ hai.",
+      "tags": [
+        "LL(k)"
+      ]
+    },
+    {
+      "id": "c-unit-007",
+      "topic": "topdown",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Bộ phân tích tiền định LL(1) thường sử dụng hai cấu trúc chính nào?",
+      "choices": [
+        "Stack và bảng phân tích",
+        "Heap và bảng trang",
+        "Code buffer và activation record",
+        "Flow graph và register allocator"
+      ],
+      "answer": 0,
+      "explanation": "Bộ phân tích tiền định điều khiển bằng bảng giữ một stack các ký hiệu văn phạm còn phải khớp và tra bảng phân tích M[nonterminal, lookahead] để chọn sản xuất mở rộng. Các cặp còn lại thuộc quản lý bộ nhớ, sinh mã và tối ưu chứ không phải phân tích tiền định.",
+      "tags": [
+        "predictive parser"
+      ]
+    },
+    {
+      "id": "c-unit-008",
+      "topic": "topdown",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Recursive-descent parser thường được cài đặt như thế nào?",
+      "choices": [
+        "Một hàm duy nhất xử lý toàn bộ văn phạm bằng bảng LR",
+        "Một tập hàm đệ quy, mỗi hàm ứng với một nonterminal",
+        "Một ôtômat hữu hạn nhận mọi cấu trúc lồng nhau",
+        "Một linker ghép các module parser"
+      ],
+      "answer": 1,
+      "explanation": "Trong phân tích đệ quy xuống, mỗi ký hiệu không kết thúc được cài thành một hàm riêng mà thân hàm phản ánh các vế phải của các sản xuất tương ứng; sự đệ quy lẫn nhau giữa các hàm này phân tích các cấu trúc lồng nhau. Ôtômat hữu hạn không nhận được tính lồng của ngôn ngữ phi ngữ cảnh, nên lựa chọn thứ hai đúng.",
+      "tags": [
+        "recursive descent"
+      ]
+    },
+    {
+      "id": "c-unit-009",
+      "topic": "semantic",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Nhiệm vụ nào là điển hình của phân tích ngữ nghĩa?",
+      "choices": [
+        "Nhận diện token số nguyên",
+        "Kiểm tra dấu ngoặc có đúng vị trí theo grammar",
+        "Kiểm tra biểu thức bên phải phép gán có kiểu phù hợp với vế trái",
+        "Thay thế phép nhân bằng phép dịch bit"
+      ],
+      "answer": 2,
+      "explanation": "Phân tích ngữ nghĩa thực thi các quy tắc phụ thuộc ngữ cảnh mà văn phạm phi ngữ cảnh không nắm được, như tương thích kiểu, khai báo trước khi dùng và khả năng gán. Nhận diện token là từ vựng, khớp ngoặc là cú pháp, giảm chi phí phép toán là tối ưu, nên kiểm tra kiểu của phép gán mới là nhiệm vụ ngữ nghĩa.",
+      "tags": [
+        "type checking"
+      ]
+    },
+    {
+      "id": "c-unit-010",
+      "topic": "intermediate",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Lợi ích chính của mã trung gian là gì?",
+      "choices": [
+        "Luôn chạy trực tiếp nhanh hơn mã máy",
+        "Thay thế hoàn toàn bộ phân tích cú pháp",
+        "Hỗ trợ tối ưu độc lập máy và làm dễ hơn việc sinh mã đích",
+        "Chỉ dùng để lưu comment của source code"
+      ],
+      "answer": 2,
+      "explanation": "Biểu diễn trung gian độc lập máy tách front-end khỏi back-end: có thể tối ưu một lần trên mã trung gian rồi tái dùng cho nhiều máy đích, và việc sinh mã chỉ cần ánh xạ mã trung gian đơn giản sang từng máy. Nó không chạy nhanh hơn mã máy gốc và cũng không thay thế phân tích cú pháp.",
+      "tags": [
+        "IR",
+        "unit11"
+      ]
+    },
+    {
+      "id": "c-unit-011",
+      "topic": "intermediate",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Mã ba địa chỉ phù hợp cho biểu thức `t := x + y * z` là gì?",
+      "choices": [
+        "t1 := y * z; t2 := x + t1; t := t2",
+        "t := x + y * z; t1 := t",
+        "x := y * z; t := x + y",
+        "t1 := x + y; t := t1 * z"
+      ],
+      "answer": 0,
+      "explanation": "Mã ba địa chỉ chỉ cho phép một phép toán mỗi lệnh, nên biểu thức ghép phải tách thành các phép toán đơn với biến tạm. Tính `y * z` trước tôn trọng độ ưu tiên cao hơn của phép nhân, rồi cộng với x và gán cho t tái tạo đúng ý nghĩa ban đầu, như lựa chọn thứ nhất.",
+      "tags": [
+        "three-address code"
+      ]
+    },
+    {
+      "id": "c-unit-012",
+      "topic": "codegen",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Thành phần nào không phải nội dung điển hình của activation record trong mô hình stack machine đã học?",
+      "choices": [
+        "Return value",
+        "Dynamic link",
+        "Return address",
+        "FIRST set"
+      ],
+      "answer": 3,
+      "explanation": "Bản ghi kích hoạt chứa dữ liệu lúc chạy cho một lời gọi: return value, dynamic link, return address, static link, tham số và biến cục bộ. FIRST set là sản phẩm lúc dịch của phân tích cú pháp, không thuộc khung lúc chạy, nên không nằm trong activation record.",
+      "tags": [
+        "activation record"
+      ]
+    },
+    {
+      "id": "c-unit-013",
+      "topic": "codegen",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Trong stack calculator của bài giảng, ba thanh ghi chính được giới thiệu là gì?",
+      "choices": [
+        "SP, FP, IP",
+        "PC, B, T",
+        "AX, BX, CX",
+        "RA, RV, SL"
+      ],
+      "answer": 1,
+      "explanation": "Mô hình stack machine dùng PC làm con trỏ lệnh trỏ tới lệnh hiện hành, B làm thanh ghi base trỏ tới bản ghi kích hoạt hiện hành, và T làm con trỏ đỉnh stack. Các nhóm còn lại là thanh ghi đa dụng hoặc trường của activation record, không phải thanh ghi điều khiển của máy.",
+      "tags": [
+        "stack calculator"
+      ]
+    },
+    {
+      "id": "c-unit-014",
+      "topic": "optimization",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Peephole optimization là kỹ thuật gì?",
+      "choices": [
+        "Xem một đoạn lệnh ngắn và thay bằng đoạn ngắn hơn hoặc nhanh hơn nếu tương đương",
+        "Phân tích toàn bộ source code để đổi thuật toán",
+        "Sinh lại grammar từ parse tree",
+        "Kiểm tra mọi lỗi kiểu trong chương trình"
+      ],
+      "answer": 0,
+      "explanation": "Tối ưu peephole trượt một cửa sổ nhỏ trên mã đã sinh và viết lại các mẫu nhận diện được (như nạp/lưu thừa hoặc nhảy tới nhảy) thành mã tương đương ngắn hơn hoặc nhanh hơn. Đây là kỹ thuật cục bộ, không đổi thuật toán, không sinh lại văn phạm và không kiểm tra kiểu.",
+      "tags": [
+        "peephole"
+      ]
+    },
+    {
+      "id": "c-unit-015",
+      "topic": "optimization",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Định nghĩa đúng của khối cơ sở là gì?",
+      "choices": [
+        "Một hàm hoàn chỉnh trong chương trình nguồn",
+        "Một đoạn chỉ chứa khai báo biến",
+        "Dãy lệnh mà điều khiển chỉ vào ở lệnh đầu và ra ở lệnh cuối",
+        "Một tập bất kỳ các lệnh có chung biến"
+      ],
+      "answer": 2,
+      "explanation": "Khối cơ sở là dãy lệnh tuyến tính cực đại với một lối vào duy nhất ở lệnh đầu và một lối ra duy nhất ở lệnh cuối, không có nhánh vào hay ra ở giữa. Tính chất này khiến nó là đơn vị tự nhiên cho tối ưu cục bộ và xây dựng đồ thị dòng điều khiển.",
+      "tags": [
+        "basic block"
+      ]
+    },
+    {
+      "id": "c-unit-016",
+      "topic": "optimization",
+      "source": "lecture-units",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Thay `x := 4 * 5` bằng `x := 20` là ví dụ của kỹ thuật nào?",
+      "choices": [
+        "Copy propagation",
+        "Constant folding",
+        "Dead code elimination",
+        "Register allocation"
+      ],
+      "answer": 1,
+      "explanation": "Constant folding tính trước tại thời gian dịch một biểu thức có mọi toán hạng là hằng đã biết, thay `4 * 5` bằng giá trị `20`. Điều này loại bỏ phép nhân lúc chạy mà vẫn giữ nguyên ý nghĩa của chương trình.",
+      "tags": [
+        "constant folding"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-001",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Việc sử dụng mã trung gian nhằm mục đích gì?",
+      "choices": [
+        "Giảm nhẹ việc phân tích cú pháp và phân tích ngữ nghĩa",
+        "Cải thiện việc xử lý lỗi biên dịch",
+        "Tạo điều kiện để sử dụng bộ tối ưu mã độc lập với máy cho các trình biên dịch khác nhau",
+        "Tối ưu hóa việc sử dụng thanh ghi"
+      ],
+      "answer": 2,
+      "explanation": "Mã trung gian độc lập với máy, nên cùng một bộ tối ưu có thể dùng lại cho các trình biên dịch hướng tới những máy đích khác nhau. Nó không phải thứ giảm nhẹ phân tích cú pháp/ngữ nghĩa, cải thiện xử lý lỗi, hay trực tiếp cấp phát thanh ghi.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-002",
+      "topic": "optimization",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khẳng định nào sau đây là SAI?",
+      "choices": [
+        "Trong một khối cơ bản, các lệnh được thực hiện tuần tự từ lệnh đầu đến lệnh cuối",
+        "Khi loại các biểu thức con chung, cần một chương trình phân tích các biểu thức",
+        "Muốn loại mã chết, cần thực hiện một chương trình tìm ra các biến sống",
+        "Thay x := 4 * 5 bởi x := 20 là ví dụ về chiến lược loại biểu thức con chung"
+      ],
+      "answer": 3,
+      "explanation": "Thay x := 4 * 5 bởi x := 20 là tính giá trị biểu thức hằng tại thời gian dịch; đó là constant folding chứ không phải loại biểu thức con chung, nên khẳng định này sai. Ba khẳng định còn lại đều đúng.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-003",
+      "topic": "optimization",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Mô tả nào dưới đây là về chiến lược \"Giảm chi phí\" trong tối ưu mã?",
+      "choices": [
+        "Chuyển những tính toán bất biến ra khỏi vòng lặp",
+        "Loại các biểu thức con chung",
+        "Thay thế các phép toán có chi phí tính toán cao bằng những phép toán có chi phí thấp hơn"
+      ],
+      "answer": 2,
+      "explanation": "Giảm chi phí (reduction in strength) thay một phép toán đắt bằng một phép toán rẻ hơn tương đương (ví dụ thay nhân bằng cộng lặp hoặc dịch bit). Chuyển mã bất biến là loop-invariant code motion, còn lựa chọn thứ hai là loại biểu thức con chung.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-004",
+      "topic": "optimization",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Loại mã chết nghĩa là gì?",
+      "choices": [
+        "Loại bỏ tất cả các nhãn",
+        "Loại bỏ biến không cần sử dụng",
+        "Loại bỏ các hàm không cần đến",
+        "Loại bỏ các module sau khi sử dụng"
+      ],
+      "answer": 1,
+      "explanation": "Loại mã chết xóa các tính toán và biến mà kết quả không bao giờ được dùng (hoặc mã không bao giờ được thực hiện). Nó không xóa bừa các nhãn, hàm hay module.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-005",
+      "topic": "optimization",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Việc thay thế biến mà giá trị là một hằng bởi giá trị của nó được thực hiện trong chiến lược nào?",
+      "choices": [
+        "Constant propagation",
+        "Copy propagation",
+        "Tối ưu dòng điều khiển",
+        "Giảm chi phí tính toán"
+      ],
+      "answer": 0,
+      "explanation": "Constant propagation thay một biến đã biết mang giá trị hằng bởi chính hằng đó. Copy propagation thay một biến bằng biến khác mà nó được sao chép từ đó, là việc khác.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-006",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Giai đoạn nào trong compiler không phụ thuộc máy?",
+      "choices": [
+        "Phân tích cú pháp",
+        "Sinh mã trung gian",
+        "Phân tích ngữ nghĩa",
+        "Tất cả các giai đoạn nói trên"
+      ],
+      "answer": 3,
+      "explanation": "Phân tích cú pháp, phân tích ngữ nghĩa và sinh mã trung gian đều thuộc front-end và làm việc độc lập với máy đích. Sự phụ thuộc máy chỉ xuất hiện về sau, ở sinh mã đích và tối ưu riêng cho máy.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-007",
+      "topic": "lexical",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Một chương trình C truy cập đến phần tử mảng X[i][j][k]. Đoạn mã trung gian dưới đây được sinh ra:\nt0 = i*1024\nt1 = j*32\nt2 = k*4\nt3 = t1 + t0\nt4 = t3 + t2\nt5 = X[t4]\nBiết rằng số nguyên được lưu trữ với 32 bit, ký tự 8 bit, khai báo mảng nào là đúng?",
+      "choices": [
+        "int X[32][32][8]",
+        "int X[4][1024][32]",
+        "char X[4][32][8]"
+      ],
+      "answer": 0,
+      "explanation": "Các hệ số nhân theo kích thước phần tử là k*4, j*32, i*1024. Bước trong cùng 4 byte bằng một số nguyên (32 bit) nên kiểu phần tử là int. Với bố trí theo dòng (row-major), kích thước chiều cuối nhân kích thước phần tử cho bước kế tiếp: 8 * 4 = 32 (bước theo j), 32 * 32 = 1024 (bước theo i). Vậy mảng là X[32][32][8] kiểu int.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-009",
+      "topic": "intermediate",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong các lệnh dưới đây, lệnh nào viết đúng bằng mã ba địa chỉ?",
+      "choices": [
+        "t[i+1] := x",
+        "t[i] := y",
+        "t[i] := 1 + i",
+        "a := t[i] + 1"
+      ],
+      "answer": 1,
+      "explanation": "Gán qua chỉ số dạng x[i] := y chỉ cho phép một biểu thức chỉ số và một toán hạng nguồn duy nhất. t[i] := y đúng dạng này. Các lựa chọn còn lại gộp thêm một phép toán (số học trên chỉ số, một phép cộng, hoặc truy cập mảng cộng với phép cộng) vào một lệnh, nên không phải một lệnh ba địa chỉ.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-010",
+      "topic": "overview",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào sau đây là đúng cho mã ba địa chỉ?",
+      "choices": [
+        "Mỗi lệnh sử dụng đúng 3 địa chỉ",
+        "Một lệnh sử dụng tối đa 3 địa chỉ",
+        "Không cho phép toán tử một ngôi",
+        "Có thể dùng toán tử một ngôi nếu một trong 2 vế của lệnh gán chứa biến mảng"
+      ],
+      "answer": 1,
+      "explanation": "Mã ba địa chỉ dùng tối đa ba địa chỉ (toán hạng) mỗi lệnh; không bắt buộc đúng ba, và vẫn cho phép toán tử một ngôi. Vậy phát biểu đúng là 'tối đa 3 địa chỉ'.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-011",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Điều kiện LL(1) bị vi phạm ở tập sản xuất cho ký hiệu không kết thúc nào dưới đây của ngôn ngữ KPL?",
+      "choices": [
+        "<Condition2>",
+        "<UnsignedConstant>",
+        "<Factor>",
+        "<Term>"
+      ],
+      "answer": 2,
+      "explanation": "Trong KPL, một <Factor> có thể bắt đầu bằng một định danh vừa có thể là biến đơn, phần tử mảng, hoặc lời gọi hàm, nên nhiều lựa chọn cùng có chung token FIRST (một định danh), vi phạm điều kiện FIRST rời nhau của LL(1). Các ký hiệu còn lại không có sự chồng lấn này.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-012",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Từ tố nào dưới đây không thuộc FOLLOW(<Arguments>)?",
+      "choices": [
+        "SB_PLUS",
+        "SB_LPAR",
+        "KW_ELSE",
+        "KW_WHILE"
+      ],
+      "answer": 1,
+      "explanation": "Danh sách đối số trong KPL được theo sau bởi các từ tố có thể đứng sau một ngữ cảnh biểu thức/câu lệnh hoàn chỉnh (một toán tử như SB_PLUS, hay các từ khóa như KW_ELSE, KW_WHILE mở ngữ cảnh câu lệnh tiếp theo). Dấu ngoặc trái SB_LPAR mở một biểu thức con và không bao giờ đứng ngay sau khi danh sách đối số kết thúc, nên không thuộc FOLLOW(<Arguments>).",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-013",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cặp từ tố nào dưới đây không thuộc tập FIRST2(<AssignSt>)?",
+      "choices": [
+        "TK_IDENT SB_ASSIGN",
+        "TK_IDENT SB_LSEL",
+        "TK_IDENT SB_LPAR",
+        "TK_IDENT SB_PLUS"
+      ],
+      "answer": 2,
+      "explanation": "Một câu lệnh gán bắt đầu bằng định danh đích, theo sau hợp lệ là := (SB_ASSIGN) hoặc dấu mở chỉ số mảng [ (SB_LSEL). Định danh đích của phép gán không thể là lời gọi hàm nên không thể theo sau bởi dấu ngoặc trái ( (SB_LPAR); do đó TK_IDENT SB_LPAR không thuộc tập FIRST2 của câu lệnh gán.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-015",
+      "topic": "overview",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cho văn phạm:\nB → z | A x\nC → y B z | ε\ntrong đó {A, B, C} là tập ký hiệu không kết thúc, A là ký hiệu đầu. Giá trị của ô M[C, $] trong bảng phân tích tiền định là gì?",
+      "choices": [
+        "Lỗi",
+        "C → ε",
+        "C → y B z",
+        "B → A x"
+      ],
+      "answer": 1,
+      "explanation": "C là ký hiệu sinh được rỗng (C → ε). Ô M[C, $] được điền bằng sản xuất C → ε khi $ thuộc FOLLOW(C). Vì C có thể rút gọn về ε ở cuối xâu vào, M[C, $] chứa C → ε. Sản xuất C → yBz chỉ áp dụng khi token nhìn trước là y.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-016",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cho văn phạm S → AB, A → aA | b, B → bB | c. Ô M[B, a] của bảng phân tích tiền định có giá trị là gì?",
+      "choices": [
+        "Lỗi",
+        "B → bB",
+        "S → AB",
+        "Không lựa chọn nào ở trên"
+      ],
+      "answer": 0,
+      "explanation": "FIRST(B) = {b, c} và B không sinh được rỗng, nên token nhìn trước a không khớp với sản xuất nào của B. Do đó ô M[B, a] là ô lỗi (rỗng).",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-017",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong các văn phạm sau, văn phạm nào là LL(k)?",
+      "choices": [
+        "S → Aa, A → BD, B → ...",
+        "S → 1S0 | 0S1 | ε",
+        "S → AaA, A → AaA, A → a"
+      ],
+      "answer": 1,
+      "explanation": "Văn phạm thứ ba có đệ quy trái (A → AaA) nên không phải LL(k). Văn phạm thứ nhất không đầy đủ/không xác định rõ. Văn phạm cân bằng S → 1S0 | 0S1 | ε có thể phân tích với độ nhìn trước hữu hạn và là văn phạm LL(k) trong các lựa chọn này.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-018",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong các tập dưới đây, tập nào chỉ giá trị FIRST(B) của văn phạm với tập sản xuất:\nA → cBaa\nA → bCba\nB → Ab\nB → Ca\nC → b\nC → ba",
+      "choices": [
+        "{b}",
+        "{c, b}",
+        "{a}",
+        "{a, b, ε}"
+      ],
+      "answer": 1,
+      "explanation": "Vì B → Ab nên FIRST(B) ⊇ FIRST(A), và B → Ca nên FIRST(B) ⊇ FIRST(C). Do A → cBaa | bCba nên FIRST(A) = {c, b}, và C → b | ba nên FIRST(C) = {b}. Vậy FIRST(B) = {c, b}.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-019",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong stack của bộ phân tích cú pháp tiền định có thể chứa gì?",
+      "choices": [
+        "Tập ký hiệu kết thúc",
+        "Tập ký hiệu không kết thúc",
+        "Tập sản xuất",
+        "Mọi ký hiệu của văn phạm"
+      ],
+      "answer": 3,
+      "explanation": "Stack của bộ phân tích tiền định chứa các ký hiệu văn phạm còn cần khớp, có thể là ký hiệu kết thúc hoặc không kết thúc (cùng dấu kết thúc xâu). Vì vậy nó có thể chứa mọi ký hiệu của văn phạm, không chỉ một loại, và không bao giờ chứa cả sản xuất.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-020",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Bộ phân tích cú pháp trên xuống quay lui đạt đến trạng thái quay lui (b) lần đầu tiên khi nào?",
+      "choices": [
+        "Không tìm được lựa chọn nào cho ký hiệu không kết thúc ở đỉnh stack D2",
+        "Ký hiệu kết thúc ở đỉnh stack phù hợp với ký hiệu đang xét trên xâu vào",
+        "Ký hiệu kết thúc ở đỉnh stack D2 không phù hợp với ký hiệu hiện hành",
+        "Không quyết định được hành động là gạt hay thu gọn"
+      ],
+      "answer": 2,
+      "explanation": "Trong giải thuật trên xuống quay lui, trạng thái (b) (trạng thái quay lui) được đạt tới khi ký hiệu kết thúc ở đỉnh stack dự đoán không phù hợp với ký hiệu hiện hành trên xâu vào, buộc bộ phân tích phải lùi lại và thử lựa chọn khác. Nếu khớp thì tiếp tục đi tới; còn lưỡng lự gạt/thu gọn là chuyện của phân tích dưới lên.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-021",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Kết quả của bộ phân tích cú pháp trên xuống là gì?",
+      "choices": [
+        "Phân tích phải",
+        "Phân tích trái",
+        "Nghịch đảo của phân tích phải",
+        "Nghịch đảo của phân tích trái"
+      ],
+      "answer": 1,
+      "explanation": "Bộ phân tích trên xuống mở rộng ký hiệu không kết thúc trái nhất trước, xây dựng suy dẫn trái, nên kết quả là phân tích trái.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-022",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Văn phạm A → AA | (A) | ε không thích hợp cho phân tích cú pháp từ trên xuống vì nó:",
+      "choices": [
+        "Nhập nhằng",
+        "Đệ quy trái",
+        "Đệ quy phải",
+        "Là văn phạm thứ bậc toán tử"
+      ],
+      "answer": 1,
+      "explanation": "Sản xuất A → AA khiến văn phạm có đệ quy trái (trực tiếp), điều mà bộ phân tích trên xuống không xử lý được vì sẽ lặp vô hạn việc mở rộng A mà không đọc thêm xâu vào. Văn phạm cũng nhập nhằng, nhưng tính chất trực tiếp cản trở phân tích trên xuống là đệ quy trái.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-023",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Tập ký hiệu nào dưới đây được dùng trong stack D2 của bộ phân tích cú pháp trên xuống?",
+      "choices": [
+        "Tập ký hiệu kết thúc của văn phạm",
+        "Tập ký hiệu không kết thúc của văn phạm",
+        "Tập tất cả các ký hiệu của văn phạm",
+        "Tập tất cả các ký hiệu là vế trái sản xuất đệ quy của văn phạm"
+      ],
+      "answer": 2,
+      "explanation": "Stack D2 chứa các ký hiệu còn cần khớp trong quá trình suy dẫn trên xuống, có thể là ký hiệu kết thúc hoặc không kết thúc; do đó nó dùng tập tất cả các ký hiệu của văn phạm.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-024",
+      "topic": "overview",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Thành phần nào dưới đây không thuộc hình trạng của giải thuật phân tích cú pháp trên xuống quay lui?",
+      "choices": [
+        "Trạng thái hiện hành",
+        "Vị trí ký hiệu đang xét",
+        "Lịch sử gạt - thu gọn",
+        "Dạng câu trái"
+      ],
+      "answer": 2,
+      "explanation": "Hình trạng của giải thuật trên xuống quay lui ghi lại trạng thái hiện hành, vị trí trên xâu vào và dạng câu (trái) đang xây dựng. Lịch sử gạt - thu gọn là khái niệm của phân tích dưới lên, không phải trên xuống, nên không thuộc hình trạng này.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-025",
+      "topic": "grammar",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Biểu thức nào dưới đây là đúng cú pháp của KPL?",
+      "choices": [
+        "a + -b",
+        "-5 + a * b",
+        "5 + f(a) - g()"
+      ],
+      "answer": 1,
+      "explanation": "-5 + a * b là biểu thức số học hợp lệ: dấu trừ một ngôi đứng trước hằng, rồi phép nhân ưu tiên cao hơn phép cộng. 'a + -b' đặt hai toán tử liền nhau, điều mà văn phạm biểu thức KPL không cho phép, và lời gọi hàm không tham số viết là g() không đúng cú pháp KPL.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-026",
+      "topic": "semantic",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khẳng định nào dưới đây là đúng về kiểu mảng của KPL?",
+      "choices": [
+        "Ngôn ngữ cho phép dùng mảng với số chiều bất kỳ",
+        "Ngôn ngữ chỉ cho phép dùng mảng 1 chiều và 2 chiều",
+        "Phần tử ở dòng 2, cột 3 của ma trận A được viết là A(.1,3.)"
+      ],
+      "answer": 0,
+      "explanation": "KPL hỗ trợ mảng nhiều chiều với số chiều bất kỳ (xây dựng như mảng của mảng). Nó không bị giới hạn 1 hay 2 chiều, và truy cập phần tử mảng KPL không dùng ký pháp A(.1,3.) như nêu.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-027",
+      "topic": "overview",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khai báo hằng nào dưới đây là đúng cú pháp của KPL?",
+      "choices": [
+        "CONST I=1; J=2;",
+        "CONST I:=1; J:=I+2;",
+        "CONST I=-1; J=I;",
+        "CONST I=1; J=I+1;"
+      ],
+      "answer": 0,
+      "explanation": "Khai báo hằng KPL dùng '=' (không phải ':=') và mỗi giá trị hằng phải là hằng tường minh, không phải biểu thức chứa định danh khác. 'CONST I=1; J=2;' dùng '=' và các hằng tường minh nên đúng; các lựa chọn khác dùng ':=' hoặc định nghĩa hằng từ biểu thức/định danh (I, I+1) mà khai báo hằng KPL không cho phép.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-028",
+      "topic": "semantic",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khẳng định nào là sai về chương trình con trong ngôn ngữ KPL? (Khẳng định cần xét: \"Kiểu trả về của hàm chỉ có thể là char hoặc integer.\")",
+      "choices": [
+        "Kiểu của tham số có thể là mảng nếu ta dùng một tên cho nó trong khai báo kiểu",
+        "Hàm không tham số khi khai báo không dùng cặp ngoặc đơn",
+        "Các hàm chuẩn để đọc vào đều không có tham số"
+      ],
+      "answer": 0,
+      "explanation": "Trong KPL, tham số phải có kiểu cơ sở; không thể dùng trực tiếp kiểu mảng làm kiểu tham số, nên khẳng định \"kiểu tham số có thể là mảng nếu dùng tên kiểu\" là khẳng định sai. Các khẳng định còn lại đều đúng: hàm trả về char hoặc integer, hàm không tham số được khai báo không cần cặp ngoặc, và các hàm đọc chuẩn không có tham số.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-029",
+      "topic": "semantic",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khẳng định nào dưới đây là đúng trong ngôn ngữ KPL? (Khẳng định cần xét: \"Chương trình bắt buộc phải có dòng đầu chứa tên chương trình.\")",
+      "choices": [
+        "Sau khi khai báo biến vẫn có thể viết khai báo hằng bắt đầu bằng từ khóa CONST",
+        "Bắt buộc khai báo thủ tục trước khai báo hàm",
+        "Chương trình không thể không có phần khai báo (hằng, kiểu, biến, chương trình con)"
+      ],
+      "answer": 0,
+      "explanation": "Một chương trình KPL bắt đầu bằng dòng đầu đặt tên chương trình, tiếp theo là phần khai báo tùy chọn (hằng, kiểu, biến, chương trình con) rồi đến thân chương trình. Theo bài học, khẳng định được chọn ở đây là khẳng định đúng về cách viết các phần khai báo này; các khẳng định còn lại nêu sai quy tắc của KPL — ví dụ KPL không bắt buộc khai báo thủ tục trước hàm.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-030",
+      "topic": "overview",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Một lập trình viên viết nhầm chương trình thành nhân hai số thay vì chia hai số đó. Loại trình dịch nào dưới đây phát hiện được lỗi này?",
+      "choices": [
+        "Interpreter",
+        "Cả compiler lẫn interpreter",
+        "Không loại trình dịch nào"
+      ],
+      "answer": 2,
+      "explanation": "Nhân thay vì chia là lỗi logic (lỗi về ý định): chương trình vẫn đúng từ vựng, cú pháp và kiểu. Không trình dịch nào (compiler hay interpreter) biết được ý định của lập trình viên, nên không loại nào phát hiện được.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-031",
+      "topic": "overview",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Loại chương trình hệ thống nào dưới đây tích hợp các mô-đun được biên dịch riêng lẻ của chương trình thành một dạng có thể thực thi được?",
+      "choices": [
+        "Debugger",
+        "Assembler",
+        "Linker"
+      ],
+      "answer": 2,
+      "explanation": "Linker kết hợp các mô-đun đối tượng được biên dịch riêng lẻ và các thư viện, giải quyết tham chiếu giữa chúng, để tạo ra chương trình thực thi. Debugger dùng để gỡ lỗi chương trình đang chạy, còn assembler dịch hợp ngữ sang mã máy.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-032",
+      "topic": "lexical",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Đâu là thứ tự đúng của các quá trình trong compiler?",
+      "choices": [
+        "Sinh mã => Phân tích cú pháp => Phân tích từ vựng",
+        "Phân tích cú pháp => Sinh mã => Phân tích từ vựng",
+        "Phân tích từ vựng => Phân tích cú pháp => Sinh mã"
+      ],
+      "answer": 2,
+      "explanation": "Compiler trước hết quét ký tự thành token (phân tích từ vựng), sau đó phân tích token thành cấu trúc (phân tích cú pháp), rồi cuối cùng sinh mã. Vậy thứ tự là phân tích từ vựng => phân tích cú pháp => sinh mã.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-033",
+      "topic": "overview",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khẳng định nào dưới đây không thể hiện sự khác biệt giữa trình biên dịch (compiler) và trình thông dịch (interpreter)? (Khẳng định cần xét: \"Đầu vào của compiler là toàn bộ chương trình, trong khi đầu vào của interpreter là từng dòng lệnh.\")",
+      "choices": [
+        "Chương trình viết trên ngôn ngữ dùng compiler chạy chậm hơn chương trình viết trên ngôn ngữ dùng interpreter",
+        "Compiler báo lỗi sau khi phân tích toàn bộ chương trình, trong khi interpreter báo lỗi ngay tại dòng lệnh gặp lỗi",
+        "Compiler dịch chương trình nguồn ra ngôn ngữ máy, trong khi interpreter dịch ra ngôn ngữ trung gian"
+      ],
+      "answer": 0,
+      "explanation": "Chương trình biên dịch nói chung chạy nhanh hơn chương trình thông dịch (việc dịch và tối ưu được làm trước), nên nói chương trình biên dịch chạy chậm hơn là sai và không thể hiện đúng sự khác biệt. Các khẳng định còn lại đều mô tả khác biệt thực sự giữa compiler và interpreter.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-quiz-034",
+      "topic": "overview",
+      "source": "pdf-compiler-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Ngôn ngữ nào dưới đây có trình dịch hoàn toàn là compiler?",
+      "choices": [
+        "VISUAL BASIC",
+        "PYTHON",
+        "PASCAL",
+        "RUBY"
+      ],
+      "answer": 2,
+      "explanation": "Pascal là ví dụ kinh điển của ngôn ngữ biên dịch hoàn toàn theo truyền thống. Python và Ruby thường được thông dịch (hoặc thông dịch bytecode), còn Visual Basic trước đây dùng thực thi pha trộn/thông dịch.",
+      "tags": [
+        "PDF OCR",
+        "compiler quiz"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-001",
+      "topic": "lexical",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Khi nào compiler xem xét đến các ký tự được phép sử dụng trong một ngôn ngữ lập trình?",
+      "choices": [
+        "Khi sinh mã đích",
+        "Khi phân tích từ vựng"
+      ],
+      "answer": 1,
+      "explanation": "Bộ phân tích từ vựng (scanner) đọc dòng ký tự thô và quyết định ký tự nào hợp lệ cũng như cách gom chúng thành token, nên tính hợp lệ ở mức ký tự được xử lý trong phân tích từ vựng.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-002",
+      "topic": "grammar",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Các nút trong của cây phân tích cú pháp có nhãn là gì?",
+      "choices": [
+        "Ký hiệu kết thúc, ký hiệu không kết thúc hoặc ε",
+        "Ký hiệu kết thúc hoặc ε",
+        "Ký hiệu không kết thúc"
+      ],
+      "answer": 2,
+      "explanation": "Trong cây phân tích cú pháp, lá được gán nhãn bằng ký hiệu kết thúc (hoặc ε), còn các nút trong ứng với việc áp dụng sản xuất nên được gán nhãn bằng ký hiệu không kết thúc.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-003",
+      "topic": "semantic",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Thao tác nào dưới đây không có trong giai đoạn biên dịch?",
+      "choices": [
+        "Kiểm tra sự tương ứng về kiểu",
+        "Phân phối bộ nhớ vật lý",
+        "Quản lý bảng ký hiệu"
+      ],
+      "answer": 1,
+      "explanation": "Kiểm tra kiểu và quản lý bảng ký hiệu là việc của compiler. Phân phối bộ nhớ vật lý do hệ điều hành hoặc runtime đảm nhiệm, không phải compiler, nên không thuộc giai đoạn biên dịch.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-004",
+      "topic": "overview",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cấu trúc nào cho mã ba địa chỉ cần dùng 4 trường để lưu trữ?",
+      "choices": [
+        "Bộ ba / bộ ba gián tiếp",
+        "Bộ bốn"
+      ],
+      "answer": 1,
+      "explanation": "Bộ bốn (quadruple) lưu bốn trường — toán tử, đối số 1, đối số 2 và kết quả — nên cần 4 trường. Bộ ba (và bộ ba gián tiếp) chỉ dùng ba trường và tham chiếu kết quả theo vị trí.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-005",
+      "topic": "grammar",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Khẳng định nào dưới đây là sai?",
+      "choices": [
+        "Một văn phạm nhập nhằng không thể thuộc lớp LR(k)",
+        "Lớp ngôn ngữ LALR rộng hơn lớp SLR; phương pháp phân tích cho văn phạm LL(1) thuộc loại trên xuống (top down)",
+        "Trong mọi văn phạm đơn nghĩa, suy dẫn trái và suy dẫn phải của một xâu phải giống nhau"
+      ],
+      "answer": 2,
+      "explanation": "Trong một văn phạm đơn nghĩa, suy dẫn trái và suy dẫn phải của một xâu cho cùng một cây phân tích nhưng dãy sản xuất khác nhau về thứ tự áp dụng, nên nói chúng 'giống nhau' là sai. Các khẳng định còn lại đều đúng.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-007",
+      "topic": "overview",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Loại lệnh nào dưới đây không sinh ra mã thực hiện sau khi dịch?",
+      "choices": [
+        "Lệnh điều kiện",
+        "Lệnh vào - ra",
+        "Lệnh khai báo"
+      ],
+      "answer": 2,
+      "explanation": "Lệnh khai báo chỉ ghi thông tin (kiểu, kích thước, offset) vào bảng ký hiệu và bố trí lưu trữ; bản thân nó không sinh ra lệnh thực hiện. Lệnh điều kiện và vào - ra đều sinh mã chạy thực sự.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-008",
+      "topic": "optimization",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Việc xác định giá trị các biểu thức và thay thế những tính toán trong thời gian thực hiện bằng những tính toán trong thời gian dịch gọi là gì?",
+      "choices": [
+        "Phân tích dòng dữ liệu (Data flow analysis)",
+        "Tối ưu vòng lặp (Loop optimization)",
+        "Tối ưu cục bộ (Local optimization)",
+        "Tính giá trị hằng (Constant folding)"
+      ],
+      "answer": 3,
+      "explanation": "Tính trước giá trị các biểu thức hằng tại thời gian dịch để không phải tính lại lúc chạy chính là định nghĩa của constant folding (tính giá trị hằng).",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-009",
+      "topic": "grammar",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong một compiler, nơi chứa thông tin về các biến và các thuộc tính của chúng là gì?",
+      "choices": [
+        "Bảng ký hiệu",
+        "Cây phân tích cú pháp có chú giải"
+      ],
+      "answer": 0,
+      "explanation": "Bảng ký hiệu lưu mỗi định danh cùng các thuộc tính của nó (loại, kiểu, phạm vi, địa chỉ/offset). Cây phân tích cú pháp có chú giải chỉ ghi giá trị thuộc tính tại các nút trong quá trình dịch.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-010",
+      "topic": "semantic",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong các thao tác sau, thao tác nào thuộc phân tích ngữ nghĩa cho ngôn ngữ KPL?",
+      "choices": [
+        "Báo lỗi nếu biến điều khiển lệnh for có kiểu mảng",
+        "Xác định array là từ khóa hay định danh",
+        "Báo lỗi khi điều kiện trong lệnh if chứa toán tử gán"
+      ],
+      "answer": 0,
+      "explanation": "Kiểm tra biến điều khiển vòng for không được có kiểu mảng là ràng buộc về kiểu/ngữ nghĩa vượt ra ngoài văn phạm, nên thuộc phân tích ngữ nghĩa. Xác định từ khóa hay định danh là phân tích từ vựng, còn toán tử gán trong điều kiện được bắt ở mức cú pháp.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-013",
+      "topic": "grammar",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong các lệnh dưới đây, lệnh nào viết đúng bằng mã ba địa chỉ?",
+      "choices": [
+        "t[i] := 1",
+        "t[i] := x[j]",
+        "a := f[i] + b"
+      ],
+      "answer": 0,
+      "explanation": "t[i] := 1 là một lệnh gán qua chỉ số với một toán hạng nguồn duy nhất, đúng dạng mã ba địa chỉ. t[i] := x[j] có hai truy cập mảng, còn a := f[i] + b gộp một truy cập mảng và một phép cộng trong một lệnh, nên cần tách ra.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-014",
+      "topic": "lexical",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Giá trị nào sau đây không được hàm TokenType checkKeyword(char *string) của bộ phân tích từ vựng (scanner) cho ngôn ngữ KPL trả về?",
+      "choices": [
+        "TK_IDENT",
+        "KW_INTEGER",
+        "TK_NONE"
+      ],
+      "answer": 0,
+      "explanation": "checkKeyword trả về token từ khóa (như KW_BEGIN hoặc KW_INTEGER) khi chuỗi là từ khóa, và trả về TK_NONE nếu không. Việc xác định một chuỗi không phải từ khóa là định danh (TK_IDENT) do hàm gọi đảm nhiệm, nên checkKeyword không bao giờ trả về TK_IDENT.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-015",
+      "topic": "grammar",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Loại văn phạm phi ngữ cảnh nào cho nhiều cây phân tích cú pháp cho một xâu đưa vào?",
+      "choices": [
+        "Văn phạm nhập nhằng",
+        "Văn phạm đơn nghĩa"
+      ],
+      "answer": 0,
+      "explanation": "Theo định nghĩa, văn phạm nhập nhằng có ít nhất một xâu có hai hay nhiều cây phân tích khác nhau; văn phạm đơn nghĩa có tối đa một cây phân tích cho mỗi xâu.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-016",
+      "topic": "grammar",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Biểu diễn của một suy dẫn dưới dạng đồ thị được gọi là gì?",
+      "choices": [
+        "Cây khung",
+        "Cây phân tích cú pháp",
+        "Cây nhị phân"
+      ],
+      "answer": 1,
+      "explanation": "Một suy dẫn vẽ dưới dạng đồ thị, trong đó mỗi nút trong là một ký hiệu không kết thúc được mở rộng bởi một sản xuất và các lá tạo thành xâu được sinh ra, chính là cây phân tích cú pháp (cây suy dẫn).",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-017",
+      "topic": "lexical",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Xét chương trình KPL sau:\nprogram a;\nfunction f(x: integer): integer;\nbegin\n  return x*x\nend;\nbegin\n  call WriteI(f(5));\nend.\nChương trình gặp lỗi gì?",
+      "choices": [
+        "Cả lỗi từ vựng và lỗi cú pháp",
+        "Chỉ lỗi cú pháp",
+        "Không có lỗi"
+      ],
+      "answer": 1,
+      "explanation": "Các ký tự dùng trong chương trình đều là token hợp lệ của KPL nên không có lỗi từ vựng. Cấu trúc bị sai cú pháp (ví dụ thiếu dấu kết thúc câu lệnh sau 'return x*x'), nên chương trình chỉ mắc lỗi cú pháp.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-018",
+      "topic": "lexical",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Đâu là một phần không thể thiếu trong bộ phân tích ngữ nghĩa?",
+      "choices": [
+        "Bộ kiểm tra kiểu",
+        "Lex / Yacc"
+      ],
+      "answer": 0,
+      "explanation": "Bộ kiểm tra kiểu là cốt lõi của phân tích ngữ nghĩa, kiểm tra sự tương thích kiểu và các ràng buộc phụ thuộc ngữ cảnh khác. Lex và Yacc là công cụ để xây dựng scanner và parser, không phải bộ phân tích ngữ nghĩa.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-019",
+      "topic": "grammar",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Đặc điểm nào dưới đây không phải của compiler?",
+      "choices": [
+        "Đọc toàn bộ chương trình nguồn và dịch ra ngôn ngữ máy",
+        "Tốc độ thực hiện chương trình đưa ra chậm"
+      ],
+      "answer": 1,
+      "explanation": "Compiler đọc toàn bộ chương trình nguồn và sinh mã máy, nên đặc điểm đầu là đúng. Chương trình biên dịch nổi bật ở tốc độ thực thi cao, nên 'tốc độ thực hiện chương trình chậm' không phải đặc điểm của compiler.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-021",
+      "topic": "grammar",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cho văn phạm:\nS → A B C D\nA → C D A | a | ε\nB → B C | b\nC → A\nD → A C\nTập FIRST(A) là gì?",
+      "choices": [
+        "{a, b, ε}",
+        "{a, c}"
+      ],
+      "answer": 0,
+      "explanation": "A → a cho a và A → ε cho ε. Qua A → C D A với C → A cùng các sản xuất liên quan đến B, b cũng được thêm vào, nên bao đóng là FIRST(A) = {a, b, ε}.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    },
+    {
+      "id": "c-pdf-20221-022",
+      "topic": "grammar",
+      "source": "pdf-compiler-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong một compiler, nơi chứa thông tin về các biến và các thuộc tính của chúng là gì?",
+      "choices": [
+        "Bảng phân tích cú pháp",
+        "Bảng ký hiệu",
+        "Cây phân tích cú pháp có chú giải"
+      ],
+      "answer": 1,
+      "explanation": "Bảng ký hiệu lưu mọi định danh cùng các thuộc tính của nó (loại, kiểu, phạm vi, địa chỉ/offset), nên đó là nơi chứa thông tin về biến. Bảng phân tích dẫn dắt việc phân tích, còn cây có chú giải ghi giá trị thuộc tính tại các nút.",
+      "tags": [
+        "PDF OCR",
+        "compiler 20221"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1927 @@
+{
+  "id": "ml-it3190",
+  "code": "IT3190",
+  "title": "Học máy và khai phá dữ liệu",
+  "language": "vi",
+  "sources": [
+    {
+      "id": "exam-20242",
+      "label": "Cuối kỳ 20242",
+      "type": "exam"
+    },
+    {
+      "id": "exam-20222",
+      "label": "Cuối kỳ 20222",
+      "type": "exam"
+    },
+    {
+      "id": "exam-20221",
+      "label": "Cuối kỳ 20221",
+      "type": "exam"
+    },
+    {
+      "id": "study",
+      "label": "Luyện tập / Tổng hợp",
+      "type": "lecture"
+    },
+    {
+      "id": "pdf-ml-20211",
+      "label": "Cuối kỳ 20211",
+      "type": "exam"
+    }
+  ],
+  "topics": [
+    {
+      "id": "foundations",
+      "label": "1. Nền tảng & Overfitting"
+    },
+    {
+      "id": "preprocessing",
+      "label": "2. Tiền xử lý & KDD"
+    },
+    {
+      "id": "regression",
+      "label": "3. Hồi quy tuyến tính"
+    },
+    {
+      "id": "clustering",
+      "label": "4. Phân cụm (K-means)"
+    },
+    {
+      "id": "knn",
+      "label": "5. k-NN"
+    },
+    {
+      "id": "trees",
+      "label": "6. Cây quyết định & RF"
+    },
+    {
+      "id": "nn",
+      "label": "7. Mạng nơ-ron"
+    },
+    {
+      "id": "svm",
+      "label": "8. SVM"
+    },
+    {
+      "id": "evaluation",
+      "label": "9. Đánh giá mô hình"
+    },
+    {
+      "id": "assoc",
+      "label": "10. Luật kết hợp (Apriori)"
+    }
+  ],
+  "questions": [
+    {
+      "id": "f-001",
+      "topic": "foundations",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Chọn phát biểu ĐÚNG về quá khớp (overfitting).",
+      "choices": [
+        "Một hàm bị quá khớp nếu nó kém chính xác trên dữ liệu huấn luyện và cũng dự đoán dữ liệu tương lai kém hơn",
+        "Một hàm bị quá khớp nếu nó chính xác hơn trên dữ liệu huấn luyện nhưng dự đoán dữ liệu tương lai kém hơn",
+        "Một hàm bị quá khớp nếu nó kém chính xác trên dữ liệu huấn luyện nhưng dự đoán dữ liệu tương lai tốt hơn",
+        "Tất cả các lựa chọn khác đều sai"
+      ],
+      "answer": 1,
+      "explanation": "Quá khớp là khi mô hình khớp dữ liệu huấn luyện rất tốt (độ chính xác cao trên tập huấn luyện) nhưng tổng quát hóa kém, nên dự đoán dữ liệu tương lai/chưa thấy KÉM hơn. Chỉ phát biểu (B) phản ánh đúng khoảng cách giữa hiệu năng huấn luyện và tổng quát hóa.",
+      "tags": [
+        "overfitting"
+      ]
+    },
+    {
+      "id": "f-002",
+      "topic": "foundations",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Chọn phát biểu ĐÚNG về kém khớp (underfitting).",
+      "choices": [
+        "Kém chính xác trên dữ liệu huấn luyện nhưng chính xác hơn trên dữ liệu tương lai",
+        "Chính xác hơn trên dữ liệu huấn luyện nhưng kém chính xác trên dữ liệu tương lai",
+        "Kém chính xác trên dữ liệu huấn luyện VÀ kém chính xác trên dữ liệu tương lai",
+        "Tất cả các lựa chọn khác đều sai"
+      ],
+      "answer": 2,
+      "explanation": "Kém khớp xảy ra khi mô hình quá đơn giản để nắm bắt quy luật, nên xấp xỉ kém ở CẢ tập huấn luyện lẫn dữ liệu tương lai. Phát biểu (B) mô tả quá khớp chứ không phải kém khớp.",
+      "tags": [
+        "underfitting"
+      ]
+    },
+    {
+      "id": "f-003",
+      "topic": "foundations",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Học máy cung cấp các phương pháp để phân tích dữ liệu và đưa ra dự đoán cho các quan sát trong tương lai.",
+      "choices": [
+        "Đúng",
+        "Sai, nó chỉ cung cấp các phương pháp để tăng tốc tính toán của máy tính",
+        "Đúng, và nó cũng tăng tốc tính toán của máy tính",
+        "Sai"
+      ],
+      "answer": 0,
+      "explanation": "Học máy là việc học các quy luật từ dữ liệu để dự đoán cho quan sát mới; tăng tốc tính toán không phải mục đích của nó. Vì vậy phát biểu chỉ đơn giản là Đúng.",
+      "tags": [
+        "definition"
+      ]
+    },
+    {
+      "id": "f-004",
+      "topic": "foundations",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Một máy học có thể …",
+      "choices": [
+        "học mà không cần dữ liệu",
+        "dự đoán mà không cần học từ dữ liệu",
+        "học từ một tập dữ liệu cho trước rồi đưa ra dự đoán cho dữ liệu tương lai",
+        "chỉ ghi nhớ dữ liệu huấn luyện"
+      ],
+      "answer": 2,
+      "explanation": "Máy học học một hàm f từ tập huấn luyện rồi dùng nó để dự đoán cho đầu vào mới (ŷ = f(x)). Nó cần dữ liệu để học và phải tổng quát hóa chứ không chỉ ghi nhớ.",
+      "tags": [
+        "definition",
+        "(T,P,E)"
+      ]
+    },
+    {
+      "id": "f-005",
+      "topic": "foundations",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Xét một mô hình hồi quy tuyến tính. Sau khi tối thiểu hóa lỗi thực nghiệm, ta thu được f*. Phát biểu nào SAI?",
+      "choices": [
+        "f* có khả năng tổng quát hóa CAO NHẤT trong số mọi hàm tuyến tính",
+        "f* có thể bị quá khớp",
+        "f* có thể bị kém khớp",
+        "f* có thể tổng quát hóa tốt hoặc kém"
+      ],
+      "answer": 0,
+      "explanation": "Tối thiểu hóa lỗi thực nghiệm (lỗi huấn luyện) KHÔNG đảm bảo tổng quát hóa tốt nhất, nên (A) là phát biểu sai. Các phát biểu còn lại đều đúng: f* có thể quá khớp, kém khớp, hoặc tổng quát tốt/kém.",
+      "tags": [
+        "empirical loss",
+        "generalization"
+      ]
+    },
+    {
+      "id": "f-006",
+      "topic": "foundations",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Quá khớp có thể gây ra bởi …",
+      "choices": [
+        "Chỉ do nhiễu trong dữ liệu",
+        "Chỉ do mô hình quá phức tạp",
+        "Nhiễu, mô hình quá phức tạp, chọn mô hình không phù hợp, hoặc lỗi khi huấn luyện",
+        "Việc sử dụng tập kiểm định (validation)"
+      ],
+      "answer": 2,
+      "explanation": "Quá khớp do nhiều yếu tố cùng tác động: nhiễu dữ liệu, mô hình quá phức tạp, chọn mô hình không phù hợp, lỗi khi huấn luyện. Không do riêng một yếu tố nào, và tập kiểm định thực ra giúp phát hiện/ngăn ngừa quá khớp.",
+      "tags": [
+        "overfitting",
+        "causes"
+      ]
+    },
+    {
+      "id": "f-007",
+      "topic": "foundations",
+      "source": "study",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Định lý No-Free-Lunch phát biểu rằng …",
+      "choices": [
+        "Tồn tại một thuật toán tốt nhất trên mọi lớp bài toán",
+        "Không có thuật toán nào tốt nhất trên mọi lớp bài toán",
+        "Học sâu luôn vượt trội so với các phương pháp cổ điển",
+        "Càng nhiều dữ liệu thì luôn tổng quát hóa tốt hơn"
+      ],
+      "answer": 1,
+      "explanation": "Định lý No-Free-Lunch nói rằng tính trung bình trên mọi bài toán, không thuật toán nào trội hơn: tốt trên lớp bài toán này tất yếu kém trên phần còn lại. Do đó không có thuật toán tốt nhất ở mọi nơi.",
+      "tags": [
+        "no-free-lunch"
+      ]
+    },
+    {
+      "id": "p-001",
+      "topic": "preprocessing",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Chuẩn hóa (normalization) là quá trình …",
+      "choices": [
+        "biến đổi dữ liệu từ không gian vectơ này sang không gian vectơ khác",
+        "biến đổi dữ liệu để rơi vào một khoảng giá trị chung",
+        "thay thế các giá trị khuyết",
+        "loại bỏ các giá trị ngoại lai"
+      ],
+      "answer": 1,
+      "explanation": "Chuẩn hóa đưa giá trị thuộc tính về một khoảng chung (vd [0,1] hoặc chuẩn hóa z-score) để các đặc trưng so sánh được. Đây không phải đổi không gian vectơ, điền khuyết, hay xóa ngoại lai.",
+      "tags": [
+        "normalization"
+      ]
+    },
+    {
+      "id": "p-002",
+      "topic": "preprocessing",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Rời rạc hóa dữ liệu là để …",
+      "choices": [
+        "chuyển thuộc tính liên tục thành thuộc tính rời rạc",
+        "chuyển thuộc tính rời rạc thành thuộc tính liên tục",
+        "tìm các giá trị ngoại lai",
+        "phóng to dữ liệu"
+      ],
+      "answer": 0,
+      "explanation": "Rời rạc hóa ánh xạ thuộc tính liên tục vào các khoảng/bin rời rạc, đi theo chiều LIÊN TỤC → RỜI RẠC. Các lựa chọn khác mô tả thao tác ngược lại hoặc không liên quan.",
+      "tags": [
+        "discretization"
+      ]
+    },
+    {
+      "id": "p-003",
+      "topic": "preprocessing",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Cách nào là hợp lệ để xử lý giá trị khuyết?",
+      "choices": [
+        "Chuẩn hóa",
+        "Mã hóa one-hot",
+        "Điền thủ công các ô khuyết, hoặc dùng trung bình/trung vị của các điểm cùng lớp",
+        "Loại bỏ ngoại lai"
+      ],
+      "answer": 2,
+      "explanation": "Xử lý khuyết: điền thủ công, dùng hằng số, trung bình/trung vị (toàn cục hoặc theo cùng lớp), hoặc giá trị khả dĩ nhất. Chuẩn hóa, mã hóa one-hot và loại bỏ ngoại lai phục vụ mục đích khác.",
+      "tags": [
+        "missing value"
+      ]
+    },
+    {
+      "id": "p-004",
+      "topic": "preprocessing",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Cách nào sau đây là giải pháp làm sạch dữ liệu nhiễu?",
+      "choices": [
+        "Chuẩn hóa",
+        "Phát hiện ngoại lai (và phân khoảng - binning)",
+        "Tổng hợp (aggregation)",
+        "Giảm chiều"
+      ],
+      "answer": 1,
+      "explanation": "Làm sạch dữ liệu nhiễu dùng các kỹ thuật như phát hiện ngoại lai và phân khoảng (làm trơn). Chuẩn hóa, tổng hợp và giảm chiều phục vụ co giãn, tóm tắt và giảm số đặc trưng chứ không phải làm sạch nhiễu.",
+      "tags": [
+        "cleaning",
+        "noise"
+      ]
+    },
+    {
+      "id": "p-005",
+      "topic": "preprocessing",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào SAI?",
+      "choices": [
+        "Tiền xử lý thường gây mất mát một phần thông tin trên tập dữ liệu",
+        "Tiền xử lý giữ lại TOÀN BỘ thông tin từ tập dữ liệu gốc",
+        "Tiền xử lý thường cần thiết trước khi phân tích sâu hơn",
+        "Tiền xử lý biến đổi dữ liệu thô thành dạng phù hợp"
+      ],
+      "answer": 1,
+      "explanation": "Tiền xử lý (làm sạch, rời rạc hóa, giảm chiều) thường làm mất một phần thông tin, nên phát biểu 'giữ toàn bộ thông tin gốc' là sai. Các phát biểu còn lại mô tả đúng tiền xử lý.",
+      "tags": [
+        "preprocessing"
+      ]
+    },
+    {
+      "id": "p-006",
+      "topic": "preprocessing",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Khám phá tri thức (knowledge discovery) là …",
+      "choices": [
+        "quá trình gom nhóm các đối tượng giống nhau",
+        "quá trình tạo ra tri thức từ một tập dữ liệu",
+        "quá trình chuyển dữ liệu từ định dạng này sang định dạng khác",
+        "quá trình tìm các điểm dữ liệu bị khuyết giá trị đầu vào"
+      ],
+      "answer": 1,
+      "explanation": "Khám phá tri thức (KDD) là quá trình tổng thể tạo ra/trích xuất tri thức hữu ích từ dữ liệu. Gom nhóm là phân cụm (một bước), còn chuyển định dạng hay tìm giá trị khuyết không phải định nghĩa.",
+      "tags": [
+        "KDD"
+      ]
+    },
+    {
+      "id": "p-007",
+      "topic": "preprocessing",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "\"Mode\" (yếu vị) nghĩa là gì trong thống kê mô tả?",
+      "choices": [
+        "Độ biến thiên",
+        "Giá trị xuất hiện nhiều nhất",
+        "Giá trị nằm giữa",
+        "Giá trị trung bình"
+      ],
+      "answer": 1,
+      "explanation": "Mode (yếu vị) là giá trị xuất hiện nhiều nhất. Giá trị nằm giữa là trung vị (median), giá trị trung bình là mean.",
+      "tags": [
+        "statistics",
+        "mode"
+      ]
+    },
+    {
+      "id": "r-001",
+      "topic": "regression",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Mô hình f(x) = w0 + w1·x1 + … + wn·xn thuộc lớp nào?",
+      "choices": [
+        "Mô hình phi tham số",
+        "Mô hình tuyến tính",
+        "Mô hình phi tuyến",
+        "Mô hình xác suất"
+      ],
+      "answer": 1,
+      "explanation": "Hàm tuyến tính theo trọng số w (tổng có trọng số cộng với hệ số chệch), nên là mô hình tuyến tính. Nó có tham số và xác định.",
+      "tags": [
+        "linear model"
+      ]
+    },
+    {
+      "id": "r-002",
+      "topic": "regression",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Bình phương tối thiểu thông thường (OLS) tìm w* = arg min theo w của …",
+      "choices": [
+        "Σ (yi − w0 − w1·xi1 − … − wn·xin)²",
+        "Σ (yi − w0 − w1·xi1 − … − wn·xin)² + λ‖w‖²",
+        "Σ |yi − w0 − w1·xi1 − … − wn·xin|",
+        "Σ (yi − w0 − w1·xi1 − … − wn·xin)² + λ‖w‖1"
+      ],
+      "answer": 0,
+      "explanation": "OLS chỉ tối thiểu hóa tổng bình phương phần dư (RSS), không có thành phần phạt. Thêm λ‖w‖² là Ridge, thêm λ‖w‖₁ là LASSO, còn tổng trị tuyệt đối là hồi quy độ lệch tuyệt đối nhỏ nhất.",
+      "tags": [
+        "OLS",
+        "RSS"
+      ]
+    },
+    {
+      "id": "r-003",
+      "topic": "regression",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "OLS chỉ áp dụng được khi hàm hồi quy có hệ số góc/hệ số chệch dương.",
+      "choices": [
+        "Đúng",
+        "Sai"
+      ],
+      "answer": 1,
+      "explanation": "Sai. OLS không ràng buộc dấu của trọng số; hệ số góc và hệ số chệch có thể dương, âm hoặc bằng 0.",
+      "tags": [
+        "OLS"
+      ]
+    },
+    {
+      "id": "r-004",
+      "topic": "regression",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong hồi quy tuyến tính, F là không gian hàm và W là không gian tham số. Ta nói gì về F và W?",
+      "choices": [
+        "Chúng rời nhau",
+        "Chúng là một (tương ứng 1-1)",
+        "Chúng giao nhau nhưng không bằng nhau",
+        "Không thể kết luận"
+      ],
+      "answer": 1,
+      "explanation": "Mỗi vectơ trọng số w xác định đúng một hàm tuyến tính f và ngược lại, nên F và W tương ứng 1-1 — về bản chất là cùng một không gian.",
+      "tags": [
+        "function space"
+      ]
+    },
+    {
+      "id": "r-005",
+      "topic": "regression",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Vai trò của hàm lỗi/hàm mất mát trong học máy là gì?",
+      "choices": [
+        "Không có vai trò gì trong quá trình học máy",
+        "Đo lường lỗi theo một nghĩa nào đó và thường đóng vai trò hàm mục tiêu để huấn luyện mô hình",
+        "Chỉ để đo lỗi khi đưa ra dự đoán tương lai",
+        "Để chuẩn hóa dữ liệu"
+      ],
+      "answer": 1,
+      "explanation": "Hàm lỗi đo mức độ sai lệch của mô hình và thường được dùng làm hàm mục tiêu mà quá trình huấn luyện tối thiểu hóa. Nó là cốt lõi của việc học, không chỉ giới hạn ở dự đoán tương lai và không liên quan đến chuẩn hóa.",
+      "tags": [
+        "loss function"
+      ]
+    },
+    {
+      "id": "r-006",
+      "topic": "regression",
+      "source": "study",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Phương pháp nào có xu hướng cho nghiệm THƯA (nhiều trọng số bằng đúng 0)?",
+      "choices": [
+        "OLS",
+        "Ridge (L2)",
+        "LASSO (L1)",
+        "Hạ gradient"
+      ],
+      "answer": 2,
+      "explanation": "LASSO dùng phạt L1, hình học của nó đẩy nhiều trọng số về đúng 0, vừa co nghiệm vừa chọn biến. Ridge (L2) chỉ co trọng số về gần 0 chứ không bằng 0.",
+      "tags": [
+        "LASSO",
+        "Ridge",
+        "regularization"
+      ]
+    },
+    {
+      "id": "c-001",
+      "topic": "clustering",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 3,
+      "prompt": "Tập dữ liệu: A=(0,2), B=(0,1), C=(1,0). K-means (Euclid), k=2, tâm khởi tạo tại A và B. Khi hội tụ, hai tâm cụm là …",
+      "choices": [
+        "A và C",
+        "A và B",
+        "A và trung điểm BC",
+        "C và trung điểm AB"
+      ],
+      "answer": 2,
+      "explanation": "C gần B hơn (d=√2) so với A (d=√5), nên C vào cụm của B. Cụm {B,C} có tâm (0.5,0.5) = trung điểm BC, còn cụm {A} giữ tâm A. Trạng thái này ổn định, nên hai tâm là A và trung điểm BC.",
+      "tags": [
+        "k-means",
+        "convergence"
+      ]
+    },
+    {
+      "id": "c-002",
+      "topic": "clustering",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Sau vòng lặp 1: C1={(0,6),(6,0)}, C2={(2,2),(4,4),(6,6)}, C3={(5,5),(7,7)}. Các tâm cụm mới là gì?",
+      "choices": [
+        "C1:(3,3), C2:(4,4), C3:(6,6)",
+        "C1:(6,6), C2:(12,12), C3:(12,12)",
+        "C1:(0,0), C2:(48,48), C3:(35,35)",
+        "C1:(3,3), C2:(6,6), C3:(12,12)"
+      ],
+      "answer": 0,
+      "explanation": "Mỗi tâm mới là trung bình tọa độ các thành viên: C1=((0+6)/2,(6+0)/2)=(3,3); C2=((2+4+6)/3,(2+4+6)/3)=(4,4); C3=((5+7)/2,(5+7)/2)=(6,6).",
+      "tags": [
+        "k-means",
+        "centroid"
+      ]
+    },
+    {
+      "id": "c-003",
+      "topic": "clustering",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào về K-means là SAI?",
+      "choices": [
+        "Khi số cụm tăng, lỗi huấn luyện có thể giảm",
+        "K-means không thể quá khớp vì không dùng hàm lỗi trong huấn luyện",
+        "Hiệu năng K-means có thể phụ thuộc vào độ đo khoảng cách",
+        "K-means có thể cho kết quả khác nhau giữa các lần chạy với tâm khởi tạo khác nhau"
+      ],
+      "answer": 1,
+      "explanation": "K-means CÓ tối ưu một hàm lỗi — tổng bình phương sai số trong cụm (SSE) — và có thể quá khớp (vd với quá nhiều cụm). Nên phát biểu rằng nó không dùng hàm lỗi và không thể quá khớp là sai.",
+      "tags": [
+        "k-means"
+      ]
+    },
+    {
+      "id": "c-004",
+      "topic": "clustering",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "K-means là …",
+      "choices": [
+        "thuật toán có giám sát làm việc trên dữ liệu có nhãn",
+        "thuật toán không giám sát làm việc trên dữ liệu có nhãn",
+        "thuật toán không giám sát làm việc trên dữ liệu không nhãn",
+        "thuật toán có giám sát làm việc trên dữ liệu không nhãn"
+      ],
+      "answer": 2,
+      "explanation": "K-means là thuật toán phân cụm không giám sát, làm việc trên dữ liệu không nhãn, gom các điểm theo độ tương đồng mà không cần nhãn lớp.",
+      "tags": [
+        "k-means",
+        "unsupervised"
+      ]
+    },
+    {
+      "id": "c-005",
+      "topic": "clustering",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "K-means có tự động điều chỉnh số cụm không?",
+      "choices": [
+        "Có",
+        "Không"
+      ],
+      "answer": 1,
+      "explanation": "Không. Số cụm k phải cho trước; ta chọn k bên ngoài bằng các phương pháp như Elbow (WSS) hoặc Silhouette.",
+      "tags": [
+        "k-means",
+        "k"
+      ]
+    },
+    {
+      "id": "c-006",
+      "topic": "clustering",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Một cụm (cluster) là …",
+      "choices": [
+        "Một nhóm các đối tượng giống nhau và khác biệt đáng kể so với các đối tượng ở nhóm khác",
+        "Một biểu diễn ký hiệu của các sự kiện mà từ đó có thể trích xuất thông tin",
+        "Một nhóm các đối tượng giống nhau HOẶC khác nhau",
+        "Một thao tác làm đơn giản hóa cơ sở dữ liệu trước khi khai phá"
+      ],
+      "answer": 0,
+      "explanation": "Một cụm là nhóm mà các thành viên giống nhau (khoảng cách trong cụm nhỏ) và khác biệt với thành viên các nhóm khác (khoảng cách giữa các cụm lớn).",
+      "tags": [
+        "cluster"
+      ]
+    },
+    {
+      "id": "c-007",
+      "topic": "clustering",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Tác vụ nào phù hợp để dùng phân cụm?",
+      "choices": [
+        "Cho dữ liệu doanh số của nhiều sản phẩm, dự đoán doanh số tương lai cho từng sản phẩm",
+        "Cho một cơ sở dữ liệu người dùng, tự động gom họ thành các phân khúc thị trường",
+        "Cho lịch sử thời tiết, dự đoán ngày mai nắng hay mưa",
+        "Phân loại một email là thư rác hay bình thường"
+      ],
+      "answer": 1,
+      "explanation": "Phân cụm gom dữ liệu không nhãn theo độ tương đồng, phù hợp với phân khúc thị trường. Các tác vụ khác là dự đoán/phân loại cần nhãn (có giám sát).",
+      "tags": [
+        "clustering",
+        "application"
+      ]
+    },
+    {
+      "id": "c-008",
+      "topic": "clustering",
+      "source": "study",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Khi chọn k, điều nào đúng về phương pháp Elbow (WSS)?",
+      "choices": [
+        "WSS tăng khi k tăng",
+        "WSS luôn giảm khi k tăng; chọn điểm khuỷu tay (elbow)",
+        "WSS độc lập với k",
+        "Nó cần dữ liệu có nhãn"
+      ],
+      "answer": 1,
+      "explanation": "Tổng bình phương trong cụm (WSS) giảm đơn điệu khi k tăng (nhiều cụm thì khớp chặt hơn), nên ta tìm điểm 'khuỷu tay' nơi mức giảm chậm lại đột ngột. Phương pháp này không cần nhãn.",
+      "tags": [
+        "elbow",
+        "WSS"
+      ]
+    },
+    {
+      "id": "k-001",
+      "topic": "knn",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Điều nào đúng về thuật toán láng giềng gần nhất (k-NN)?",
+      "choices": [
+        "Chỉ dùng được cho phân loại",
+        "Chỉ dùng được cho hồi quy",
+        "Dùng được cho cả phân loại và hồi quy",
+        "Không dùng được cho cả hai"
+      ],
+      "answer": 2,
+      "explanation": "k-NN dùng được cho cả hai: với phân loại nó lấy biểu quyết đa số của các láng giềng, với hồi quy nó lấy trung bình giá trị mục tiêu của các láng giềng.",
+      "tags": [
+        "k-NN"
+      ]
+    },
+    {
+      "id": "k-002",
+      "topic": "knn",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào đúng về k-NN?\nA. Với k rất lớn, nó có thể đưa các điểm của lớp khác vào vùng láng giềng.\nB. Với k quá nhỏ, nó rất nhạy cảm với nhiễu.",
+      "choices": [
+        "Chỉ A",
+        "Chỉ B",
+        "Cả A và B",
+        "Không A cũng không B"
+      ],
+      "answer": 2,
+      "explanation": "Cả hai đều đúng. k lớn kéo các điểm của lớp khác vào (có xu hướng kém khớp), còn k quá nhỏ khiến dự đoán rất nhạy với điểm nhiễu (có xu hướng quá khớp).",
+      "tags": [
+        "k-NN",
+        "k"
+      ]
+    },
+    {
+      "id": "k-003",
+      "topic": "knn",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Điều nào đúng về độ phức tạp tính toán của k-NN?",
+      "choices": [
+        "Nó không phụ thuộc vào số mẫu huấn luyện",
+        "Nó phụ thuộc vào số mẫu huấn luyện",
+        "Nó chỉ phụ thuộc vào số đặc trưng",
+        "k-NN xây dựng mô hình nên dự đoán là O(1)"
+      ],
+      "answer": 1,
+      "explanation": "k-NN là thuật toán học lười: nó không xây mô hình, nên khi dự đoán phải tính khoảng cách tới (có thể là) toàn bộ mẫu huấn luyện đã lưu. Do đó chi phí tăng theo số mẫu huấn luyện.",
+      "tags": [
+        "k-NN",
+        "lazy"
+      ]
+    },
+    {
+      "id": "k-004",
+      "topic": "knn",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Khoảng cách nào dùng được cho thuộc tính ĐỊNH DANH (phân loại) trong k-NN?",
+      "choices": [
+        "Chỉ Euclid",
+        "Chỉ Manhattan",
+        "Khoảng cách Hamming",
+        "Euclid và Manhattan"
+      ],
+      "answer": 2,
+      "explanation": "Với thuộc tính định danh không có hiệu số số học có nghĩa, nên dùng khoảng cách Hamming (đếm số vị trí KHÁC nhau). Euclid và Manhattan dành cho thuộc tính số/liên tục.",
+      "tags": [
+        "distance",
+        "nominal"
+      ]
+    },
+    {
+      "id": "k-005",
+      "topic": "knn",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Với tập huấn luyện rất lớn, thuật toán nào có thời gian huấn luyện NHỎ NHẤT?",
+      "choices": [
+        "Rừng ngẫu nhiên",
+        "Mạng nơ-ron",
+        "SVM tuyến tính",
+        "k-NN"
+      ],
+      "answer": 3,
+      "explanation": "k-NN gần như không huấn luyện — nó chỉ lưu dữ liệu — nên thời gian huấn luyện nhỏ nhất. Chi phí được dồn sang lúc dự đoán. Các phương pháp còn lại đều cần một pha tối ưu/khớp tường minh.",
+      "tags": [
+        "k-NN",
+        "training time"
+      ]
+    },
+    {
+      "id": "k-006",
+      "topic": "knn",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Điều gì xảy ra khi ta dùng số láng giềng RẤT LỚN (k lớn)?",
+      "choices": [
+        "Dự đoán có xu hướng chính xác hơn",
+        "k-NN có xu hướng KÉM khớp (dự đoán trở nên tầm thường / theo lớp đa số)",
+        "k-NN có xu hướng quá khớp",
+        "Không có gì thay đổi"
+      ],
+      "answer": 1,
+      "explanation": "k rất lớn lấy trung bình trên nhiều điểm thuộc lớp khác, làm phẳng quyết định về dự đoán tầm thường theo lớp đa số, tức kém khớp. (k rất nhỏ thì gây quá khớp.)",
+      "tags": [
+        "k-NN",
+        "underfitting"
+      ]
+    },
+    {
+      "id": "t-001",
+      "topic": "trees",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Thuật toán học cây quyết định ID3 dùng được cho …",
+      "choices": [
+        "hồi quy",
+        "cả phân loại và hồi quy",
+        "không cho cả hai",
+        "phân loại"
+      ],
+      "answer": 3,
+      "explanation": "ID3 được thiết kế cho phân loại: nó làm việc với thuộc tính rời rạc và nhãn lớp, chia nhánh theo information gain. Cây hồi quy dùng thuật toán khác (vd CART).",
+      "tags": [
+        "ID3"
+      ]
+    },
+    {
+      "id": "t-002",
+      "topic": "trees",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Một thuộc tính có độ phân biệt cao (khi xây cây quyết định) nhằm …",
+      "choices": [
+        "tăng độ hỗn tạp của tập huấn luyện khi chia thành các nhánh",
+        "giảm độ phân biệt của tập",
+        "giảm độ hỗn tạp của tập huấn luyện khi chia thành các nhánh",
+        "tăng số lá"
+      ],
+      "answer": 2,
+      "explanation": "Một phép chia tốt tạo ra các tập con thuần hơn, tức GIẢM độ hỗn tạp (entropy/Gini) của các nhánh, tương ứng với information gain lớn.",
+      "tags": [
+        "information gain",
+        "impurity"
+      ]
+    },
+    {
+      "id": "t-003",
+      "topic": "trees",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Với một cây quyết định đã học, nhãn lớp của mẫu mới được xác định bằng cách đi theo …",
+      "choices": [
+        "đường nông nhất",
+        "MỘT đường duy nhất trong cây",
+        "đường sâu nhất",
+        "tất cả các đường trong cây"
+      ],
+      "answer": 1,
+      "explanation": "Phân loại đi theo đúng một đường từ gốc xuống lá, tại mỗi nút chọn nhánh theo giá trị thuộc tính của mẫu, rồi trả về nhãn ở lá đến được.",
+      "tags": [
+        "decision tree",
+        "prediction"
+      ]
+    },
+    {
+      "id": "t-004",
+      "topic": "trees",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Cây quyết định là thuật toán học …",
+      "choices": [
+        "có giám sát",
+        "vừa có giám sát vừa không giám sát",
+        "không phải cả hai",
+        "không giám sát"
+      ],
+      "answer": 0,
+      "explanation": "Cây quyết định là phương pháp học có giám sát: nó cần các mẫu có nhãn (nhãn lớp hoặc giá trị mục tiêu) để học các phép chia.",
+      "tags": [
+        "decision tree",
+        "supervised"
+      ]
+    },
+    {
+      "id": "t-005",
+      "topic": "trees",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Quá khớp trong cây quyết định có thể được xử lý bằng …",
+      "choices": [
+        "Nuôi cây đầy đủ (hoàn chỉnh)",
+        "Dừng phát triển sớm, hoặc chuyển thành luật rồi cắt tỉa",
+        "Luôn thêm nhiều thuộc tính",
+        "Tăng độ sâu của cây"
+      ],
+      "answer": 1,
+      "explanation": "Giảm quá khớp bằng cách hạn chế độ phức tạp cây: dừng sớm (tiền cắt tỉa) hoặc nuôi rồi cắt tỉa sau (hậu cắt tỉa, thường qua trích luật). Nuôi cây đầy đủ hay tăng độ sâu làm quá khớp nặng hơn.",
+      "tags": [
+        "overfitting",
+        "pruning"
+      ]
+    },
+    {
+      "id": "t-006",
+      "topic": "trees",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Điều nào đúng về cây quyết định?",
+      "choices": [
+        "Chúng chỉ dùng được cho hồi quy",
+        "Cắt tỉa thường đạt độ chính xác trên tập KIỂM THỬ tốt hơn so với dừng sớm",
+        "Mọi mẫu trong mỗi lá phải cùng một lớp",
+        "ID3 không bao giờ quá khớp"
+      ],
+      "answer": 1,
+      "explanation": "Hậu cắt tỉa một cây đã nuôi đầy đủ thường cho độ chính xác kiểm thử (tổng quát hóa) tốt hơn tiền cắt tỉa (dừng sớm), vì dừng sớm có thể ngắt trước các phép chia hữu ích. Cây cũng dùng cho phân loại, lá không nhất thiết thuần, và ID3 có thể quá khớp.",
+      "tags": [
+        "pruning"
+      ]
+    },
+    {
+      "id": "t-007",
+      "topic": "trees",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào về Rừng ngẫu nhiên (Random Forest) là SAI?",
+      "choices": [
+        "RF kết hợp nhiều cây quá khớp khác nhau để xử lý quá khớp",
+        "RF cần PHẢI cắt tỉa các cây để đạt độ chính xác cao hơn",
+        "Từng cây có thể yếu, nhưng kết hợp đơn giản của chúng có thể mạnh hơn nhiều",
+        "RF dùng bagging (lấy mẫu có hoàn lại)"
+      ],
+      "answer": 1,
+      "explanation": "Rừng ngẫu nhiên chủ trương nuôi cây tối đa, KHÔNG cắt tỉa; nó kiểm soát quá khớp bằng cách trung bình nhiều cây ít tương quan (bagging cộng với chọn ngẫu nhiên tập đặc trưng), không phải bằng cắt tỉa. Nên phát biểu rằng phải cắt tỉa là sai.",
+      "tags": [
+        "random forest"
+      ]
+    },
+    {
+      "id": "t-008",
+      "topic": "trees",
+      "source": "study",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Tập S có 9 \"Yes\" và 5 \"No\". Entropy của nó xấp xỉ …",
+      "choices": [
+        "0.0",
+        "0.50",
+        "0.94",
+        "1.0"
+      ],
+      "answer": 2,
+      "explanation": "Entropy = −(9/14)log₂(9/14) − (5/14)log₂(5/14) ≈ 0.409 + 0.530 ≈ 0.94 bit.",
+      "tags": [
+        "entropy"
+      ]
+    },
+    {
+      "id": "n-001",
+      "topic": "nn",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Hàm kích hoạt là gì?",
+      "choices": [
+        "Nó tính đầu ra của toàn bộ mạng nơ-ron",
+        "Nó tính tổng có trọng số các tín hiệu đầu vào của một nơ-ron",
+        "Nó tính đầu ra của một nơ-ron từ ĐẦU VÀO TỔNG (net input)",
+        "Nó tính đầu ra của một nơ-ron từ các tín hiệu đầu vào"
+      ],
+      "answer": 2,
+      "explanation": "Hàm kích hoạt ánh xạ đầu vào tổng của nơ-ron (Net = Σ wᵢxᵢ + b) thành đầu ra của nó. Việc tính tổng có trọng số chính là bước tạo đầu vào tổng, không phải hàm kích hoạt.",
+      "tags": [
+        "activation function"
+      ]
+    },
+    {
+      "id": "n-002",
+      "topic": "nn",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Mạng nơ-ron là một hàm phi tuyến. Hàm đó phi tuyến theo cái gì?",
+      "choices": [
+        "Cả tín hiệu đầu vào x lẫn trọng số",
+        "Trọng số",
+        "Chỉ tín hiệu đầu vào x",
+        "Không cái nào"
+      ],
+      "answer": 1,
+      "explanation": "Vì các hàm kích hoạt phi tuyến được áp lên tổ hợp có trọng số chứa trọng số, mạng nơ-ron là hàm phi tuyến theo trọng số của nó — điều khiến việc huấn luyện trở thành bài toán tối ưu không lồi.",
+      "tags": [
+        "non-linear",
+        "weights"
+      ]
+    },
+    {
+      "id": "n-003",
+      "topic": "nn",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Khi huấn luyện một mạng nơ-ron, ta đang cố tìm …",
+      "choices": [
+        "bộ trọng số tốt nhất trong không gian trọng số",
+        "một ước lượng của lỗi kiểm thử",
+        "một cấu hình kiến trúc mạng",
+        "chỉ các siêu tham số tốt nhất"
+      ],
+      "answer": 0,
+      "explanation": "Khi cố định kiến trúc, huấn luyện tìm trong không gian trọng số bộ trọng số tối thiểu hóa hàm lỗi. Chọn kiến trúc/siêu tham số là lựa chọn mô hình chứ không phải huấn luyện, còn ước lượng lỗi kiểm thử là đánh giá.",
+      "tags": [
+        "training",
+        "weights"
+      ]
+    },
+    {
+      "id": "n-004",
+      "topic": "nn",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Điều nào ĐÚNG về mạng nơ-ron?",
+      "choices": [
+        "Chúng chỉ tối ưu được mục tiêu tuyến tính",
+        "Chúng chỉ huấn luyện được bằng hạ gradient ngẫu nhiên",
+        "Chúng có thể dùng kết hợp nhiều hàm kích hoạt khác nhau",
+        "Chúng luôn yêu cầu số tham số < số điểm dữ liệu"
+      ],
+      "answer": 2,
+      "explanation": "Mạng nơ-ron có thể kết hợp nhiều loại hàm kích hoạt khác nhau qua các lớp/nơ-ron. Chúng tối ưu mục tiêu không lồi, huấn luyện được bằng nhiều thuật toán tối ưu, và hoạt động được ngay cả khi số tham số vượt số điểm dữ liệu.",
+      "tags": [
+        "neural network"
+      ]
+    },
+    {
+      "id": "n-005",
+      "topic": "nn",
+      "source": "study",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Một Perceptron đơn có thể phân loại đúng loại dữ liệu nào?",
+      "choices": [
+        "Mọi dữ liệu, kể cả XOR",
+        "Chỉ dữ liệu khả tách tuyến tính",
+        "Chỉ dữ liệu không khả tách tuyến tính",
+        "Chỉ dữ liệu ảnh"
+      ],
+      "answer": 1,
+      "explanation": "Một perceptron đơn học một biên quyết định tuyến tính, nên chỉ phân loại đúng dữ liệu khả tách tuyến tính. XOR không khả tách tuyến tính, vì vậy perceptron đơn thất bại với nó.",
+      "tags": [
+        "perceptron"
+      ]
+    },
+    {
+      "id": "s-001",
+      "topic": "svm",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Trong SVM lề cứng cho dữ liệu khả tách tuyến tính, các vectơ hỗ trợ nằm …",
+      "choices": [
+        "chỉ trên siêu phẳng lề dương",
+        "chỉ trên siêu phẳng lề âm",
+        "trong vùng giữa lề âm và lề dương",
+        "trên siêu phẳng lề âm HOẶC lề dương"
+      ],
+      "answer": 3,
+      "explanation": "Các vectơ hỗ trợ (có α > 0) nằm chính xác trên một trong hai siêu phẳng lề (H+ hoặc H−). Trong trường hợp lề cứng, không điểm nào nằm hẳn bên trong lề.",
+      "tags": [
+        "support vector"
+      ]
+    },
+    {
+      "id": "s-002",
+      "topic": "svm",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Nhắc lại hàm mục tiêu SVM lề mềm ‖w‖² + C·Σξi. Giá trị C nào dễ gây QUÁ KHỚP nhất?",
+      "choices": [
+        "C = 0.001",
+        "C = 0.01",
+        "C = 1",
+        "C = 100"
+      ],
+      "answer": 3,
+      "explanation": "C lớn phạt nặng các vi phạm lề, ép lề nhỏ bám sát dữ liệu huấn luyện, dẫn tới quá khớp. C có vai trò ngược với hệ số chính quy hóa λ của Ridge. Nên C = 100 dễ quá khớp nhất.",
+      "tags": [
+        "soft-margin",
+        "C"
+      ]
+    },
+    {
+      "id": "s-003",
+      "topic": "svm",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong SVM lề mềm, những mẫu nào có biến bù ξi ≠ 0?",
+      "choices": [
+        "Mọi mẫu nằm TRÊN siêu phẳng lề",
+        "Mọi mẫu VI PHẠM lề (nằm trong lề hoặc bị phân loại sai)",
+        "Mọi mẫu nằm NGOÀI lề",
+        "Chỉ các mẫu xa biên"
+      ],
+      "answer": 1,
+      "explanation": "Biến bù ξi > 0 đúng với các điểm vi phạm lề — nằm trong dải lề hoặc ở sai phía (phân loại sai). Điểm nằm an toàn ngoài lề có ξi = 0.",
+      "tags": [
+        "slack variable"
+      ]
+    },
+    {
+      "id": "s-004",
+      "topic": "svm",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Khoảng cách Euclid giữa X(1,7) và Y(4,3) là …",
+      "choices": [
+        "3",
+        "5",
+        "7",
+        "9"
+      ],
+      "answer": 1,
+      "explanation": "√((4−1)² + (3−7)²) = √(9 + 16) = √25 = 5.",
+      "tags": [
+        "euclidean"
+      ]
+    },
+    {
+      "id": "s-005",
+      "topic": "svm",
+      "source": "study",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Mục đích của thủ thuật nhân (kernel trick) trong SVM là gì?",
+      "choices": [
+        "Để giảm số đặc trưng",
+        "Để phân loại phi tuyến chỉ dùng tích vô hướng, mà không cần tính ánh xạ một cách tường minh",
+        "Để loại bỏ ngoại lai",
+        "Để huấn luyện luôn có độ phức tạp tuyến tính"
+      ],
+      "answer": 1,
+      "explanation": "Thủ thuật nhân thay tích vô hướng ⟨φ(x), φ(z)⟩ trong không gian đặc trưng nhiều chiều bằng một hàm nhân K(x, z), cho phép phân loại phi tuyến mà không bao giờ phải tính ánh xạ φ một cách tường minh.",
+      "tags": [
+        "kernel"
+      ]
+    },
+    {
+      "id": "s-006",
+      "topic": "svm",
+      "source": "study",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Khác biệt then chốt giữa SVM và k-NN là gì?",
+      "choices": [
+        "SVM học một mô hình (siêu phẳng từ các vectơ hỗ trợ); k-NN là lười và lưu toàn bộ dữ liệu",
+        "k-NN học một siêu phẳng; SVM lưu toàn bộ dữ liệu",
+        "Cả hai đều lưu toàn bộ dữ liệu và không bao giờ học mô hình",
+        "Cả hai chỉ làm việc trên dữ liệu văn bản"
+      ],
+      "answer": 0,
+      "explanation": "SVM là thuật toán học chủ động: nó học một mô hình (siêu phẳng phân tách xác định bởi vài vectơ hỗ trợ). k-NN là thuật toán học lười: nó không xây mô hình và lưu toàn bộ dữ liệu huấn luyện, dồn tính toán sang lúc dự đoán.",
+      "tags": [
+        "SVM",
+        "k-NN"
+      ]
+    },
+    {
+      "id": "e-001",
+      "topic": "evaluation",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Bạn phải xây bộ phân loại thư rác nhưng chỉ thu được tập dữ liệu mất cân bằng nghiêm trọng với 99.9% là thư rác. Nên dùng độ đo nào?",
+      "choices": [
+        "Độ chính xác (accuracy)",
+        "Precision và Recall cho từng lớp",
+        "Sai số bình phương trung bình (MSE)",
+        "Độ chính xác trên tập huấn luyện"
+      ],
+      "answer": 1,
+      "explanation": "Với mất cân bằng nghiêm trọng, accuracy gây hiểu lầm (bộ phân loại tầm thường 'luôn là thư rác' đạt ~99.9%). Precision và Recall theo từng lớp cho thấy hiệu năng trên lớp hiếm. MSE dành cho hồi quy, còn accuracy huấn luyện bỏ qua tổng quát hóa.",
+      "tags": [
+        "imbalance",
+        "precision",
+        "recall"
+      ]
+    },
+    {
+      "id": "e-002",
+      "topic": "evaluation",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào SAI?",
+      "choices": [
+        "Lựa chọn mô hình là bắt buộc khi so sánh các phương pháp học máy khác nhau",
+        "Đánh giá mô hình và lựa chọn mô hình ĐỘC LẬP với nhau",
+        "Đánh giá mô hình thường cần lựa chọn mô hình như một bước bên trong",
+        "Tập kiểm định thường được dùng để lựa chọn mô hình"
+      ],
+      "answer": 1,
+      "explanation": "Đánh giá mô hình thường có lựa chọn mô hình như một bước bên trong (vd chọn siêu tham số trước khi đánh giá), nên hai việc KHÔNG độc lập. Do đó phát biểu chúng độc lập là sai.",
+      "tags": [
+        "model selection",
+        "assessment"
+      ]
+    },
+    {
+      "id": "e-003",
+      "topic": "evaluation",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Nhược điểm nào của Hold-out có thể khắc phục bằng lấy mẫu PHÂN TẦNG (stratified)?",
+      "choices": [
+        "Tác động xấu của tính ngẫu nhiên do dữ liệu nhỏ",
+        "Tác động xấu của MẤT CÂN BẰNG lớp",
+        "Tác động xấu của thời gian đánh giá",
+        "Tác động xấu của số chiều cao"
+      ],
+      "answer": 1,
+      "explanation": "Lấy mẫu phân tầng giữ nguyên tỉ lệ mỗi lớp trong các phần chia, giảm tác hại của mất cân bằng lớp mà hold-out ngẫu nhiên thuần có thể gây ra (vd một phần chia thiếu hẳn lớp hiếm).",
+      "tags": [
+        "hold-out",
+        "stratified"
+      ]
+    },
+    {
+      "id": "e-004",
+      "topic": "evaluation",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Hold-out có phải là phương pháp tiền xử lý/tìm hiểu dữ liệu không?",
+      "choices": [
+        "Không — nó là chiến lược đánh giá và lựa chọn mô hình",
+        "Có, đương nhiên",
+        "Không — nó là phương pháp huấn luyện mô hình từ tập dữ liệu",
+        "Có — nó chuẩn hóa dữ liệu"
+      ],
+      "answer": 0,
+      "explanation": "Hold-out là chiến lược đánh giá và lựa chọn mô hình: nó chia dữ liệu thành tập huấn luyện/kiểm định/kiểm thử. Nó không phải bước tiền xử lý cũng không phải thuật toán huấn luyện.",
+      "tags": [
+        "hold-out"
+      ]
+    },
+    {
+      "id": "e-005",
+      "topic": "evaluation",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Độ chính xác phân loại (classification accuracy) là …",
+      "choices": [
+        "độ đo chất lượng mô hình phân loại chỉ trên tập huấn luyện",
+        "một tác vụ gán nhãn lớp cho tập dữ liệu",
+        "một độ đo chất lượng của mô hình phân loại",
+        "một sự chia tập dữ liệu thành các lớp"
+      ],
+      "answer": 2,
+      "explanation": "Accuracy là độ đo chất lượng của bộ phân loại (tỉ lệ dự đoán đúng) nói chung — có thể tính trên bất kỳ tập nào, không chỉ tập huấn luyện. Gán nhãn là tác vụ phân loại chứ không phải độ đo.",
+      "tags": [
+        "accuracy"
+      ]
+    },
+    {
+      "id": "e-006",
+      "topic": "evaluation",
+      "source": "exam-20242",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Bạn huấn luyện một mô hình đạt 99% độ chính xác trên 10.000 điểm huấn luyện, nhưng chỉ 67% trên Kaggle. Cách nào dễ giúp ích nhất trên Kaggle?",
+      "choices": [
+        "Đặt hệ số chính quy hóa bằng 0",
+        "Huấn luyện trên nhiều dữ liệu hơn (và dùng bước lựa chọn mô hình/tham số)",
+        "Ngẫu nhiên bỏ bớt dữ liệu khi huấn luyện",
+        "Tăng độ phức tạp mô hình"
+      ],
+      "answer": 1,
+      "explanation": "Khoảng cách lớn giữa huấn luyện và kiểm thử cho thấy quá khớp. Thêm dữ liệu huấn luyện cùng một bước lựa chọn mô hình/tham số hợp lý (vd chính quy hóa được tinh chỉnh) sẽ cải thiện tổng quát hóa. Đặt chính quy hóa bằng 0 hay tăng độ phức tạp sẽ làm quá khớp nặng hơn.",
+      "tags": [
+        "overfitting",
+        "generalization"
+      ]
+    },
+    {
+      "id": "a-001",
+      "topic": "assoc",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "SUPPORT COUNT (số đếm hỗ trợ) của tập mục A nghĩa là gì?",
+      "choices": [
+        "Tổng số giao dịch KHÔNG chứa A",
+        "Số giao dịch không chứa A / tổng số",
+        "Số giao dịch chứa A / tổng số giao dịch",
+        "Tổng số giao dịch CHỨA A"
+      ],
+      "answer": 3,
+      "explanation": "Support count là SỐ ĐẾM thô các giao dịch có chứa A. Lấy số đếm đó chia cho tổng số giao dịch sẽ ra support (một tỉ lệ).",
+      "tags": [
+        "support count"
+      ]
+    },
+    {
+      "id": "a-002",
+      "topic": "assoc",
+      "source": "exam-20222",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Thuật toán Apriori làm gì (ở bước tìm tập phổ biến)?",
+      "choices": [
+        "Tỉa bỏ các tập mục có support THẤP hơn minsup",
+        "Tỉa bỏ các tập mục có support cao hơn minsup",
+        "Sinh các luật có confidence thấp hơn minconf",
+        "Chỉ giữ lại tập mục lớn nhất"
+      ],
+      "answer": 0,
+      "explanation": "Ở bước tìm tập phổ biến, Apriori tỉa bỏ các tập ứng viên có support dưới minsup, chỉ giữ lại tập phổ biến. Việc sinh luật theo minconf diễn ra ở bước sau.",
+      "tags": [
+        "apriori"
+      ]
+    },
+    {
+      "id": "a-003",
+      "topic": "assoc",
+      "source": "study",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Tập phổ biến f={2,3,4} có support 50%; support({3,4})=75%. Confidence(3,4 → 2) bằng bao nhiêu?",
+      "choices": [
+        "50%",
+        "67%",
+        "75%",
+        "100%"
+      ],
+      "answer": 1,
+      "explanation": "confidence(3,4 → 2) = support({2,3,4}) / support({3,4}) = 50% / 75% ≈ 0.667 ≈ 67%.",
+      "tags": [
+        "confidence"
+      ]
+    },
+    {
+      "id": "a-004",
+      "topic": "assoc",
+      "source": "study",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Phát biểu nào diễn đạt đúng nhất tính chất Apriori?",
+      "choices": [
+        "Mọi tập cha (superset) của một tập phổ biến đều phổ biến",
+        "Mọi tập con của một tập phổ biến cũng phổ biến",
+        "Confidence luôn lớn hơn support",
+        "Support count giảm khi có thêm giao dịch"
+      ],
+      "answer": 1,
+      "explanation": "Tính chất Apriori (phản đơn điệu): mọi tập con của một tập phổ biến cũng phổ biến. Tương đương, nếu một tập không phổ biến thì mọi tập cha của nó cũng không phổ biến — dùng để tỉa ứng viên.",
+      "tags": [
+        "apriori property"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-001",
+      "topic": "clustering",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cho ba điểm A=(0,2), B=(0,1), C=(1,0). Chạy K-means với khoảng cách Euclid, K=2, tâm khởi tạo là A và B. Khi hội tụ, tâm cụm là gì?",
+      "choices": [
+        "A và C",
+        "A và trung điểm BC",
+        "C và trung điểm AB",
+        "A và B"
+      ],
+      "answer": 1,
+      "explanation": "C gần B hơn (d=√2) so với A (d=√5), nên C vào cụm của B. Cụm {B,C} có tâm (0.5,0.5) = trung điểm BC, còn {A} giữ tâm A. Các tâm hội tụ về A và trung điểm BC.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "K-means"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-002",
+      "topic": "nn",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong mạng nơ-ron, lợi thế của ReLU so với Sigmoid là gì?",
+      "choices": [
+        "ReLU giúp lan truyền gradient nhanh hơn (giảm hiện tượng tiêu biến gradient)",
+        "ReLU dễ dùng cho phân loại hơn sigmoid",
+        "ReLU luôn tạo đường quyết định phi tuyến"
+      ],
+      "answer": 0,
+      "explanation": "ReLU có gradient bằng 1 không đổi với đầu vào dương, nên không bão hòa ở miền đó và tránh được hiện tượng tiêu biến gradient mà sigmoid gặp phải, giúp gradient (và do đó việc huấn luyện) lan truyền nhanh hơn trong mạng sâu.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "ReLU"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-003",
+      "topic": "trees",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cây quyết định là phương pháp học gì?",
+      "choices": [
+        "Không giám sát",
+        "Vừa có giám sát vừa không giám sát",
+        "Có giám sát",
+        "Không phải học máy"
+      ],
+      "answer": 2,
+      "explanation": "Cây quyết định là phương pháp học có giám sát: nó cần dữ liệu huấn luyện có nhãn (nhãn lớp hoặc giá trị mục tiêu) để chọn các phép chia.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "decision tree"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-004",
+      "topic": "foundations",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Một biến quan sát được có thể biểu diễn điều gì?",
+      "choices": [
+        "Bất kỳ thứ gì",
+        "Một sự kiện không thể quan sát được",
+        "Một sự kiện có thể quan sát được hoặc không",
+        "Một sự kiện có thể quan sát được trong thực tế"
+      ],
+      "answer": 3,
+      "explanation": "Theo định nghĩa, biến quan sát được biểu diễn một hiện tượng/sự kiện thực sự có thể quan sát (đo lường) được trong thực tế. Đó chính là điều khiến nó 'quan sát được'.",
+      "tags": [
+        "PDF",
+        "ML 20211"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-005",
+      "topic": "trees",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Hàm đánh giá nào thường phù hợp hơn Information Gain khi thuộc tính kiểu định danh có nhiều giá trị?",
+      "choices": [
+        "Entropy",
+        "Gain Ratio",
+        "Information Gain"
+      ],
+      "answer": 1,
+      "explanation": "Information Gain thiên vị các thuộc tính có nhiều giá trị phân biệt. Gain Ratio chuẩn hóa độ lợi theo thông tin chia (split information), phạt các thuộc tính nhiều giá trị, nên phù hợp hơn trong trường hợp đó.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "Gain Ratio"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-006",
+      "topic": "clustering",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Khi chạy K-means nhiều lần với khởi tạo ngẫu nhiên khác nhau, nên chọn kết quả nào?",
+      "choices": [
+        "Chọn ngẫu nhiên một kết quả",
+        "Chọn kết quả có tổng khoảng cách/bình phương khoảng cách đến tâm cụm nhỏ nhất",
+        "Luôn chọn lần chạy cuối cùng"
+      ],
+      "answer": 1,
+      "explanation": "K-means tối thiểu hóa tổng bình phương khoảng cách trong cụm (SSE) nhưng có thể hội tụ về các cực tiểu cục bộ khác nhau tùy khởi tạo. Trong nhiều lần chạy, chọn lần có SSE nhỏ nhất.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "K-means"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-007",
+      "topic": "evaluation",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu đúng về Overfitting là gì?",
+      "choices": [
+        "Mô hình kém trên train và kém trên tương lai",
+        "Mô hình tốt trên train và tốt trên tương lai",
+        "Mô hình tốt hơn trên train nhưng kém hơn trên dữ liệu tương lai",
+        "Tất cả sai"
+      ],
+      "answer": 2,
+      "explanation": "Quá khớp nghĩa là độ chính xác cao trên dữ liệu huấn luyện nhưng giảm trên dữ liệu tương lai/chưa thấy — mô hình khớp nhiễu thay vì quy luật thật. Lựa chọn (C) phản ánh điều này; (A) mô tả kém khớp và (B) mô tả mô hình tổng quát tốt.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "overfitting"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-008",
+      "topic": "foundations",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phương pháp bình phương tối thiểu có thể dùng để phân loại dữ liệu khả tách tuyến tính hay không?",
+      "choices": [
+        "Đúng",
+        "Sai"
+      ],
+      "answer": 0,
+      "explanation": "Đúng. Bình phương tối thiểu có thể khớp một hàm phân biệt tuyến tính, và với dữ liệu khả tách tuyến tính, một ngưỡng phù hợp trên đầu ra khớp được có thể tách các lớp. (Không tối ưu như SVM nhưng vẫn dùng được.)",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "least squares"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-009",
+      "topic": "regression",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Mô hình f(x)=w0+w1x1+...+wdxd thuộc loại mô hình nào?",
+      "choices": [
+        "Mô hình tuyến tính",
+        "Mô hình phi tuyến",
+        "Mô hình phi tham số"
+      ],
+      "answer": 0,
+      "explanation": "Hàm là tổng có trọng số của các đầu vào cộng hệ số chệch, tức tuyến tính theo tham số w, nên là mô hình tuyến tính có tham số.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "linear model"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-010",
+      "topic": "foundations",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong thống kê, mode là gì?",
+      "choices": [
+        "Giá trị lặp lại nhiều nhất",
+        "Giá trị trung bình",
+        "Giá trị nằm giữa",
+        "Độ phân tán dữ liệu"
+      ],
+      "answer": 0,
+      "explanation": "Mode (yếu vị) là giá trị xuất hiện nhiều nhất. Trung bình là mean, giá trị nằm giữa là trung vị (median), còn độ phân tán liên quan đến phương sai/độ trải.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "mode"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-011",
+      "topic": "regression",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong hồi quy Ridge, khi λ rất lớn thì mô hình có xu hướng gì?",
+      "choices": [
+        "Kém khớp do trọng số bị ép nhỏ",
+        "Quá khớp do trọng số tăng lớn",
+        "Không ảnh hưởng đến mô hình",
+        "Luôn đạt nghiệm tối ưu tốt nhất"
+      ],
+      "answer": 0,
+      "explanation": "λ lớn phạt mạnh chuẩn L2 của trọng số, co chúng về gần 0. Điều này khiến mô hình quá đơn giản, dẫn tới kém khớp (độ chệch cao).",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "Ridge"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-012",
+      "topic": "evaluation",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Mẫu phân tầng (stratified sampling) giúp khắc phục điểm yếu nào của hold-out?",
+      "choices": [
+        "Mẫu chia có thể mất cân bằng giữa các lớp",
+        "Tốc độ huấn luyện chậm",
+        "Không chọn được tham số tối ưu",
+        "Không tính được accuracy"
+      ],
+      "answer": 0,
+      "explanation": "Lấy mẫu phân tầng giữ tỉ lệ lớp trong mỗi phần chia bằng với toàn tập dữ liệu, khắc phục vấn đề mất cân bằng lớp mà chia hold-out ngẫu nhiên có thể gây ra.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "stratified sampling"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-013",
+      "topic": "knn",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong k-NN, với bảng dữ liệu minh họa ở PDF và k=7, điểm (x1=1, x2=1) được phân vào lớp nào?",
+      "choices": [
+        "Không xác định",
+        "C1",
+        "C2"
+      ],
+      "answer": 2,
+      "explanation": "Với k=7, lớp dự đoán là lớp chiếm đa số trong 7 láng giềng gần nhất. Với bảng đã cho, biểu quyết đa số này cho ra lớp C2, nên điểm được gán vào C2.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "k-NN"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-014",
+      "topic": "evaluation",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Đánh giá mô hình tốt nhất nên dựa trên dữ liệu nào?",
+      "choices": [
+        "Chỉ tập huấn luyện",
+        "Một tập kiểm thử độc lập với dữ liệu huấn luyện",
+        "Dữ liệu đã dùng để chọn tham số",
+        "Không cần dữ liệu kiểm thử"
+      ],
+      "answer": 1,
+      "explanation": "Đánh giá không thiên lệch phải dùng tập kiểm thử độc lập chưa từng thấy khi huấn luyện hay chọn tham số. Đánh giá trên tập huấn luyện, hoặc trên dữ liệu đã dùng để tinh chỉnh tham số, cho ước lượng lạc quan và thiên lệch.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "test set"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-015",
+      "topic": "knn",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong các thuật toán dưới đây, thuật toán nào có thời gian huấn luyện nhỏ nhất?",
+      "choices": [
+        "Rừng ngẫu nhiên",
+        "k-NN",
+        "SVM tuyến tính",
+        "Mạng nơ-ron"
+      ],
+      "answer": 1,
+      "explanation": "k-NN là thuật toán học lười chỉ lưu dữ liệu, nên gần như không tốn chi phí huấn luyện (thời gian huấn luyện nhỏ nhất). Các phương pháp còn lại đều cần pha khớp/tối ưu tường minh.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "training time"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-016",
+      "topic": "foundations",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Kém khớp (underfitting) là trường hợp nào?",
+      "choices": [
+        "Mô hình có độ chính xác thấp trên tập huấn luyện và cả dữ liệu tương lai",
+        "Mô hình rất tốt trên train nhưng kém trên dữ liệu mới",
+        "Mô hình chỉ lỗi do dữ liệu thiếu",
+        "Tất cả sai"
+      ],
+      "answer": 0,
+      "explanation": "Kém khớp nghĩa là mô hình quá đơn giản để nắm quy luật, nên hoạt động kém ở cả tập huấn luyện lẫn dữ liệu tương lai. Lựa chọn (B) mô tả quá khớp.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "underfitting"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-017",
+      "topic": "assoc",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Thuật toán Apriori liên quan đến các ngưỡng nào? (Chọn tất cả đáp án đúng)",
+      "choices": [
+        "minconf cho luật kết hợp",
+        "MSE cho hồi quy",
+        "minsup cho tập phổ biến",
+        "Cả minconf và minsup"
+      ],
+      "answer": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "Apriori dùng minsup để tìm tập phổ biến và minconf để sinh luật kết hợp mạnh. MSE là độ đo hồi quy, không liên quan đến Apriori. Các lựa chọn (A), (C) và (D) đều đúng.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "Apriori"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-018",
+      "topic": "clustering",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Một cụm trong phân cụm được hiểu là gì?",
+      "choices": [
+        "Nhóm đối tượng giống nhau và khác biệt với các nhóm khác",
+        "Tập đối tượng bất kỳ",
+        "Một điểm dữ liệu duy nhất",
+        "Tập dữ liệu có nhãn"
+      ],
+      "answer": 0,
+      "explanation": "Một cụm là nhóm các đối tượng giống nhau và khác biệt với đối tượng ở nhóm khác (khoảng cách trong cụm nhỏ, giữa cụm lớn). Nó không phải tập tùy ý, một điểm đơn lẻ, hay tập dữ liệu có nhãn.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "cluster"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-019",
+      "topic": "trees",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Khi dùng cây quyết định để phân loại mẫu mới, thuật toán làm gì?",
+      "choices": [
+        "Đi theo một đường duy nhất từ gốc đến lá",
+        "Duyệt tất cả các đường đi",
+        "Sắp xếp lại cây",
+        "Dùng độ đo khoảng cách Euclid"
+      ],
+      "answer": 0,
+      "explanation": "Phân loại đi xuống đúng một đường từ gốc đến lá, chọn nhánh theo giá trị thuộc tính của mẫu, rồi trả về nhãn ở lá đó. Nó không duyệt mọi đường, không sắp xếp lại cây, cũng không dùng khoảng cách.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "decision tree"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-020",
+      "topic": "assoc",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Tên và giá trị của item trong cơ sở dữ liệu giao dịch có ảnh hưởng đến chất lượng của Apriori không?",
+      "choices": [
+        "Đúng",
+        "Sai"
+      ],
+      "answer": 1,
+      "explanation": "Sai. Apriori chỉ phụ thuộc vào việc các item nào cùng xuất hiện trong giao dịch (số đếm hỗ trợ của chúng), không phụ thuộc nhãn hay giá trị cụ thể của item. Đổi tên item không làm thay đổi tập phổ biến hay luật tìm được.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "Apriori"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-021",
+      "topic": "assoc",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong Apriori, bước tỉa mục ứng viên k-itemset thường loại trường hợp nào?",
+      "choices": [
+        "Ứng viên có một tập con không phổ biến",
+        "Ứng viên xuất hiện quá nhiều",
+        "Ứng viên có confidence cao",
+        "Ứng viên có ít thuộc tính"
+      ],
+      "answer": 0,
+      "explanation": "Theo tính chất Apriori, mọi tập có một tập con không phổ biến thì không thể phổ biến, nên các ứng viên như vậy bị tỉa mà không cần đếm support. Đây là điểm cốt lõi giúp Apriori hiệu quả.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "Apriori"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-022",
+      "topic": "preprocessing",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Rời rạc hóa dữ liệu (data discretization) là gì?",
+      "choices": [
+        "Chuyển dữ liệu liên tục thành dữ liệu rời rạc",
+        "Tìm outlier",
+        "Chuyển dữ liệu rời rạc thành liên tục",
+        "Xóa dữ liệu lỗi"
+      ],
+      "answer": 0,
+      "explanation": "Rời rạc hóa ánh xạ giá trị thuộc tính liên tục vào các khoảng/bin rời rạc, tức liên tục → rời rạc. Các lựa chọn khác mô tả thao tác không liên quan hoặc ngược lại.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "discretization"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-023",
+      "topic": "assoc",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Với các support 2-itemset trong bảng PDF và ngưỡng support count là 6, tập 3-itemset nào chắc chắn không phổ biến?",
+      "choices": [
+        "{1,2,3}",
+        "{1,2,4}",
+        "{2,3,4}",
+        "{1,3,4}"
+      ],
+      "answer": 1,
+      "explanation": "Theo tính chất Apriori, một 3-itemset chỉ có thể phổ biến nếu mọi tập con 2-itemset của nó đều phổ biến (support count ≥ 6). Tập {1,2,4} chứa một tập con 2-itemset có support dưới 6, nên {1,2,4} chắc chắn không phổ biến.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "Apriori"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-024",
+      "topic": "regression",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "LASSO tối ưu hàm mục tiêu có dạng nào?",
+      "choices": [
+        "Bình phương lỗi + λ‖w‖₂²",
+        "Bình phương lỗi + λ‖w‖₁",
+        "Chỉ bình phương lỗi",
+        "Chỉ entropy"
+      ],
+      "answer": 1,
+      "explanation": "LASSO thêm phạt L1: bình phương lỗi + λ‖w‖₁. Thành phần L1 tạo nghiệm thưa (nhiều trọng số đúng bằng 0). Dạng bình phương lỗi + λ‖w‖₂² là hồi quy Ridge.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "LASSO"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-025",
+      "topic": "knn",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Nếu k trong k-NN quá lớn, mô hình thường có xu hướng gì?",
+      "choices": [
+        "Quá khớp",
+        "Kém khớp",
+        "Không ảnh hưởng",
+        "Luôn tốt hơn"
+      ],
+      "answer": 1,
+      "explanation": "k rất lớn lấy trung bình trên nhiều điểm xa (kể cả lớp khác), làm phẳng quá mức quyết định về lớp đa số, tức kém khớp. k rất nhỏ thì gây quá khớp.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "k-NN"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-026",
+      "topic": "clustering",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào về K-means là đúng? (Chọn tất cả đáp án đúng)",
+      "choices": [
+        "Kết quả phụ thuộc khởi tạo tâm cụm",
+        "Luôn tìm nghiệm tối ưu toàn cục duy nhất",
+        "Nhạy cảm với ngoại lai (outlier)",
+        "Không cần chọn K"
+      ],
+      "answer": [
+        0,
+        2
+      ],
+      "explanation": "Kết quả K-means phụ thuộc tâm khởi tạo (hội tụ về cực tiểu cục bộ, không nhất thiết là toàn cục), và việc cập nhật theo trung bình khiến nó nhạy cảm với ngoại lai. Nó KHÔNG đảm bảo nghiệm toàn cục duy nhất và CÓ cần chọn K. Vậy (A) và (C) đúng.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "K-means"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-027",
+      "topic": "nn",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Tất cả tham số của mạng nơ-ron đều là trọng số, đúng hay sai?",
+      "choices": [
+        "Đúng",
+        "Sai"
+      ],
+      "answer": 1,
+      "explanation": "Sai. Ngoài trọng số kết nối, mạng nơ-ron còn có các tham số hệ số chệch (bias) (và tùy lớp, các tham số học được khác). Nên không phải mọi tham số đều là trọng số.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "neural network"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-028",
+      "topic": "foundations",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phân loại Bayes dựa chủ yếu trên gì?",
+      "choices": [
+        "Tối ưu bình phương lỗi",
+        "Xác suất và thống kê từ dữ liệu",
+        "Information Gain",
+        "Khoảng cách Euclid"
+      ],
+      "answer": 1,
+      "explanation": "Phân loại Bayes áp dụng định lý Bayes dùng các xác suất ước lượng từ dữ liệu (tiên nghiệm và khả năng) để tính xác suất hậu nghiệm của lớp. Bình phương lỗi, information gain và khoảng cách Euclid thuộc các phương pháp khác.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "Bayes"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-029",
+      "topic": "evaluation",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Lựa chọn mô hình (model selection) thường là gì?",
+      "choices": [
+        "Chọn mô hình/siêu tham số tốt nhất trên tập kiểm định rồi đánh giá cuối bằng tập kiểm thử",
+        "Luôn chọn mô hình phức tạp nhất",
+        "Không cần dữ liệu kiểm định",
+        "Chỉ dựa vào thời gian chạy"
+      ],
+      "answer": 0,
+      "explanation": "Lựa chọn mô hình chọn mô hình hoặc siêu tham số tốt nhất bằng tập kiểm định, sau đó tập kiểm thử độc lập cho ước lượng hiệu năng cuối không thiên lệch. Nó không có nghĩa là luôn chọn mô hình phức tạp nhất hay dựa vào thời gian chạy.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "model selection"
+      ]
+    },
+    {
+      "id": "f-pdf-20211-030",
+      "topic": "evaluation",
+      "source": "pdf-ml-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Đánh giá chéo (cross-validation) chủ yếu dùng để làm gì?",
+      "choices": [
+        "Đánh giá hiệu quả và hỗ trợ lựa chọn tham số/mô hình",
+        "Chỉ để tăng tốc huấn luyện",
+        "Chỉ dùng cho mạng nơ-ron",
+        "Thay thế hoàn toàn tập kiểm thử độc lập"
+      ],
+      "answer": 0,
+      "explanation": "Đánh giá chéo cho ước lượng hiệu năng vững hơn (đặc biệt khi dữ liệu hạn chế) và hỗ trợ lựa chọn mô hình/siêu tham số. Nó không tăng tốc huấn luyện, không riêng cho mạng nơ-ron, và lý tưởng nên đi kèm tập kiểm thử giữ riêng chứ không thay thế hoàn toàn.",
+      "tags": [
+        "PDF",
+        "ML 20211",
+        "cross-validation"
+      ]
+    }
+  ]
+}

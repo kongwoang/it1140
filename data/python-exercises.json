@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "exercises": [
+    {
+      "id": "py-list-comprehension",
+      "title": "Lọc và biến đổi danh sách",
+      "level": "Cơ bản",
+      "library": "Python",
+      "description": "Ôn vòng lặp, điều kiện và list comprehension.",
+      "task": "Viết hàm binh_phuong_so_chan(ds) trả về bình phương của các số chẵn, giữ nguyên thứ tự ban đầu.",
+      "starterCode": "def binh_phuong_so_chan(ds):\n    # Viết lời giải của bạn ở đây\n    pass\n\nprint(binh_phuong_so_chan([1, 2, 3, 4, 5, 6]))",
+      "hint": "Có thể dùng biểu thức [x ** 2 for x in ds if ...].",
+      "tests": [
+        { "label": "Danh sách hỗn hợp", "code": "assert binh_phuong_so_chan([1, 2, 3, 4, 5, 6]) == [4, 16, 36]" },
+        { "label": "Không có số chẵn", "code": "assert binh_phuong_so_chan([1, 3, 5]) == []" },
+        { "label": "Có số âm và số 0", "code": "assert binh_phuong_so_chan([-2, 0, 3]) == [4, 0]" }
+      ]
+    },
+    {
+      "id": "py-math-distance",
+      "title": "Khoảng cách hai điểm",
+      "level": "Cơ bản",
+      "library": "math",
+      "description": "Làm quen với căn bậc hai và thư viện math.",
+      "task": "Viết hàm khoang_cach(x1, y1, x2, y2) tính khoảng cách Euclid giữa hai điểm.",
+      "starterCode": "import math\n\ndef khoang_cach(x1, y1, x2, y2):\n    pass\n\nprint(khoang_cach(0, 0, 3, 4))",
+      "hint": "Khoảng cách bằng căn bậc hai của (x2 - x1)² + (y2 - y1)².",
+      "tests": [
+        { "label": "Tam giác 3–4–5", "code": "assert math.isclose(khoang_cach(0, 0, 3, 4), 5.0)" },
+        { "label": "Hai điểm trùng nhau", "code": "assert math.isclose(khoang_cach(2, -1, 2, -1), 0.0)" },
+        { "label": "Tọa độ âm", "code": "assert math.isclose(khoang_cach(-1, -1, 2, 3), 5.0)" }
+      ]
+    },
+    {
+      "id": "py-statistics-summary",
+      "title": "Thống kê điểm số",
+      "level": "Cơ bản",
+      "library": "statistics",
+      "description": "Tính các đại lượng mô tả với statistics.",
+      "task": "Viết hàm thong_ke(ds) trả về tuple gồm trung bình và trung vị của danh sách.",
+      "starterCode": "import statistics\n\ndef thong_ke(ds):\n    # Trả về (trung_binh, trung_vi)\n    pass\n\nprint(thong_ke([6, 7, 8, 9, 10]))",
+      "hint": "Dùng statistics.mean và statistics.median.",
+      "tests": [
+        { "label": "Số phần tử lẻ", "code": "assert thong_ke([6, 7, 8, 9, 10]) == (8, 8)" },
+        { "label": "Số phần tử chẵn", "code": "assert thong_ke([1, 2, 8, 9]) == (5, 5.0)" },
+        { "label": "Dữ liệu thập phân", "code": "assert thong_ke([1.5, 2.5, 3.5]) == (2.5, 2.5)" }
+      ]
+    },
+    {
+      "id": "py-counter-words",
+      "title": "Đếm tần suất từ",
+      "level": "Cơ bản",
+      "library": "collections",
+      "description": "Sử dụng Counter để tổng hợp dữ liệu.",
+      "task": "Viết hàm dem_tu(van_ban) trả về Counter đếm từ, không phân biệt chữ hoa và chữ thường.",
+      "starterCode": "from collections import Counter\n\ndef dem_tu(van_ban):\n    pass\n\nprint(dem_tu(\"Python dễ học và Python mạnh mẽ\"))",
+      "hint": "Chuyển chuỗi về chữ thường, tách bằng split(), rồi truyền danh sách vào Counter.",
+      "tests": [
+        { "label": "Không phân biệt hoa thường", "code": "assert dem_tu('Python python PYTHON')['python'] == 3" },
+        { "label": "Đếm nhiều từ", "code": "assert dem_tu('a b a c b a') == Counter({'a': 3, 'b': 2, 'c': 1})" },
+        { "label": "Chuỗi rỗng", "code": "assert dem_tu('') == Counter()" }
+      ]
+    },
+    {
+      "id": "py-random-simulation",
+      "title": "Mô phỏng tung xúc xắc",
+      "level": "Vừa",
+      "library": "random",
+      "description": "Tạo dữ liệu giả lập có thể tái lập bằng seed.",
+      "task": "Viết hàm tung_xuc_xac(so_lan, seed) trả về danh sách kết quả từ 1 đến 6. Hàm phải dùng random.Random(seed).",
+      "starterCode": "import random\n\ndef tung_xuc_xac(so_lan, seed):\n    pass\n\nprint(tung_xuc_xac(10, 1140))",
+      "hint": "Tạo rng = random.Random(seed), sau đó gọi rng.randint(1, 6) trong một vòng lặp.",
+      "tests": [
+        { "label": "Đúng số lượng", "code": "assert len(tung_xuc_xac(20, 1140)) == 20" },
+        { "label": "Giá trị hợp lệ", "code": "assert all(1 <= x <= 6 for x in tung_xuc_xac(100, 1))" },
+        { "label": "Có thể tái lập", "code": "assert tung_xuc_xac(10, 42) == tung_xuc_xac(10, 42)" }
+      ]
+    },
+    {
+      "id": "py-numpy-normalize",
+      "title": "Chuẩn hóa mảng số",
+      "level": "Vừa",
+      "library": "NumPy",
+      "description": "Thực hành phép toán vector với NumPy.",
+      "task": "Viết hàm chuan_hoa(ds) trả về mảng NumPy đã chuẩn hóa min–max về đoạn [0, 1]. Nếu mọi phần tử bằng nhau, trả về mảng toàn số 0.",
+      "starterCode": "import numpy as np\n\ndef chuan_hoa(ds):\n    arr = np.asarray(ds, dtype=float)\n    # Hoàn thiện phần còn lại\n    pass\n\nprint(chuan_hoa([10, 20, 30, 40]))",
+      "hint": "Công thức: (arr - arr.min()) / (arr.max() - arr.min()). Nhớ xử lý trường hợp mẫu số bằng 0.",
+      "tests": [
+        { "label": "Chuẩn hóa cơ bản", "code": "assert np.allclose(chuan_hoa([10, 20, 30]), [0.0, 0.5, 1.0])" },
+        { "label": "Mảng hằng", "code": "assert np.allclose(chuan_hoa([7, 7, 7]), [0.0, 0.0, 0.0])" },
+        { "label": "Không sửa dữ liệu đầu vào", "code": "du_lieu = [2, 4, 6]; chuan_hoa(du_lieu); assert du_lieu == [2, 4, 6]" }
+      ]
+    },
+    {
+      "id": "py-pandas-filter",
+      "title": "Lọc bảng điểm",
+      "level": "Vừa",
+      "library": "pandas",
+      "description": "Lọc và sắp xếp dữ liệu dạng bảng với pandas.",
+      "task": "Viết hàm sinh_vien_dat(df) lấy các dòng có diem >= 5, sắp xếp điểm giảm dần và đặt lại chỉ số dòng.",
+      "starterCode": "import pandas as pd\n\ndef sinh_vien_dat(df):\n    pass\n\ndf = pd.DataFrame({\n    'ten': ['An', 'Bình', 'Chi', 'Dũng'],\n    'diem': [8.5, 4.0, 9.0, 5.0]\n})\nprint(sinh_vien_dat(df))",
+      "hint": "Kết hợp lọc df[df['diem'] >= 5], sort_values và reset_index(drop=True).",
+      "tests": [
+        { "label": "Lọc đúng điều kiện", "code": "kq = sinh_vien_dat(df); assert (kq['diem'] >= 5).all()" },
+        { "label": "Sắp xếp giảm dần", "code": "kq = sinh_vien_dat(df); assert kq['diem'].tolist() == [9.0, 8.5, 5.0]" },
+        { "label": "Đặt lại chỉ số", "code": "kq = sinh_vien_dat(df); assert kq.index.tolist() == [0, 1, 2]" }
+      ]
+    },
+    {
+      "id": "py-matplotlib-chart",
+      "title": "Vẽ biểu đồ đường",
+      "level": "Vừa",
+      "library": "Matplotlib",
+      "description": "Tạo biểu đồ dữ liệu và xem kết quả ngay trong trình duyệt.",
+      "task": "Dùng matplotlib.pyplot để vẽ đường biểu diễn y = x² với x từ 0 đến 5. Đặt nhãn trục x là 'x' và trục y là 'x²'.",
+      "starterCode": "import matplotlib.pyplot as plt\n\nx = list(range(6))\ny = [value ** 2 for value in x]\n\n# Vẽ biểu đồ và đặt nhãn hai trục\n\nplt.title('Đồ thị y = x²')",
+      "hint": "Dùng plt.plot(x, y), plt.xlabel('x') và plt.ylabel('x²').",
+      "tests": [
+        { "label": "Có một đường dữ liệu", "code": "ax = plt.gca(); assert len(ax.lines) == 1" },
+        { "label": "Dữ liệu đúng", "code": "ax = plt.gca(); assert list(ax.lines[0].get_ydata()) == [0, 1, 4, 9, 16, 25]" },
+        { "label": "Có nhãn hai trục", "code": "ax = plt.gca(); assert ax.get_xlabel() == 'x' and ax.get_ylabel() == 'x²'" }
+      ]
+    }
+  ]
+}

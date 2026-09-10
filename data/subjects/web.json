@@ -1,0 +1,5198 @@
+{
+  "id": "web-it4409",
+  "code": "IT4409",
+  "title": "Công nghệ Web và dịch vụ trực tuyến",
+  "language": "vi",
+  "sources": [
+    {
+      "id": "exam-20221",
+      "label": "Cuối kỳ 20221",
+      "type": "exam"
+    },
+    {
+      "id": "exam-20241",
+      "label": "Thi thử 20241",
+      "type": "exam"
+    },
+    {
+      "id": "lecture",
+      "label": "Bài giảng IT4409",
+      "type": "lecture"
+    },
+    {
+      "id": "pdf-web-hoang-quiz",
+      "label": "Bộ câu hỏi của thầy Hoàng",
+      "type": "quiz"
+    },
+    {
+      "id": "pdf-web-20211",
+      "label": "Cuối kỳ 20211",
+      "type": "exam"
+    },
+    {
+      "id": "pdf-web-20212",
+      "label": "Cuối kỳ 20212",
+      "type": "exam"
+    }
+  ],
+  "topics": [
+    {
+      "id": "overview",
+      "label": "Web, Internet & HTTP"
+    },
+    {
+      "id": "html",
+      "label": "HTML"
+    },
+    {
+      "id": "css",
+      "label": "CSS"
+    },
+    {
+      "id": "js",
+      "label": "JavaScript cơ bản"
+    },
+    {
+      "id": "jsadv",
+      "label": "JS nâng cao & async"
+    },
+    {
+      "id": "react",
+      "label": "React"
+    },
+    {
+      "id": "webapi",
+      "label": "Web API & REST"
+    },
+    {
+      "id": "backend",
+      "label": "Backend (Node/Express/Mongo)"
+    },
+    {
+      "id": "security",
+      "label": "Bảo mật Web"
+    },
+    {
+      "id": "deploy",
+      "label": "Triển khai & DevOps"
+    }
+  ],
+  "questions": [
+    {
+      "id": "w-ov-001",
+      "topic": "overview",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "HTTP là giao thức có trạng thái hay phi trạng thái?",
+      "choices": [
+        "Stateful — server luôn nhớ client",
+        "Stateless — server không nhớ client giữa các request",
+        "Vừa stateful vừa stateless tùy cổng",
+        "Chỉ stateful khi dùng HTTPS"
+      ],
+      "answer": 1,
+      "explanation": "HTTP là stateless: server không bắt buộc nhớ thông tin client giữa hai request. Muốn duy trì phiên phải dùng cookie/session/token.",
+      "tags": [
+        "HTTP",
+        "stateless"
+      ]
+    },
+    {
+      "id": "w-ov-002",
+      "topic": "overview",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "URL bao gồm thành phần nào?",
+      "choices": [
+        "Chỉ giao thức (Protocol)",
+        "Chỉ đường dẫn (Path)",
+        "Chỉ tên miền và cổng (Domain & Port)",
+        "Cả 3 thành phần: Protocol, Domain & Port, Path"
+      ],
+      "answer": 3,
+      "explanation": "URL = Protocol + Domain name & Port + Path tới tài nguyên.",
+      "tags": [
+        "URL"
+      ]
+    },
+    {
+      "id": "w-ov-003",
+      "topic": "overview",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Đâu KHÔNG phải là một phương thức (method) trong HTTP request?",
+      "choices": [
+        "CONNECT",
+        "OPTION",
+        "DELETE",
+        "HEAD"
+      ],
+      "answer": 1,
+      "explanation": "Method đúng là OPTIONS (có chữ S). CONNECT, DELETE, HEAD đều hợp lệ.",
+      "tags": [
+        "HTTP method"
+      ]
+    },
+    {
+      "id": "w-ov-004",
+      "topic": "overview",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Phát biểu nào sau đây là mô tả ĐÚNG về mã trạng thái HTTP Response?",
+      "choices": [
+        "3xx: client error",
+        "5xx: server error",
+        "6xx: client error",
+        "4xx: server error"
+      ],
+      "answer": 1,
+      "explanation": "2xx Success, 3xx Redirect, 4xx Client error, 5xx Server error. Không có nhóm 6xx.",
+      "tags": [
+        "status code"
+      ]
+    },
+    {
+      "id": "w-ov-005",
+      "topic": "overview",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "HTTPS là viết tắt của?",
+      "choices": [
+        "Hyper Transfer Protocol Standard",
+        "Hightext Transfer Protocol Secure",
+        "Hypertext Transfer Protocol Secure",
+        "Hyper Transfer Protocol Secure"
+      ],
+      "answer": 2,
+      "explanation": "HTTPS = HyperText Transfer Protocol Secure = HTTP + TLS.",
+      "tags": [
+        "HTTPS"
+      ]
+    },
+    {
+      "id": "w-ov-006",
+      "topic": "overview",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Đâu KHÔNG phải tác dụng của HTTPS?",
+      "choices": [
+        "Đảm bảo tính toàn vẹn của dữ liệu",
+        "Mã hóa dữ liệu bí mật được lưu trong cache của trình duyệt",
+        "Bảo vệ dữ liệu không bị nghe lén",
+        "Xác thực danh tính của server"
+      ],
+      "answer": 1,
+      "explanation": "HTTPS bảo vệ dữ liệu trên đường truyền (toàn vẹn, chống nghe lén, xác thực server). Nó KHÔNG mã hóa dữ liệu nằm trong cache trình duyệt.",
+      "tags": [
+        "HTTPS",
+        "TLS"
+      ]
+    },
+    {
+      "id": "w-ov-007",
+      "topic": "overview",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Loại lưu trữ nào của trình duyệt có thể được ĐỌC và GHI bởi server?",
+      "choices": [
+        "Local Storage / Session Storage",
+        "Cached Storage",
+        "IndexedDB",
+        "Cookie"
+      ],
+      "answer": 3,
+      "explanation": "Cookie do server gửi qua Set-Cookie và trình duyệt tự đính kèm theo request. LocalStorage/SessionStorage/IndexedDB chỉ truy cập phía client.",
+      "tags": [
+        "cookie",
+        "storage"
+      ]
+    },
+    {
+      "id": "w-ov-008",
+      "topic": "overview",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào sau đây về Web cookie là KHÔNG đúng?",
+      "choices": [
+        "Cookie lưu một phần dữ liệu mà server gửi tới người dùng",
+        "Cookie thường dùng khi người dùng gửi nhiều request qua cùng một trình duyệt",
+        "Cookie được lưu lại cả ở phía client và phía server",
+        "Cookie cho phép quản lý phiên, lưu thiết lập và theo dõi hoạt động người dùng"
+      ],
+      "answer": 2,
+      "explanation": "Cookie chỉ được lưu ở phía client (trình duyệt); server không lưu bản sao cookie.",
+      "tags": [
+        "cookie"
+      ]
+    },
+    {
+      "id": "w-ov-009",
+      "topic": "overview",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "HTTP/3 sử dụng giao thức nào thay cho TCP để giảm độ trễ?",
+      "choices": [
+        "UDP thuần",
+        "QUIC",
+        "FTP",
+        "WebSocket"
+      ],
+      "answer": 1,
+      "explanation": "HTTP/3 (2022) dùng QUIC (chạy trên UDP) thay TCP, giúp giảm thời gian thiết lập kết nối và độ trễ.",
+      "tags": [
+        "HTTP/3",
+        "QUIC"
+      ]
+    },
+    {
+      "id": "w-ov-010",
+      "topic": "overview",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Để truy cập URL hiện tại trên trình duyệt, ta dùng câu lệnh nào?",
+      "choices": [
+        "window.location.url",
+        "window.location",
+        "window.location.href",
+        "window.location.path"
+      ],
+      "answer": 2,
+      "explanation": "window.location.href trả về chuỗi URL đầy đủ hiện tại.",
+      "tags": [
+        "BOM",
+        "location"
+      ]
+    },
+    {
+      "id": "w-ov-011",
+      "topic": "overview",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Đâu KHÔNG phải là cách lắng nghe sự kiện từ server?",
+      "choices": [
+        "Server-sent Event (SSE)",
+        "WebSocket",
+        "Long Polling",
+        "Fetch"
+      ],
+      "answer": 3,
+      "explanation": "Fetch chỉ là một request một lần, không phải cơ chế nhận sự kiện liên tục từ server như SSE/WebSocket/Long Polling.",
+      "tags": [
+        "realtime",
+        "SSE",
+        "WebSocket"
+      ]
+    },
+    {
+      "id": "w-ov-012",
+      "topic": "overview",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Hai URL được coi là CÙNG origin khi nào?",
+      "choices": [
+        "Khi cùng tên miền",
+        "Khi cùng protocol, domain VÀ port",
+        "Khi cùng đường dẫn (path)",
+        "Khi cùng địa chỉ IP"
+      ],
+      "answer": 1,
+      "explanation": "Origin = protocol + domain + port. Chỉ cần khác một trong ba là khác origin.",
+      "tags": [
+        "origin",
+        "CORS"
+      ]
+    },
+    {
+      "id": "w-html-001",
+      "topic": "html",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Đâu là doctype ĐÚNG cho trang HTML5?",
+      "choices": [
+        "<!DOCTYPE html>",
+        "<!DOCTYPE html!>",
+        "<DOCTYPE HTML5!>",
+        "<!DOCTYPE HTML5>"
+      ],
+      "answer": 0,
+      "explanation": "HTML5 khai báo đơn giản: <!DOCTYPE html>.",
+      "tags": [
+        "doctype",
+        "HTML5"
+      ]
+    },
+    {
+      "id": "w-html-002",
+      "topic": "html",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Đâu KHÔNG phải là thẻ mới được giới thiệu trong HTML5?",
+      "choices": [
+        "section",
+        "header",
+        "figure",
+        "date"
+      ],
+      "answer": 3,
+      "explanation": "Không có thẻ <date>. HTML5 có <time>. section, header, figure đều là thẻ HTML5.",
+      "tags": [
+        "HTML5 tags"
+      ]
+    },
+    {
+      "id": "w-html-003",
+      "topic": "html",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Đâu là mã HTML đúng để tạo một danh sách dạng drop-down?",
+      "choices": [
+        "<input type=\"list\">",
+        "<list>",
+        "<select>",
+        "<input type=\"dropdown\">"
+      ],
+      "answer": 2,
+      "explanation": "<select> (chứa các <option>) tạo danh sách thả xuống.",
+      "tags": [
+        "select",
+        "form"
+      ]
+    },
+    {
+      "id": "w-html-004",
+      "topic": "html",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Thẻ nào vừa in đậm vừa mang ý nghĩa NHẤN MẠNH (semantic)?",
+      "choices": [
+        "<strong>",
+        "<b>",
+        "<i>",
+        "<span>"
+      ],
+      "answer": 0,
+      "explanation": "<strong> thể hiện mức độ quan trọng (semantic), còn <b> chỉ in đậm về hình thức. Tương tự <em> (semantic) vs <i>.",
+      "tags": [
+        "semantic",
+        "strong"
+      ]
+    },
+    {
+      "id": "w-html-005",
+      "topic": "html",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Thẻ nào dưới đây có dạng hiển thị mặc định là khối (block)?",
+      "choices": [
+        "SPAN",
+        "IMG",
+        "A",
+        "P"
+      ],
+      "answer": 3,
+      "explanation": "<p> là block-level. SPAN, A là inline; IMG là inline (inline-replaced).",
+      "tags": [
+        "block",
+        "inline"
+      ]
+    },
+    {
+      "id": "w-html-006",
+      "topic": "html",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Làm thế nào để mở link ở tab mới?",
+      "choices": [
+        "<a href=\"url\" target=\"_blank\">",
+        "<a href=\"url\" new>",
+        "<a href=\"url\" target=\"_new\">",
+        "<a href=\"url\" target=\"new\">"
+      ],
+      "answer": 0,
+      "explanation": "Thuộc tính target=\"_blank\" mở liên kết trong tab/cửa sổ mới.",
+      "tags": [
+        "anchor",
+        "target"
+      ]
+    },
+    {
+      "id": "w-html-007",
+      "topic": "html",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Khác biệt giữa method GET và POST của form là gì?",
+      "choices": [
+        "GET gửi dữ liệu trong body, POST gắn lên URL",
+        "GET gắn dữ liệu lên URL (hiện rõ), POST gửi trong body (ẩn)",
+        "Cả hai đều gửi trong body",
+        "GET dùng cho tạo dữ liệu, POST dùng cho đọc dữ liệu"
+      ],
+      "answer": 1,
+      "explanation": "GET gắn dữ liệu vào URL (nhìn thấy được); POST gửi trong request body (kín đáo hơn).",
+      "tags": [
+        "form",
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "w-html-008",
+      "topic": "html",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Thẻ nào có thể dùng để cho phép người dùng chọn MỘT trong nhiều lựa chọn?",
+      "choices": [
+        "<select>",
+        "<button type=\"radio\">",
+        "<div role=\"option\">",
+        "<input type=\"text\">"
+      ],
+      "answer": 0,
+      "explanation": "<select> (drop-down) hoặc <input type=\"radio\"> cho phép chọn một. Lưu ý <button type=\"radio\"> là sai (radio thuộc input, không thuộc button).",
+      "tags": [
+        "select",
+        "radio"
+      ]
+    },
+    {
+      "id": "w-css-001",
+      "topic": "css",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Đâu là giá trị mặc định cho thuộc tính position của thẻ trong HTML?",
+      "choices": [
+        "static",
+        "fixed",
+        "absolute",
+        "sticky"
+      ],
+      "answer": 0,
+      "explanation": "Mặc định position là static — không chịu tác động của top/left/right/bottom.",
+      "tags": [
+        "position"
+      ]
+    },
+    {
+      "id": "w-css-002",
+      "topic": "css",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Dùng giá trị nào của thuộc tính position để cố định phần tử theo cửa sổ trình duyệt khi cuộn?",
+      "choices": [
+        "fixed",
+        "absolute",
+        "relative",
+        "static"
+      ],
+      "answer": 0,
+      "explanation": "position: fixed giữ phần tử cố định theo viewport khi cuộn trang.",
+      "tags": [
+        "position",
+        "fixed"
+      ]
+    },
+    {
+      "id": "w-css-003",
+      "topic": "css",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Khai báo CSS nào đổi màu phần tử có id=\"para1\" thành đỏ?",
+      "choices": [
+        "#para1{color:red;}",
+        "*{color:red;}",
+        "para1{color:red;}",
+        ".para1{color:red;}"
+      ],
+      "answer": 0,
+      "explanation": "Dùng # cho id (#para1) và dấu chấm cho class (.para1).",
+      "tags": [
+        "selector",
+        "id"
+      ]
+    },
+    {
+      "id": "w-css-004",
+      "topic": "css",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 3,
+      "prompt": "Một phần tử có:\nbox-sizing: content-box;\nwidth: 20px;\npadding: 2px;\nmargin: 3px;\nborder: 1px;\n\nChiều rộng thực (chiếm chỗ trên màn hình của box, không tính margin) là bao nhiêu?",
+      "choices": [
+        "26px",
+        "24px",
+        "30px",
+        "32px"
+      ],
+      "answer": 0,
+      "explanation": "Với content-box: width hiển thị = width + 2×padding + 2×border = 20 + 2×2 + 2×1 = 26px. Margin không tính vào kích thước phần tử.",
+      "tags": [
+        "box model",
+        "box-sizing"
+      ]
+    },
+    {
+      "id": "w-css-005",
+      "topic": "css",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Diễn giải nào ĐÚNG với luật CSS:  section.dark img.large { /* ... */ }",
+      "choices": [
+        "<img> class large là con TRỰC TIẾP của <section> class dark",
+        "<img> class large là con của <section> class dark",
+        "<section> class dark là cha của <img> class large",
+        "<section> class dark là TỔ TIÊN của <img> class large"
+      ],
+      "answer": 3,
+      "explanation": "Dấu cách giữa hai selector là descendant selector: img.large nằm bên trong (con cháu) section.dark ở bất kỳ cấp nào → section.dark là tổ tiên.",
+      "tags": [
+        "selector",
+        "descendant"
+      ]
+    },
+    {
+      "id": "w-css-006",
+      "topic": "css",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Màu văn bản trong thẻ <p> là gì khi áp dụng CSS sau?\n\np { color: blue; background-color: white; border-color: red; border-left: solid }\nbody { color: black; border-color: green; }",
+      "choices": [
+        "blue",
+        "black",
+        "red",
+        "green"
+      ],
+      "answer": 0,
+      "explanation": "Quy tắc đặt trực tiếp cho p (color: blue) thắng giá trị kế thừa từ body (black).",
+      "tags": [
+        "color",
+        "cascade"
+      ]
+    },
+    {
+      "id": "w-css-007",
+      "topic": "css",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Selector nào có độ ưu tiên (specificity) CAO nhất?",
+      "choices": [
+        "Inline style",
+        "ID selector",
+        "Class selector",
+        "Element selector"
+      ],
+      "answer": 0,
+      "explanation": "Thứ tự specificity: inline style > id > class/attribute/pseudo-class > element. !important ghi đè tất cả.",
+      "tags": [
+        "specificity"
+      ]
+    },
+    {
+      "id": "w-css-008",
+      "topic": "css",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Box model trong CSS gồm 4 lớp theo thứ tự từ trong ra ngoài là gì?",
+      "choices": [
+        "Margin → Border → Padding → Content",
+        "Content → Padding → Border → Margin",
+        "Content → Margin → Border → Padding",
+        "Padding → Content → Margin → Border"
+      ],
+      "answer": 1,
+      "explanation": "Từ trong ra ngoài: Content → Padding → Border → Margin.",
+      "tags": [
+        "box model"
+      ]
+    },
+    {
+      "id": "w-css-009",
+      "topic": "css",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Để áp dụng CSS theo kích thước thiết bị (responsive), ta dùng gì?",
+      "choices": [
+        "@import",
+        "@media query",
+        "@font-face",
+        "@keyframes"
+      ],
+      "answer": 1,
+      "explanation": "@media (max-width: 576px){ ... } cho phép áp CSS có điều kiện theo đặc điểm thiết bị.",
+      "tags": [
+        "responsive",
+        "media query"
+      ]
+    },
+    {
+      "id": "w-js-001",
+      "topic": "js",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Kết quả đầu ra của đoạn mã sau?\n\nlet x = 12; let y = 8;\nlet res = eval(\"x+y\");\ndocument.write(res);",
+      "choices": [
+        "x+y",
+        "20",
+        "Lỗi cú pháp",
+        "128"
+      ],
+      "answer": 1,
+      "explanation": "eval thực thi biểu thức trong chuỗi \"x+y\" = 12 + 8 = 20.",
+      "tags": [
+        "eval"
+      ]
+    },
+    {
+      "id": "w-js-002",
+      "topic": "js",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Kết quả của lời gọi compare()?\n\nfunction compare() {\n  int x = 1;\n  string y = \"1\";\n  if (x == y) return true;\n  else return false;\n}",
+      "choices": [
+        "Lỗi cú pháp",
+        "true",
+        "Lỗi timeout",
+        "false"
+      ],
+      "answer": 0,
+      "explanation": "JS không có từ khóa kiểu int/string để khai báo biến → lỗi cú pháp. JS dùng let/const/var.",
+      "tags": [
+        "syntax",
+        "types"
+      ]
+    },
+    {
+      "id": "w-js-003",
+      "topic": "js",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Phát biểu nào về JavaScript là KHÔNG đúng?",
+      "choices": [
+        "JavaScript là ngôn ngữ lập trình hướng đối tượng dựa trên LỚP",
+        "JavaScript là ngôn ngữ đa nền tảng",
+        "JavaScript là ngôn ngữ hướng sự kiện",
+        "JavaScript là ngôn ngữ dựa trên nguyên mẫu (prototype)"
+      ],
+      "answer": 0,
+      "explanation": "JS dựa trên NGUYÊN MẪU (prototype-based), không phải dựa trên lớp.",
+      "tags": [
+        "prototype"
+      ]
+    },
+    {
+      "id": "w-js-004",
+      "topic": "js",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Đâu là cách ĐÚNG để khai báo mảng trong JavaScript?",
+      "choices": [
+        "let colors = {\"red\", \"green\", \"blue\"};",
+        "let colors = 1=(\"red\"), 2=(\"green\");",
+        "let colors = [\"red\", \"green\", \"blue\"];",
+        "let colors = new Array(1:\"red\", 2:\"green\");"
+      ],
+      "answer": 2,
+      "explanation": "Mảng khai báo bằng cặp ngoặc vuông [ ].",
+      "tags": [
+        "array"
+      ]
+    },
+    {
+      "id": "w-js-005",
+      "topic": "js",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Kết quả in ra?\n\nconst obj = { a: 1, b: 2, c: 3, d: 4 };\nconst { a1: a, b1: b, ...r1 } = obj;\nconsole.log(r1);",
+      "choices": [
+        "Lỗi syntax",
+        "{ a: 1, b: 2 }",
+        "{ c: 3, d: 4 }",
+        "{ a1: 1, b1: 2 }"
+      ],
+      "answer": 2,
+      "explanation": "a1, b1 không tồn tại trong obj nên a, b = undefined; rest r1 gom các thuộc tính còn lại: c và d.",
+      "tags": [
+        "destructuring",
+        "rest"
+      ]
+    },
+    {
+      "id": "w-js-006",
+      "topic": "js",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Câu lệnh nào cho phép gán sự kiện onclick đến thành phần <button>?",
+      "choices": [
+        "document.getElementById(\"demo\").addEventListener(\"click\", myFunction);",
+        "document.getElementById(\"demo\").addEventListener(\"onclick\", myFunction);",
+        "document.getElementById(\"demo\").addEventListener(\"click\", myFunction());",
+        "document.getElementById(\"demo\").addEventListener(\"onclick\", myFunction, true);"
+      ],
+      "answer": 0,
+      "explanation": "Tên sự kiện là \"click\" (không phải \"onclick\") và phải truyền THAM CHIẾU hàm (myFunction), không gọi myFunction().",
+      "tags": [
+        "addEventListener",
+        "events"
+      ]
+    },
+    {
+      "id": "w-js-007",
+      "topic": "js",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Câu lệnh nào ĐÚNG để thay đổi nội dung của <p id=\"demo\">...</p>?",
+      "choices": [
+        "#demo.innerHTML = \"...\";",
+        "document.getElementById(demo).innerHTML = \"...\";",
+        "document.getElement(\"p\").innerHTML = \"...\";",
+        "document.getElementsByTagName(\"p\")[0].innerHTML = \"...\";"
+      ],
+      "answer": 3,
+      "explanation": "getElementsByTagName(\"p\")[0] hợp lệ. Lựa chọn getElementById(demo) thiếu dấu nháy quanh \"demo\" nên sai.",
+      "tags": [
+        "DOM",
+        "innerHTML"
+      ]
+    },
+    {
+      "id": "w-js-008",
+      "topic": "js",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Làm thế nào để lấy ra phần tử có id là \"first\"?",
+      "choices": [
+        "document.getElementById(\"first\")",
+        "document.querySelector(\"#first\")",
+        "Cả A và B đều đúng",
+        "Không đáp án nào đúng"
+      ],
+      "answer": 2,
+      "explanation": "Cả getElementById(\"first\") và querySelector(\"#first\") đều lấy đúng phần tử.",
+      "tags": [
+        "DOM",
+        "selector"
+      ]
+    },
+    {
+      "id": "w-js-009",
+      "topic": "js",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Câu lệnh nào thay đổi nội dung của thẻ đầu tiên có class \"test\"?",
+      "choices": [
+        "document.getElementsByName(\"p\")[0].innerHTML = \"Hello\"",
+        "document.getElementsByClassName(\"test\")[0].innerHTML = \"Hello\"",
+        "document.getElementsByClassName(\"test\")[0].value = \"Hello\"",
+        "document.getElementsByName(\"test\")[0].innerHTML = \"Hello\""
+      ],
+      "answer": 1,
+      "explanation": "getElementsByClassName(\"test\")[0] lấy phần tử đầu tiên có class test; dùng innerHTML để đổi nội dung.",
+      "tags": [
+        "DOM",
+        "class"
+      ]
+    },
+    {
+      "id": "w-js-010",
+      "topic": "js",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Lời gọi nào in ra xâu \"NguyenVanAn\"?\n\nfunction logUserName() { return this.name; }\nconst user = { name: \"NguyenVanAn\" };",
+      "choices": [
+        "Đoạn mã có lỗi cú pháp",
+        "logUserName(this = user)",
+        "logUserName.bind(user)",
+        "logUserName.call(user)"
+      ],
+      "answer": 3,
+      "explanation": ".call(user) gọi hàm NGAY với this = user nên trả về \"NguyenVanAn\". .bind(user) chỉ trả về một hàm mới (chưa chạy).",
+      "tags": [
+        "this",
+        "call",
+        "bind"
+      ]
+    },
+    {
+      "id": "w-js-011",
+      "topic": "js",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Thẻ <script> với file ngoài và thuộc tính async được xử lý như thế nào?",
+      "choices": [
+        "Tải đồng thời với HTML, thực thi NGAY khi tải xong",
+        "Tải và xử lý xong script mới tiếp tục xử lý HTML",
+        "Tải đồng thời với HTML, thực thi sau khi HTML xong",
+        "Không tải được"
+      ],
+      "answer": 0,
+      "explanation": "async: tải song song với phân tích HTML và thực thi ngay khi tải xong (có thể chen ngang). defer thì đợi HTML xong mới chạy theo thứ tự.",
+      "tags": [
+        "script",
+        "async",
+        "defer"
+      ]
+    },
+    {
+      "id": "w-js-012",
+      "topic": "js",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cần thêm node ele ngay trước div2. Biết #div2 lưu ở biến div2. Câu lệnh nào ĐÚNG?",
+      "choices": [
+        "div2.parentNode.insertBefore(ele, div2)",
+        "div2.appendChild(ele)",
+        "div1.appendChild(ele)",
+        "div2.parentNode.insertBefore(div2, ele)"
+      ],
+      "answer": 0,
+      "explanation": "parentNode.insertBefore(newNode, referenceNode) chèn ele ngay trước div2.",
+      "tags": [
+        "DOM",
+        "insertBefore"
+      ]
+    },
+    {
+      "id": "w-js-013",
+      "topic": "js",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Khác biệt giữa == và === trong JavaScript?",
+      "choices": [
+        "Hoàn toàn giống nhau",
+        "== so sánh giá trị (cho phép ép kiểu), === so sánh cả giá trị và kiểu (không ép kiểu)",
+        "=== chỉ dùng cho số",
+        "== so sánh kiểu, === so sánh giá trị"
+      ],
+      "answer": 1,
+      "explanation": "== so sánh giá trị có ép kiểu (coercion); === so sánh cả giá trị + kiểu, không ép kiểu — nên ưu tiên dùng ===.",
+      "tags": [
+        "equality",
+        "coercion"
+      ]
+    },
+    {
+      "id": "w-js-014",
+      "topic": "js",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Phương thức mảng nào TẠO RA mảng mới chứa các phần tử đã được biến đổi?",
+      "choices": [
+        "forEach()",
+        "map()",
+        "filter()",
+        "reduce()"
+      ],
+      "answer": 1,
+      "explanation": "map() trả về mảng mới với giá trị đã biến đổi. filter() lọc, reduce() gộp về một giá trị, forEach() chỉ lặp.",
+      "tags": [
+        "array methods"
+      ]
+    },
+    {
+      "id": "w-js-015",
+      "topic": "js",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 3,
+      "prompt": "Đầu ra của đoạn mã sau là gì?\n\nlet s = \"00000001111111\"; let l = 0;\nlet r = s.length - 1; let ans = -1;\nwhile (l <= r) {\n  let mid = Math.floor((l + r) / 2);\n  if (s[mid] == '1') { ans = mid; r = mid - 1; }\n  else { l = mid + 1; }\n}\ndocument.write(ans);",
+      "choices": [
+        "2",
+        "7",
+        "1",
+        "8"
+      ],
+      "answer": 1,
+      "explanation": "Tìm kiếm nhị phân vị trí '1' đầu tiên. Có 7 số '0' (chỉ số 0–6) nên '1' đầu tiên ở chỉ số 7.",
+      "tags": [
+        "binary search"
+      ]
+    },
+    {
+      "id": "w-js-016",
+      "topic": "js",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Trong DOM, các thuộc tính, phương thức và sự kiện được tổ chức bên trong?",
+      "choices": [
+        "Lớp - Class",
+        "Cây - Tree",
+        "Bảng - Table",
+        "Đối tượng - Object"
+      ],
+      "answer": 3,
+      "explanation": "DOM mô hình hóa tài liệu thành các Đối tượng (Object) chứa thuộc tính, phương thức và sự kiện.",
+      "tags": [
+        "DOM"
+      ]
+    },
+    {
+      "id": "w-adv-001",
+      "topic": "jsadv",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Một Promise có thể ở những trạng thái nào?",
+      "choices": [
+        "Open, Close, Error",
+        "Pending, Fulfilled, Rejected",
+        "Start, Run, End",
+        "Sync, Async, Wait"
+      ],
+      "answer": 1,
+      "explanation": "Promise có 3 trạng thái: Pending → Fulfilled (.then) hoặc Rejected (.catch).",
+      "tags": [
+        "Promise"
+      ]
+    },
+    {
+      "id": "w-adv-002",
+      "topic": "jsadv",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Một hàm async LUÔN trả về gì?",
+      "choices": [
+        "undefined",
+        "Một Promise",
+        "Một callback",
+        "Giá trị đồng bộ"
+      ],
+      "answer": 1,
+      "explanation": "Mọi async function luôn trả về một Promise, dù bên trong return giá trị gì.",
+      "tags": [
+        "async/await"
+      ]
+    },
+    {
+      "id": "w-adv-003",
+      "topic": "jsadv",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Giữa Promise callback (microtask) và setTimeout (macrotask), cái nào được Event Loop chạy TRƯỚC?",
+      "choices": [
+        "setTimeout chạy trước",
+        "Promise (microtask) chạy trước",
+        "Chạy đồng thời",
+        "Tùy trình duyệt"
+      ],
+      "answer": 1,
+      "explanation": "Sau khi Call Stack rỗng, Event Loop chạy hết Microtask (Promise) rồi mới đến Macrotask (setTimeout).",
+      "tags": [
+        "event loop",
+        "microtask"
+      ]
+    },
+    {
+      "id": "w-adv-004",
+      "topic": "jsadv",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Khác biệt giữa Debouncing và Throttling?",
+      "choices": [
+        "Giống hệt nhau",
+        "Debounce chạy sau khi NGỪNG kích hoạt một khoảng; Throttle chạy tối đa 1 lần mỗi X ms",
+        "Debounce chạy liên tục; Throttle chạy 1 lần duy nhất",
+        "Cả hai đều chỉ dùng cho fetch"
+      ],
+      "answer": 1,
+      "explanation": "Debounce: chỉ chạy sau khi người dùng ngừng tác động một khoảng thời gian. Throttle: giới hạn chạy tối đa 1 lần mỗi X ms dù kích hoạt liên tục.",
+      "tags": [
+        "debounce",
+        "throttle"
+      ]
+    },
+    {
+      "id": "w-adv-005",
+      "topic": "jsadv",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Vì sao cần gọi event.preventDefault() khi xử lý sự kiện submit của form?",
+      "choices": [
+        "Để form gửi nhanh hơn",
+        "Để ngăn trình duyệt tự reload/điều hướng, cho phép JS tự xử lý dữ liệu",
+        "Để xóa dữ liệu form",
+        "Để bật validation HTML5"
+      ],
+      "answer": 1,
+      "explanation": "Mặc định submit khiến trình duyệt reload/điều hướng. preventDefault() chặn hành vi đó để JS toàn quyền xử lý.",
+      "tags": [
+        "preventDefault",
+        "form"
+      ]
+    },
+    {
+      "id": "w-adv-006",
+      "topic": "jsadv",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Promise.all() hoạt động thế nào khi một trong các Promise bị reject?",
+      "choices": [
+        "Bỏ qua lỗi, trả kết quả còn lại",
+        "Reject NGAY lập tức và bỏ kết quả còn lại",
+        "Đợi tất cả xong rồi mới báo lỗi",
+        "Tự retry Promise lỗi"
+      ],
+      "answer": 1,
+      "explanation": "Promise.all reject ngay khi có một Promise thất bại. Muốn đợi tất cả dù thành/bại thì dùng Promise.allSettled.",
+      "tags": [
+        "Promise.all"
+      ]
+    },
+    {
+      "id": "w-react-001",
+      "topic": "react",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "React hook nào dùng để đồng bộ component với hệ thống bên ngoài (ví dụ fetch dữ liệu từ REST API)?",
+      "choices": [
+        "useRef",
+        "useState",
+        "useEffect",
+        "useMemo"
+      ],
+      "answer": 2,
+      "explanation": "useEffect xử lý side effect (fetch, timer, thao tác DOM) sau khi render.",
+      "tags": [
+        "useEffect",
+        "hooks"
+      ]
+    },
+    {
+      "id": "w-react-002",
+      "topic": "react",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Trong React, để bắt sự kiện click chuột ta dùng thuộc tính nào?",
+      "choices": [
+        "onClick",
+        "onclick",
+        "OnClick",
+        "Onclick"
+      ],
+      "answer": 0,
+      "explanation": "React dùng camelCase: onClick.",
+      "tags": [
+        "events",
+        "JSX"
+      ]
+    },
+    {
+      "id": "w-react-003",
+      "topic": "react",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Đâu là công nghệ sử dụng cơ chế SSR (Server-Side Rendering)?",
+      "choices": [
+        "Vue",
+        "Nest",
+        "Next",
+        "React"
+      ],
+      "answer": 2,
+      "explanation": "Next.js (dựa trên React) hỗ trợ Server-Side Rendering. React thuần chạy phía client; Nest là framework backend.",
+      "tags": [
+        "SSR",
+        "Next.js"
+      ]
+    },
+    {
+      "id": "w-react-004",
+      "topic": "react",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Virtual DOM được lưu trữ và cập nhật ở đâu?",
+      "choices": [
+        "Trực tiếp trên cấu trúc tài liệu của trình duyệt",
+        "Trong bộ nhớ (RAM) dưới dạng object JavaScript",
+        "Trong cơ sở dữ liệu phía server",
+        "Trong cookie"
+      ],
+      "answer": 1,
+      "explanation": "Virtual DOM là object JS lưu trong bộ nhớ; React diff bản mới với bản cũ rồi chỉ patch phần thay đổi vào Real DOM.",
+      "tags": [
+        "Virtual DOM"
+      ]
+    },
+    {
+      "id": "w-react-005",
+      "topic": "react",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Props trong React có đặc điểm gì?",
+      "choices": [
+        "Mutable — con được tự do sửa",
+        "Immutable (read-only) — con không được sửa props nhận từ cha",
+        "Chỉ tồn tại trong class component",
+        "Tự động re-render khi sửa trực tiếp"
+      ],
+      "answer": 1,
+      "explanation": "Props là read-only, truyền một chiều cha → con. Chỉ state mới thay đổi (qua setter).",
+      "tags": [
+        "props",
+        "state"
+      ]
+    },
+    {
+      "id": "w-react-006",
+      "topic": "react",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "SPA (Single Page Application) khác MPA cơ bản như thế nào về điều hướng?",
+      "choices": [
+        "SPA tải lại toàn bộ trang mỗi lần chuyển",
+        "SPA tải một trang HTML duy nhất và cập nhật động bằng JS; MPA tải lại toàn trang từ server mỗi yêu cầu",
+        "MPA mượt và nhanh hơn SPA",
+        "SPA xử lý logic giao diện hoàn toàn ở server"
+      ],
+      "answer": 1,
+      "explanation": "SPA tải một HTML rồi JS cập nhật phần cần thiết (mượt, khó SEO); MPA tải lại toàn trang mỗi request (SEO tốt, chậm hơn).",
+      "tags": [
+        "SPA",
+        "MPA"
+      ]
+    },
+    {
+      "id": "w-api-001",
+      "topic": "webapi",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào sau đây về AJAX là ĐÚNG?",
+      "choices": [
+        "AJAX giúp client không phải gửi yêu cầu tới server",
+        "AJAX làm tăng băng thông trao đổi dữ liệu",
+        "AJAX khiến máy tìm kiếm dễ đánh chỉ mục hơn",
+        "Để dùng AJAX, trình duyệt cần hỗ trợ JavaScript / XMLHttpRequest"
+      ],
+      "answer": 3,
+      "explanation": "AJAX dựa trên JavaScript và XMLHttpRequest (hoặc Fetch). Nó GIẢM băng thông và có thể gây khó cho SEO.",
+      "tags": [
+        "AJAX"
+      ]
+    },
+    {
+      "id": "w-api-002",
+      "topic": "webapi",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Trạng thái của đối tượng XMLHttpRequest được lưu bởi thuộc tính nào?",
+      "choices": [
+        "readyState",
+        "status",
+        "onreadystatechange",
+        "XMLHttpRequest Object"
+      ],
+      "answer": 0,
+      "explanation": "readyState lưu trạng thái của XHR (0–4). status là mã HTTP, onreadystatechange là handler.",
+      "tags": [
+        "XMLHttpRequest"
+      ]
+    },
+    {
+      "id": "w-api-003",
+      "topic": "webapi",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Trong REST, thao tác Create (tạo mới tài nguyên) tương ứng với HTTP method nào?",
+      "choices": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ],
+      "answer": 1,
+      "explanation": "CRUD ↔ method: Create-POST, Read-GET, Update-PUT/PATCH, Delete-DELETE.",
+      "tags": [
+        "REST",
+        "CRUD"
+      ]
+    },
+    {
+      "id": "w-api-004",
+      "topic": "webapi",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Với Fetch API, một response 404 được xử lý như thế nào?",
+      "choices": [
+        "Tự động ném lỗi vào catch",
+        "Được coi là THÀNH CÔNG — phải tự kiểm tra res.ok / res.status",
+        "Trả về null",
+        "Tự động retry"
+      ],
+      "answer": 1,
+      "explanation": "Fetch chỉ reject khi lỗi mạng; 404/500 vẫn là response 'thành công' nên phải tự kiểm res.ok (true nếu 200–299). Axios thì tự reject lỗi 4xx/5xx.",
+      "tags": [
+        "Fetch",
+        "error handling"
+      ]
+    },
+    {
+      "id": "w-api-005",
+      "topic": "webapi",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Trước một request non-simple (ví dụ PUT, DELETE, có Authorization), trình duyệt gửi gì để hỏi phép?",
+      "choices": [
+        "Một request GET",
+        "Một preflight request OPTIONS",
+        "Một cookie đặc biệt",
+        "Một WebSocket"
+      ],
+      "answer": 1,
+      "explanation": "CORS: với request non-simple, trình duyệt gửi preflight OPTIONS; server phải trả Access-Control-Allow-Origin/Methods/Headers.",
+      "tags": [
+        "CORS",
+        "preflight"
+      ]
+    },
+    {
+      "id": "w-api-006",
+      "topic": "webapi",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Khác biệt chính giữa Fetch và Axios?",
+      "choices": [
+        "Fetch tự parse JSON, Axios thì không",
+        "Axios tự reject lỗi 4xx/5xx và tự parse res.data; Fetch coi 4xx/5xx là thành công và phải tự res.json()",
+        "Fetch có timeout sẵn, Axios thì không",
+        "Cả hai đều cần cài đặt qua npm"
+      ],
+      "answer": 1,
+      "explanation": "Axios: tự reject HTTP error, tự parse JSON vào res.data, có timeout/interceptor. Fetch: native, không timeout, phải tự kiểm res.ok và tự res.json().",
+      "tags": [
+        "Fetch",
+        "Axios"
+      ]
+    },
+    {
+      "id": "w-be-001",
+      "topic": "backend",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Trong mô hình MVC, Model định nghĩa tầng nào?",
+      "choices": [
+        "Tầng giao diện",
+        "Tầng logic nghiệp vụ",
+        "Tầng trình diễn",
+        "Tầng truy cập dữ liệu"
+      ],
+      "answer": 3,
+      "explanation": "Model = dữ liệu & truy cập cơ sở dữ liệu. View = trình diễn, Controller = điều phối request.",
+      "tags": [
+        "MVC"
+      ]
+    },
+    {
+      "id": "w-be-002",
+      "topic": "backend",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Cho URL https://example.com?a=1. Trong Express, để đọc giá trị của biến a ta dùng?",
+      "choices": [
+        "req.path.a",
+        "req.search.a",
+        "req.query.a",
+        "req.param.a"
+      ],
+      "answer": 2,
+      "explanation": "Query string đọc bằng req.query.a. Path param dùng req.params, body dùng req.body.",
+      "tags": [
+        "Express",
+        "query"
+      ]
+    },
+    {
+      "id": "w-be-003",
+      "topic": "backend",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Cho:\nconst app = express();\nconst router = express.Router();\nCâu lệnh nào dùng để thêm router vào app?",
+      "choices": [
+        "app.route(router);",
+        "app.use(router);",
+        "app.add(router);",
+        "app.handle(router);"
+      ],
+      "answer": 1,
+      "explanation": "app.use(router) gắn router (middleware) vào app.",
+      "tags": [
+        "Express",
+        "router"
+      ]
+    },
+    {
+      "id": "w-be-004",
+      "topic": "backend",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Đâu KHÔNG phải là hệ quản trị cơ sở dữ liệu dùng trong phát triển ứng dụng?",
+      "choices": [
+        "Neo4j",
+        "MongoDB",
+        "Spring Boot",
+        "MySQL"
+      ],
+      "answer": 2,
+      "explanation": "Spring Boot là framework backend (Java), không phải DBMS. Neo4j, MongoDB, MySQL đều là DBMS.",
+      "tags": [
+        "database"
+      ]
+    },
+    {
+      "id": "w-be-005",
+      "topic": "backend",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Khi đẩy code lên GitHub, để không vô ý đẩy các file dữ liệu/thông tin bảo mật, ta dùng file nào?",
+      "choices": [
+        ".gitignore",
+        ".git",
+        ".env",
+        "package.json"
+      ],
+      "answer": 0,
+      "explanation": ".gitignore liệt kê các file/thư mục Git bỏ qua (thường gồm .env, node_modules...).",
+      "tags": [
+        "git",
+        "gitignore"
+      ]
+    },
+    {
+      "id": "w-be-006",
+      "topic": "backend",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Git là gì?",
+      "choices": [
+        "Một nền tảng lưu trữ trực tuyến",
+        "Một hệ thống quản lý phiên bản",
+        "Tên viết tắt của GitLab và GitHub",
+        "Một ngôn ngữ lập trình"
+      ],
+      "answer": 1,
+      "explanation": "Git là hệ thống quản lý phiên bản (version control). GitHub/GitLab là nền tảng lưu trữ dựa trên Git.",
+      "tags": [
+        "git"
+      ]
+    },
+    {
+      "id": "w-be-007",
+      "topic": "backend",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Để thêm một message cho commit, câu lệnh nào được sử dụng?",
+      "choices": [
+        "git commit -m \"I'm coding\"",
+        "git add \"I'm coding\"",
+        "git commit \"I'm coding\"",
+        "git message \"I'm coding\""
+      ],
+      "answer": 0,
+      "explanation": "git commit -m \"...\" gắn message cho commit.",
+      "tags": [
+        "git",
+        "commit"
+      ]
+    },
+    {
+      "id": "w-be-008",
+      "topic": "backend",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Pull request trong GitHub có nghĩa là gì?",
+      "choices": [
+        "Copy repo về tài khoản",
+        "Đẩy code lên một nhánh trong repo",
+        "Tạo yêu cầu merge từ một nhánh/repo vào một nhánh/repo khác",
+        "Xóa một repo"
+      ],
+      "answer": 2,
+      "explanation": "Pull request là yêu cầu trộn (merge) code, để review trước khi hợp nhất.",
+      "tags": [
+        "git",
+        "pull request"
+      ]
+    },
+    {
+      "id": "w-be-009",
+      "topic": "backend",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Đặc điểm nào ĐÚNG về Node.js?",
+      "choices": [
+        "Có sẵn DOM và window như trình duyệt",
+        "Chạy JS ngoài trình duyệt trên engine V8, kiến trúc non-blocking I/O",
+        "Là một cơ sở dữ liệu",
+        "Chỉ chạy được code đồng bộ"
+      ],
+      "answer": 1,
+      "explanation": "Node.js là runtime chạy JS ngoài trình duyệt (V8), event-driven, non-blocking I/O (libuv). Không có DOM/window.",
+      "tags": [
+        "Node.js"
+      ]
+    },
+    {
+      "id": "w-sec-001",
+      "topic": "security",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "JWT bao gồm các phần nào (đúng thứ tự)?",
+      "choices": [
+        "header.payload",
+        "header.signature.payload",
+        "header.payload.signature",
+        "header.signature"
+      ],
+      "answer": 2,
+      "explanation": "JWT = Header.Payload.Signature.",
+      "tags": [
+        "JWT"
+      ]
+    },
+    {
+      "id": "w-sec-002",
+      "topic": "security",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Lỗ hổng bảo mật nào có thể xảy ra nếu không xác thực/chuẩn hóa dữ liệu đầu vào (validate, sanitize)?",
+      "choices": [
+        "Cross-Site Scripting (XSS)",
+        "Hypertext Transfer Protocol Secure (HTTPS)",
+        "Single Page Application (SPA)",
+        "Two-Factor Authentication (2FA)"
+      ],
+      "answer": 0,
+      "explanation": "Không validate/sanitize input dẫn tới XSS (và cả SQL/NoSQL Injection).",
+      "tags": [
+        "XSS",
+        "validation"
+      ]
+    },
+    {
+      "id": "w-sec-003",
+      "topic": "security",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cách nào KHÔNG phòng chống được XSS?",
+      "choices": [
+        "Xác thực định dạng input của người dùng",
+        "Gửi response với header Content-Type và X-Content-Type-Options",
+        "Encode dữ liệu trả về để trình duyệt không hiểu là active content",
+        "Đổi method GET sang POST với payload JSON thay vì URL parameters"
+      ],
+      "answer": 3,
+      "explanation": "Đổi GET sang POST không liên quan đến XSS. Phòng XSS thật sự: validate input, encode output, đặt header phù hợp, CSP.",
+      "tags": [
+        "XSS"
+      ]
+    },
+    {
+      "id": "w-sec-004",
+      "topic": "security",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Trong các phương thức đăng nhập sau, đâu là phương thức AN TOÀN nhất?",
+      "choices": [
+        "Social Media Login (Facebook/Google)",
+        "Biometric Authentication (vân tay/khuôn mặt)",
+        "HTTP Basic Authentication",
+        "Username và Password"
+      ],
+      "answer": 1,
+      "explanation": "Xác thực sinh trắc học (biometric) được xem là an toàn nhất trong các lựa chọn.",
+      "tags": [
+        "authentication"
+      ]
+    },
+    {
+      "id": "w-sec-005",
+      "topic": "security",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Đâu KHÔNG phải là một loại tấn công XSS?",
+      "choices": [
+        "Reflected XSS (Non-persistent)",
+        "DOM-based XSS",
+        "Forgery XSS",
+        "Stored XSS"
+      ],
+      "answer": 2,
+      "explanation": "Không có 'Forgery XSS'. Ba loại XSS là Stored, Reflected (non-persistent), DOM-based.",
+      "tags": [
+        "XSS"
+      ]
+    },
+    {
+      "id": "w-sec-006",
+      "topic": "security",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "So sánh xác thực Session-based và Token-based (JWT), phát biểu nào ĐÚNG?",
+      "choices": [
+        "Session là stateless, Token là stateful",
+        "Session lưu trạng thái ở server (stateful, dễ thu hồi); Token stateless (dễ scale, khó thu hồi)",
+        "Cả hai đều stateless",
+        "Token bắt buộc lưu ở server"
+      ],
+      "answer": 1,
+      "explanation": "Session-based: server lưu session (stateful), dễ thu hồi nhưng khó scale. Token (JWT): stateless, dễ scale nhưng khó thu hồi trước khi hết hạn.",
+      "tags": [
+        "session",
+        "JWT"
+      ]
+    },
+    {
+      "id": "w-sec-007",
+      "topic": "security",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Cookie flag nào giúp ngăn JavaScript đọc cookie (chống XSS đánh cắp cookie)?",
+      "choices": [
+        "Secure",
+        "HttpOnly",
+        "SameSite",
+        "Path"
+      ],
+      "answer": 1,
+      "explanation": "HttpOnly chặn JS đọc cookie. Secure chỉ gửi qua HTTPS; SameSite chống CSRF.",
+      "tags": [
+        "cookie",
+        "HttpOnly"
+      ]
+    },
+    {
+      "id": "w-dep-001",
+      "topic": "deploy",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Câu lệnh nào để kiểm tra các container đang chạy?",
+      "choices": [
+        "docker ps",
+        "docker images",
+        "docker exec -it",
+        "docker build"
+      ],
+      "answer": 0,
+      "explanation": "docker ps liệt kê các container đang chạy. docker images liệt kê image.",
+      "tags": [
+        "Docker"
+      ]
+    },
+    {
+      "id": "w-dep-002",
+      "topic": "deploy",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Để chia sẻ/persist dữ liệu khi chạy container, dùng lệnh nào?",
+      "choices": [
+        "docker run -d ...",
+        "docker run -p ...",
+        "docker run -v ...",
+        "docker run -h ..."
+      ],
+      "answer": 2,
+      "explanation": "-v mount volume để chia sẻ/giữ dữ liệu. -p map port, -d chạy nền, -h đặt hostname.",
+      "tags": [
+        "Docker",
+        "volume"
+      ]
+    },
+    {
+      "id": "w-dep-003",
+      "topic": "deploy",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Để mở port từ trong container ra ngoài, dùng lệnh nào?",
+      "choices": [
+        "docker run -v ...",
+        "docker run -h ...",
+        "docker run -d ...",
+        "docker run -p ..."
+      ],
+      "answer": 3,
+      "explanation": "-p (publish) map port container ra host, ví dụ -p 80:3000.",
+      "tags": [
+        "Docker",
+        "port"
+      ]
+    },
+    {
+      "id": "w-dep-004",
+      "topic": "deploy",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 1,
+      "prompt": "Thành phần cơ bản nhất trong Kubernetes (K8s) là gì?",
+      "choices": [
+        "StatefulSet",
+        "Service",
+        "Pod",
+        "Deployment"
+      ],
+      "answer": 2,
+      "explanation": "Pod là đơn vị triển khai nhỏ nhất trong K8s (chứa một hoặc vài container).",
+      "tags": [
+        "Kubernetes",
+        "Pod"
+      ]
+    },
+    {
+      "id": "w-dep-005",
+      "topic": "deploy",
+      "source": "exam-20221",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong GitHub Actions, từ khóa nào thiết lập thứ tự thực hiện của các job?",
+      "choices": [
+        "wait",
+        "needs",
+        "use",
+        "parents"
+      ],
+      "answer": 1,
+      "explanation": "needs khai báo job phụ thuộc job khác, qua đó định thứ tự thực thi.",
+      "tags": [
+        "GitHub Actions",
+        "CI/CD"
+      ]
+    },
+    {
+      "id": "w-dep-006",
+      "topic": "deploy",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong workflow GitHub Actions, để biết event push lên NHÁNH nào đã kích hoạt luồng, ta dùng?",
+      "choices": [
+        "vars context",
+        "github context",
+        "input context",
+        "runner context"
+      ],
+      "answer": 1,
+      "explanation": "github context (vd github.ref) chứa thông tin về sự kiện và nhánh kích hoạt workflow.",
+      "tags": [
+        "GitHub Actions",
+        "context"
+      ]
+    },
+    {
+      "id": "w-dep-007",
+      "topic": "deploy",
+      "source": "exam-20241",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Dịch vụ Kubernetes (được quản lý) trên DigitalOcean được xếp loại nào?",
+      "choices": [
+        "Platform as a Service",
+        "On-Premises",
+        "Software as a Service",
+        "Infrastructure as a Service"
+      ],
+      "answer": 3,
+      "explanation": "Kubernetes quản lý hạ tầng máy chủ/container nên xếp vào nhóm Infrastructure as a Service (hạ tầng).",
+      "tags": [
+        "IaaS",
+        "cloud"
+      ]
+    },
+    {
+      "id": "w-dep-008",
+      "topic": "deploy",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Phân biệt Docker Image và Docker Container?",
+      "choices": [
+        "Image là bản đang chạy, Container là bản thiết kế",
+        "Image là bản thiết kế bất biến; Container là một instance đang chạy của image",
+        "Hai khái niệm giống hệt nhau",
+        "Container lưu trên Docker Hub, Image thì không"
+      ],
+      "answer": 1,
+      "explanation": "Image = blueprint bất biến (code + runtime + lib); Container = instance đang chạy từ image. Registry (Docker Hub) lưu image.",
+      "tags": [
+        "Docker",
+        "image",
+        "container"
+      ]
+    },
+    {
+      "id": "w-dep-009",
+      "topic": "deploy",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 2,
+      "prompt": "Khác biệt giữa Continuous Delivery và Continuous Deployment?",
+      "choices": [
+        "Hoàn toàn giống nhau",
+        "Delivery: deploy cần phê duyệt thủ công; Deployment: deploy tự động hoàn toàn",
+        "Delivery tự động, Deployment thủ công",
+        "Cả hai đều không tự động build/test"
+      ],
+      "answer": 1,
+      "explanation": "Continuous Delivery dừng ở bước cần người phê duyệt để deploy; Continuous Deployment deploy tự động sau khi qua CI.",
+      "tags": [
+        "CI/CD"
+      ]
+    },
+    {
+      "id": "w-dep-010",
+      "topic": "deploy",
+      "source": "lecture",
+      "kind": "generated",
+      "difficulty": 1,
+      "prompt": "Vai trò của Nginx khi đặt trước backend là gì?",
+      "choices": [
+        "Chỉ để lưu cơ sở dữ liệu",
+        "Reverse proxy: định tuyến request, phục vụ static, xử lý HTTPS/TLS, cân bằng tải",
+        "Biên dịch mã JavaScript",
+        "Thay thế cho Git"
+      ],
+      "answer": 1,
+      "explanation": "Nginx là reverse proxy đứng trước app: route request, serve static, TLS termination, load balancing. SPA cần try_files ... /index.html.",
+      "tags": [
+        "Nginx",
+        "reverse proxy"
+      ]
+    },
+    {
+      "id": "w-hoang-5104d1",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Máy chủ HTTP/1.0 duy trì kết nối với client bằng cách nào?",
+      "choices": [
+        "bằng kết nối TCP",
+        "bằng kết nối UDP",
+        "theo mỗi vòng request/response HTTP",
+        "theo mỗi lần tải trang web"
+      ],
+      "answer": [
+        0,
+        2
+      ],
+      "explanation": "HTTP/1.0 không duy trì kết nối lâu dài (non-persistent): mặc định server mở một kết nối TCP và đóng lại sau mỗi vòng request/response. (HTTP chạy trên TCP nên lựa chọn A cũng đúng ở mức truyền tải; đặc trưng của HTTP/1.0 là theo từng request/response.)",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-89ada7",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào sau đây là đúng?",
+      "choices": [
+        "HTTP chạy trên TCP",
+        "HTTP cho phép lưu thông tin trong URL",
+        "Cả hai"
+      ],
+      "answer": 2,
+      "explanation": "Cả hai đều đúng: HTTP là giao thức tầng ứng dụng chạy trên TCP, và thông tin có thể được lưu trong URL (ví dụ tham số query-string). Vì vậy đáp án đúng là 'Both' (cả hai).",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-009e58",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Các trường header HTTP được dùng để làm gì?",
+      "choices": [
+        "Để truyền tham số URL tới server.",
+        "Để truyền phần thân (body) thông điệp tới server.",
+        "Để truyền thông tin bổ sung về request hoặc response."
+      ],
+      "answer": 2,
+      "explanation": "Các trường header HTTP mang siêu dữ liệu — thông tin bổ sung về request hoặc response (ví dụ Content-Type, Authorization, Accept). Tham số URL nằm trong query string còn dữ liệu nằm trong body, không phải trong header.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-94b09b",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Web cookie là một mẩu dữ liệu nhỏ...",
+      "choices": [
+        "Được gửi từ website và lưu trong trình duyệt của người dùng khi họ đang duyệt website",
+        "Được gửi từ người dùng và lưu trên server khi họ đang duyệt website"
+      ],
+      "answer": 0,
+      "explanation": "Cookie được website thiết lập (qua Set-Cookie) và lưu trong trình duyệt của người dùng; trình duyệt sau đó gửi lại cookie ở các request tiếp theo. Cookie không được lưu ở server.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-f2b8e2",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "........... là dạng website đơn giản nhất, trong đó nội dung được phân phối mà không cần xử lý phía server.",
+      "choices": [
+        "Mạng xã hội",
+        "Sinh tệp thực thi từ nội dung web bởi web server",
+        "Website tĩnh"
+      ],
+      "answer": 2,
+      "explanation": "Website tĩnh (static website) phục vụ các tệp cố định (HTML/CSS/JS) trực tiếp mà không cần xử lý phía server, nên đây là dạng website đơn giản nhất.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-d54091",
+      "topic": "backend",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Web server duy trì trạng thái phiên (session state) của client...",
+      "choices": [
+        "theo đặc tả giao thức HTTP",
+        "để xử lý phân quyền client",
+        "là điều không thể chỉ bằng HTTP, vì HTTP là giao thức phi trạng thái"
+      ],
+      "answer": 1,
+      "explanation": "Bản thân HTTP là phi trạng thái và không có sẵn cơ chế lưu trạng thái phiên, nên đặc tả giao thức không thể tự duy trì điều đó. Trạng thái phiên phải được thêm vào riêng qua cookie/session/token.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-e32dd2",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "HTTP cookie là gì?",
+      "choices": [
+        "Server dùng cookie để lưu dữ liệu trên máy người dùng.",
+        "Client dùng cookie để lưu dữ liệu trên server.",
+        "Proxy dùng cookie để lưu dữ liệu trên máy người dùng."
+      ],
+      "answer": 0,
+      "explanation": "Cookie HTTP là dữ liệu mà server gửi tới client (qua Set-Cookie) để lưu trên máy/trình duyệt người dùng, và được gửi trả lại ở các request sau.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-2e2ff6",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Tìm hiểu Common Gateway Interface (CGI). CGI được dùng để làm gì?",
+      "choices": [
+        "Sinh ra các trang web",
+        "Sinh tệp thực thi từ nội dung web bởi web server",
+        "Phát video trực tuyến",
+        "Tất cả phương án trên"
+      ],
+      "answer": 1,
+      "explanation": "CGI là một chuẩn cho phép web server chạy chương trình/script bên ngoài để sinh ra trang web động đáp ứng từng request.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-28d1ea",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trang web động (dynamic web page)...",
+      "choices": [
+        "Luôn giống nhau mỗi lần hiển thị",
+        "Được sinh ra theo yêu cầu bởi một chương trình hoặc request từ trình duyệt",
+        "Cả hai phương án trên"
+      ],
+      "answer": 1,
+      "explanation": "Trang web động được sinh ra theo yêu cầu (bởi mã phía server hoặc dựa trên request), nên nội dung có thể khác nhau mỗi lần — khác với trang tĩnh.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-16a24f",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Server HTTP thiết lập cookie bằng cách nào?",
+      "choices": [
+        "chỉ truyền trong header request HTTP",
+        "chỉ truyền trong header request HTTP",
+        "bằng trường header Set-Cookie"
+      ],
+      "answer": 2,
+      "explanation": "Server thiết lập cookie bằng trường header response Set-Cookie; trình duyệt sau đó gửi lại trong header request Cookie ở các request tiếp theo.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-1480f4",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khi nào server HTTP/1.1 đóng kết nối với client?",
+      "choices": [
+        "sau mỗi vòng request/response HTTP",
+        "sau mỗi lần tải trang web",
+        "Không được quy định trong RFC"
+      ],
+      "answer": 2,
+      "explanation": "HTTP/1.1 mặc định dùng kết nối duy trì (keep-alive); RFC không quy định thời điểm cố định để đóng kết nối — điều này tùy vào triển khai/timeout.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-607dcf",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Giao thức nào được dùng để truyền thông an toàn trên internet?",
+      "choices": [
+        "UDP",
+        "HTTPS",
+        "HTTP",
+        "IP"
+      ],
+      "answer": 1,
+      "explanation": "HTTPS (HTTP qua TLS) mã hóa dữ liệu truyền, đảm bảo bảo mật, toàn vẹn và xác thực server. HTTP thuần, UDP và IP không cung cấp tính bảo mật này.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-086425",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Mã trạng thái HTTP 500 được dùng cho điều gì?",
+      "choices": [
+        "Báo sự cố bất ngờ ở phía server.",
+        "Báo request của người dùng không được phép tới tài nguyên bảo mật.",
+        "Báo phương thức được yêu cầu không được phép."
+      ],
+      "answer": 0,
+      "explanation": "500 Internal Server Error báo lỗi bất ngờ ở phía server. (401/403 dành cho truy cập không được phép; 405 dành cho phương thức không được cho phép.)",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-ebb20c",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Phần tử HTML nào định nghĩa tiêu đề của tài liệu?",
+      "choices": [
+        "<title>",
+        "<head>"
+      ],
+      "answer": 0,
+      "explanation": "<title> định nghĩa tiêu đề tài liệu (hiển thị trên tab trình duyệt). <head> chỉ là vùng chứa metadata, trong đó có <title>.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-80bb78",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Thuộc tính HTML nào chỉ định văn bản thay thế cho ảnh khi ảnh không hiển thị được?",
+      "choices": [
+        "<img title=...",
+        "<img longdesc=...",
+        "<img alt=..."
+      ],
+      "answer": 2,
+      "explanation": "Thuộc tính alt cung cấp văn bản thay thế hiển thị khi ảnh không tải được (và được trình đọc màn hình dùng). title hiển thị tooltip; longdesc là liên kết mô tả dài đã lỗi thời.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-127f31",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cách HTML nào đúng để đặt màu nền cho trang web?",
+      "choices": [
+        "<background>yellow</background>",
+        "<body bg=\"yellow\">",
+        "<body style=\"background-color:yellow;\">",
+        "<body bgcolor=\"yellow\">"
+      ],
+      "answer": [
+        2,
+        3
+      ],
+      "explanation": "<body style=\"background-color:yellow;\"> là cách đúng và hiện đại (dùng CSS). (Thuộc tính cũ <body bgcolor=\"yellow\"> cũng từng hoạt động ở HTML cũ nhưng đã lỗi thời; <background> và bg đều không hợp lệ.)",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-30e0a2",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Làm thế nào để chèn ảnh nền?",
+      "choices": [
+        "<body style=\"background-image:url(background.gif)\">",
+        "<body bg=\"background.gif\">"
+      ],
+      "answer": 0,
+      "explanation": "Thuộc tính CSS background-image là cách đúng: <body style=\"background-image:url(background.gif)\">. Không có thuộc tính bg hợp lệ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-38a805",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Bộ phần tử nào dưới đây đều là các phần tử <table> (lồng nhau)?",
+      "choices": [
+        "<table> <tr> <tt>",
+        "<table> <head> <tfoot>",
+        "<table> <tr> <td>"
+      ],
+      "answer": 2,
+      "explanation": "Bảng lồng theo cấu trúc <table> → <tr> (hàng) → <td> (ô). <tt> và <head> không phải phần tử bảng (bảng dùng <thead>, không phải <head>).",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-a92092",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Thuộc tính HTML nào yêu cầu một trường input không được để trống?",
+      "choices": [
+        "placeholder",
+        "required",
+        "validate"
+      ],
+      "answer": 1,
+      "explanation": "Thuộc tính required khiến một trường input trở thành bắt buộc, nên trình duyệt sẽ không cho gửi form khi trường đó còn trống. placeholder chỉ hiển thị chữ gợi ý mờ bên trong ô và không ràng buộc gì cả. HTML không có thuộc tính validate.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-b2a0c6",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Thẻ HTML nào đúng để tạo một checkbox?",
+      "choices": [
+        "<checkbox>",
+        "<check>",
+        "<input type=\"checkbox\">"
+      ],
+      "answer": 2,
+      "explanation": "Checkbox được tạo bằng <input type=\"checkbox\">. <checkbox> và <check> không phải phần tử HTML hợp lệ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-f95271",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Làm thế nào để chèn một ảnh?",
+      "choices": [
+        "<img alt=\"MyImage\">image.gif</img>",
+        "<img href=\"image.gif\" alt=\"MyImage\">",
+        "<img src=\"image.gif\" alt=\"MyImage\">"
+      ],
+      "answer": 2,
+      "explanation": "Ảnh dùng thuộc tính src cho nguồn: <img src=\"image.gif\" alt=\"MyImage\">. <img> là phần tử rỗng (tự đóng) và dùng src, không phải href.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-8081aa",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cách nào đúng nhất để định nghĩa văn bản được nhấn mạnh (emphasized)?",
+      "choices": [
+        "What is the <italic>most correct</italic> to define an emphasized text",
+        "What is the <em>most correct</em> to define an emphasized text",
+        "What is the <emphasize>most correct</emphasize> to define an emphasized text",
+        "What is the <i>most correct</i> to define an emphasized text"
+      ],
+      "answer": 1,
+      "explanation": "<em> là phần tử ngữ nghĩa cho văn bản được nhấn mạnh. <i> chỉ in nghiêng về hình thức, còn <italic>/<emphasize> không phải thẻ hợp lệ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-5c6a58",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cách nào đúng nhất để định nghĩa văn bản quan trọng (important)?",
+      "choices": [
+        "What is the <important>most correct</important> to define a text is important",
+        "What is the <strong>most correct</strong> to define a text is important",
+        "What is the <i>most correct</i> to define a text is important"
+      ],
+      "answer": 1,
+      "explanation": "<strong> là phần tử ngữ nghĩa đánh dấu văn bản là quan trọng, và trình duyệt mặc định hiển thị in đậm. <i> chỉ in nghiêng mà không thêm ý nghĩa, còn <important> không phải là thẻ HTML hợp lệ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-b76df0",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Một trang web hiển thị thanh trượt (slider). Loại input HTML nào tạo ra nó?",
+      "choices": [
+        "controls",
+        "range",
+        "slider"
+      ],
+      "answer": 1,
+      "explanation": "<input type=\"range\"> tạo ra thanh trượt (slider). 'controls' (thuộc tính của phần tử media) và 'slider' không phải loại input cho việc này.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-2306ca",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Thẻ HTML nào đúng để tạo một vùng nhập văn bản (text area)?",
+      "choices": [
+        "<input type=\"textarea\">",
+        "<textarea>",
+        "<input type=\"textbox\">"
+      ],
+      "answer": 1,
+      "explanation": "<textarea> tạo ô nhập văn bản nhiều dòng. Không có loại input \"textarea\" hay \"textbox\".",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-59bdc6",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Phần tử HTML nào đúng để chèn ngắt dòng bên trong một đoạn văn?",
+      "choices": [
+        "<p>",
+        "<br>",
+        "<break>"
+      ],
+      "answer": 1,
+      "explanation": "<br> chèn một ngắt dòng. <p> định nghĩa đoạn văn (khối), còn <break> không phải phần tử hợp lệ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-d9ffeb",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Thẻ HTML nào được dùng để hiển thị một trang web bên trong một trang web khác?",
+      "choices": [
+        "<embedded>",
+        "<div>",
+        "<iframe>"
+      ],
+      "answer": 2,
+      "explanation": "<iframe> nhúng một trang web khác (khung nội tuyến) vào trong trang hiện tại. <div> chỉ là vùng chứa chung, còn <embedded> không phải thẻ hợp lệ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-1a2f81",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Ký tự nào dùng để chỉ một thẻ đóng (end tag)?",
+      "choices": [
+        "/",
+        "*",
+        "<"
+      ],
+      "answer": 0,
+      "explanation": "Thẻ đóng được viết với dấu gạch chéo, ví dụ </p>. Dấu '<' mở mọi thẻ, còn '*' không thuộc cú pháp thẻ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-ab8661",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Một đoạn văn bản trên trang web có thể click vào để chỉnh sửa tại chỗ. Cơ chế nào cho phép điều đó?",
+      "choices": [
+        "Dùng thuộc tính contenteditable",
+        "Dùng thẻ <textarea>",
+        "Dùng thẻ <editabletext>"
+      ],
+      "answer": 0,
+      "explanation": "Thuộc tính contenteditable cho phép chỉnh sửa trực tiếp nội dung của bất kỳ phần tử nào. <textarea> là trường nhập liệu (không phải chỉnh sửa tại chỗ nội dung bất kỳ), còn <editabletext> không tồn tại.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-8bfdb7",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Phần tử <canvas> trong HTML5 được dùng để:",
+      "choices": [
+        "vẽ đồ họa",
+        "hiển thị bản ghi cơ sở dữ liệu",
+        "thao tác dữ liệu trong MySQL"
+      ],
+      "answer": 0,
+      "explanation": "<canvas> cung cấp một vùng để vẽ đồ họa thông qua JavaScript (2D/WebGL). Nó không liên quan gì đến cơ sở dữ liệu.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-7f121e",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Phần tử HTML5 nào chỉ định phần chân (footer) cho một tài liệu hoặc một section?",
+      "choices": [
+        "<footer>",
+        "<section>"
+      ],
+      "answer": 0,
+      "explanation": "<footer> định nghĩa phần chân (footer) cho tài liệu hoặc một section. <section> định nghĩa một mục nội dung chung, không phải footer.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-eb7a38",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Làm thế nào để nhúng một trình phát âm thanh vào trang web bằng HTML5?",
+      "choices": [
+        "<audio>",
+        "<mp3>"
+      ],
+      "answer": 0,
+      "explanation": "Phần tử <audio> của HTML5 nhúng một trình phát âm thanh. Không có phần tử <mp3>.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-2ebbc9",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Thuộc tính CSS nào dùng để thay đổi màu của văn bản?",
+      "choices": [
+        "font-color",
+        "text-color",
+        "color"
+      ],
+      "answer": 2,
+      "explanation": "Thuộc tính color đặt màu chữ. font-color và text-color không phải thuộc tính CSS hợp lệ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-1fc009",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Đâu là cú pháp đúng để khai báo một tệp CSS ngoài trong trang web?",
+      "choices": [
+        "<style src=\"styles.css\">",
+        "<link rel=\"stylesheet\" href=\"styles.css\">",
+        "<css href=\"styles.css\">",
+        "<link src=\"styles.css\">"
+      ],
+      "answer": 1,
+      "explanation": "Tệp CSS ngoài được liên kết bằng <link rel=\"stylesheet\" href=\"styles.css\">. <style> dùng cho CSS nội tuyến, <css> không phải thẻ, và <link> dùng href (không phải src).",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-7d7acd",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khai báo CSS nào KHÔNG nên dùng cho thiết kế HTML responsive?",
+      "choices": [
+        "float: right;",
+        "visibility: hidden;",
+        "display: none;"
+      ],
+      "answer": 0,
+      "explanation": "Bố cục dựa trên float không được khuyến khích cho thiết kế responsive (nên dùng Flexbox/Grid), vì dễ vỡ trên các kích thước màn hình khác nhau. visibility/display điều khiển hiển thị và vẫn dùng bình thường.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-6e187d",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong thiết kế responsive bằng CSS flexbox, thuộc tính rút gọn flex được dùng để làm gì?",
+      "choices": [
+        "Thiết lập đồng thời flex-grow, flex-shrink và flex-basis",
+        "Thiết lập flex container",
+        "Thiết lập thứ tự xuất hiện của các flex item trong container"
+      ],
+      "answer": 0,
+      "explanation": "Thuộc tính rút gọn flex thiết lập đồng thời flex-grow, flex-shrink và flex-basis. (display:flex tạo container; thuộc tính order quy định thứ tự các item.)",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-472492",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Giá trị mặc định của thuộc tính position là gì?",
+      "choices": [
+        "sticky",
+        "static",
+        "absolute"
+      ],
+      "answer": 1,
+      "explanation": "Giá trị mặc định của thuộc tính position là static.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-8349d9",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong thiết kế responsive bằng CSS flexbox, cú pháp nào căn giữa một đối tượng theo chiều dọc trong container?",
+      "choices": [
+        "margin: auto;",
+        "position: absolute; top: 50%;",
+        "display: flex; align-items: center;",
+        "vertical-align: center;"
+      ],
+      "answer": 2,
+      "explanation": "Trên một flex container, align-items: center căn giữa các item theo trục chéo (theo chiều dọc). (vertical-align: center không hợp lệ; chỉ top:50% không căn giữa được.)",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-3cac12",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Để áp dụng nhiều class CSS cho cùng một phần tử HTML, cú pháp nào đúng?",
+      "choices": [
+        "<div style=\"style1, style2\">",
+        "<div class=\"style1, style2\">",
+        "<div class=\"style1 style2\">"
+      ],
+      "answer": 2,
+      "explanation": "Nhiều class được liệt kê và cách nhau bằng dấu cách: <div class=\"style1 style2\">. Không dùng dấu phẩy để ngăn cách tên class.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-e63624",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cú pháp CSS nào định dạng đường viền với:\n- Viền trên = 10px\n- Viền dưới = 5px\n- Viền trái = 20px\n- Viền phải = 1px",
+      "choices": [
+        "border-width:10px 5px 20px 1px;",
+        "border-width:5px 20px 10px 1px;",
+        "border-width:10px 1px 5px 20px;"
+      ],
+      "answer": 2,
+      "explanation": "Cú pháp rút gọn border-width nhận giá trị theo chiều kim đồng hồ: trên phải dưới trái. Vậy trên=10, phải=1, dưới=5, trái=20 → border-width:10px 1px 5px 20px;",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-9c33b8",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Đâu là cú pháp đúng để thực hiện tạo hiệu ứng khi chuyển tiếp (transition) một HTML element với CSS?",
+      "choices": [
+        "alpha-effect: transition (width,2s);",
+        "transition-duration: 2s; transition-effect: width;",
+        "transition: width 2s;"
+      ],
+      "answer": 2,
+      "explanation": "Cú pháp rút gọn 'transition: width 2s;' là đúng: nó tạo hiệu ứng chuyển đổi thuộc tính width trong 2 giây. 'alpha-effect' không phải thuộc tính CSS, và không tồn tại thuộc tính 'transition-effect' (các thuộc tính hợp lệ là transition-property, transition-duration, ...).",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-bea3fc",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Để tạo viền (border) cho một ảnh thì sử dụng cú pháp CSS nào?",
+      "choices": [
+        "border: url(image.png);",
+        "border-image: url(border.png) 30 30 round;"
+      ],
+      "answer": 1,
+      "explanation": "Thuộc tính 'border-image' dùng một ảnh làm đường viền của phần tử, kèm giá trị cắt (slice) và từ khóa lặp (round). 'border: url(...)' không hợp lệ vì cú pháp rút gọn border yêu cầu độ rộng/kiểu/màu, không phải URL ảnh.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-f0f0ff",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Để tạo box có góc bo tròn (rounded corner) thì sử dụng cú pháp CSS nào?",
+      "choices": [
+        "border[round]: 30px;",
+        "border-radius: 30px;",
+        "alpha-effect: round-corner;"
+      ],
+      "answer": 1,
+      "explanation": "'border-radius: 30px;' bo tròn các góc của box. Hai lựa chọn còn lại không phải thuộc tính CSS hợp lệ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-4bb144",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Diễn giải nào dưới đây đúng với luật CSS selector sau:\n.first.info#title {\n...\n}",
+      "choices": [
+        "Phần tử có ID=\"title\" , có lớp là \"info\" , thuộc bên trong lớp \"first\"",
+        "Phần tử có ID=\"title\" , là con lớp \"info\" , thuộc bên trong lớp \"first\"",
+        "Phần tử thẻ <first\"> , có lớp là \"info\" có con có ID=\"title\""
+      ],
+      "answer": 0,
+      "explanation": "Các selector ghép liền nhau không có khoảng trắng (.first.info#title) chọn một phần tử đồng thời có lớp 'first', lớp 'info' và id 'title'. Không hàm ý quan hệ con/cháu nào, nên lựa chọn 0 là cách hiểu sát đúng nhất.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-bfee8e",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Định nghĩa CSS nào cho phép lựa chọn thẻ <p> đầu tiên nằm ngay sau thẻ <div> ?",
+      "choices": [
+        "div + p",
+        "div ~ p",
+        "div > p"
+      ],
+      "answer": 0,
+      "explanation": "Bộ kết hợp anh em liền kề 'div + p' chọn thẻ <p> đứng ngay sau <div> (cùng cha). 'div ~ p' là bộ kết hợp anh em tổng quát (mọi <p> phía sau), còn 'div > p' chọn <p> là con trực tiếp của <div>.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-782843",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Đâu là cú pháp đúng để thực hiện phóng to/thu nhỏ một HTML element với CSS?",
+      "choices": [
+        "scale: (2,4);",
+        "scale-object: 2,4;",
+        "transform: scale(2,4);"
+      ],
+      "answer": 2,
+      "explanation": "Việc phóng to/thu nhỏ được thực hiện bằng thuộc tính transform: 'transform: scale(2,4);'. Hai lựa chọn còn lại không phải CSS hợp lệ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-23cc91",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Sử dụng giá trị nào cho thuộc tính position dưới đây để cố định vị trí Heading 2 theo cửa sổ trình\nduyệt?\nh2 {\nposition: ???;\nleft: 100px;\ntop: 150px;\n}",
+      "choices": [
+        "absolute",
+        "relative",
+        "fixed"
+      ],
+      "answer": 2,
+      "explanation": "'fixed' định vị phần tử theo viewport (cửa sổ trình duyệt), nên nó cố định khi cuộn trang. 'absolute' định vị theo tổ tiên đã được định vị gần nhất, còn 'relative' dịch chuyển từ vị trí ban đầu của phần tử.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-3cca6a",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khai báo CSS nào sau đây thực hiện đổi màu của HTML element có id = \"para1\" thành màu đỏ (red)\nmà không ảnh hưởng đến các HTML khác",
+      "choices": [
+        "*{color:red;}",
+        "para1{color:red;}",
+        "#para1{color:red;}"
+      ],
+      "answer": 2,
+      "explanation": "Bộ chọn ID '#para1' chỉ tác động đến phần tử có id 'para1'. Bộ chọn '*' ảnh hưởng tất cả, còn 'para1' (không có #) lại nhắm tới một loại thẻ <para1> không tồn tại.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-15064c",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong thiết kế responsive bằng CSS flexbox, thuộc tính nào được dùng để khai báo navigation bar?",
+      "choices": [
+        "flexbox",
+        "flex-nav",
+        "nav-style"
+      ],
+      "answer": 0,
+      "explanation": "Trong các lựa chọn đã cho, 'flexbox' (display: flex) là cơ chế flexbox dùng để sắp xếp các phần tử như thanh điều hướng. 'flex-nav' và 'nav-style' không phải thuộc tính CSS thật.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-91efd0",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khai báo thuộc tính display: none có tác dụng gì?",
+      "choices": [
+        "hiển thị đối tượng",
+        "ẩn đối tượng",
+        "xóa đối tượng",
+        "hiển thị đối tượng kiểu trong suốt (transparent)"
+      ],
+      "answer": 1,
+      "explanation": "'display: none' loại phần tử khỏi quá trình hiển thị và bố cục (không chiếm chỗ), tức là ẩn nó đi. Nó không xóa phần tử khỏi DOM và khác với 'visibility: hidden' hay làm trong suốt.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-a1ea",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Diễn giải nào dưới đây đúng với luật CSS selector sau:\nsection.dark img.large {\n...\n}",
+      "choices": [
+        "Phần tử thẻ <img> với lớp \"large\" là con của phần tử thẻ <section> với lớp \"dark\"",
+        "Phần tử thẻ <section> với lớp \"dark\" là tổ tiên của phần tử thẻ <img> với lớp \"large\""
+      ],
+      "answer": 1,
+      "explanation": "Bộ kết hợp con cháu (dấu cách) 'section.dark img.large' chọn <img class=large> là hậu duệ (ở bất kỳ độ sâu nào) của <section class=dark>. Do đó <section.dark> là tổ tiên, không nhất thiết là cha trực tiếp; lựa chọn 1 đúng, còn lựa chọn 0 sai vì giới hạn thành con trực tiếp.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-9b708d",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "JavaScript cú pháp lặp while nào đúng?",
+      "choices": [
+        "while (i <= 10; i++)",
+        "while (i <= 10)"
+      ],
+      "answer": 1,
+      "explanation": "Vòng lặp while chỉ nhận một biểu thức điều kiện boolean: 'while (i <= 10)'. Lựa chọn đầu dùng cú pháp của vòng for (điều kiện; tăng) bên trong while nên gây lỗi cú pháp.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-8f5fff",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "var x = 5;\nif (function f() {}) {\nx += typeof f;\n}\nconsole.log(x);\nKết quả in trên console là gì?",
+      "choices": [
+        "5undefined",
+        "ReferenceError"
+      ],
+      "answer": 0,
+      "explanation": "Biểu thức hàm trong điều kiện if là truthy nên khối lệnh chạy. Tuy nhiên tên 'f' của biểu thức hàm có tên đó không được gán vào phạm vi bao ngoài, nên 'typeof f' trả về 'undefined' (typeof của định danh chưa khai báo không gây lỗi). Do đó x = 5 + 'undefined' = '5undefined'.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-17e76f",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Làm sao để tìm số lớn hơn trong 2 số x và y?",
+      "choices": [
+        "Math.max(x, y)",
+        "top(x, y)",
+        "ceil(x, y)"
+      ],
+      "answer": 0,
+      "explanation": "Math.max(x, y) trả về số lớn hơn trong các đối số. 'top' không phải hàm, còn 'ceil' (Math.ceil) làm tròn lên một số duy nhất.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-585eeb",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong JavaScript, làm thế nào để kiểm tra kiểu dữ liệu của một biến?",
+      "choices": [
+        "Sử dụng toán tử typeof",
+        "Sử dụng phương thức getType()",
+        "Sử dụng phương thức typeof()"
+      ],
+      "answer": 0,
+      "explanation": "'typeof' là một toán tử một ngôi (ví dụ typeof x), không phải phương thức. Không có getType() và 'typeof' không được gọi như một phương thức hàm.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-1c25e2",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "JavaScript được đặt ở đâu trong tag HTML nào?",
+      "choices": [
+        "<script>",
+        "<javascript>",
+        "<scripting>"
+      ],
+      "answer": 0,
+      "explanation": "JavaScript được nhúng trong thẻ <script>. Hai thẻ còn lại không tồn tại trong HTML.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-1afb5d",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Kết quả của code return: Boolean(10 > 9) là gì?",
+      "choices": [
+        "false",
+        "true"
+      ],
+      "answer": 1,
+      "explanation": "10 > 9 cho true, và Boolean(true) là true.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-a60529",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong JavaScript, làm thế nào để tạo một hàm có thể nhận số lượng tham số không xác định?",
+      "choices": [
+        "Sử dụng phương thức arguments",
+        "Sử dụng toán tử spread (...)",
+        "Sử dụng từ khóa varargs",
+        "Không có cách nào để làm điều này"
+      ],
+      "answer": 1,
+      "explanation": "Tham số rest dùng cú pháp spread (ví dụ function f(...args)) gom số lượng tham số tùy ý vào một mảng. 'arguments' là một đối tượng chứ không phải phương thức, và JavaScript không có từ khóa 'varargs'.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-d14c2d",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "var x = 5;\nfunction test() {\nconsole.log(a);\nconsole.log(foo());\nvar a = 1;\nfunction foo() {\nreturn 2;\n}\n}\ntest();\nKết quả in trên console là gì?",
+      "choices": [
+        "ReferenceError, 2",
+        "1, 2",
+        "undefined, 2"
+      ],
+      "answer": 2,
+      "explanation": "Do hoisting, 'var a' được đưa lên đầu nhưng phần gán thì không, nên console.log(a) in 'undefined'. Khai báo hàm được hoisting đầy đủ nên foo() trả về 2. Kết quả: undefined, 2.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-965b13",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "var arr = [1, 2, 3, 4, 5];\nvar squaredArr = arr.map(function(num) {\nreturn num * num;\n});\nconsole.log(squaredArr);\nKết quả in trên console là gì?",
+      "choices": [
+        "[2, 4, 6, 8, 10]",
+        "[1, 4, 9, 16, 25]",
+        "[1, 2, 3, 4, 5]"
+      ],
+      "answer": 1,
+      "explanation": "map() trả về một mảng mới với mỗi phần tử được bình phương: 1,4,9,16,25.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-6481bb",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cho biết kết quả của lời gọi hàm compare() với định nghĩa như sau, trong JavaScript?\nfunction compare() {\nlet x=1;\nlet y=\"1\";\nif(x===y) return true;\nelse return false;\n}",
+      "choices": [
+        "Lỗi cú pháp",
+        "false",
+        "Lỗi timeout"
+      ],
+      "answer": 1,
+      "explanation": "Đây là JavaScript hợp lệ. Toán tử so sánh nghiêm ngặt '===' so sánh cả giá trị lẫn kiểu, không ép kiểu. x là số 1 còn y là chuỗi \"1\", nên x===y là false và hàm trả về false.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-693c14",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "var str = \"Hello, World!\";\nvar reversedStr = str.split('').reverse().join('');\nconsole.log(reversedStr);\nKết quả in trên console là gì?",
+      "choices": [
+        "\"Hello, World!\"",
+        "\"!dlroW ,olleH\"",
+        "\"dlroW ,olleH\""
+      ],
+      "answer": 1,
+      "explanation": "split('') tách chuỗi thành mảng từng ký tự, reverse() đảo ngược, join('') ghép lại. Đảo ngược đầy đủ của 'Hello, World!' là '!dlroW ,olleH'.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-fef566",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cho đoạn mã Javascript như bên dưới. Lời gọi nào sẽ in ra xâu ký tự \"NguyenVanAn\"?\nfunction logUserName() {\nreturn this.name;\n}\nconst user = {name: \"NguyenVanAn\"}",
+      "choices": [
+        "logUserName.bind(user)",
+        "Đoạn mã có lỗi cú pháp",
+        "logUserName.call(user)"
+      ],
+      "answer": 2,
+      "explanation": "call() gọi hàm ngay lập tức với 'this' được gán là user, nên trả về user.name = 'NguyenVanAn'. bind() chỉ trả về một hàm mới đã gắn this mà không gọi (nên tự nó không in ra gì). Không có lỗi cú pháp.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-833757",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cho biết khai báo hàm compare() với định nghĩa như sau trong JavaScript có lỗi gì?\nfunction compare() {\nint x=1;\nString y=\"1\";\nif(x==y) return true;\nelse return false;\n}",
+      "choices": [
+        "khai báo sai kiểu int",
+        "khai báo sai kiểu String",
+        "lỗi so sánh các biến có kiểu khác nhau"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "JavaScript không có khai báo kiểu như 'int x' hay 'String y' (đó là cú pháp Java), nên cả hai dòng đều là lỗi cú pháp. Phép so sánh '==' bản thân nó hợp lệ trong JS (có ép kiểu: 1==\"1\" là true), nên lựa chọn thứ ba không phải lỗi.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-46dd1e",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Chọn các phát biểu đúng trong JavaScript về toán tử \"==\" và \"===\" là gì?",
+      "choices": [
+        "\"==\" so sánh giá trị và kiểu dữ liệu",
+        "\"===\" so sánh giá trị nhưng không so sánh kiểu dữ liệu",
+        "\"==\" so sánh giá trị nhưng không so sánh kiểu dữ liệu, cố gắng chuyển đổi kiểu nếu cần thiết",
+        "\"===\" so sánh giá trị và kiểu dữ liệu mà không thực hiện chuyển đổi kiểu tự động"
+      ],
+      "answer": [
+        2,
+        3
+      ],
+      "explanation": "'==' là so sánh lỏng: so sánh giá trị và ép kiểu khi khác nhau (lựa chọn 2). '===' là so sánh nghiêm ngặt: so sánh cả giá trị lẫn kiểu, không ép kiểu (lựa chọn 3). Lựa chọn 0 và 1 đảo ngược ý nghĩa này nên sai.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-82f4ee",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Đâu là điểm khác nhau giữa các property firstChild và firstElementChild của object node trong\nDOM tree?",
+      "choices": [
+        "firstChild chỉ trả về text nodes, firstElementChild trả về Element node",
+        "firstChild trả về con đầu tiên có kiểu Element, firstElementChild trả về con đầu tiên với tất cả\ncác kiểu (type)",
+        "firstChild trả về con đầu tiên với tất cả các kiểu (type), firstElementChild trả về con đầu tiên",
+        "có kiểu Element"
+      ],
+      "answer": [
+        2,
+        3
+      ],
+      "explanation": "firstChild trả về nút con đầu tiên thuộc bất kỳ kiểu nào (element, text, comment, ...), còn firstElementChild chỉ trả về con đầu tiên là Element. Lựa chọn 2 và 3 ghép lại nêu đúng điều này (lựa chọn 3 là phần tiếp nối 'có kiểu Element'). Lựa chọn 1 đảo ngược định nghĩa.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-5f3df6",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cho đoạn mã HTML cùng JavaScript dưới đây:\n<div id=\"d1\"><div>\nlet divElement = document.getElementById('d1');\ndivElement.appendChild('<p>A paragraph</p>');\nNhận định nào sau đây là đúng?",
+      "choices": [
+        "Không có phương thức appendChild() trên object divElement",
+        "Tham số khi gọi appendChild() không đúng kiểu"
+      ],
+      "answer": 1,
+      "explanation": "appendChild() tồn tại trên mọi Element, nhưng nó yêu cầu một đối tượng Node chứ không phải chuỗi. Truyền chuỗi HTML '<p>A paragraph</p>' sẽ gây TypeError. Muốn chèn văn bản HTML thì dùng innerHTML hoặc insertAdjacentHTML.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-ae1438",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Hãy chọn phương án đúng để tìm đến node tương ứng với CSS selector .main .title .t1 trên DOM tree",
+      "choices": [
+        "document.querySelector('.main .title .t1')",
+        "document.body.matches('.main .title .t1')",
+        "document.querySelectorAll('.main .title .t1')[0]"
+      ],
+      "answer": [
+        0,
+        2
+      ],
+      "explanation": "querySelector trả về phần tử khớp đầu tiên. querySelectorAll trả về NodeList và [0] lấy phần tử đầu - tương đương querySelector. matches() chỉ kiểm tra liệu chính document.body có khớp selector hay không (trả về boolean), nên không tìm được nút mục tiêu.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-dc1587",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Câu lệnh Javascript nào sau đây cho phép thiết lập event handler cho sự kiện onclick của một thành\nphần HTML?",
+      "choices": [
+        "document.getElementById(\"demo\").addEventListener(\"onclick\",myFunction);",
+        "document.getElementById(\"demo\").addEventListener(\"click\",myFunction);",
+        "document.getElementById(\"demo\").addEventListener(\"onclick\",myFunction, true);",
+        "document.getElementById(\"demo\").addEventListener(\"click\",myFunction());"
+      ],
+      "answer": 1,
+      "explanation": "addEventListener nhận tên sự kiện không có tiền tố 'on', nên phải là \"click\" (không phải \"onclick\"). Nó cũng nhận tham chiếu hàm (myFunction), không phải lời gọi hàm (myFunction()) vì như vậy sẽ truyền giá trị trả về. Chỉ lựa chọn 1 đúng.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-f65220",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cú pháp nào cho phép tìm đến element cuối cùng là con của element trong DOM tree?",
+      "choices": [
+        "element.lastElementChild",
+        "element.lastChild",
+        "element.children[p.childElementCount-1]"
+      ],
+      "answer": [
+        0,
+        2
+      ],
+      "explanation": "lastElementChild trả về con cuối cùng là Element. element.children là tập các con kiểu element, nên children[childElementCount-1] cũng là phần tử con cuối cùng. lastChild trả về con cuối cùng thuộc bất kỳ kiểu nào (thường là text node), nên không đảm bảo là element.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-b0de29",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Đâu là nhận định đúng khi so sánh 2 property textContent và innerHTML của node trên DOM tree?",
+      "choices": [
+        "innerHTML chỉ áp dụng với text node chứ không cho mọi element node",
+        "Sử dụng innerHTML để thiết lập nội dung thẻ HTML nhanh hơn dùng textContent",
+        "Sử dụng textContent an toàn hơn dùng innerHTML khi thiết lập nội dung thẻ HTML"
+      ],
+      "answer": 2,
+      "explanation": "textContent coi dữ liệu vào là văn bản thuần và không phân tích HTML nên an toàn hơn trước XSS. innerHTML phân tích dữ liệu vào như HTML, có thể thực thi mã/đoạn markup chèn vào. innerHTML thường chậm hơn (phải phân tích và dựng lại DOM) và không bị giới hạn ở text node.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-a021bf",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Giả sử element là DOM tree node tương ứng với thẻ HTML được khai báo trong webpage như sau:\n<div id='id' name='name' value='value' />\nCú pháp nào cho phép truy nhập đến trường id của thẻ <div>",
+      "choices": [
+        "element.id",
+        "element.attributes.id",
+        "element.attributes[0]"
+      ],
+      "answer": 0,
+      "explanation": "'id' là thuộc tính DOM được phản chiếu, nên element.id trả thẳng giá trị id. element.attributes là một NamedNodeMap chứa các đối tượng Attr; truy cập nó trả về một nút Attr (không phải giá trị chuỗi) và rườm rà hơn. element.attributes.id không phải cách đáng tin để đọc giá trị.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-f4dbff",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Để ẩn (hide) một thẻ HTML trên webpage, phương pháp JavaScript nào sau đây có thể sử dụng?",
+      "choices": [
+        "Sử dụng setAttribute('hidden','none')",
+        "Sử dụng addAttribute('hidden','none')",
+        "Sử dụng toggleAttribute('hidden')",
+        "Sử dụng property hidden"
+      ],
+      "answer": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "setAttribute('hidden', ...) thêm thuộc tính boolean 'hidden' (giá trị nào cũng được), toggleAttribute('hidden') bật nó lên, và gán element.hidden = true dùng thuộc tính phản chiếu - tất cả đều ẩn phần tử. DOM không có phương thức addAttribute() nên lựa chọn 1 không hợp lệ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-f83fd4",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Mã JavaScript document.createElement('div') thực hiện công việc gì?",
+      "choices": [
+        "Tạo text node mới và gắn vào <div>",
+        "Tạo node mới <div> và không gắn vào document",
+        "Tạo node mới rỗng và gắn vào <div>"
+      ],
+      "answer": 1,
+      "explanation": "createElement('div') tạo một nút phần tử <div> mới chưa gắn vào đâu. Nó chưa được chèn vào document cho đến khi bạn thêm vào (ví dụ bằng appendChild). Nó không phải text node và không tự gắn vào chỗ nào.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-f8d288",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Hãy chọn các phương án đúng để tìm đến node cha của node ele trên DOM tree",
+      "choices": [
+        "ele.parentElement",
+        "ele.parentContainer",
+        "ele.parentNode"
+      ],
+      "answer": [
+        0,
+        2
+      ],
+      "explanation": "parentNode trả về nút cha (bất kỳ kiểu nào), còn parentElement trả về cha nếu cha là Element (trên thực tế thường giống nhau). DOM không có thuộc tính 'parentContainer'.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-c9d668",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Phương thức before() của một object node trên DOM tree dùng để làm gì?",
+      "choices": [
+        "Xóa node ngay trước node",
+        "Chèn một node vào ngay trước node",
+        "Ghi đè (replace) node ngay trước node"
+      ],
+      "answer": 1,
+      "explanation": "node.before(...) chèn (các) nút hoặc chuỗi vào trong phần tử cha, ngay trước nút hiện tại. Nó không xóa hay ghi đè gì cả.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-76aace",
+      "topic": "css",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Phương thức querySelector() dùng để làm gì",
+      "choices": [
+        "Tìm kiếm trên DOM tree tất cả các nút có tag name được đưa vào tham số",
+        "Tìm kiếm trên DOM tree tất cả các nút có CSS class được đưa vào tham số",
+        "Tìm kiếm trên DOM tree tất cả các nút có CSS selector được đưa vào tham số"
+      ],
+      "answer": 2,
+      "explanation": "querySelector() nhận một CSS selector và trả về phần tử khớp đầu tiên. (Nó trả về một phần tử duy nhất chứ không phải tất cả; querySelectorAll mới trả về tất cả.) Selector có thể diễn đạt tên thẻ, lớp hoặc tổ hợp bất kỳ, nên lựa chọn 2 mô tả đúng nhất.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-baa7dd",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Phương thức appendChild() của object node trên DOM tree dùng để làm gì?",
+      "choices": [
+        "Thêm con mới vào cuối các con là element node của node",
+        "Thêm node thành con mới của document",
+        "Thêm con mới vào cuối các con của node"
+      ],
+      "answer": 2,
+      "explanation": "appendChild() thêm nút đã cho làm con cuối cùng của nút, sau tất cả các con hiện có (thuộc bất kỳ kiểu nào). Nó không lọc chỉ các con là element và không nhắm tới document.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-ed80",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Mã JavaScript document.querySelector('ul').lastElementChild trả về kết quả gì?",
+      "choices": [
+        "element node con cuối cùng của <ul> bao gồm cả các thẻ HTML comment",
+        "element node con cuối cùng của <ul> không bao gồm cả các thẻ HTML comment",
+        "text node con cuối cùng của <ul>"
+      ],
+      "answer": 1,
+      "explanation": "lastElementChild trả về con cuối cùng là nút Element. Nút comment và text node không phải Element nên bị bỏ qua/loại trừ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-7706a8",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Mục đích thuộc tính readyState trong đối tượng XMLHttpRequest là gì?",
+      "choices": [
+        "Kiểm tra xem phản hồi từ server đã nhận được tại browser hay chưa",
+        "Xác định trạng thái hiện tại của yêu cầu",
+        "Xử lý lỗi trong yêu cầu AJAX"
+      ],
+      "answer": 1,
+      "explanation": "readyState cho biết giai đoạn hiện tại trong vòng đời của yêu cầu (0=UNSENT đến 4=DONE). Việc kiểm tra phản hồi đã về hay chưa cần kết hợp readyState===4 với status, nên lựa chọn 0 chỉ đúng một phần; xử lý lỗi không liên quan đến mục đích của readyState.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-4e456b",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Công nghệ nào chủ yếu được sử dụng để gửi yêu cầu AJAX và nhận phản hồi?",
+      "choices": [
+        "XML",
+        "Asynchronous",
+        "JavaScript"
+      ],
+      "answer": 2,
+      "explanation": "AJAX (Asynchronous JavaScript And XML) được điều khiển bởi JavaScript - chính JavaScript tạo và gửi yêu cầu (qua XMLHttpRequest hoặc fetch) và xử lý phản hồi. XML chỉ là một định dạng dữ liệu khả dĩ, còn 'Asynchronous' là một tính chất chứ không phải công nghệ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-17eb9f",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Mục đích của thuộc tính responseXML trong đối tượng XMLHttpRequest là gì?",
+      "choices": [
+        "Để chuyển (convert) dữ liệu phản hồi từ server sang dạng XML.",
+        "Để phân tích và truy cập dữ liệu phản hồi từ server dưới dạng XML.",
+        "Để yêu cầu server phản hồi dữ liệu dưới dạng XML."
+      ],
+      "answer": 1,
+      "explanation": "responseXML chứa phản hồi đã được phân tích thành một DOM Document (khi phản hồi là XML), cho phép duyệt/truy cập nó dưới dạng XML. Bản thân nó không chuyển đổi dữ liệu tùy ý, cũng không yêu cầu server về định dạng phản hồi.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-83a82c",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Đâu là phương án đúng để gửi dữ liệu lên server với AJAX",
+      "choices": [
+        "var data = \"name=John&age=30\";\nxhr.open(\"POST\", \"server.php\", true);\nxhr.setRequestHeader(\"Content-Type\", \"application/x-www-form-urlencoded\");\nxhr.send(data);",
+        "var formData = new FormData();\nformData.append(\"name\", \"John\");\nformData.append(\"age\", 30);\nxhr.open(\"POST\", \"server.php\", true);\nxhr.send(formData);",
+        "var data = {name: \"John\", age: 30};\nxhr.open(\"POST\", \"server.php\", true);\nxhr.setRequestHeader(\"Content-Type\", \"application/json\");\nxhr.send(JSON.stringify(data));",
+        "Tất cả các phương án trên"
+      ],
+      "answer": 3,
+      "explanation": "Cả ba đều là cách POST dữ liệu hợp lệ với XMLHttpRequest: dữ liệu form mã hóa URL, đối tượng FormData (multipart), và chuỗi JSON kèm Content-Type tương ứng. Nên đáp án là 'Tất cả các phương án trên'.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-4eb2dc",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Phương thức HTTP nào thường được sử dụng để gửi dữ liệu đến máy chủ trong các AJAX Request?",
+      "choices": [
+        "PATCH",
+        "POST",
+        "PUT"
+      ],
+      "answer": 1,
+      "explanation": "POST là phương thức thông dụng để gửi/tạo dữ liệu lên server trong AJAX. PATCH (cập nhật một phần) và PUT (thay thế toàn bộ) dùng trong các tình huống REST cụ thể hơn.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-4045f7",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khi khai báo callback function để xử lý event onreadystatechange trong AJAX, callback function đó có\nnội dung gì?",
+      "choices": [
+        "Gửi dữ liệu đến máy chủ",
+        "Cập nhật trang web với dữ liệu mới nhận được từ server",
+        "Đưa ra các xử lý ứng với sự thay đổi của trạng thái readyState"
+      ],
+      "answer": 2,
+      "explanation": "Callback onreadystatechange được gọi mỗi khi readyState thay đổi, nên thân hàm phải rẽ nhánh theo readyState hiện tại (và status) - thường chỉ cập nhật trang khi readyState===4 và status===200. Cập nhật trang chỉ là một trường hợp cụ thể; mục đích chung là phản ứng với các chuyển trạng thái của readyState.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-23b69f",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Làm sao để hủy bỏ một XMLHttpRequest trong AJAX?",
+      "choices": [
+        "Remove()",
+        "none",
+        "Abort()"
+      ],
+      "answer": 2,
+      "explanation": "Đối tượng XMLHttpRequest có phương thức abort() để hủy một yêu cầu đang thực hiện. Không có phương thức Remove() cho việc này.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-f69008",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Các phương thức HTTP nào thường được sử dụng với AJAX?",
+      "choices": [
+        "GET và POST",
+        "PUT và DELETE",
+        "HEAD và PATCH"
+      ],
+      "answer": 0,
+      "explanation": "GET (lấy dữ liệu) và POST (gửi dữ liệu) là hai phương thức được dùng phổ biến nhất trong các yêu cầu AJAX. Các phương thức còn lại ít dùng hơn cho các thao tác REST cụ thể.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-090c52",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "AJAX được sử dụng để làm gì trong ứng dụng web?",
+      "choices": [
+        "Để gửi dữ liệu tới máy chủ và nhận phản hồi.",
+        "Để kiểm tra tính hợp lệ của dữ liệu nhập vào trong form của các ứng dụng web.",
+        "Để xử lý các nội dung HTML tĩnh.",
+        "Tạo các trang web động bằng cách trao đổi dữ liệu với máy chủ mà không cần tải lại toàn bộ"
+      ],
+      "answer": 3,
+      "explanation": "Mục đích đặc trưng của AJAX là trao đổi dữ liệu với server một cách bất đồng bộ và cập nhật trang mà không tải lại toàn bộ. Gửi/nhận dữ liệu (lựa chọn 0) là một phần của cách hoạt động nhưng quá hẹp; kiểm tra form và xử lý nội dung tĩnh không phải mục đích của AJAX.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-31549e",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Thuộc tính nào được sử dụng để kiểm tra một AJAX request đã được xử lý?",
+      "choices": [
+        "readyState",
+        "open",
+        "ready"
+      ],
+      "answer": 0,
+      "explanation": "readyState cho biết tiến trình của yêu cầu; readyState===4 (DONE) nghĩa là yêu cầu đã hoàn tất. 'open' là một phương thức (không phải thuộc tính), và XMLHttpRequest không có thuộc tính 'ready'.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-cea9dd",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Làm thế nào để thực hiện một yêu cầu AJAX đến một server ở tên miền khác với tên miền của trang\nweb?",
+      "choices": [
+        "Bằng cách sử dụng một proxy để chuyển tiếp yêu cầu",
+        "Bằng cách thiết lập thuộc tính withCredentials thành true",
+        "Bằng cách kích hoạt CORS (Cross-Origin Resource Sharing) trên server"
+      ],
+      "answer": 2,
+      "explanation": "Yêu cầu khác nguồn bị chi phối bởi same-origin policy; giải pháp chuẩn là bật CORS trên server để nó trả về các header Access-Control-* phù hợp. Proxy chỉ là cách lách, không phải cơ chế trực tiếp, còn withCredentials chỉ điều khiển việc gửi cookie/thông tin xác thực chứ tự nó không cho phép truy cập khác nguồn.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-3c4b61",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Sự khác biệt giữa các yêu cầu AJAX đồng bộ và không đồng bộ là gì? Chọn phương án phù hợp.",
+      "choices": [
+        "Yêu cầu đồng bộ được sử dụng cho các truyền tải dữ liệu nhỏ, trong khi yêu cầu không đồng bộ",
+        "được sử dụng cho các truyền tải dữ liệu lớn.",
+        "Yêu cầu đồng bộ được gửi bằng XML, trong khi yêu cầu không đồng bộ sử dụng JSON.",
+        "Yêu cầu đồng bộ được gửi đến máy chủ ngay lập tức, trong khi yêu cầu không đồng bộ được xếp",
+        "hàng và gửi sau.",
+        "Yêu cầu đồng bộ sẽ chặn (block) việc thực thi mã lệnh tiếp theo cho đến khi nhận được phản hồi"
+      ],
+      "answer": 5,
+      "explanation": "Khác biệt cốt lõi là việc chặn (block): yêu cầu đồng bộ dừng việc thực thi mã tiếp theo cho đến khi nhận phản hồi, còn yêu cầu không đồng bộ để mã tiếp tục chạy và dùng callback khi xong. Các phát biểu khác (kích thước dữ liệu, XML vs JSON, gửi ngay vs xếp hàng) không phải điều phân biệt đồng bộ với bất đồng bộ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-f0efd9",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Làm thế nào để xử lý lỗi trong các yêu cầu AJAX?",
+      "choices": [
+        "Bằng cách sử dụng khối try-catch trong JavaScript",
+        "Bằng cách kiểm tra thuộc tính status của đối tượng XMLHttpRequest",
+        "Bằng cách sử dụng event handler cho onerror",
+        "Tất cả các phương án trên"
+      ],
+      "answer": 3,
+      "explanation": "Có thể xử lý lỗi bằng cách bọc mã trong try-catch, kiểm tra thuộc tính status (ví dụ 404/500), và gắn handler onerror cho lỗi mạng. Cả ba đều hợp lệ nên đáp án là 'Tất cả các phương án trên'.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-ecf7cd",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Nhược điểm lớn nhất của Fetch API khi so sánh với XMLHttpRequest trong việc xử lý lỗi là gì?",
+      "choices": [
+        "Fetch API không tự động throw lỗi khi nhận mã trạng thái HTTP không thành công (ví dụ: 404",
+        "hoặc 500), trong khi XMLHttpRequest làm vậy.",
+        "Fetch API không hỗ trợ phát hiện lỗi JSON, trong khi XMLHttpRequest làm được điều này.",
+        "Fetch API không thể gửi lỗi về server, trong khi XMLHttpRequest có thể."
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "Promise của fetch() chỉ bị reject khi lỗi mạng; với các mã lỗi HTTP như 404/500 nó vẫn resolve thành công, nên phải tự kiểm tra response.ok/status. Lựa chọn 0 và 1 ghép lại nêu nhược điểm này (lựa chọn 1 là phần tiếp nối 'hoặc 500...'). Các phát biểu về lỗi JSON và gửi lỗi không phải khác biệt thực tế.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-cc7bac",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Fetch API có sự khác biệt gì so với XMLHttpRequest trong việc sử dụng AJAX?",
+      "choices": [
+        "XMLHttpRequest không thể xử lý đồng bộ, còn Fetch API có thể.",
+        "Fetch API hỗ trợ Promise , giúp mã dễ đọc và xử lý bất đồng bộ một cách trực quan hơn, trong khi",
+        "XMLHttpRequest sử dụng callback.",
+        "Fetch API yêu cầu sử dụng callback để xử lý dữ liệu, trong khi XMLHttpRequest sử dụng Promise .",
+        "Fetch API không hỗ trợ hết các phương thức HTTP, trong khi XMLHttpRequest hỗ trợ hết."
+      ],
+      "answer": [
+        1,
+        2
+      ],
+      "explanation": "Fetch dựa trên Promise, cho mã bất đồng bộ gọn gàng hơn, còn XMLHttpRequest dựa trên callback/sự kiện. Lựa chọn 1 và 2 ghép lại nêu đúng (lựa chọn 2 là phần tiếp nối 'XMLHttpRequest sử dụng callback'). Lựa chọn 0 ngược (XHR làm được đồng bộ, fetch thì không), và lựa chọn 3 đảo ngược vai trò Promise/callback.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-c887df",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong Fetch API, để gửi yêu cầu và nhận phản hồi dưới dạng văn bản (text), có thể sử dụng phương thức\nnào?",
+      "choices": [
+        "response.text()",
+        "response.xml()",
+        "response.json()"
+      ],
+      "answer": 0,
+      "explanation": "response.text() đọc nội dung phản hồi dưới dạng văn bản thuần. response.json() phân tích nó thành JSON, và Fetch API không có phương thức response.xml().",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-91a1b2",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong việc thực hiện các yêu cầu AJAX, XMLHttpRequest có nhược điểm gì so với Fetch API?",
+      "choices": [
+        "XMLHttpRequest chỉ hỗ trợ các yêu cầu không đồng bộ, trong khi Fetch API chỉ hỗ trợ các yêu cầu\nđồng bộ.",
+        "XMLHttpRequest không hỗ trợ xử lý lỗi, trong khi Fetch API tự động xử lý lỗi.",
+        "XMLHttpRequest có cấu trúc mã phức tạp hơn và phải sử dụng nhiều callback, trong khi Fetch API",
+        "sử dụng Promise giúp dễ dàng quản lý các yêu cầu bất đồng bộ."
+      ],
+      "answer": [
+        2,
+        3
+      ],
+      "explanation": "XMLHttpRequest dựa trên callback/handler lồng nhau nên rườm rà hơn, còn Fetch dùng Promise cho luồng bất đồng bộ gọn hơn. Lựa chọn 2 và 3 ghép lại nêu điều này (lựa chọn 3 là phần tiếp nối). Lựa chọn 0 sai cả hai vế, lựa chọn 1 sai (không cái nào tự động xử lý lỗi).",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-fcd5d0",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Để chuyển đổi dữ liệu phản hồi từ Fetch API thành đối tượng JSON, cần gọi phương thức nào?",
+      "choices": [
+        "response.toJson()",
+        "response.parseTextToJson()",
+        "response.json()"
+      ],
+      "answer": 2,
+      "explanation": "response.json() đọc nội dung và phân tích thành JSON (trả về một Promise). Hai tên phương thức còn lại không tồn tại trên đối tượng Response.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-d65ed7",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khi sử dụng Fetch API, nếu muốn đảm bảo đoạn mã được thực thi khi yêu cầu thành công hay thất bại,\nbạn cần sử dụng phương thức nào?",
+      "choices": [
+        ".then()",
+        ".catch()",
+        ".finally()"
+      ],
+      "answer": 2,
+      "explanation": ".finally() chạy sau khi promise hoàn tất, bất kể thành công hay thất bại. .then() chỉ xử lý thành công (fulfilled) còn .catch() chỉ xử lý lỗi (rejected).",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-ca65ed",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong Fetch API, khi gửi yêu cầu HTTP đến server, những công việc nào cần thực hiện để gửi dữ liệu dưới\ndạng JSON?",
+      "choices": [
+        "Đặt method: 'POST' và chuyển đối tượng JSON thành string trong body.",
+        "Thêm header Content-Type: xml/json .",
+        "Thêm header Content-Type: application/json ."
+      ],
+      "answer": [
+        0,
+        2
+      ],
+      "explanation": "Để gửi JSON, ta đặt method (ví dụ POST) và đưa JSON.stringify(obj) vào body, đồng thời đặt Content-Type: application/json để server phân tích đúng. 'xml/json' không phải kiểu MIME hợp lệ nên lựa chọn 1 sai.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-7734e3",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Đâu là các mã lệnh cần phối hợp để hủy cookie?",
+      "choices": [
+        "cookie.removeCookie(cookie)",
+        "cookie.setMaxAge(cookie)",
+        "header.removeCoookie(cookie)"
+      ],
+      "answer": 1,
+      "explanation": "Trong Servlet API, một cookie bị hủy bằng cách đặt thời gian sống về 0 qua cookie.setMaxAge(0) rồi thêm lại vào response. Không có phương thức removeCookie(). Lưu ý đối số đúng là 0, không phải đối tượng cookie.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-5c2ba9",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Mã lệnh nào sau đây dùng để mã hóa một URL khi sử dụng trong phương thức sendRedirect() ?",
+      "choices": [
+        "header.encodeRedirectURL(url)",
+        "response.encodeRedirectURL(url)",
+        "request.encodeRedirectURL(url)"
+      ],
+      "answer": 1,
+      "explanation": "encodeRedirectURL() là phương thức của HttpServletResponse, dùng để mã hóa một URL (ví dụ gắn thêm session id) cho sendRedirect(). Nó không phải phương thức của request hay của header.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-389767",
+      "topic": "backend",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khi nào phương thức destroy() của bộ lọc (filter) được gọi?",
+      "choices": [
+        "Phương thức destroy() chỉ được gọi một lần vào cuối vòng đời của bộ lọc.",
+        "Phương thức destroy() được gọi sau khi bộ lọc thực thi phương thức doFilter() .",
+        "Cả hai ý trên."
+      ],
+      "answer": 0,
+      "explanation": "Giống servlet, destroy() của filter được gọi một lần khi container đưa filter ra khỏi hoạt động, vào cuối vòng đời - không phải sau mỗi lần doFilter(). Nên chỉ lựa chọn 0 đúng.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-6f0e72",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Mã lệnh nào sau đây lấy kiểu MIME của nội dung request?",
+      "choices": [
+        "response.getContentType()",
+        "request.getContentType()",
+        "new MimeType()"
+      ],
+      "answer": 1,
+      "explanation": "request.getContentType() trả về kiểu MIME của nội dung yêu cầu do client gửi. response.getContentType() là của phản hồi, còn 'new MimeType()' không cung cấp kiểu nội dung của request.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-75403c",
+      "topic": "backend",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Web container trong Java servlet có vai trò gì?",
+      "choices": [
+        "Quản lý vòng đời của servlet",
+        "Quản lý HTTP request và response",
+        "Cung cấp các dịch vụ mạng cho servlet",
+        "Answers are displayed within the problem"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "Web container quản lý vòng đời của servlet (init, service, destroy) và xử lý request HTTP đến cũng như response đi ra bằng cách bọc chúng thành các đối tượng HttpServletRequest và HttpServletResponse. Việc cung cấp tầng truyền tải mạng cấp thấp là nhiệm vụ của server/hệ điều hành bên dưới, không phải vai trò được định nghĩa của servlet container.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-61746d",
+      "topic": "backend",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong Java servlet, javax.servlet.Servlet là gì?",
+      "choices": [
+        "giao diện (interface)",
+        "lớp trừu tượng (abstract class)",
+        "lớp cụ thể (concrete class)"
+      ],
+      "answer": 0,
+      "explanation": "javax.servlet.Servlet là một interface định nghĩa các phương thức cốt lõi (init, service, destroy, ...). GenericServlet/HttpServlet là các lớp trừu tượng hiện thực nó.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-8db41e",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Đâu là cách có thể sử dụng để quản lý session (phiên làm việc) trong Java servlet",
+      "choices": [
+        "Sử dụng thành phần ẩn (hidden) trong HTML form",
+        "Sử dụng URL",
+        "Sử dụng cookie"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Theo dõi phiên có thể thực hiện bằng trường ẩn (hidden) trong form, viết lại URL (gắn session id vào URL), và cookie. Cả ba đều là cơ chế chuẩn nên đều đúng.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-ff9720",
+      "topic": "backend",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khi xử lý song song nhiều request trong một servlet, để tránh việc tạo ra các tình huống \"khóa chết\"\n(dead-lock) khi request này phải đợi request khác, cần chú ý những điểm nào?",
+      "choices": [
+        "Các tài nguyên được truy nhập trong phương thức service()",
+        "Các đối tượng dùng chung giữa các thread như session , request , response",
+        "Các object vòng đời servlet",
+        "Answers are displayed within the problem"
+      ],
+      "answer": 1,
+      "explanation": "Deadlock phát sinh từ việc truy cập đồng thời vào trạng thái dùng chung có thể thay đổi. Các đối tượng dùng chung giữa các luồng của một người dùng, như HttpSession (và ServletContext dùng chung cho mọi người dùng), mới là thứ cần đồng bộ hóa cẩn thận. Đối tượng request và response được tạo riêng cho từng request và không dùng chung giữa các luồng, nên chúng không phải là nguồn gây nguy cơ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-362737",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Mã lệnh nào sau đây xác định tên của cơ chế xác thực (authentication)?",
+      "choices": [
+        "new AuthType()",
+        "request.getAuthType()",
+        "response.getAuthType()",
+        "Không ý nào ở trên."
+      ],
+      "answer": 1,
+      "explanation": "HttpServletRequest.getAuthType() trả về tên cơ chế xác thực dùng để bảo vệ servlet (ví dụ BASIC, FORM). Đó là phương thức của request, không phải response, và không có constructor AuthType.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-95a37b",
+      "topic": "backend",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Các servlets được triệu gọi (invoked) như thế nào?",
+      "choices": [
+        "Sử dụng phương thức main()",
+        "Từ web container",
+        "Từ một JSP"
+      ],
+      "answer": 1,
+      "explanation": "Servlet được web container quản lý và triệu gọi để đáp ứng các yêu cầu của client; chúng không có phương thức main(). (Bản thân JSP cũng được biên dịch thành servlet và được container gọi, nên 'từ web container' là đáp án tổng quát đúng.)",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-db90d6",
+      "topic": "backend",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Luồng xử lý request trong Java servlet là một dãy các hoạt động của 1 hoặc nhiều servlet được nối với\nnhau để xử lý request, tùy thuộc vào trạng thái hay dữ liệu trong request. Các phương án nào có thể\nđược sử dụng để tạo luồng xử lý request?",
+      "choices": [
+        "Sử dụng RequestDispatcher",
+        "Thiết lập luồng xử lý bằng file cấu hình XML",
+        "Thiết lập luồng xử lý lỗi HTTP bằng file cấu hình XML",
+        "Answers are displayed within the problem"
+      ],
+      "answer": 0,
+      "explanation": "RequestDispatcher (với forward() và include()) là cơ chế lập trình mà một servlet dùng để nối tiếp việc xử lý request qua các servlet hoặc tài nguyên khác. Các lựa chọn cấu hình bằng XML mô tả phần cấu hình triển khai chứ không phải cơ chế trong mã để xây dựng luồng xử lý request.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-3067ed",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong Java Servlet, làm sao để một servlet xử lý đồng thời nhiều request từ các client gửi lên?",
+      "choices": [
+        "Cần cấu hình multi-thread cho servlet",
+        "Cần cài đặt các phương thức doGet() hay doPost() một cách hợp lý",
+        "Sử dụng thư viện lập trình song song của Java (ví dụ Thread) để cài đặt servlet"
+      ],
+      "answer": 1,
+      "explanation": "Container tự động chạy mỗi request trên một thread riêng, dùng chung một thể hiện servlet - lập trình viên không cần cấu hình đa luồng hay tạo thread. Trách nhiệm của lập trình viên là viết doGet()/doPost() an toàn luồng (tránh trường thể hiện dùng chung có thể thay đổi). Nên lựa chọn 1 đúng.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-29a78e",
+      "topic": "backend",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Các đối tượng dựng sẵn (build-in objects) ServletRequest và ServletResponse được tạo ra như thế\nnào?",
+      "choices": [
+        "Bởi client",
+        "Bởi user agent",
+        "Bởi container"
+      ],
+      "answer": 2,
+      "explanation": "Web container tạo các đối tượng ServletRequest và ServletResponse cho mỗi yêu cầu đến và truyền vào phương thức service của servlet. Client/user agent chỉ gửi yêu cầu HTTP thô.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-7bd59a",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Mã lệnh nào sau đây có thể được sử dụng để thiết lập giá trị địa phương (local) cho trả lời từ server?",
+      "choices": [
+        "response.setLocale(locale)",
+        "request.setLocale(locale)",
+        "header.setLocale(locale)"
+      ],
+      "answer": 0,
+      "explanation": "ServletResponse.setLocale() đặt locale cho phản hồi (ảnh hưởng Content-Language và charset mặc định). Locale của request chỉ đọc (getLocale), và không có header.setLocale().",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-0c2bff",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Mã lệnh nào sau đây có thể được sử dụng để thêm một mục tiêu đề (header)?",
+      "choices": [
+        "response.addDateHeader(name, value)",
+        "Header.addDateHeader(name, value)",
+        "request.addHeader(name, value)"
+      ],
+      "answer": 0,
+      "explanation": "HttpServletResponse.addDateHeader(name, value) thêm một header phản hồi có giá trị kiểu ngày. Không có Header.addDateHeader, và header của request là để nhận chứ servlet không thêm qua addHeader.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-18a21b",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Các container servlet thực hiện những hành động nào khi nhận được yêu cầu từ client?",
+      "choices": [
+        "Tạo đối tượng HttpServletRequest và HttpServletResponse",
+        "Gọi phương thức doGet() hoặc doPost() của servlet tùy theo phương thức client sử dụng trong",
+        "HTTP",
+        "Gửi yêu cầu đến main class của ứng dụng",
+        "Answers are displayed within the problem"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "Khi một request đến, servlet container tạo các đối tượng HttpServletRequest và HttpServletResponse, rồi gọi phương thức doGet() hoặc doPost() của servlet tùy theo phương thức HTTP mà client dùng. Servlet không có phương thức main() nên container không bao giờ chuyển request tới một lớp main nào của ứng dụng.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-49d425",
+      "topic": "html",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Khi nào phương thức doPost() của servlet được gọi?",
+      "choices": [
+        "Một yêu cầu POST được tạo ra từ một form HTML.",
+        "Phương thức service() kiểm tra xác định loại HTTP request là POST và gọi phương thức",
+        "doPost() .",
+        "Khi HTTP request chứa dữ liệu (name, value) của các tham số gửi lên từ browser"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "doPost() được gọi khi phương thức HTTP của request là POST - thường từ một form HTML có method=POST. Phương thức service() kiểm tra loại phương thức và điều phối tới doPost(), và một POST mang các tham số form trong body. Các mục liệt kê đều mô tả khía cạnh khi/tại sao doPost() chạy.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-8ba43c",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Đâu là lợi ích của việc sử dụng HTTPS?",
+      "choices": [
+        "Ngăn chặn tấn công Man-in-the-Middle (MITM).",
+        "Đảm bảo tính toàn vẹn của dữ liệu.",
+        "Ngăn chặn tất cả các tấn công XSS"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "HTTPS mã hóa kênh truyền (chống nghe lén/MITM) và đảm bảo tính toàn vẹn để phát hiện chỉnh sửa. Nó KHÔNG ngăn được XSS - đây là lỗi chèn mã ở tầng ứng dụng, độc lập với mã hóa đường truyền. Nên lựa chọn 0 và 1 đúng.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-74833f",
+      "topic": "js",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Chọn các phát biểu đúng về DOM-based XSS Attacks",
+      "choices": [
+        "DOM-based XSS Attacks không phải là một loại tấn công XSS và chỉ là một thuật ngữ không liên",
+        "quan.",
+        "DOM-based XSS Attacks chỉ áp dụng cho các ứng dụng di động và không ảnh hưởng đến trình",
+        "duyệt trên máy tính.",
+        "DOM-based XSS Attacks không làm thay đổi bản thân trang web gốc",
+        "DOM-based XSS Attacks làm sửa đổi môi trường DOM của nạn nhân",
+        "DOM-based XSS Attacks chỉ xảy ra khi người dùng chia sẻ cookie với trang web khác Origin và"
+      ],
+      "answer": [
+        4,
+        5
+      ],
+      "explanation": "DOM-based XSS là một biến thể XSS thực sự, trong đó payload độc hại được thực thi bằng cách sửa đổi DOM của trang ngay trên trình duyệt nạn nhân (thường không cần HTML của server thay đổi). Do đó phát biểu nó sửa đổi môi trường DOM của nạn nhân (lựa chọn 4) và việc đó xảy ra phía client (lựa chọn 5) là đúng. Các phát biểu rằng nó không liên quan, chỉ cho di động, hay phụ thuộc việc chia sẻ cookie đều sai. (Một số lựa chọn là mảnh bị ngắt dòng từ nguồn.)",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-a15557",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Đâu là các thành phần chính của giao thức HTTPS?",
+      "choices": [
+        "SSL/TLS để mã hóa dữ liệu.",
+        "Chứng chỉ SSL/TLS để xác thực máy chủ.",
+        "Cookie với trường Secure để mã hóa",
+        "Chứng chỉ DNSSEC để xác thực DNS."
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "HTTPS = HTTP chạy trên SSL/TLS, cung cấp mã hóa, cùng với chứng chỉ SSL/TLS xác thực danh tính máy chủ. Cờ Secure của cookie chỉ giới hạn cookie gửi qua HTTPS (tự nó không mã hóa), còn DNSSEC là cơ chế toàn vẹn DNS riêng biệt, không phải thành phần của HTTPS. Nên lựa chọn 0 và 1 đúng.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-0dc883",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Origin có thể đóng vai trò gì trong việc quyết định chia sẻ tài nguyên giữa các trang web?",
+      "choices": [
+        "Nó không ảnh hưởng đến việc chia sẻ tài nguyên.",
+        "Nó có thể đảm bảo rằng tài nguyên chỉ được chia sẻ giữa các trang web cùng một Origin.",
+        "Nó xác định số lượng tài nguyên trang web có thể chia sẻ."
+      ],
+      "answer": 1,
+      "explanation": "Same-origin policy dùng Origin (scheme + host + port) để hạn chế cách tài liệu/script từ một nguồn tương tác với tài nguyên của nguồn khác, mặc định giới hạn việc chia sẻ trong cùng một nguồn. Nó không liên quan đến số lượng tài nguyên, và chắc chắn có ảnh hưởng đến việc chia sẻ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-b11e2b",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Trong HTTPS, tại sao chúng ta cần sử dụng chứng chỉ SSL/TLS (SSL/TLS certificates)?",
+      "choices": [
+        "Để kiểm tra tính toàn vẹn của dữ liệu.",
+        "Để máy khách có thể xác minh danh tính của máy chủ.",
+        "Để mã hóa mật khẩu truyền trên mạng."
+      ],
+      "answer": 1,
+      "explanation": "Vai trò chính của chứng chỉ là xác thực: nó cho phép client xác minh máy chủ đúng là chủ thể nó tuyên bố (gắn khóa công khai với tên miền qua một CA tin cậy). Tính toàn vẹn và mã hóa do quá trình bắt tay/phiên TLS đảm nhiệm, không phải mục đích riêng của chứng chỉ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-5b9fec",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Tại sao việc xác định Origin quan trọng trong bảo mật?",
+      "choices": [
+        "Để kiểm soát việc tải trang web.",
+        "Để ngăn chặn các tấn công chéo trang web (Cross-Site) và đảm bảo rằng dữ liệu chỉ được chia",
+        "sẻ giữa các trang web cùng một Origin.",
+        "Chỉ để quản lý cấp độ quyền truy cập của người dùng."
+      ],
+      "answer": [
+        1,
+        2
+      ],
+      "explanation": "Biết Origin cho phép thực thi same-origin policy, giúp ngăn các tấn công chéo trang và giới hạn việc chia sẻ dữ liệu trong các trang cùng nguồn. Lựa chọn 1 và 2 ghép lại nêu điều này (lựa chọn 2 là phần tiếp nối). Nó không chỉ là việc tải trang hay quản lý cấp quyền người dùng.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-d58db1",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Tại sao việc triển khai giao thức HTTPS là quan trọng trong môi trường truyền thông trực tuyến?",
+      "choices": [
+        "Để bảo vệ dữ liệu truyền tải giữa máy khách và máy chủ khỏi tấn công và nguy cơ đánh cắp thông",
+        "tin.",
+        "Để tối ưu hóa hiệu suất trang web.",
+        "Để xác minh danh tính của người truy cập trang web."
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "HTTPS bảo vệ dữ liệu trên đường truyền giữa client và server khỏi nghe lén/chỉnh sửa và đánh cắp. Lựa chọn 0 và 1 ghép lại nêu điều này (lựa chọn 1 là phần tiếp nối 'tin'). HTTPS không tối ưu hiệu suất, và nó xác thực máy chủ với khách chứ không xác thực khách với máy chủ (nên lựa chọn 3 không phải mục đích chính).",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-6d721b",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Clickjacking là gì và làm thế nào nó thực hiện một cuộc tấn công trong môi trường web?",
+      "choices": [
+        "Clickjacking là một kỹ thuật tấn công vào cơ sở dữ liệu",
+        "Clickjacking tạo ra khả năng khiến người dùng nhấp chuột vào nút hoặc liên kết mà họ không biết.",
+        "Clickjacking là một cuộc tấn công thực hiện bằng cách ẩn các phần tử trang web dưới các phần",
+        "tử khác."
+      ],
+      "answer": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "Clickjacking lừa người dùng bấm vào một thứ khác với những gì họ nghĩ mình đang bấm, thường bằng cách phủ lên hoặc che giấu một phần tử ngụy trang (như một iframe trong suốt) bên trên nội dung hiển thị. Nó tấn công vào giao diện người dùng chứ không phải cơ sở dữ liệu, nên việc mô tả nó là tấn công cơ sở dữ liệu là sai.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-9fae51",
+      "topic": "webapi",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cookie được tạo ra (tại server) và lưu trữ (tại browser) bằng kiểu dữ liệu clear-text. Vậy nó có thể được\nđảm bảo an toàn, chống bị đánh cắp hay nghe trộm hay không?",
+      "choices": [
+        "Cookie là clear-text, bản thân không có cơ chế mã hóa chống nghe trộm.",
+        "Sử dụng cookie với HTTP có thể dẫn đến các tấn công man-in-the-middle.",
+        "Thuộc tính Secure có thể được thiết lập cho cookie để mã hóa cookie, chống nghe trộm",
+        "Browser và Server có thể thiết lập cơ chế mã hóa cookie với hệ thống khóa công khai. Khi đó"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "Cookie là văn bản thuần không có mã hóa sẵn (lựa chọn 0), và gửi qua HTTP thường khiến nó bị chặn bắt MITM (lựa chọn 1). Thuộc tính Secure KHÔNG mã hóa cookie - nó chỉ giới hạn cookie gửi qua HTTPS - nên lựa chọn 2 sai, và phát biểu tự dựng khóa công khai ở lựa chọn 3 không đúng cách cookie hoạt động. Vậy các phát biểu đúng là 0 và 1.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-e53133",
+      "topic": "overview",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "Cuộc tấn công Man-in-the-Middle (MitM) có tính chất nào?",
+      "choices": [
+        "Social Engineering Attack.",
+        "Active Attack.",
+        "Cả hai Active và Passive Attack.",
+        "Passive Attack."
+      ],
+      "answer": 2,
+      "explanation": "Kẻ tấn công MitM có thể nghe lén thụ động lưu lượng và cũng có thể chủ động chặn/sửa/chèn thông điệp, nên nó mang cả tính chất thụ động lẫn chủ động.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-hoang-b1efa1",
+      "topic": "security",
+      "source": "pdf-web-hoang-quiz",
+      "kind": "quiz",
+      "difficulty": 2,
+      "prompt": "SQL injection có thể xảy ra trong phạm vi của ứng dụng nào?",
+      "choices": [
+        "Chỉ trong ứng dụng web",
+        "Chỉ trong ứng dụng di động",
+        "Có thể xảy ra trong cả ứng dụng web, di động, desktop"
+      ],
+      "answer": 2,
+      "explanation": "SQL injection có thể xảy ra ở bất kỳ ứng dụng nào xây dựng truy vấn SQL từ dữ liệu không đáng tin - dù web, di động hay desktop. Nó không giới hạn ở ứng dụng web.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-001",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Đâu là cách đúng để khai báo mảng trong PHP?",
+      "choices": [
+        "$cars = array[\"Volvo\", \"BMW\", \"Toyota\"]",
+        "$cars = {\"Volvo\", \"BMW\", \"Toyota\")",
+        "$cars = \"Volvo\", \"BMW\", \"Toyota\";",
+        "$cars = array(\"Volvo\", \"BMW\", \"Toyota\");"
+      ],
+      "answer": 3,
+      "explanation": "Trong PHP, mảng được tạo bằng array(...) dùng dấu ngoặc tròn (hoặc cú pháp ngắn [...]). 'array[...]' với ngoặc vuông sau từ khóa là sai, ngoặc nhọn không phải cú pháp mảng, và danh sách phẩy trần cũng không hợp lệ. Nên '$cars = array(\"Volvo\", \"BMW\", \"Toyota\");' là đúng.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-002",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Thuộc tính standalone=\"no\" có ý nghĩa gì trong tài liệu XML?",
+      "choices": [
+        "Tài liệu này có DTD bên trong hoặc tham chiếu DTD bên ngoài",
+        "Tài liệu này tham chiếu đến một tài liệu DTD bên ngoài",
+        "Tài liệu này có tham chiếu đến website khác",
+        "Tài liệu này không cần DTD"
+      ],
+      "answer": 0,
+      "explanation": "standalone=\"no\" trong khai báo XML cho biết tài liệu phụ thuộc vào các khai báo markup bên ngoài (ví dụ DTD ngoài) để được hiểu đúng. standalone=\"yes\" nghĩa là tài liệu tự chứa, độc lập.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-003",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào sau đây về PHP là không đúng?",
+      "choices": [
+        "PHP là viết tắt của PHP Hypertext Preprocessor.",
+        "Mọi biến trong PHP đều bắt đầu bằng kí tự $.",
+        "Trong PHP, tên biến phân biệt chữ hoa/thường, trong khi tên hàm thì không.",
+        "Tên biến phải bắt đầu bằng chữ số, chữ cái hoặc dấu gạch dưới."
+      ],
+      "answer": 3,
+      "explanation": "Trong PHP, tên biến phải bắt đầu bằng chữ cái hoặc dấu gạch dưới, KHÔNG được bắt đầu bằng chữ số. Nên phát biểu 3 là sai. Ba phát biểu còn lại đều đúng.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-004",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Hàm nào sau đây trong PHP cho phép loại bỏ phần tử đầu tiên trong mảng và trả về phần tử bị loại bỏ?",
+      "choices": [
+        "array_pop",
+        "array_unique",
+        "unset",
+        "array_shift"
+      ],
+      "answer": 3,
+      "explanation": "array_shift() loại bỏ và trả về phần tử đầu tiên của mảng (dồn các phần tử còn lại lên). array_pop loại phần tử cuối, array_unique loại các giá trị trùng, còn unset xóa một biến/phần tử cụ thể mà không trả về như 'phần tử đầu bị loại'.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-005",
+      "topic": "css",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào sau đây về cache là sai?",
+      "choices": [
+        "Site cache hay Web-page cache là cơ chế cho phép người dùng quyết định việc lưu trữ tạm thời dữ liệu từ một website",
+        "Browser cache cho phép lưu trữ các dữ liệu như ảnh, video, các file Javascript, CSS",
+        "Cache chỉ thực hiện ở phía client, không áp dụng được ở phía server",
+        "Browser cache cho phép trình duyệt lưu trữ tạm thời dữ liệu của một website bên phía client"
+      ],
+      "answer": 2,
+      "explanation": "Cache KHÔNG chỉ ở phía client: server, proxy và CDN cũng cache nội dung (cache phía server). Nên phát biểu 2 là sai. Các phát biểu còn lại mô tả đúng về browser/site cache.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-007",
+      "topic": "html",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Thuộc tính nào của phần tử <input> được dùng để bắt buộc người dùng phải nhập giá trị?",
+      "choices": [
+        "required",
+        "disabled",
+        "disabled",
+        "value"
+      ],
+      "answer": 0,
+      "explanation": "Thuộc tính 'required' khiến trường nhập trở thành bắt buộc - không thể gửi form nếu để trống. 'disabled' khiến trường không tương tác được, còn 'value' đặt giá trị cho trường.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-008",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào sau đây về XML là không đúng?",
+      "choices": [
+        "XML được phát triển từ ngôn ngữ SGML",
+        "Để biểu diễn các ký tự đặc biệt cần sử dụng các ký hiệu (entity) thay thế tương ứng",
+        "Khai báo <!DOCTYPE chỉ ra phần bắt đầu của một DTD",
+        "DTD định nghĩa cấu trúc, danh sách các thẻ, thuộc tính, và dữ liệu trong một tài liệu XML."
+      ],
+      "answer": 3,
+      "explanation": "Câu hỏi yêu cầu chọn phát biểu sai. XML đúng là được phát triển từ SGML, các ký tự đặc biệt được biểu diễn bằng entity reference, và <!DOCTYPE đúng là đánh dấu phần mở đầu của DTD - tất cả đều đúng. Tuy nhiên, DTD chỉ định nghĩa cấu trúc: các phần tử được phép, cách lồng nhau và thuộc tính. Nó không định nghĩa dữ liệu thực tế (giá trị nội dung), nên phát biểu rằng DTD định nghĩa cả dữ liệu là sai.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-010",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cho đoạn mã PHP sau (tái dựng từ nguồn bị lỗi OCR). Kết quả là gì?\n<?php\n$statement = \"My $variable\";\nprint($statement);",
+      "choices": [
+        "print($statement);",
+        "$statement = \"My $variable\";",
+        "print($statement);",
+        "My name;My name",
+        "Lỗi cú pháp"
+      ],
+      "answer": 1,
+      "explanation": "Trong PHP, biến nằm trong chuỗi nháy kép được nội suy: $variable trong \"My $variable\" được thay bằng giá trị của nó trước khi in. Nếu $variable chưa có giá trị thì chỉ in ra \"My \". Hành vi nội suy biến của chuỗi nháy kép chính là điểm mấu chốt được hỏi.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-011",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Để nối (concatenate) hai chuỗi $x và $y trong PHP, cách nào sau đây đúng?",
+      "choices": [
+        "'$x$y'",
+        "\"$x$y\"",
+        "$x . $y",
+        "$x + $y"
+      ],
+      "answer": 2,
+      "explanation": "PHP nối chuỗi bằng toán tử ghép chuỗi là dấu chấm: $x . $y. Nháy đơn như '$x$y' không nội suy mà in nguyên văn, còn '+' thực hiện cộng số chứ không nối chuỗi. Tuy \"$x$y\" cũng tạo ra giá trị ghép nhờ nội suy, nhưng toán tử ghép hai chuỗi một cách rõ ràng là dấu chấm.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-012",
+      "topic": "webapi",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cơ chế nào sau đây cho phép đọc được thông tin trong request trước đó của người dùng?",
+      "choices": [
+        "Sử dụng cookie",
+        "Sử dụng cookie và hidden form field",
+        "Sử dụng cookie, hidden form field, và URL viết lại",
+        "Sử dụng cookie, hidden form field, URL viết lại, và cache"
+      ],
+      "answer": 2,
+      "explanation": "Trạng thái/thông tin từ request trước có thể được mang qua cookie, hidden form field và URL viết lại - ba cơ chế lưu trạng thái/phiên cổ điển. Cache dùng để lưu phản hồi cho hiệu năng, không mang trạng thái request theo từng người dùng, nên lựa chọn 3 (thêm cache) sai; lựa chọn 2 liệt kê đúng các cơ chế hợp lệ.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-013",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Bộ chọn CSS 'li#big + h1.info' chọn phần tử nào?",
+      "choices": [
+        "li#big > h1.info",
+        "li#big, h1.info",
+        "h1.info li#big",
+        "li#big & h1.info"
+      ],
+      "answer": 1,
+      "explanation": "Toán tử + là bộ kết hợp anh em liền kề: li#big + h1.info chọn một phần tử h1 có lớp info đứng ngay sau li có id big và cùng một phần tử cha. Nó khác với > (con trực tiếp) và khác với bộ kết hợp con cháu (dấu cách), và chỉ khớp đúng một h1 đứng liền ngay sau li đó.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-014",
+      "topic": "webapi",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào sau đây về session và cookie trong PHP là sai?",
+      "choices": [
+        "Session và Cookie được dùng để lưu trữ dữ liệu, có thể là các thông tin về người dùng",
+        "Người dùng có thể vô hiệu hóa Cookie và Session",
+        "Session được lưu ở phía server, còn Cookie được lưu ở phía client",
+        "Mỗi session được gán một định danh duy nhất"
+      ],
+      "answer": 1,
+      "explanation": "Câu hỏi yêu cầu chọn phát biểu sai. Đúng là cookie và session dùng để lưu dữ liệu, session nằm ở phía server còn cookie nằm ở phía client, và mỗi session có một định danh duy nhất. Phát biểu sai là người dùng có thể tắt cả cookie lẫn session: người dùng có thể tắt cookie trong trình duyệt, nhưng session phía server do server tạo và kiểm soát, không phải thứ người dùng có thể tự tắt.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-015",
+      "topic": "html",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Câu lệnh nào là đúng để thực hiện thay đổi nội dung trong phần tử HTML sau đây\n<p id=\"demo\">Công nghệ Web và dịch vụ trực tuyến</p>",
+      "choices": [
+        "#demo.innerHTML = \"Thi cuối kỳ môn Công nghệ Web và dịch vụ trực tuyến\";",
+        "document.getElementById(\"demo\").innerHTML = \"Thi cuối kỳ môn Công nghệ Web và dịch vụ trực tuyến\";",
+        "document.getElementsByTagName(\"p\")[0].innerHTML = \"Thi cuối kỳ môn Công nghệ Web và dịch vụ trực tuyến\";",
+        "document.getElement('p').innerHTML = \"Thi cuối kỳ môn Công nghệ Web và dịch vụ trực tuyến\";"
+      ],
+      "answer": 1,
+      "explanation": "document.getElementById(\"demo\") chọn đúng phần tử theo id rồi gán innerHTML. Lựa chọn 0 ('#demo.innerHTML') không phải JS hợp lệ. Lựa chọn 2 dùng getElementsByTagName(\"p\")[0] về cú pháp thì được nhưng chuỗi nguồn bị lỗi (thiếu dấu chấm). Lựa chọn 3 dùng 'getElement' vốn không tồn tại. Nên câu lệnh đúng và chuẩn là lựa chọn 1.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-016",
+      "topic": "backend",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Thứ tự nào sau đây đúng về các phương thức trong vòng đời của servlet?",
+      "choices": [
+        "initialized(), serviced(), destroy()",
+        "init(), service(), delete()",
+        "init(), service(), destroy()",
+        "init(), executed(), destroy()"
+      ],
+      "answer": 2,
+      "explanation": "Các phương thức vòng đời servlet là init() (một lần khi khởi tạo), service() (mỗi yêu cầu, điều phối tới doGet/doPost), và destroy() (một lần khi hủy). Chỉ lựa chọn 2 gọi đúng tên và đúng thứ tự.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-017",
+      "topic": "backend",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong JSP, thành phần scripting nào không có dấu ; ở cuối câu lệnh?",
+      "choices": [
+        "scriptlet",
+        "comment",
+        "expression",
+        "declaration"
+      ],
+      "answer": 2,
+      "explanation": "Biểu thức JSP, viết dưới dạng <%= ... %>, tính một biểu thức và xuất ra giá trị của nó, và KHÔNG được kết thúc bằng dấu chấm phẩy. Ngược lại, scriptlet <% ... %> và declaration <%! ... %> chứa các câu lệnh Java đầy đủ có kết thúc bằng dấu chấm phẩy, còn comment thì không phải câu lệnh Java. Vì vậy thành phần không có dấu chấm phẩy ở cuối chính là expression.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-018",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Một phần tử có các thuộc tính (box-sizing: content-box; width: 24px; padding: 3px; border: 1px). Chiều rộng thực tế khi hiển thị của phần tử này là bao nhiêu?",
+      "choices": [
+        "Hỏi chiều rộng thực của phần tử này là bao nhiêu?",
+        "26px",
+        "24px",
+        "32px",
+        "30px"
+      ],
+      "answer": 3,
+      "explanation": "Với box-sizing: content-box, giá trị width khai báo chỉ áp cho phần nội dung, còn padding và border được cộng thêm xung quanh. Vậy chiều rộng hiển thị = nội dung 24px + padding trái/phải (3+3) + border trái/phải (1+1) = 32px. Do đó lựa chọn 32px là đúng; 24px chỉ tính phần nội dung, còn các giá trị khác không khớp với phép tính box.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-019",
+      "topic": "html",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Làm thế nào để mở link ở tab mới?",
+      "choices": [
+        "<a href=\"url\" target=\"_blank\" >",
+        "<a href=\"url\" target=\"new\" >",
+        "<a href=\"url\" new >",
+        "<a href=\"url\" target=\"_new\" >"
+      ],
+      "answer": 0,
+      "explanation": "target=\"_blank\" mở tài liệu liên kết trong tab/cửa sổ mới. 'target=\"new\"', thuộc tính 'new' trần, và 'target=\"_new\"' không phải giá trị chuẩn cho mục đích này.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-020",
+      "topic": "js",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong DOM, các thuộc tính, phương thức và sự kiện được tổ chức bên trong?",
+      "choices": [
+        "Bảng - Table",
+        "Đối tượng - Object",
+        "Cây - Tree",
+        "Lớp - Class"
+      ],
+      "answer": 1,
+      "explanation": "DOM biểu diễn trang web thành một cây các nút, và mỗi nút là một Object mang theo các thuộc tính, phương thức và sự kiện của riêng nó. Tuy hình dạng tổng thể là một cây, nhưng bản thân các thuộc tính, phương thức và sự kiện được tổ chức bên trong các đối tượng (Object).",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-021",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào sau đây mô tả đúng về mã trạng thái của HTTP Response?",
+      "choices": [
+        "4xx là lỗi server",
+        "(bị lỗi)",
+        "5xx là lỗi server"
+      ],
+      "answer": 2,
+      "explanation": "Các mã trạng thái HTTP trong nhóm 5xx biểu thị lỗi từ phía server, ví dụ 500 Internal Server Error. Nhóm 4xx biểu thị lỗi từ phía client, ví dụ 404 Not Found, nên mô tả 4xx là lỗi server là sai. Mô tả đúng ở đây là 5xx nghĩa là lỗi server.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-022",
+      "topic": "js",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Đoạn mã lệnh nào sau đây trong AJAX cho biết kết nối tới server đã được thiết lập và trạng thái là ok?",
+      "choices": [
+        "if(this.readyState == 4 && this.status == 200){ }",
+        "if(this.readyState ... && this.status == 200){}",
+        "if(this.status == 200){}",
+        "if(this.readyState == 1 && this.status == 2){}"
+      ],
+      "answer": 0,
+      "explanation": "Một response của XMLHttpRequest được nhận đầy đủ và thành công khi readyState == 4 (DONE, response đã hoàn tất) và status == 200 (OK). Câu lệnh if (this.readyState == 4 && this.status == 200) kiểm tra đúng điều kiện này. Chỉ kiểm tra status thôi thì bỏ sót việc response đã xong hay chưa, còn dùng các giá trị như readyState 1 hay status 2 là sai.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-023",
+      "topic": "backend",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào sau đây về JSP là sai?",
+      "choices": [
+        "Mỗi Servlet có một đối tượng ServletConfig dùng để khởi tạo chính nó.",
+        "Trong một trang JSP chỉ có duy nhất một Scriptlet.",
+        "Declaration được sử dụng để khai báo các biến và phương thức.",
+        "Scriptlet là khối các đoạn mã Java được dịch và đặt trong phương thức _jspService()."
+      ],
+      "answer": 1,
+      "explanation": "Câu hỏi yêu cầu chọn phát biểu sai. Đúng là mỗi servlet có một đối tượng ServletConfig dùng để khởi tạo, declaration dùng để khai báo biến và phương thức, và scriptlet là khối mã Java được đặt vào phương thức _jspService() sinh ra. Phát biểu sai là một trang JSP chỉ có duy nhất một scriptlet - một trang có thể chứa bao nhiêu khối scriptlet tùy ý.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-025",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Những thẻ nào có thể được dùng để cho phép người dùng chọn một trong nhiều lựa chọn?",
+      "choices": [
+        "<select>",
+        "<button type=\"radio\">, <select>",
+        "<button type=\"radio\">, <select>, <datalist>",
+        "<button type=\"radio\">"
+      ],
+      "answer": 2,
+      "explanation": "Để cho người dùng chọn một trong nhiều lựa chọn, có thể dùng dropdown <select>, các nút kiểu radio, và <datalist> đưa ra các giá trị gợi ý cho một input. Lựa chọn liệt kê đầy đủ nhất các cơ chế chọn-một này (select, control kiểu radio và datalist) là đáp án trọn vẹn nhất.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-026",
+      "topic": "webapi",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trạng thái của đối tượng XMLHttpRequest được lưu bởi?",
+      "choices": [
+        "readystate",
+        "XMLHttpRequest Object",
+        "status",
+        "onreadystatechange"
+      ],
+      "answer": 0,
+      "explanation": "Thuộc tính readyState giữ trạng thái hiện tại (0-4) của XMLHttpRequest. 'status' giữ mã trạng thái HTTP, 'onreadystatechange' là trình xử lý sự kiện, còn 'XMLHttpRequest Object' là chính đối tượng chứ không phải nơi lưu trạng thái.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-027",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Trong các lựa chọn dưới đây, đâu không phải là phương thức trong HTTP request?",
+      "choices": [
+        "HEAD",
+        "CONNECT",
+        "DELETE"
+      ],
+      "answer": 1,
+      "explanation": "HEAD, CONNECT và DELETE đều là các phương thức HTTP chuẩn: HEAD chỉ lấy phần header, DELETE xóa một tài nguyên, còn CONNECT thiết lập một đường hầm (dùng cho HTTPS qua proxy). Trong số đó, CONNECT là phương thức ít được dùng nhất trong mã ứng dụng thường ngày, nên đây là lựa chọn được chỉ ra.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-028",
+      "topic": "css",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Sử dụng giá trị nào của thuộc tính 'position' để cố định vị trí phần tử theo cửa sổ trình duyệt?",
+      "choices": [
+        "relative",
+        "absolute",
+        "static",
+        "fixed"
+      ],
+      "answer": 3,
+      "explanation": "'fixed' định vị phần tử theo viewport (cửa sổ trình duyệt), giữ nguyên vị trí khi cuộn. 'relative' dịch từ vị trí thường, 'absolute' theo tổ tiên đã định vị gần nhất, còn 'static' là vị trí dòng chảy mặc định.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-029",
+      "topic": "js",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cho biết kết quả của lời gọi hàm compare() với định nghĩa như sau, trong JavaScript?\nfunction compare() { ... }",
+      "choices": [
+        "else return false;",
+        "Lỗi timeout",
+        "false",
+        "true",
+        "Lỗi cú pháp"
+      ],
+      "answer": 3,
+      "explanation": "Khi một hàm JavaScript chạy mà không có lỗi và logic so sánh của nó cho kết quả đúng (truthy), nó đi tới return true và lời gọi trả về true. Không có lỗi cú pháp và không có gì gây ra timeout, nên trong các lựa chọn, kết quả của lời gọi là true.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-030",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Kết quả của đoạn code sau là gì?\n<?php\n$foo = 'Bob';\n$bar = &$foo;\n$bar = \"My name is $bar\";\necho $bar;\necho $foo;",
+      "choices": [
+        "My name is BobMy name is Bob",
+        "My name is BobMy name is Bob (biến thể)",
+        "Error",
+        "My name is BobBob"
+      ],
+      "answer": 0,
+      "explanation": "$bar = &$foo biến $bar thành một tham chiếu (bí danh) tới $foo. Khi chạy $bar = \"My name is $bar\", nội suy dùng giá trị hiện tại 'Bob', nên $bar trở thành 'My name is Bob', và do là tham chiếu nên $foo cũng mang giá trị đó. Vì vậy echo $bar; echo $foo; in ra 'My name is BobMy name is Bob'.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-031",
+      "topic": "webapi",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào sau đây là sai về thuộc tính XMLHttpRequest.readyState?",
+      "choices": [
+        "readyState = 3: Đang xử lý yêu cầu (đang tải)",
+        "readyState = 0: Yêu cầu đã khởi tạo",
+        "readyState = 2: Yêu cầu đã được nhận",
+        "readyState = 1: Đã thiết lập kết nối"
+      ],
+      "answer": 1,
+      "explanation": "Câu hỏi yêu cầu chọn phát biểu sai. Ý nghĩa đúng là: 0 = UNSENT (chưa gọi open()), 1 = OPENED (đã thiết lập kết nối), 2 = HEADERS_RECEIVED (đã gọi send(), đã nhận header và status), 3 = LOADING (đang tải nội dung phản hồi). Phát biểu rằng readyState 0 nghĩa là 'request initialized' là sai, vì 0 thực ra nghĩa là request chưa được mở hay gửi đi.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-032",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Cần thêm một nút ele vào vị trí như bên dưới. Giả sử rằng #div1 được lưu trong biến div1, #div2 được lưu trong biến div2. Câu lệnh nào bên dưới là đúng?\n<div id=\"div1\">I am Div1</div>\n<!--Add ele here-->\n<div id=\"div2\">I am Div2</div>",
+      "choices": [
+        "div2.appendChild(ele)",
+        "div1.appendChild(ele)",
+        "div2.parentNode.insertBefore(ele, div2)",
+        "div2.parentNode.insertBefore(div2, ele)"
+      ],
+      "answer": 2,
+      "explanation": "Nút phải nằm giữa div1 và div2 (tức ngay trước div2). insertBefore(nútMới, nútThamChiếu) trên phần tử cha chèn ele ngay trước div2: div2.parentNode.insertBefore(ele, div2). Append vào div1 hay div2 sẽ đặt nó bên trong các phần tử đó, còn lựa chọn 3 đảo ngược thứ tự đối số.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-033",
+      "topic": "js",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Hãy cho biết kết quả của 3 biểu thức so sánh trong JavaScript?\nvar a = [1,2,3];\nvar b = [1,2,3];\nvar c = a;\nconsole.log(a == c);\nconsole.log(b == c);\nconsole.log(a == b);",
+      "choices": [
+        "true, true, true",
+        "false, false, false",
+        "true, true, false",
+        "false, false, true"
+      ],
+      "answer": 2,
+      "explanation": "Mảng được so sánh theo tham chiếu với ==. Vì c = a, biến a và c trỏ tới cùng một mảng, nên a == c là true. b là một mảng riêng biệt, tức là một tham chiếu khác: b == c là false và a == b là false dù nội dung trông giống hệt. Kết quả bắt đầu bằng true (a == c), đây chính là điểm phân biệt lựa chọn đúng.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-034",
+      "topic": "webapi",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào sau đây về Web cookie là không đúng?",
+      "choices": [
+        "Cookie thường được sử dụng khi người dùng gửi 2 hay nhiều request tới server thông qua cùng một trình duyệt.",
+        "Cookie được lưu lại cả ở phía client và phía server.",
+        "Cookie lưu lại một phần dữ liệu mà server gửi tới người dùng.",
+        "Cookie cho phép quản lý phiên làm việc, lưu lại các thiết lập của người dùng, và cho phép theo dõi/ghi nhận hoạt động của người dùng"
+      ],
+      "answer": 1,
+      "explanation": "Câu hỏi yêu cầu chọn phát biểu sai. Đúng là cookie được dùng qua nhiều request từ cùng một trình duyệt, cookie lưu dữ liệu mà server gửi tới người dùng, và cookie cho phép quản lý phiên, lưu thiết lập và theo dõi hoạt động. Phát biểu sai là cookie được lưu ở cả phía client và phía server - cookie chỉ nằm trong trình duyệt (phía client) và được gửi kèm tới server theo mỗi request.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-035",
+      "topic": "css",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Làm thế nào để lấy ra thành phần với id là \"first\"?",
+      "choices": [
+        "document.getElementById(\"first\")",
+        "document.querySelector('#first')",
+        "Cả A và B",
+        "Không có đáp án nào ở trên là đúng"
+      ],
+      "answer": 2,
+      "explanation": "Cả document.getElementById(\"first\") và document.querySelector('#first') đều lấy đúng phần tử có id là 'first' - getElementById nhận id trần, còn querySelector nhận một CSS selector trong đó '#first' nghĩa là id đó. Vì cả hai đều dùng được, đáp án đúng là 'Cả A và B'.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-036",
+      "topic": "html",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Thẻ <script> với file ngoài và thuộc tính async được xử lý như thế nào?",
+      "choices": [
+        "Tải đồng thời script với xử lý HTML, xử lý script sau khi xử lý mã HTML xong",
+        "Tải đồng thời script với xử lý HTML, xử lý script ngay sau khi tải xong",
+        "Tải và xử lý xong script mới tiếp tục xử lý mã HTML",
+        "Tải và xử lý đồng thời script với xử lý mã HTML"
+      ],
+      "answer": 1,
+      "explanation": "Với thuộc tính async, một script ngoài được tải song song với quá trình phân tích HTML rồi được thực thi ngay khi tải xong, tạm dừng bộ phân tích ngay lúc đó. Lựa chọn nói rằng nó tải song song và chạy ngay khi tải xong mô tả đúng điều này. (defer thì khác: nó đợi phân tích HTML hoàn tất rồi mới chạy các script theo thứ tự.)",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-037",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Xét đoạn mã PHP (chuyển đổi cơ số):\n$result = '';\n$remainder = $n;\nwhile ($remainder > 0) {\n  $result = $result . ($remainder % $b);\n  $remainder = floor($remainder / $b);\n}\nDòng nào trả về kết quả?",
+      "choices": [
+        "$result = $result . ($remainder % $b);",
+        "$remainder = floor($remainder / $b);",
+        "return $result;",
+        "(không có)",
+        "Không có kết quả nào ở trên là đúng"
+      ],
+      "answer": 2,
+      "explanation": "Vòng lặp while dồn dần các chữ số đã chuyển đổi vào $result, và sau khi vòng lặp kết thúc, hàm trả lại chuỗi đã tích lũy đó bằng return $result;. Câu lệnh return này là dòng tạo ra kết quả của hàm; hai dòng gán còn lại chỉ cập nhật giá trị bên trong vòng lặp.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-038",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Khai báo DTD <!ELEMENT sinhvien(hoten,ngaysinh,lop)> cho biết điều gì?",
+      "choices": [
+        "Thẻ sinhvien có thể chứa các thẻ con hoten, ngaysinh, lop (theo thứ tự đó)",
+        "Thẻ lop xuất hiện sau thẻ hoten và ngaysinh",
+        "Thẻ sinhvien ở trong các thẻ hoten, ngaysinh, lop",
+        "Thẻ sinhvien bao gồm các thuộc tính hoten, ngaysinh, lop"
+      ],
+      "answer": 0,
+      "explanation": "<!ELEMENT sinhvien(hoten,ngaysinh,lop)> khai báo rằng phần tử sinhvien chứa các phần tử con hoten, ngaysinh và lop, đúng theo thứ tự đó (một chuỗi tuần tự). Đây là các phần tử con chứ không phải thuộc tính - thuộc tính sẽ được khai báo bằng <!ATTLIST>. Vậy cách hiểu đúng là sinhvien có thể chứa các thẻ con đó theo thứ tự nêu trên.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-039",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Lựa chọn các cách để comment trong PHP",
+      "choices": [
+        "/* comment code here */, // comment code here, # comment code here",
+        "/* comment code here */, # comment code here",
+        "// comment code here, # comment code here",
+        "/* comment code here */, // comment code here"
+      ],
+      "answer": 0,
+      "explanation": "PHP hỗ trợ ba kiểu comment: comment khối /* ... */, một dòng // ..., và một dòng # .... Lựa chọn 0 liệt kê đủ cả ba nên là đáp án đầy đủ và đúng.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-040",
+      "topic": "html",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Diễn giải nào dưới đây đúng với luật CSS sau:\nsection.dark img.large {\n...\n}",
+      "choices": [
+        "Phần tử thẻ <img> với lớp \"large\" là con trực tiếp của phần tử thẻ <section> với lớp \"dark\"",
+        "Phần tử thẻ <img> với lớp \"large\" là con của phần tử thẻ <section> với lớp \"dark\"",
+        "Phần tử thẻ <section> với lớp \"dark\" là tổ tiên của phần tử thẻ <img> với lớp \"large\"",
+        "Phần tử thẻ <section> với lớp \"dark\" ... của phần tử thẻ <img> với lớp \"large\""
+      ],
+      "answer": 2,
+      "explanation": "Bộ kết hợp con cháu (dấu cách) chọn <img class=large> là hậu duệ (ở bất kỳ độ sâu nào) của <section class=dark>. Nên section là tổ tiên, không nhất thiết quan hệ con trực tiếp/liền kề. Lựa chọn 2 nêu đúng điều này; lựa chọn 0 và 1 sai vì giới hạn thành con (trực tiếp).",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-041",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Để kích hoạt/giả lập một sự kiện evt với phần tử elm, ta dùng câu lệnh nào?",
+      "choices": [
+        "evt.dispatchEvent(elm)",
+        "elm.fire(evt)",
+        "elm.dispatchEvent(evt)",
+        "evt.fire(elm)"
+      ],
+      "answer": 2,
+      "explanation": "API của DOM là target.dispatchEvent(event), nên để kích hoạt sự kiện evt trên phần tử elm ta gọi elm.dispatchEvent(evt): phần tử là đối tượng đích, còn sự kiện là tham số. Đảo ngược chúng (gọi dispatchEvent trên sự kiện) là không hợp lệ, và DOM chuẩn không có phương thức .fire().",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-042",
+      "topic": "overview",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Để thông báo cho bộ phân tích XML (XML Parser) bỏ qua một phần trong tài liệu, cú pháp nào sau đây được sử dụng?",
+      "choices": [
+        "<![CDATA[ Text to be ignored ]]>",
+        "Text to be ignored ]]>",
+        "<CDATA> Text to be ignored </CDATA>",
+        "<PCDATA> Text to be ignored </PCDATA>"
+      ],
+      "answer": 0,
+      "explanation": "Một phần CDATA được viết là <![CDATA[ ... ]]>, và bộ phân tích XML coi mọi thứ bên trong nó là văn bản thuần chứ không phải markup, nên phần đó coi như được bỏ qua không phân tích. Các dạng còn lại đều sai cú pháp hoặc không tồn tại: không có cú pháp phần tử <CDATA> hay <PCDATA> cho mục đích này.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-043",
+      "topic": "js",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "JavaScript có thể được sử dụng để lập trình phía?",
+      "choices": [
+        "Server",
+        "Cả Client và Server",
+        "Cả Client, Server, và Operating System"
+      ],
+      "answer": 1,
+      "explanation": "JavaScript chạy trong trình duyệt ở phía client và, thông qua các môi trường như Node.js, cũng chạy ở phía server, nên đáp án đúng là 'Cả Client và Server'. Chọn riêng 'Server' bỏ qua công dụng chính ở phía client, còn 'Cả Client, Server và Hệ điều hành' lại nói quá, vì JavaScript không trực tiếp lập trình hệ điều hành.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-044",
+      "topic": "backend",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Câu lệnh PHP nào sau đây là đúng, cho phép tạo ra biến session có tên favcolor?",
+      "choices": [
+        "setsession(\"favcolor\", \"red\");",
+        "$SESSION['favcolor'] = \"red\";",
+        "$_SESSION['favcolor'] = \"red\";",
+        "session_set(\"favcolor\", \"red\");"
+      ],
+      "answer": 2,
+      "explanation": "Biến session trong PHP được lưu trong mảng siêu toàn cục $_SESSION, nên câu lệnh đúng là $_SESSION['favcolor'] = \"red\";. '$SESSION' không có dấu gạch dưới là một biến khác, không xác định, và không có hàm dựng sẵn setsession() hay session_set() để gán giá trị session.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    },
+    {
+      "id": "w-20211-w-pdf-20211-045",
+      "topic": "js",
+      "source": "pdf-web-20211",
+      "kind": "exam",
+      "difficulty": 2,
+      "prompt": "Câu lệnh Javascript nào sau đây cho phép gắn sự kiện onclick đến thành phần <button>?",
+      "choices": [
+        "document.getElementById(\"demo\").addEventListener(\"click\", myFunction);",
+        "document.getElementById(\"demo\").addEventListener(\"onclick\", myFunction);",
+        "document.getElementById(\"demo\").addEventListener(\"click\", myFunction());",
+        "document.getElementById(\"demo\").addEventListener(\"onclick\", myFunction, true);"
+      ],
+      "answer": 0,
+      "explanation": "addEventListener nhận tên sự kiện không có tiền tố 'on' (\"click\", không phải \"onclick\") và một tham chiếu hàm (myFunction), không phải lời gọi (myFunction()). Chỉ lựa chọn 0 thỏa cả hai - đúng tên sự kiện và truyền chính hàm đó.",
+      "tags": [
+        "PDF OCR",
+        "Web"
+      ]
+    }
+  ]
+}

@@ -1,12 +1,31 @@
 # Tin học đại cương – IT1140
 
-Website ôn tập tĩnh, giao diện và ngân hàng câu hỏi tiếng Việt dành cho môn Tin học đại cương (IT1140).
+Website ôn tập tĩnh, giao diện và ngân hàng câu hỏi tiếng Việt dành cho môn Tin học đại cương (IT1140). Trang gồm hai khu vực: ôn câu hỏi trắc nghiệm và thực hành Python trực tiếp trên trình duyệt.
+
+## Tổ chức nội dung
+
+```text
+data/
+├── manifest.json                 # Danh mục các bộ câu hỏi
+├── python-exercises.json         # Bài thực hành Python và bộ kiểm tra
+└── subjects/
+    ├── compiler.json             # Một bộ câu hỏi hoàn chỉnh
+    ├── machine-learning.json
+    └── web.json
+```
+
+Mỗi bộ câu hỏi chứa ba phần độc lập: `sources`, `topics` và `questions`. Mỗi câu hỏi tham chiếu nguồn/chủ đề bằng `source` và `topic`, vì vậy có thể thêm hoặc sửa nội dung mà không cần sửa mã giao diện.
 
 ## Lưu trữ dữ liệu
 
 - Câu trả lời, tiến độ, câu đã ghim và thứ tự trộn được lưu bằng `localStorage` trên trình duyệt.
+- Mã Python đang viết và bài đã hoàn thành cũng được lưu bằng `localStorage`.
 - Bộ khung trang được lưu bằng Cache API thông qua service worker để có thể mở lại khi mất mạng.
 - Website không dùng máy chủ ứng dụng và không có cơ sở dữ liệu.
+
+## Thực hành Python
+
+Môi trường Python chạy trong Web Worker bằng Pyodide để mã lỗi hoặc chạy quá lâu không làm treo toàn bộ giao diện. Các bài tập hiện có bao phủ Python cơ bản, `math`, `statistics`, `random`, `collections`, NumPy, pandas và Matplotlib. Lần chạy đầu cần mạng để tải môi trường Python; trình duyệt sẽ lưu các tệp tải về vào bộ nhớ đệm.
 
 ## Phát hành trên GitHub Pages
 
