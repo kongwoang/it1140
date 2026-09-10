@@ -884,6 +884,43 @@ button {
   background: #162231;
 }
 
+.stdin-panel {
+  display: grid;
+  gap: 8px;
+}
+
+.stdin-panel label {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.stdin-panel p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.stdin-editor {
+  width: 100%;
+  min-height: 82px;
+  resize: vertical;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: var(--surface-inset);
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.stdin-editor:focus {
+  border-color: var(--teal);
+  outline: 3px solid rgba(15, 118, 110, 0.12);
+}
+
 .result-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);

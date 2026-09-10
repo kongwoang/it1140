@@ -1,5 +1,5 @@
 (function () {
-  const storageKey = "it1140-python-lab:v2";
+  const storageKey = "it1140-python-lab:v3";
   const runTimeoutMs = 60000;
   const els = {
     list: document.getElementById("exerciseList"),
@@ -10,7 +10,9 @@
     library: document.getElementById("exerciseLibrary"),
     level: document.getElementById("exerciseLevel"),
     editor: document.getElementById("pythonEditor"),
+    input: document.getElementById("pythonInput"),
     run: document.getElementById("runPythonBtn"),
+    runInput: document.getElementById("runPythonInputBtn"),
     reset: document.getElementById("resetPythonBtn"),
     hint: document.getElementById("toggleHintBtn"),
     hintBox: document.getElementById("exerciseHint"),
@@ -31,12 +33,13 @@
     try {
       return {
         code: {},
+        input: {},
         completed: {},
         currentId: "",
         ...(JSON.parse(localStorage.getItem(storageKey)) || {}),
       };
     } catch (_error) {
-      return { code: {}, completed: {}, currentId: "" };
+      return { code: {}, input: {}, completed: {}, currentId: "" };
     }
   }
 
@@ -55,6 +58,7 @@
   function saveCurrentCode() {
     if (!currentId) return;
     state.code[currentId] = els.editor.value;
+    state.input[currentId] = els.input.value;
     saveState();
   }
 
@@ -99,14 +103,27 @@
     els.library.textContent = exercise.library;
     els.level.textContent = exercise.level;
     els.editor.value = state.code[id] ?? exercise.starterCode;
+    els.input.value = state.input[id] ?? exercise.tests?.[0]?.input ?? "";
     els.hintBox.textContent = exercise.hint;
     els.hintBox.hidden = true;
     els.hint.textContent = "Xem gợi ý";
-    els.output.textContent = "Kết quả chạy mã sẽ xuất hiện tại đây.";
+    els.output.textContent = exercise.browserRunnable === false
+      ? (exercise.executionNote || "Bài này cần chạy trên máy có môi trường Python phù hợp.")
+      : "Kết quả chạy mã sẽ xuất hiện tại đây.";
     els.tests.innerHTML = "";
     els.chart.hidden = true;
     els.chart.removeAttribute("src");
-    setStatus("Sẵn sàng", "ready");
+    els.run.disabled = exercise.browserRunnable === false;
+    els.runInput.disabled = exercise.browserRunnable === false;
+    if (exercise.browserRunnable === false) {
+      const item = document.createElement("li");
+      item.className = "is-pending";
+      item.textContent = "Bài Turtle: nộp mã và ảnh kết quả sau khi chạy trên máy.";
+      els.tests.append(item);
+      setStatus("Chạy trên máy", "ready");
+    } else {
+      setStatus("Sẵn sàng", "ready");
+    }
     renderList();
   }
 
@@ -117,7 +134,7 @@
 
   function getWorker() {
     if (!worker) {
-      worker = new Worker("./assets/js/python-worker.js?v=4", { type: "module" });
+      worker = new Worker("./assets/js/python-worker.js?v=5", { type: "module" });
       worker.addEventListener("message", handleWorkerMessage);
       worker.addEventListener("error", () => finishWithError("Không khởi động được môi trường Python."));
     }
@@ -148,42 +165,54 @@
 
     clearTimeout(timeoutId);
     els.run.disabled = false;
+    els.runInput.disabled = false;
     if (message.type === "fatal") {
       finishWithError(message.error);
       return;
     }
 
-    const allPassed = !message.error && message.tests.length > 0 && message.tests.every((test) => test.passed);
-    els.output.textContent = message.error || message.output || "Chương trình chạy xong nhưng không in ra kết quả.";
-    renderTests(message.tests);
+    const output = message.output || "";
+    els.output.textContent = message.error || output || "Chương trình chạy xong nhưng không in ra kết quả.";
+    if (message.mode === "single") {
+      els.tests.innerHTML = "";
+      const item = document.createElement("li");
+      item.className = message.error ? "is-failed" : "is-passed";
+      item.textContent = message.error ? "× Chạy input — mã có lỗi" : "✓ Chạy input hiện tại";
+      els.tests.append(item);
+      setStatus(message.error ? "Mã có lỗi" : "Đã chạy", message.error ? "error" : "success");
+    } else {
+      const allPassed = !message.error && message.tests.length > 0 && message.tests.every((test) => test.passed);
+      renderTests(message.tests);
+      if (allPassed) {
+        state.completed[currentId] = true;
+        setStatus("Hoàn thành", "success");
+        saveState();
+        renderList();
+      } else {
+        setStatus(message.error ? "Mã có lỗi" : "Chưa đạt tất cả kiểm tra", "error");
+      }
+    }
 
     if (message.plot) {
       els.chart.src = `data:image/png;base64,${message.plot}`;
       els.chart.hidden = false;
-    }
-
-    if (allPassed) {
-      state.completed[currentId] = true;
-      setStatus("Hoàn thành", "success");
-      saveState();
-      renderList();
-    } else {
-      setStatus(message.error ? "Mã có lỗi" : "Chưa đạt tất cả kiểm tra", "error");
     }
   }
 
   function finishWithError(message) {
     clearTimeout(timeoutId);
     els.run.disabled = false;
+    els.runInput.disabled = false;
     els.output.textContent = message;
     setStatus("Không thể chạy", "error");
   }
 
-  function runCode() {
+  function startRun(mode) {
     const exercise = currentExercise();
-    if (!exercise || els.run.disabled) return;
+    if (!exercise || exercise.browserRunnable === false || els.run.disabled) return;
     saveCurrentCode();
     els.run.disabled = true;
+    els.runInput.disabled = true;
     els.tests.innerHTML = "";
     els.chart.hidden = true;
     els.output.textContent = "Đang chuẩn bị…";
@@ -193,7 +222,10 @@
     getWorker().postMessage({
       type: "run",
       runId: activeRunId,
+      mode,
       code: els.editor.value,
+      input: els.input.value,
+      files: exercise.tests?.[0]?.files || {},
       tests: exercise.tests,
     });
 
@@ -218,10 +250,11 @@
   }
 
   els.editor.addEventListener("input", saveCurrentCode);
+  els.input.addEventListener("input", saveCurrentCode);
   els.editor.addEventListener("keydown", (event) => {
     if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
       event.preventDefault();
-      runCode();
+      startRun("tests");
     }
     if (event.key === "Tab") {
       event.preventDefault();
@@ -230,12 +263,15 @@
       saveCurrentCode();
     }
   });
-  els.run.addEventListener("click", runCode);
+  els.run.addEventListener("click", () => startRun("tests"));
+  els.runInput.addEventListener("click", () => startRun("single"));
   els.reset.addEventListener("click", () => {
     const exercise = currentExercise();
     if (!exercise) return;
     els.editor.value = exercise.starterCode;
+    els.input.value = exercise.tests?.[0]?.input ?? "";
     delete state.code[exercise.id];
+    delete state.input[exercise.id];
     delete state.completed[exercise.id];
     saveState();
     selectExercise(exercise.id);

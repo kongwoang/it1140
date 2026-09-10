@@ -7,7 +7,7 @@
     <meta name="description" content="Ôn tập và thực hành Tin học đại cương IT1140 trực tiếp trên trình duyệt." />
     <meta name="theme-color" content="#0f766e" />
     <link rel="canonical" href="https://it1140.hoangpc.io.vn/" />
-    <link rel="stylesheet" href="./assets/css/app.css?v=5" />
+    <link rel="stylesheet" href="./assets/css/app.css?v=6" />
   </head>
   <body>
     <div class="app-shell">
@@ -166,8 +166,16 @@
             <textarea id="pythonEditor" class="code-editor" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
             <div class="editor-actions">
               <button type="button" class="secondary-btn" id="resetPythonBtn">Khôi phục mã mẫu</button>
+              <button type="button" class="secondary-btn" id="runPythonInputBtn">Chạy input này</button>
               <button type="button" class="primary-btn" id="runPythonBtn">Chạy và kiểm tra</button>
             </div>
+          </section>
+
+          <section class="panel stdin-panel">
+            <div class="rail-heading"><span>Dữ liệu vào</span><strong>stdin của chương trình</strong></div>
+            <label for="pythonInput">Dữ liệu mẫu để truyền vào <code>input()</code></label>
+            <textarea id="pythonInput" class="stdin-editor" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+            <p>“Chạy input này” chạy đúng đoạn mã hiện tại với dữ liệu trên. “Chạy và kiểm tra” chạy các ca theo tài liệu giảng viên.</p>
           </section>
 
           <div class="result-grid">
@@ -197,6 +205,6 @@
       </main>
     </div>
     <script src="./assets/js/quiz-app.js?v=4" defer></script>
-    <script src="./assets/js/python-lab.js?v=5" defer></script>
+    <script src="./assets/js/python-lab.js?v=6" defer></script>
   </body>
 </html>

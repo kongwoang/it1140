@@ -45,6 +45,22 @@ Prompt dùng để sinh dữ liệu bằng LLM nằm tại `PROMPT_TAO_CAU_HOI.m
 
 ## Thêm bài thực hành Python
 
-Thêm một phần tử vào mảng `exercises` trong `python-exercises.json`. Mỗi bài gồm đề bài, mã khởi đầu, gợi ý và các phép `assert` dùng để chấm tự động. Mã kiểm tra chạy trong cùng phạm vi với mã của người học.
+Thêm một phần tử vào mảng `exercises` trong `python-exercises.json`. `starterCode` phải là đúng chương trình mẫu của tài liệu (giữ cách dùng `input()`, đọc tệp và cách in kết quả), không bọc lại thành một API hàm riêng cho bộ chấm.
 
-Các bài hiện tại được biên soạn từ `IT1140_Tai_lieu_Giang_vien.pdf` và chia theo trường `section` để danh sách trên giao diện dễ theo dõi. Bài xử lý tệp nhận nội dung mẫu dưới dạng chuỗi để chạy được trong website tĩnh; khi thực hành ngoài trình duyệt có thể thay phần dữ liệu mẫu bằng `open(...)`. Các bài Turtle được chuyển sang bài tọa độ/Matplotlib tương đương để vẫn xem và kiểm tra kết quả trong trình duyệt.
+Mỗi ca kiểm thử có dạng:
+
+```json
+{
+  "label": "Ca 1 theo tài liệu",
+  "input": "37\n",
+  "output": "98.60\n"
+}
+```
+
+Với bài đọc/ghi tệp, thêm `files` để tạo tệp đầu vào và `expectedFiles` để kiểm tra tệp đầu ra. Với bài đồ họa Matplotlib, dùng `checks` để kiểm tra đối tượng biểu đồ và ảnh đã lưu. Bài không thể chạy trong trình duyệt (hiện là Turtle) đặt `browserRunnable: false` và `tests: []`; giao diện sẽ hướng dẫn người học chạy mã mẫu trên máy.
+
+Các bài hiện tại được lấy theo `IT1140_Tai_lieu_Giang_vien.pdf` và chia theo trường `section`. Chạy lệnh sau để kiểm tra schema trước khi đưa lên GitHub:
+
+```bash
+node scripts/validate-data.mjs
+```

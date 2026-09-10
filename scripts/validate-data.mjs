@@ -110,10 +110,24 @@ for (const exercise of pythonData.exercises) {
   for (const field of ["title", "level", "library", "description", "task", "starterCode", "hint"]) {
     requireText(exercise[field], `${exercise.id}.${field}`);
   }
-  requireValue(Array.isArray(exercise.tests) && exercise.tests.length > 0, `${exercise.id} phải có bộ kiểm tra.`);
+  const browserRunnable = exercise.browserRunnable !== false;
+  requireValue(typeof browserRunnable === "boolean", `${exercise.id}.browserRunnable phải là boolean.`);
+  requireValue(Array.isArray(exercise.tests), `${exercise.id}.tests phải là mảng.`);
+  requireValue(browserRunnable ? exercise.tests.length > 0 : exercise.tests.length === 0, `${exercise.id} có trạng thái chạy/chấm không khớp với tests.`);
   exercise.tests.forEach((test, index) => {
+    requireExactKeys(test, ["label", "input", "output", "files", "expectedFiles", "checks"], `${exercise.id}.tests[${index}]`);
     requireText(test.label, `${exercise.id}.tests[${index}].label`);
-    requireText(test.code, `${exercise.id}.tests[${index}].code`);
+    requireValue(typeof test.input === "string", `${exercise.id}.tests[${index}].input phải là chuỗi.`);
+    requireValue(typeof test.output === "string", `${exercise.id}.tests[${index}].output phải là chuỗi.`);
+    for (const field of ["files", "expectedFiles"]) {
+      if (test[field] === undefined) continue;
+      requireValue(test[field] && typeof test[field] === "object" && !Array.isArray(test[field]), `${exercise.id}.tests[${index}].${field} phải là object.`);
+      Object.entries(test[field]).forEach(([name, content]) => requireValue(typeof name === "string" && typeof content === "string", `${exercise.id}.tests[${index}].${field} phải chứa chuỗi.`));
+    }
+    if (test.checks !== undefined) {
+      requireValue(Array.isArray(test.checks), `${exercise.id}.tests[${index}].checks phải là mảng.`);
+      test.checks.forEach((check, checkIndex) => requireText(check, `${exercise.id}.tests[${index}].checks[${checkIndex}]`));
+    }
   });
 }
 
