@@ -7,7 +7,7 @@
     <meta name="description" content="Ôn tập và thực hành Tin học đại cương IT1140 trực tiếp trên trình duyệt." />
     <meta name="theme-color" content="#0f766e" />
     <link rel="canonical" href="https://it1140.hoangpc.io.vn/" />
-    <link rel="stylesheet" href="./assets/css/app.css?v=7" />
+    <link rel="stylesheet" href="./assets/css/app.css?v=8" />
   </head>
   <body>
     <div class="app-shell">
@@ -158,8 +158,24 @@
           </section>
 
           <section class="editor-panel">
-            <label class="sr-only" for="pythonEditor">Mã nguồn Python</label>
-            <textarea id="pythonEditor" class="code-editor" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+            <div class="ide-toolbar">
+              <div class="ide-toolbar-meta">
+                <span class="ide-language">Python</span>
+                <span id="pythonEditorStats">0 dòng · 0 ký tự</span>
+              </div>
+              <div class="ide-toolbar-actions">
+                <button type="button" class="ide-tool-btn" id="copyPythonBtn">Chép</button>
+                <button type="button" class="ide-tool-btn" id="downloadPythonBtn">Tải .py</button>
+              </div>
+            </div>
+            <div class="code-editor-frame">
+              <div class="line-number-gutter" id="pythonLineNumbers" aria-hidden="true"></div>
+              <div class="code-editor-viewport">
+                <pre id="pythonHighlight" class="code-highlight" aria-hidden="true"></pre>
+                <label class="sr-only" for="pythonEditor">Mã nguồn Python</label>
+                <textarea id="pythonEditor" class="code-editor" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+              </div>
+            </div>
             <div class="editor-actions">
               <button type="button" class="secondary-btn" id="resetPythonBtn">Xóa mã đang viết</button>
               <button type="button" class="secondary-btn" id="runPythonInputBtn">Chạy input này</button>
@@ -201,6 +217,6 @@
       </main>
     </div>
     <script src="./assets/js/quiz-app.js?v=4" defer></script>
-    <script src="./assets/js/python-lab.js?v=7" defer></script>
+    <script src="./assets/js/python-lab.js?v=8" defer></script>
   </body>
 </html>
