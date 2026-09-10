@@ -1,8 +1,8 @@
-const CACHE_NAME = "it1140-static-v4";
+const CACHE_NAME = "it1140-static-v5";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./assets/css/app.css?v=4",
+  "./assets/css/app.css?v=5",
   "./assets/js/quiz-app.js?v=4",
   "./assets/js/python-lab.js?v=4",
   "./assets/js/python-worker.js?v=4",
