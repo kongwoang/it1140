@@ -1,4 +1,4 @@
-const CACHE_NAME = "it1140-static-v2";
+const CACHE_NAME = "it1140-static-v3";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -8,9 +8,7 @@ const APP_SHELL = [
   "./assets/js/python-worker.js",
   "./data/manifest.json",
   "./data/python-exercises.json",
-  "./data/subjects/compiler.json",
-  "./data/subjects/machine-learning.json",
-  "./data/subjects/web.json",
+  "./data/subjects/it1140.json",
 ];
 
 self.addEventListener("install", (event) => {

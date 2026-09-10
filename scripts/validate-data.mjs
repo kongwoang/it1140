@@ -12,6 +12,16 @@ function requireText(value, field) {
   requireValue(typeof value === "string" && value.trim().length > 0, `${field} phải là chuỗi không rỗng.`);
 }
 
+function requireExactKeys(value, allowedKeys, field) {
+  const unexpected = Object.keys(value).filter((key) => !allowedKeys.includes(key));
+  requireValue(unexpected.length === 0, `${field} có trường không được hỗ trợ: ${unexpected.join(", ")}`);
+}
+
+const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const questionIdPattern = /^it1140-[a-z0-9]+(?:-[a-z0-9]+)*-[0-9]{3}$/;
+const sourceTypes = new Set(["lecture", "textbook", "exam", "quiz", "reference"]);
+const questionKinds = new Set(["theory", "calculation", "code", "application"]);
+
 const manifest = await readJson("data/manifest.json");
 requireValue(Array.isArray(manifest.subjects) && manifest.subjects.length > 0, "Danh mục phải có ít nhất một bộ câu hỏi.");
 
@@ -26,8 +36,13 @@ for (const entry of manifest.subjects) {
   subjectIds.add(entry.id);
 
   const subject = await readJson(entry.file.replace(/^\.\//, ""));
+  requireExactKeys(subject, ["$schema", "id", "code", "title", "language", "sources", "topics", "questions"], entry.file);
   requireValue(subject.id === entry.id, `Mã trong ${entry.file} không khớp manifest.`);
+  requireValue(slugPattern.test(subject.id), `${subject.id} không phải kebab-case hợp lệ.`);
+  requireValue(subject.code === "IT1140", `${subject.id}.code phải là IT1140.`);
   requireText(subject.title, `${subject.id}.title`);
+  requireValue(subject.title === "Tin học đại cương", `${subject.id}.title phải là Tin học đại cương.`);
+  requireValue(subject.language === "vi", `${subject.id}.language phải là vi.`);
   requireValue(Array.isArray(subject.sources), `${subject.id}.sources phải là mảng.`);
   requireValue(Array.isArray(subject.topics), `${subject.id}.topics phải là mảng.`);
   requireValue(Array.isArray(subject.questions), `${subject.id}.questions phải là mảng.`);
@@ -36,23 +51,50 @@ for (const entry of manifest.subjects) {
   const topicIds = new Set(subject.topics.map((topic) => topic.id));
   requireValue(sourceIds.size === subject.sources.length, `${subject.id} có mã nguồn bị trùng.`);
   requireValue(topicIds.size === subject.topics.length, `${subject.id} có mã chủ đề bị trùng.`);
+  subject.sources.forEach((source, index) => {
+    requireExactKeys(source, ["id", "label", "type"], `${subject.id}.sources[${index}]`);
+    requireValue(slugPattern.test(source.id), `${source.id} không phải kebab-case hợp lệ.`);
+    requireText(source.label, `${source.id}.label`);
+    requireValue(sourceTypes.has(source.type), `${source.id}.type không hợp lệ.`);
+  });
+  subject.topics.forEach((topic, index) => {
+    requireExactKeys(topic, ["id", "label"], `${subject.id}.topics[${index}]`);
+    requireValue(slugPattern.test(topic.id), `${topic.id} không phải kebab-case hợp lệ.`);
+    requireText(topic.label, `${topic.id}.label`);
+  });
 
   for (const question of subject.questions) {
+    requireExactKeys(
+      question,
+      ["id", "topic", "source", "kind", "difficulty", "prompt", "choices", "answer", "explanation", "tags"],
+      question.id || `${subject.id}.questions[]`,
+    );
     requireText(question.id, `${subject.id}.questions[].id`);
+    requireValue(questionIdPattern.test(question.id), `${question.id} không đúng mẫu it1140-<topic>-<nnn>.`);
     requireValue(!questionIds.has(question.id), `Trùng mã câu hỏi: ${question.id}`);
     questionIds.add(question.id);
     requireValue(topicIds.has(question.topic), `${question.id} tham chiếu chủ đề không tồn tại: ${question.topic}`);
     requireValue(sourceIds.has(question.source), `${question.id} tham chiếu nguồn không tồn tại: ${question.source}`);
     requireText(question.prompt, `${question.id}.prompt`);
-    requireValue(Array.isArray(question.choices) && question.choices.length >= 2, `${question.id} phải có ít nhất hai lựa chọn.`);
+    requireValue(
+      Array.isArray(question.choices) && question.choices.length >= 2 && question.choices.length <= 6,
+      `${question.id} phải có từ 2 đến 6 lựa chọn.`,
+    );
+    question.choices.forEach((choice, index) => requireText(choice, `${question.id}.choices[${index}]`));
     requireText(question.explanation, `${question.id}.explanation`);
+    requireValue(questionKinds.has(question.kind), `${question.id}.kind không hợp lệ.`);
+    requireValue(Number.isInteger(question.difficulty) && question.difficulty >= 1 && question.difficulty <= 3, `${question.id}.difficulty không hợp lệ.`);
 
     const answers = Array.isArray(question.answer) ? question.answer : [question.answer];
     requireValue(answers.length > 0, `${question.id} chưa có đáp án.`);
+    requireValue(!Array.isArray(question.answer) || answers.length >= 2, `${question.id} dùng mảng đáp án nhưng chỉ có một phần tử.`);
+    requireValue(new Set(answers).size === answers.length, `${question.id} có đáp án bị lặp.`);
     requireValue(
       answers.every((answer) => Number.isInteger(answer) && answer >= 0 && answer < question.choices.length),
       `${question.id} có chỉ số đáp án không hợp lệ.`,
     );
+    requireValue(Array.isArray(question.tags) && question.tags.length >= 1 && question.tags.length <= 6, `${question.id} phải có từ 1 đến 6 tags.`);
+    question.tags.forEach((tag, index) => requireText(tag, `${question.id}.tags[${index}]`));
     questionCount += 1;
   }
 }

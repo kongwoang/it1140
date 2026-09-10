@@ -8,13 +8,14 @@ Website ôn tập tĩnh, giao diện và ngân hàng câu hỏi tiếng Việt d
 data/
 ├── manifest.json                 # Danh mục các bộ câu hỏi
 ├── python-exercises.json         # Bài thực hành Python và bộ kiểm tra
+├── schema/subject.schema.json    # Quy ước dữ liệu máy đọc được
 └── subjects/
-    ├── compiler.json             # Một bộ câu hỏi hoàn chỉnh
-    ├── machine-learning.json
-    └── web.json
+    └── it1140.json               # Ngân hàng câu hỏi IT1140
 ```
 
 Mỗi bộ câu hỏi chứa ba phần độc lập: `sources`, `topics` và `questions`. Mỗi câu hỏi tham chiếu nguồn/chủ đề bằng `source` và `topic`, vì vậy có thể thêm hoặc sửa nội dung mà không cần sửa mã giao diện.
+
+Dùng [PROMPT_TAO_CAU_HOI.md](./PROMPT_TAO_CAU_HOI.md) để yêu cầu một LLM khác tạo đúng định dạng JSON. Ngân hàng hiện được để trống để chờ nội dung IT1140 mới.
 
 ## Lưu trữ dữ liệu
 

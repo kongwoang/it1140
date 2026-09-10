@@ -25,7 +25,7 @@ async function loadQuizData() {
     return;
   }
 
-  const storageKey = "it1140-quiz-state:v1";
+  const storageKey = "it1140-quiz-state:v2";
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   const supportedLanguages = ["vi"];
   const i18n = {
@@ -59,7 +59,7 @@ async function loadQuizData() {
       allSources: "Tất cả nguồn",
       generatedTag: "Từ bài giảng",
       multipleAnswerTag: "Chọn nhiều đáp án",
-      noQuestion: "Không có câu hỏi phù hợp.",
+      noQuestion: "Chưa có câu hỏi phù hợp. Ngân hàng IT1140 đang được cập nhật.",
       questionCount: (current, total) => `Câu ${current}/${total}`,
       questionCountEmpty: "Câu 0/0",
       feedbackCorrect: (answer) => `Đúng: ${answer}`,

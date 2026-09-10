@@ -1,0 +1,10 @@
+{
+  "$schema": "../schema/subject.schema.json",
+  "id": "it1140",
+  "code": "IT1140",
+  "title": "Tin học đại cương",
+  "language": "vi",
+  "sources": [],
+  "topics": [],
+  "questions": []
+}

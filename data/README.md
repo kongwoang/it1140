@@ -2,7 +2,7 @@
 
 ## Thêm hoặc sửa bộ câu hỏi
 
-Mỗi file trong `subjects/` là một đối tượng JSON hoàn chỉnh:
+File `subjects/it1140.json` là ngân hàng câu hỏi chính. Toàn bộ dữ liệu cũ đã được xóa để chờ nội dung IT1140 mới. Cấu trúc được kiểm soát bởi `schema/subject.schema.json`:
 
 ```json
 {
@@ -18,10 +18,10 @@ Mỗi file trong `subjects/` là một đối tượng JSON hoàn chỉnh:
   ],
   "questions": [
     {
-      "id": "co-ban-001",
+      "id": "it1140-co-ban-001",
       "topic": "co-ban",
       "source": "bai-1",
-      "kind": "quiz",
+      "kind": "theory",
       "difficulty": 1,
       "prompt": "Nội dung câu hỏi?",
       "choices": ["Lựa chọn A", "Lựa chọn B"],
@@ -40,6 +40,8 @@ Khi thêm một file bộ câu hỏi mới, khai báo file đó trong `manifest.
 ```bash
 node scripts/validate-data.mjs
 ```
+
+Prompt dùng để sinh dữ liệu bằng LLM nằm tại `PROMPT_TAO_CAU_HOI.md` ở thư mục gốc.
 
 ## Thêm bài thực hành Python
 

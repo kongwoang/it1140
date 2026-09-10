@@ -1,17 +1,9 @@
 {
-  "version": 2,
+  "version": 3,
   "subjects": [
     {
-      "id": "compiler-it3323e",
-      "file": "./data/subjects/compiler.json"
-    },
-    {
-      "id": "ml-it3190",
-      "file": "./data/subjects/machine-learning.json"
-    },
-    {
-      "id": "web-it4409",
-      "file": "./data/subjects/web.json"
+      "id": "it1140",
+      "file": "./data/subjects/it1140.json"
     }
   ]
 }
