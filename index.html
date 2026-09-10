@@ -7,7 +7,7 @@
     <meta name="description" content="Ôn tập và thực hành Tin học đại cương IT1140 trực tiếp trên trình duyệt." />
     <meta name="theme-color" content="#0f766e" />
     <link rel="canonical" href="https://it1140.hoangpc.io.vn/" />
-    <link rel="stylesheet" href="./assets/css/app.css?v=8" />
+    <link rel="stylesheet" href="./assets/css/app.css?v=9" />
   </head>
   <body>
     <div class="app-shell">
@@ -184,10 +184,8 @@
           </section>
 
           <section class="panel stdin-panel">
-            <div class="rail-heading"><span>Dữ liệu vào</span><strong>stdin của chương trình</strong></div>
-            <label for="pythonInput">Dữ liệu mẫu để truyền vào <code>input()</code></label>
-            <textarea id="pythonInput" class="stdin-editor" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
-            <p>“Chạy input này” chạy đúng đoạn mã hiện tại với dữ liệu trên. “Chạy và kiểm tra” chạy các ca theo tài liệu giảng viên.</p>
+            <label class="sr-only" for="pythonInput">Dữ liệu stdin</label>
+            <textarea id="pythonInput" class="stdin-editor" aria-label="stdin" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
           </section>
 
           <div class="result-grid">
@@ -203,17 +201,6 @@
           </div>
         </section>
 
-        <aside class="lab-reference panel">
-          <p class="eyebrow">Thư viện thực hành</p>
-          <h3>Từ nền tảng đến dữ liệu</h3>
-          <ul>
-            <li>Cú pháp, hàm và cấu trúc dữ liệu</li>
-            <li>Chuỗi, tệp văn bản và CSV</li>
-            <li><code>math</code>, <code>Matplotlib</code></li>
-            <li>70 bài theo tài liệu giảng viên</li>
-          </ul>
-          <p>Mã chạy ngay trên thiết bị. Lần đầu dùng Python cần kết nối mạng để tải môi trường thực thi; các lần sau trình duyệt sẽ tận dụng bộ nhớ đệm.</p>
-        </aside>
       </main>
     </div>
     <script src="./assets/js/quiz-app.js?v=4" defer></script>

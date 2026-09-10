@@ -670,7 +670,7 @@ button {
 
 .lab-layout {
   display: grid;
-  grid-template-columns: minmax(210px, 250px) minmax(0, 1fr) minmax(200px, 236px);
+  grid-template-columns: minmax(210px, 250px) minmax(0, 1fr);
   align-items: start;
   gap: 12px;
   padding: 10px clamp(14px, 2vw, 24px) 18px;
