@@ -5,7 +5,6 @@
     list: document.getElementById("exerciseList"),
     count: document.getElementById("exerciseProgress"),
     title: document.getElementById("exerciseTitle"),
-    description: document.getElementById("exerciseDescription"),
     task: document.getElementById("exerciseTask"),
     library: document.getElementById("exerciseLibrary"),
     level: document.getElementById("exerciseLevel"),
@@ -215,7 +214,6 @@
     if (!exercise) return;
 
     els.title.textContent = exercise.title;
-    els.description.textContent = exercise.description;
     els.task.textContent = exercise.task;
     els.library.textContent = exercise.library;
     els.level.textContent = exercise.level;
