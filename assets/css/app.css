@@ -494,6 +494,33 @@ button {
   gap: 7px;
 }
 
+.numeric-answer {
+  display: grid;
+  gap: 8px;
+  max-width: 320px;
+  font-size: 14px;
+}
+
+.numeric-answer input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+}
+
+.numeric-answer input:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.numeric-answer input.is-correct { border-color: #249766; background: var(--green-soft); }
+.numeric-answer input.is-wrong,
+.numeric-answer input[aria-invalid="true"] { border-color: var(--coral); background: var(--red-soft); }
+
 .choice {
   display: grid;
   grid-template-columns: 20px 28px minmax(0, 1fr);

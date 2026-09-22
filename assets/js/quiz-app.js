@@ -393,6 +393,7 @@ async function loadQuizData() {
   }
 
   function answerLabel(question) {
+    if (question.responseType === "number") return String(question.answer).replace(".", ",");
     const content = localizedQuestion(question);
     return correctAnswers(question)
       .map((index) => `${optionLabel(index)}. ${content.choices[index] || ""}`.trim())
@@ -401,13 +402,23 @@ async function loadQuizData() {
 
   function isAnswered(question) {
     const value = state.answers[question.id];
+    if (question.responseType === "number") return parseNumericAnswer(value) !== null;
     return Array.isArray(value) ? value.length > 0 : value !== undefined;
   }
 
   function answerMatches(question) {
+    if (question.responseType === "number") return parseNumericAnswer(state.answers[question.id]) === question.answer;
     const selected = selectedAnswers(question).slice().sort((a, b) => a - b);
     const correct = correctAnswers(question).slice().sort((a, b) => a - b);
     return selected.length === correct.length && selected.every((value, index) => value === correct[index]);
+  }
+
+  function parseNumericAnswer(value) {
+    if (typeof value !== "string" && typeof value !== "number") return null;
+    const text = String(value).trim().replace(",", ".");
+    if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(text)) return null;
+    const number = Number(text);
+    return Number.isFinite(number) ? number : null;
   }
 
   function renderTags(subject, question) {
@@ -429,6 +440,9 @@ async function loadQuizData() {
     if (Array.isArray(question.answer)) {
       tags.push({ text: t("multipleAnswerTag"), className: "generated" });
     }
+    if (question.responseType === "number") {
+      tags.push({ text: "Điền số", className: "" });
+    }
 
     tags.forEach((tag) => {
       const item = document.createElement("span");
@@ -443,6 +457,40 @@ async function loadQuizData() {
     if (!question) return;
 
     const revealed = isRevealed(question);
+    if (question.responseType === "number") {
+      const label = document.createElement("label");
+      label.className = "numeric-answer";
+      const title = document.createElement("span");
+      title.textContent = "Đáp án";
+      const input = document.createElement("input");
+      input.type = "text";
+      input.inputMode = "text"; // Keep minus and decimal comma accessible on mobile keyboards.
+      input.autocomplete = "off";
+      input.spellcheck = false;
+      input.value = state.answers[question.id] ?? "";
+      input.disabled = isLocked(question);
+      if (revealed) input.classList.add(answerMatches(question) ? "is-correct" : "is-wrong");
+      input.addEventListener("input", () => {
+        if (isLocked(question)) return;
+        if (input.value.trim()) state.answers[question.id] = input.value;
+        else delete state.answers[question.id];
+        input.setAttribute("aria-invalid", String(Boolean(input.value.trim()) && !isAnswered(question)));
+        saveState();
+        const questions = filteredQuestions();
+        renderControls(question, questions);
+        renderStats(questions);
+        renderMap(questions);
+      });
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && state.mode === "practice" && !els.submitBtn.disabled) {
+          event.preventDefault();
+          els.submitBtn.click();
+        }
+      });
+      label.append(title, input);
+      els.choiceList.append(label);
+      return;
+    }
     const selected = selectedAnswers(question);
     const correct = correctAnswers(question);
     const isMultiple = Array.isArray(question.answer);

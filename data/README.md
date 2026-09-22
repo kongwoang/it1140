@@ -2,7 +2,7 @@
 
 ## Thêm hoặc sửa bộ câu hỏi
 
-File `subjects/it1140.json` là ngân hàng câu hỏi chính. Toàn bộ dữ liệu cũ đã được xóa để chờ nội dung IT1140 mới. Cấu trúc được kiểm soát bởi `schema/subject.schema.json`:
+File `subjects/it1140.json` là ngân hàng câu hỏi chính, hiện có 100 câu chương 1 (80 trắc nghiệm, 20 điền số). Ma trận nội dung và ghi chú rà soát nằm tại `CHUONG_1_REVIEW.md`. Cấu trúc được kiểm soát bởi `schema/subject.schema.json`:
 
 ```json
 {
@@ -33,7 +33,11 @@ File `subjects/it1140.json` là ngân hàng câu hỏi chính. Toàn bộ dữ l
 }
 ```
 
-`answer` là chỉ số bắt đầu từ `0`. Câu có nhiều đáp án dùng mảng, ví dụ `"answer": [0, 2]`.
+Với `responseType: "choice"` (mặc định nếu bỏ trường), `answer` là chỉ số bắt đầu từ `0`. Câu có nhiều đáp án dùng mảng, ví dụ `"answer": [0, 2]`.
+
+Với `responseType: "number"`, dùng `choices: []` và `answer` là giá trị số JSON, ví dụ `-46` hoặc `45.625`. Câu hỏi phải nêu đơn vị và hệ đếm cần trả lời; nếu kết quả vô hạn phải chọn câu khác hoặc quy định làm tròn rõ ràng. Web chấm bằng giá trị số chính xác, không có sai số dung sai; chấp nhận dấu phẩy hoặc dấu chấm thập phân, số âm, ký pháp khoa học. Không nhận biểu thức, phân số dạng `1/2`, đơn vị hay dấu phân cách hàng nghìn. Tiến độ và chuỗi người học nhập chỉ lưu ở localStorage.
+
+Khi thêm chương vào cùng bộ, nối thêm nguồn, chủ đề và câu hỏi; giữ nguyên ID câu cũ để không mất liên kết tiến độ. Không ghi đè toàn bộ ngân hàng bằng JSON chỉ có chương mới.
 
 Khi thêm một file bộ câu hỏi mới, khai báo file đó trong `manifest.json`. Chạy lệnh sau để kiểm tra trước khi đưa lên GitHub:
 

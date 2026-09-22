@@ -4,7 +4,2049 @@
   "code": "IT1140",
   "title": "Tin học đại cương",
   "language": "vi",
-  "sources": [],
-  "topics": [],
-  "questions": []
+  "sources": [
+    {
+      "id": "chuong-1-bai-giang",
+      "label": "Chương 1 · Thông tin và dữ liệu",
+      "type": "lecture"
+    }
+  ],
+  "topics": [
+    {
+      "id": "c1-thong-tin",
+      "label": "Chương 1 · Thông tin và dữ liệu"
+    },
+    {
+      "id": "c1-don-vi",
+      "label": "Chương 1 · Đơn vị và cơ sở hệ đếm"
+    },
+    {
+      "id": "c1-he-dem",
+      "label": "Chương 1 · Chuyển đổi hệ đếm"
+    },
+    {
+      "id": "c1-so-nguyen",
+      "label": "Chương 1 · Biểu diễn số nguyên"
+    },
+    {
+      "id": "c1-so-hoc",
+      "label": "Chương 1 · Số học và tràn số"
+    },
+    {
+      "id": "c1-logic",
+      "label": "Chương 1 · Phép toán logic trên bit"
+    },
+    {
+      "id": "c1-so-thuc",
+      "label": "Chương 1 · Số thực và IEEE 754"
+    },
+    {
+      "id": "c1-ky-tu",
+      "label": "Chương 1 · ASCII và Unicode"
+    }
+  ],
+  "questions": [
+    {
+      "topic": "c1-thong-tin",
+      "difficulty": 2,
+      "prompt": "Một tệp chỉ chứa dãy “28, 29, 31” và chưa có nhãn, đơn vị hay thời điểm đo. Theo mô hình WKID, dãy này đang được xem ở tầng nào?",
+      "choices": [
+        "Thông tin (Information)",
+        "Dữ liệu (Data)",
+        "Trí tuệ (Wisdom)",
+        "Tri thức (Knowledge)"
+      ],
+      "explanation": "Các con số chưa có ngữ cảnh là dữ liệu thô. Chưa thể suy ra chúng là nhiệt độ, số lượng hay một đại lượng khác. (Bài giảng chương 1, tr. 9, 10.)",
+      "tags": [
+        "WKID",
+        "dữ liệu thô"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-thong-tin-001",
+      "source": "chuong-1-bai-giang",
+      "kind": "application",
+      "answer": 1
+    },
+    {
+      "topic": "c1-thong-tin",
+      "difficulty": 2,
+      "prompt": "Hệ thống bổ sung nhãn “nhiệt độ phòng A lúc 9 giờ, đơn vị °C” cho một số đo. Thay đổi nào khiến số đo trở thành thông tin?",
+      "choices": [
+        "Chép số đo từ bộ nhớ sang một thiết bị lưu trữ.",
+        "Gắn số đo với đối tượng, thời điểm và đơn vị.",
+        "Chuyển số đo từ hệ thập phân sang hệ nhị phân.",
+        "Tăng số bản sao của số đo trong cùng một tệp."
+      ],
+      "explanation": "Ngữ cảnh giúp người đọc hiểu ý nghĩa của dữ liệu. Đổi cách mã hóa, nơi lưu hoặc số bản sao không tự tạo ra ngữ cảnh. (Bài giảng chương 1, tr. 9, 10.)",
+      "tags": [
+        "ngữ cảnh",
+        "thông tin"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-thong-tin-002",
+      "source": "chuong-1-bai-giang",
+      "kind": "application",
+      "answer": 1
+    },
+    {
+      "topic": "c1-thong-tin",
+      "difficulty": 2,
+      "prompt": "Từ nhiều bản ghi nhiệt độ và trạng thái của nước ở cùng điều kiện áp suất, người học rút ra quy luật về sự sôi. Hoạt động này chuyển chủ yếu từ tầng nào sang tầng nào?",
+      "choices": [
+        "Dữ liệu → Thông tin",
+        "Tri thức → Trí tuệ",
+        "Trí tuệ → Dữ liệu",
+        "Thông tin → Tri thức"
+      ],
+      "explanation": "Phân tích thông tin để nhận ra quy luật, nguyên lý là hình thành tri thức. Ra quyết định dựa trên quy luật mới thuộc tầng trí tuệ. (Bài giảng chương 1, tr. 10, 11.)",
+      "tags": [
+        "WKID",
+        "tri thức"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-thong-tin-003",
+      "source": "chuong-1-bai-giang",
+      "kind": "application",
+      "answer": 3
+    },
+    {
+      "topic": "c1-thong-tin",
+      "difficulty": 2,
+      "prompt": "Biết hơi nước nóng có thể gây bỏng, một người chọn vị trí đứng tránh hướng thoát hơi của ấm. Trong WKID, bước lựa chọn này thuộc tầng nào?",
+      "choices": [
+        "Tri thức (Knowledge)",
+        "Thông tin (Information)",
+        "Trí tuệ (Wisdom)",
+        "Dữ liệu (Data)"
+      ],
+      "explanation": "Việc dùng tri thức để đánh giá nguy cơ và chọn hành động là trí tuệ. Quy luật gây bỏng là tri thức làm cơ sở cho quyết định. (Bài giảng chương 1, tr. 11, 12.)",
+      "tags": [
+        "WKID",
+        "quyết định"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-thong-tin-004",
+      "source": "chuong-1-bai-giang",
+      "kind": "application",
+      "answer": 2
+    },
+    {
+      "topic": "c1-thong-tin",
+      "difficulty": 1,
+      "prompt": "Thứ tự nào đi từ nền tảng đến tầng cao nhất của tháp WKID?",
+      "choices": [
+        "Dữ liệu → Tri thức → Thông tin → Trí tuệ",
+        "Dữ liệu → Thông tin → Tri thức → Trí tuệ",
+        "Thông tin → Dữ liệu → Tri thức → Trí tuệ",
+        "Dữ liệu → Thông tin → Trí tuệ → Tri thức"
+      ],
+      "explanation": "Dữ liệu được tổ chức thành thông tin; thông tin được tổng hợp thành tri thức; tri thức được áp dụng để đưa ra quyết định. (Bài giảng chương 1, tr. 9, 10, 11, 12.)",
+      "tags": [
+        "WKID",
+        "thứ bậc"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-thong-tin-005",
+      "source": "chuong-1-bai-giang",
+      "kind": "application",
+      "answer": 1
+    },
+    {
+      "topic": "c1-thong-tin",
+      "difficulty": 2,
+      "prompt": "Theo cách gắn câu hỏi trong bài giảng, cặp nào tương ứng với Tri thức và Trí tuệ, theo đúng thứ tự?",
+      "choices": [
+        "“Ở đâu?” và “Khi nào?”",
+        "“Khi nào?” và “Ở đâu?”",
+        "“Vì sao?” và “Làm thế nào?”",
+        "“Làm thế nào?” và “Vì sao?”"
+      ],
+      "explanation": "Bài giảng gắn Knowledge với How và Wisdom với Why. Các câu hỏi về đối tượng, nơi chốn, thời gian được dùng để làm rõ thông tin. (Bài giảng chương 1, tr. 11, 12.)",
+      "tags": [
+        "WKID",
+        "câu hỏi"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-thong-tin-006",
+      "source": "chuong-1-bai-giang",
+      "kind": "application",
+      "answer": 3
+    },
+    {
+      "topic": "c1-thong-tin",
+      "difficulty": 3,
+      "prompt": "Một cảm biến bị lệch làm mọi số đo nhiệt độ cao hơn thực tế 5 °C. Nhóm phân tích vẫn xử lý đúng thuật toán nhưng chưa hiệu chỉnh cảm biến. Nhận định nào phù hợp nhất?",
+      "choices": [
+        "Quy trình xử lý đúng vẫn có thể tạo thông tin sai.",
+        "Tăng số lượng bản ghi sẽ tự triệt tiêu độ lệch đo.",
+        "Sắp xếp dữ liệu theo thời gian sẽ sửa độ lệch đo.",
+        "Lưu dữ liệu bằng nhị phân sẽ loại bỏ độ lệch đo."
+      ],
+      "explanation": "Chất lượng thu thập dữ liệu ảnh hưởng trực tiếp tới thông tin và tri thức. Một sai lệch có hệ thống không tự biến mất nhờ mã hóa, sắp xếp hay thu thập thêm. (Bài giảng chương 1, tr. 13.)",
+      "tags": [
+        "chất lượng dữ liệu",
+        "thu thập"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-thong-tin-007",
+      "source": "chuong-1-bai-giang",
+      "kind": "application",
+      "answer": 0
+    },
+    {
+      "topic": "c1-thong-tin",
+      "difficulty": 2,
+      "prompt": "Cặp nào lần lượt là dữ liệu nhân tạo và dữ liệu tự nhiên theo phân loại trong bài giảng?",
+      "choices": [
+        "Mã sinh viên theo quy ước; tín hiệu âm thanh của giọng nói.",
+        "Mã sinh viên theo quy ước; mã phòng học theo quy ước.",
+        "Tín hiệu âm thanh của giọng nói; mã sinh viên theo quy ước.",
+        "Tín hiệu ánh sáng cảnh vật; tín hiệu áp suất môi trường."
+      ],
+      "explanation": "Mã sinh viên do con người quy ước; âm thanh là tín hiệu vật lý. Hai cặp cuối chỉ chứa một loại thay vì đủ hai loại theo thứ tự yêu cầu. (Bài giảng chương 1, tr. 14.)",
+      "tags": [
+        "nhân tạo",
+        "tự nhiên"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-thong-tin-008",
+      "source": "chuong-1-bai-giang",
+      "kind": "application",
+      "answer": 0
+    },
+    {
+      "topic": "c1-thong-tin",
+      "difficulty": 2,
+      "prompt": "Để đưa tín hiệu âm thanh tự nhiên vào máy tính, bước nào cần có trước khi máy xử lý nó như dữ liệu số?",
+      "choices": [
+        "Lưu nguyên tín hiệu liên tục vào các ô nhớ số nguyên.",
+        "Đổi tên tín hiệu theo một quy tắc đặt tên tệp chuẩn.",
+        "Số hóa tín hiệu thành dữ liệu có thể mã hóa nhị phân.",
+        "Gán từng đoạn tín hiệu cho một chữ cái trong ASCII."
+      ],
+      "explanation": "Dữ liệu tự nhiên cần số hóa. Bộ mã ký tự dùng cho ký tự; đổi tên tệp không biến tín hiệu liên tục thành dữ liệu số. (Bài giảng chương 1, tr. 14.)",
+      "tags": [
+        "số hóa",
+        "mã hóa"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-thong-tin-009",
+      "source": "chuong-1-bai-giang",
+      "kind": "application",
+      "answer": 2
+    },
+    {
+      "topic": "c1-thong-tin",
+      "difficulty": 1,
+      "prompt": "Nhóm nào chỉ gồm các dạng dữ liệu có cấu trúc được nêu trong chương?",
+      "choices": [
+        "Mảng, xâu ký tự, tập hợp, bản ghi.",
+        "Xâu ký tự, số nguyên, bản ghi, số thực.",
+        "Số nguyên, số thực, ký tự, bản ghi.",
+        "Mảng, số thực, tập hợp, ký tự."
+      ],
+      "explanation": "Mảng, xâu, tập hợp và bản ghi được cấu thành từ dữ liệu cơ bản. Số nguyên, số thực và ký tự là các dạng cơ bản. (Bài giảng chương 1, tr. 15, 17.)",
+      "tags": [
+        "kiểu dữ liệu",
+        "cấu trúc"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-thong-tin-010",
+      "source": "chuong-1-bai-giang",
+      "kind": "application",
+      "answer": 0
+    },
+    {
+      "topic": "c1-thong-tin",
+      "difficulty": 2,
+      "prompt": "Ghép loại dữ liệu với cách biểu diễn nào đúng theo chương 1?",
+      "choices": [
+        "Nguyên có dấu: bù hai; số thực: bộ mã; ký tự: dấu phẩy động.",
+        "Nguyên có dấu: dấu phẩy động; số thực: bù hai; ký tự: bộ mã.",
+        "Nguyên có dấu: bộ mã; số thực: dấu phẩy động; ký tự: bù hai.",
+        "Nguyên có dấu: bù hai; số thực: dấu phẩy động; ký tự: bộ mã."
+      ],
+      "explanation": "Ba nhóm dùng quy ước biểu diễn khác nhau, dù cuối cùng đều được lưu dưới dạng các bit. (Bài giảng chương 1, tr. 16.)",
+      "tags": [
+        "bù hai",
+        "dấu phẩy động",
+        "mã ký tự"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-thong-tin-011",
+      "source": "chuong-1-bai-giang",
+      "kind": "application",
+      "answer": 3
+    },
+    {
+      "topic": "c1-thong-tin",
+      "difficulty": 2,
+      "prompt": "Cùng chuỗi 8 bit có thể là một số nguyên hoặc mã của một ký tự. Điều gì quyết định cách hiểu chuỗi đó?",
+      "choices": [
+        "Số bản sao của chuỗi bit trong thiết bị lưu trữ.",
+        "Thời điểm chuỗi bit được ghi vào vùng nhớ đó.",
+        "Thiết bị lưu trữ được dùng để giữ chuỗi bit đó.",
+        "Kiểu dữ liệu và quy ước mã hóa đang được sử dụng."
+      ],
+      "explanation": "Bit không tự mang kiểu dữ liệu. Cần biết quy ước biểu diễn để giải mã chúng thành số, ký tự hay dữ liệu khác. (Bài giảng chương 1, tr. 13, 14, 16.)",
+      "tags": [
+        "biểu diễn",
+        "ngữ nghĩa"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-thong-tin-012",
+      "source": "chuong-1-bai-giang",
+      "kind": "application",
+      "answer": 3
+    },
+    {
+      "topic": "c1-don-vi",
+      "difficulty": 1,
+      "prompt": "Một trường dữ liệu dài 3 byte. Trường đó có bao nhiêu bit? Điền một số nguyên.",
+      "choices": [],
+      "answer": 24,
+      "explanation": "Một byte gồm 8 bit, nên 3 × 8 = 24 bit. (Bài giảng chương 1, tr. 18.)",
+      "tags": [
+        "byte",
+        "bit"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-don-vi-013",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-don-vi",
+      "difficulty": 2,
+      "prompt": "Theo quy ước nhị phân của bài giảng (1 MB = 1024 KB), 1,5 MB bằng bao nhiêu KB? Điền số.",
+      "choices": [],
+      "answer": 1536,
+      "explanation": "1,5 × 1024 = 1536 KB. Câu này sử dụng quy ước đơn vị đã nêu, không dùng bội số 1000. (Bài giảng chương 1, tr. 18.)",
+      "tags": [
+        "đổi đơn vị",
+        "MB"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-don-vi-014",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-don-vi",
+      "difficulty": 2,
+      "prompt": "Theo quy ước mỗi đơn vị lớn gấp 1024 lần đơn vị liền dưới, dãy nào đúng theo thứ tự GB, TB, PB?",
+      "choices": [
+        "2^30 B; 2^40 B; 2^60 B.",
+        "2^30 B; 2^50 B; 2^60 B.",
+        "2^30 B; 2^40 B; 2^50 B.",
+        "2^20 B; 2^30 B; 2^40 B."
+      ],
+      "explanation": "Mỗi bước tăng 10 ở số mũ của 2. Dòng PB trên slide có lỗi gõ ký hiệu; quan hệ nhất quán là 1 PB = 1024 TB = 2^50 B. (Bài giảng chương 1, tr. 18.)",
+      "tags": [
+        "GB",
+        "TB",
+        "PB"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-don-vi-015",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 2
+    },
+    {
+      "topic": "c1-don-vi",
+      "difficulty": 2,
+      "prompt": "Một kiểu dữ liệu có độ dài từ dữ liệu 24 bit. Nếu mỗi giá trị chiếm trọn một từ và không có phần đệm, cách hiểu nào đúng?",
+      "choices": [
+        "Mỗi giá trị chiếm 192 byte.",
+        "Mỗi giá trị chiếm 3 byte.",
+        "Mỗi giá trị chiếm 24 byte.",
+        "Mỗi giá trị chiếm 8 byte."
+      ],
+      "explanation": "Độ dài từ dữ liệu là số bit dùng để mã hóa một giá trị; 24 / 8 = 3 byte. Không được đồng nhất bit với byte. (Bài giảng chương 1, tr. 16, 18.)",
+      "tags": [
+        "độ dài từ",
+        "lưu trữ"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-don-vi-016",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 1
+    },
+    {
+      "topic": "c1-don-vi",
+      "difficulty": 3,
+      "prompt": "Có 256 bản ghi, mỗi bản ghi chiếm đúng 16 byte, không có phần phụ trội. Với 1 KB = 1024 B, tổng dung lượng là bao nhiêu KB? Điền số.",
+      "choices": [],
+      "answer": 4,
+      "explanation": "Dung lượng là 256 × 16 = 4096 B; 4096 / 1024 = 4 KB. (Bài giảng chương 1, tr. 17, 18.)",
+      "tags": [
+        "bản ghi",
+        "dung lượng"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-don-vi-017",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-don-vi",
+      "difficulty": 1,
+      "prompt": "Trong hệ đếm vị trí cơ số b với b nguyên và b ≥ 2, tập giá trị chữ số hợp lệ là gì?",
+      "choices": [
+        "Từ 1 đến b − 1.",
+        "Từ 0 đến b.",
+        "Từ 1 đến b.",
+        "Từ 0 đến b − 1."
+      ],
+      "explanation": "Cần đúng b chữ số, bao gồm 0. Chữ số có giá trị b phải được viết bằng hai vị trí là 10 trong hệ đó. (Bài giảng chương 1, tr. 20, 25.)",
+      "tags": [
+        "cơ số",
+        "chữ số"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-don-vi-018",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 3
+    },
+    {
+      "topic": "c1-don-vi",
+      "difficulty": 2,
+      "prompt": "Một mã dùng đúng 3 chữ số hệ 8, cho phép chữ số đầu là 0. Có bao nhiêu mã khác nhau? Điền số nguyên.",
+      "choices": [],
+      "answer": 512,
+      "explanation": "Mỗi vị trí có 8 lựa chọn độc lập nên có 8^3 = 512 mã; giá trị lớn nhất là 511, khác với số lượng mã. (Bài giảng chương 1, tr. 25, 28.)",
+      "tags": [
+        "số trạng thái",
+        "hệ 8"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-don-vi-019",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-don-vi",
+      "difficulty": 3,
+      "prompt": "Cần gán mã nhị phân có độ dài cố định cho 1000 đối tượng khác nhau. Số bit tối thiểu của mỗi mã là bao nhiêu?",
+      "choices": [
+        "8 bit.",
+        "11 bit.",
+        "10 bit.",
+        "9 bit."
+      ],
+      "explanation": "9 bit chỉ có 512 mã, còn 10 bit có 1024 mã. Do đó 10 là độ dài nhỏ nhất đủ phân biệt 1000 đối tượng. (Bài giảng chương 1, tr. 21, 26.)",
+      "tags": [
+        "mã hóa",
+        "số bit tối thiểu"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-don-vi-020",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 2
+    },
+    {
+      "topic": "c1-don-vi",
+      "difficulty": 2,
+      "prompt": "Biểu diễn “507” hợp lệ trong một hệ đếm cơ số b. Giá trị nguyên nhỏ nhất có thể của b là bao nhiêu?",
+      "choices": [
+        "6.",
+        "7.",
+        "8.",
+        "10."
+      ],
+      "explanation": "Chữ số lớn nhất là 7 nên phải có b − 1 ≥ 7, tức b ≥ 8. Không cần b bằng 10 chỉ vì thấy các chữ số quen thuộc. (Bài giảng chương 1, tr. 25, 28.)",
+      "tags": [
+        "chữ số hợp lệ",
+        "cơ số"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-don-vi-021",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 2
+    },
+    {
+      "topic": "c1-don-vi",
+      "difficulty": 2,
+      "prompt": "Vì sao hệ 8 và hệ 16 thuận tiện để viết gọn các dãy bit?",
+      "choices": [
+        "Mỗi chữ số thay đúng một nhóm 3 hoặc 4 bit.",
+        "Mỗi chữ số thay đúng một nhóm 8 hoặc 16 bit.",
+        "Mỗi chữ số thay một số bit phụ thuộc giá trị số.",
+        "Mỗi chữ số thay đúng một byte trong cả hai hệ."
+      ],
+      "explanation": "8 = 2^3 và 16 = 2^4 nên có thể nhóm bit trực tiếp, không làm thay đổi giá trị được biểu diễn. (Bài giảng chương 1, tr. 22, 41.)",
+      "tags": [
+        "hệ 8",
+        "hệ 16"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-don-vi-022",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 0
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 2,
+      "prompt": "Số 101101.101 ở hệ 2 có giá trị bao nhiêu ở hệ 10? Điền số thập phân.",
+      "choices": [],
+      "answer": 45.625,
+      "explanation": "Phần nguyên là 32 + 8 + 4 + 1 = 45; phần lẻ là 1/2 + 1/8 = 0,625. Tổng là 45,625. (Bài giảng chương 1, tr. 27, 33.)",
+      "tags": [
+        "nhị phân",
+        "phần lẻ"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-he-dem-023",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 2,
+      "prompt": "Biểu diễn nhị phân nào bằng 124,75 trong hệ 10?",
+      "choices": [
+        "1111100.011₂",
+        "1111100.101₂",
+        "1111100.11₂",
+        "1111010.11₂"
+      ],
+      "explanation": "124 = 64 + 32 + 16 + 8 + 4, còn 0,75 = 1/2 + 1/4. Hai phần lần lượt là 1111100 và .11. (Bài giảng chương 1, tr. 35, 37, 44.)",
+      "tags": [
+        "thập phân sang nhị phân",
+        "chuyển cơ số"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-he-dem-024",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 2
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 2,
+      "prompt": "Số 65,125 trong hệ 10 được viết thế nào trong hệ 2?",
+      "choices": [
+        "1000010.001₂",
+        "1000001.01₂",
+        "1000001.001₂",
+        "1000001.1₂"
+      ],
+      "explanation": "65 = 2^6 + 2^0 và 0,125 = 2^−3. Bit 1 sau dấu chấm phải nằm ở vị trí thứ ba. (Bài giảng chương 1, tr. 40, 44.)",
+      "tags": [
+        "lũy thừa hai",
+        "phần lẻ"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-he-dem-025",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 2
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 3,
+      "prompt": "Chuyển 235.64₈ sang hệ 10. Điền kết quả thập phân.",
+      "choices": [],
+      "answer": 157.8125,
+      "explanation": "2×8^2 + 3×8 + 5 = 157; phần lẻ là 6/8 + 4/64 = 0,8125. Tổng là 157,8125. (Bài giảng chương 1, tr. 29.)",
+      "tags": [
+        "bát phân",
+        "trọng số"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-he-dem-026",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 2,
+      "prompt": "Giá trị thập phân của 2D.A₁₆ là bao nhiêu?",
+      "choices": [
+        "42,8125.",
+        "45,625.",
+        "45,10.",
+        "45,0625."
+      ],
+      "explanation": "D mang giá trị 13 và A mang giá trị 10: 2×16 + 13 + 10/16 = 45,625. (Bài giảng chương 1, tr. 30, 31, 33.)",
+      "tags": [
+        "thập lục phân",
+        "phần lẻ"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-he-dem-027",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 1
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 2,
+      "prompt": "Đổi 110101101011₂ sang hệ 16 được kết quả nào?",
+      "choices": [
+        "D6D₁₆",
+        "D5B₁₆",
+        "B6D₁₆",
+        "D6B₁₆"
+      ],
+      "explanation": "Nhóm từ phải sang trái: 1101 0110 1011 tương ứng D, 6, B. Đảo thứ tự nhóm sẽ đổi giá trị. (Bài giảng chương 1, tr. 41, 42.)",
+      "tags": [
+        "nhóm bit",
+        "hệ 16"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-he-dem-028",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 3
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 3,
+      "prompt": "Biểu diễn hệ 8 nào bằng B7₁₆?",
+      "choices": [
+        "267₈",
+        "276₈",
+        "257₈",
+        "167₈"
+      ],
+      "explanation": "B7₁₆ = 10110111₂. Bổ sung 0 ở bên trái rồi nhóm ba: 010 110 111, tức 267₈. (Bài giảng chương 1, tr. 41.)",
+      "tags": [
+        "hệ 16 sang hệ 8",
+        "nhị phân trung gian"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-he-dem-029",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 0
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 2,
+      "prompt": "Biểu diễn 0.1011₂ bằng số nào trong hệ 16?",
+      "choices": [
+        "0.1B₁₆",
+        "0.B₁₆",
+        "0.D₁₆",
+        "0.11₁₆"
+      ],
+      "explanation": "Bốn bit 1011 ở phần lẻ tương ứng chữ số B. Giá trị là 11/16, không phải 11/256 hay 13/16. (Bài giảng chương 1, tr. 41.)",
+      "tags": [
+        "phần lẻ",
+        "nhóm bốn bit"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-he-dem-030",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 1
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 3,
+      "prompt": "Khi đổi 101.11₂ sang hệ 16 bằng cách nhóm bốn bit, cách bổ sung số 0 nào giữ nguyên giá trị?",
+      "choices": [
+        "0101.0011₂",
+        "0101.1100₂",
+        "1010.1100₂",
+        "1010.0011₂"
+      ],
+      "explanation": "Phần nguyên thêm 0 bên trái, phần lẻ thêm 0 bên phải. Do đó 101.11₂ = 0101.1100₂ = 5.C₁₆. (Bài giảng chương 1, tr. 41.)",
+      "tags": [
+        "đệm bit",
+        "trọng số"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-he-dem-031",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 1
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 2,
+      "prompt": "Chia liên tiếp 13 cho 2 cho dãy số dư theo thứ tự phát sinh là 1, 0, 1, 1. Kết quả chuyển đổi là gì?",
+      "choices": [
+        "1011₂",
+        "1101₂",
+        "1110₂",
+        "0111₂"
+      ],
+      "explanation": "Số dư đầu tiên là bit thấp nhất nên phải đọc ngược dãy số dư: 1, 1, 0, 1. (Bài giảng chương 1, tr. 35, 36.)",
+      "tags": [
+        "chia liên tiếp",
+        "thứ tự số dư"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-he-dem-032",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 1
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 2,
+      "prompt": "Nhân liên tiếp phần lẻ 0,375 với 2 thu được các phần nguyên theo thứ tự 0, 1, 1 rồi phần lẻ bằng 0. Biểu diễn nào đúng?",
+      "choices": [
+        "0.011₂",
+        "0.0011₂",
+        "0.101₂",
+        "0.110₂"
+      ],
+      "explanation": "Đổi phần lẻ phải đọc các phần nguyên theo đúng thứ tự phát sinh: .011 = 1/4 + 1/8. (Bài giảng chương 1, tr. 37, 38.)",
+      "tags": [
+        "nhân liên tiếp",
+        "phần lẻ"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-he-dem-033",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 0
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 3,
+      "prompt": "Biết 12_b = 20₁₀ trong hệ đếm vị trí. Cơ số b bằng bao nhiêu? Điền số nguyên.",
+      "choices": [],
+      "answer": 18,
+      "explanation": "12_b có giá trị 1×b + 2. Giải b + 2 = 20 được b = 18; các chữ số 1 và 2 đều hợp lệ. (Bài giảng chương 1, tr. 25, 33.)",
+      "tags": [
+        "tìm cơ số",
+        "giá trị vị trí"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-he-dem-034",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 3,
+      "prompt": "Trong bốn số sau, số nào có giá trị lớn nhất?",
+      "choices": [
+        "31₁₀",
+        "1E₁₆",
+        "11101₂",
+        "36₈"
+      ],
+      "explanation": "31₁₀ = 31; 1E₁₆ = 30; 36₈ = 30; 11101₂ = 29. Số chữ số của cách viết không quyết định số nào lớn hơn. (Bài giảng chương 1, tr. 27, 29, 31.)",
+      "tags": [
+        "so sánh",
+        "chuyển cơ số"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-he-dem-035",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 0
+    },
+    {
+      "topic": "c1-he-dem",
+      "difficulty": 3,
+      "prompt": "Trong bốn số thập phân sau, số nào không có biểu diễn nhị phân hữu hạn?",
+      "choices": [
+        "0,375.",
+        "0,125.",
+        "0,1.",
+        "0,625."
+      ],
+      "explanation": "0,1 = 1/10 có mẫu còn thừa số 5 sau rút gọn, nên biểu diễn nhị phân lặp vô hạn. Ba số còn lại là các phân số có mẫu 8. (Bài giảng chương 1, tr. 37, 79.)",
+      "tags": [
+        "sai số",
+        "phân số nhị phân"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-he-dem-036",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 2
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 1,
+      "prompt": "Số nguyên không dấu 8 bit biểu diễn được dải giá trị nào?",
+      "choices": [
+        "Từ −127 đến 128.",
+        "Từ −128 đến 127.",
+        "Từ 0 đến 255.",
+        "Từ 0 đến 256."
+      ],
+      "explanation": "Có 2^8 = 256 mẫu bit, bắt đầu tại 0 nên giá trị lớn nhất là 255. Dải có dấu là một quy ước khác. (Bài giảng chương 1, tr. 45, 48.)",
+      "tags": [
+        "không dấu",
+        "dải giá trị"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-nguyen-037",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 2
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 2,
+      "prompt": "Giá trị lớn nhất của số nguyên không dấu 16 bit là bao nhiêu? Điền số nguyên thập phân.",
+      "choices": [],
+      "answer": 65535,
+      "explanation": "Giá trị lớn nhất là 2^16 − 1 = 65535, tương ứng 16 bit đều bằng 1. (Bài giảng chương 1, tr. 49.)",
+      "tags": [
+        "16 bit",
+        "giá trị lớn nhất"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-so-nguyen-038",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 2,
+      "prompt": "Chuỗi 10010110 được giải mã lần lượt thành số nguyên không dấu 8 bit và số nguyên có dấu bù hai 8 bit. Hai giá trị là gì?",
+      "choices": [
+        "106 và −150.",
+        "22 và −106.",
+        "150 và −22.",
+        "150 và −106."
+      ],
+      "explanation": "Không dấu: 128 + 16 + 4 + 2 = 150. Bù hai: bit cao nhất có trọng số −128 nên giá trị là −128 + 16 + 4 + 2 = −106. (Bài giảng chương 1, tr. 45, 54.)",
+      "tags": [
+        "cùng mẫu bit",
+        "bù hai"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-nguyen-039",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 3
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 2,
+      "prompt": "Cần ít nhất bao nhiêu bit để lưu giá trị 300 dưới dạng số nguyên không dấu? Điền số nguyên.",
+      "choices": [],
+      "answer": 9,
+      "explanation": "8 bit chỉ lưu tới 255; 9 bit lưu tới 511. Vì 255 < 300 ≤ 511 nên cần tối thiểu 9 bit. (Bài giảng chương 1, tr. 45.)",
+      "tags": [
+        "số bit tối thiểu",
+        "không dấu"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-so-nguyen-040",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 1,
+      "prompt": "Bù một của chuỗi 8 bit 01011001 là chuỗi nào?",
+      "choices": [
+        "11011001",
+        "10100110",
+        "01011010",
+        "10100111"
+      ],
+      "explanation": "Bù một thu được bằng cách đảo từng bit. Thêm 1 vào kết quả đảo bit sẽ là bù hai, không phải bù một. (Bài giảng chương 1, tr. 51, 52.)",
+      "tags": [
+        "bù một",
+        "đảo bit"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-nguyen-041",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 1
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 2,
+      "prompt": "Bù hai của chuỗi 8 bit 00101101 là chuỗi nào?",
+      "choices": [
+        "10101101",
+        "11010011",
+        "11010100",
+        "11010010"
+      ],
+      "explanation": "Đảo 00101101 được 11010010, sau đó cộng 1 được 11010011. Chỉ đổi bit đầu không phải cách lấy bù hai. (Bài giảng chương 1, tr. 51, 52.)",
+      "tags": [
+        "bù hai",
+        "đảo bit cộng một"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-nguyen-042",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 1
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 2,
+      "prompt": "Mã bù hai 8 bit của số −70 là gì?",
+      "choices": [
+        "10111001",
+        "01000110",
+        "11000110",
+        "10111010"
+      ],
+      "explanation": "70 = 01000110; đảo bit được 10111001 và cộng 1 được 10111010. 01000110 là mã của +70. (Bài giảng chương 1, tr. 53.)",
+      "tags": [
+        "mã số âm",
+        "8 bit"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-nguyen-043",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 3
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 2,
+      "prompt": "Mẫu 11010010 là một số nguyên có dấu bù hai 8 bit. Giá trị thập phân của nó là bao nhiêu?",
+      "choices": [],
+      "answer": -46,
+      "explanation": "Giá trị là −128 + 64 + 16 + 2 = −46. Cũng có thể lấy bù hai để tìm độ lớn 46 rồi gắn dấu âm. (Bài giảng chương 1, tr. 54, 55.)",
+      "tags": [
+        "giải mã bù hai",
+        "trọng số âm"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-so-nguyen-044",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 2,
+      "prompt": "Số nguyên có dấu bù hai 12 bit có giá trị nhỏ nhất là bao nhiêu? Điền số nguyên thập phân.",
+      "choices": [],
+      "answer": -2048,
+      "explanation": "Dải bù hai n bit bắt đầu tại −2^(n−1). Với n = 12, giá trị nhỏ nhất là −2^11 = −2048. (Bài giảng chương 1, tr. 54.)",
+      "tags": [
+        "dải bù hai",
+        "12 bit"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-so-nguyen-045",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 2,
+      "prompt": "Với mã bù hai 8 bit, có bao nhiêu giá trị âm và bao nhiêu giá trị dương, không tính số 0 vào nhóm dương?",
+      "choices": [
+        "128 giá trị âm và 128 giá trị dương.",
+        "127 giá trị âm và 127 giá trị dương.",
+        "127 giá trị âm và 128 giá trị dương.",
+        "128 giá trị âm và 127 giá trị dương."
+      ],
+      "explanation": "Dải là −128 đến 127: có 128 số âm, một số 0 và 127 số dương. Hai phía không đối xứng vì 0 chiếm một mã. (Bài giảng chương 1, tr. 54, 56.)",
+      "tags": [
+        "bất đối xứng",
+        "bù hai"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-nguyen-046",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 3
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 2,
+      "prompt": "Trong bù hai 8 bit, vì sao 10000000 biểu diễn −128?",
+      "choices": [
+        "Bit cao nhất chỉ ghi dấu âm, bảy bit còn lại ghi độ lớn.",
+        "Bit cao nhất có trọng số +2^7, các bit còn lại bằng 0.",
+        "Bit cao nhất ghi dấu âm, toàn bộ mã phải đảo trước khi đọc.",
+        "Bit cao nhất có trọng số −2^7, các bit còn lại bằng 0."
+      ],
+      "explanation": "Công thức bù hai dùng trọng số âm cho bit cao nhất. Cách coi bảy bit còn lại là độ lớn sẽ nhầm sang mã dấu–độ lớn và cho âm 0. (Bài giảng chương 1, tr. 54, 56.)",
+      "tags": [
+        "bit dấu",
+        "trọng số"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-nguyen-047",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 3
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 2,
+      "prompt": "Một mã bù hai 8 bit có bit cao nhất bằng 0. Kết luận nào luôn đúng?",
+      "choices": [
+        "Giá trị của nó nhỏ hơn 127.",
+        "Giá trị của nó không âm.",
+        "Giá trị của nó nhỏ hơn 0.",
+        "Giá trị của nó lớn hơn 0."
+      ],
+      "explanation": "Bit đầu 0 tương ứng các giá trị từ 0 đến 127, bao gồm cả 0 và 127. Vì vậy “không âm” chính xác hơn “dương”. (Bài giảng chương 1, tr. 50, 56.)",
+      "tags": [
+        "bit dấu",
+        "số không"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-nguyen-048",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 1
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 3,
+      "prompt": "Mẫu 11101110 biểu diễn −18 trong bù hai 8 bit. Khi chuyển sang bù hai 16 bit và giữ nguyên giá trị, chọn mẫu nào?",
+      "choices": [
+        "00000000 11101110",
+        "11101110 00000000",
+        "11111111 11101110",
+        "10000000 00010010"
+      ],
+      "explanation": "Mở rộng số âm phải lặp bit dấu ở bên trái. Thêm toàn 0 sẽ biến giá trị thành +238; thêm bit bên phải làm thay đổi trọng số. (Bài giảng chương 1, tr. 54.)",
+      "tags": [
+        "mở rộng dấu",
+        "16 bit"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-nguyen-049",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 2
+    },
+    {
+      "topic": "c1-so-nguyen",
+      "difficulty": 3,
+      "prompt": "Lấy bù hai của 10000000 trong phạm vi 8 bit lại được 10000000. Điều này cho biết gì khi muốn đổi dấu số −128?",
+      "choices": [
+        "+128 phải được biểu diễn bằng mẫu 01111111 sau đổi dấu.",
+        "+128 được biểu diễn bằng mẫu 00000000 sau đổi dấu.",
+        "+128 nằm ngoài dải bù hai 8 bit nên không biểu diễn được.",
+        "+128 được biểu diễn bằng cùng một mẫu với số −128."
+      ],
+      "explanation": "Dải 8 bit chỉ lên tới +127. Mẫu sau phép đảo bit cộng một vẫn là −128 khi giải mã có dấu; đó không phải mã hợp lệ của +128. (Bài giảng chương 1, tr. 52, 56.)",
+      "tags": [
+        "đổi dấu",
+        "giới hạn biểu diễn"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-nguyen-050",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 2
+    },
+    {
+      "topic": "c1-so-hoc",
+      "difficulty": 2,
+      "prompt": "Cộng hai số nguyên không dấu 8 bit 10010110 và 00010011. Kết quả nào đúng?",
+      "choices": [
+        "10101001, có bit nhớ ra ngoài.",
+        "00101001, có bit nhớ ra ngoài.",
+        "10101001, không có bit nhớ ra ngoài.",
+        "10101000, không có bit nhớ ra ngoài."
+      ],
+      "explanation": "150 + 19 = 169 = 10101001₂, chưa vượt 255 nên carry-out bằng 0. (Bài giảng chương 1, tr. 58, 59, 60.)",
+      "tags": [
+        "cộng không dấu",
+        "carry"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-hoc-051",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 2
+    },
+    {
+      "topic": "c1-so-hoc",
+      "difficulty": 2,
+      "prompt": "Cộng 197 và 70 dưới dạng số nguyên không dấu 8 bit, chỉ giữ 8 bit thấp. Giá trị thập phân còn lại là bao nhiêu?",
+      "choices": [],
+      "answer": 11,
+      "explanation": "Tổng thật là 267 = 256 + 11. Loại bit nhớ ra ngoài giữ lại 11; đây là kết quả bị tràn, không phải tổng toán học. (Bài giảng chương 1, tr. 59, 60.)",
+      "tags": [
+        "tràn không dấu",
+        "8 bit thấp"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-so-hoc-052",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-so-hoc",
+      "difficulty": 3,
+      "prompt": "Một phép trừ không dấu 8 bit tính 5 − 9 theo modulo 256 (chỉ giữ 8 bit thấp). Mẫu kết quả được đọc là số không dấu bao nhiêu?",
+      "choices": [],
+      "answer": 252,
+      "explanation": "Hiệu toán học là −4, nằm ngoài dải không dấu. Mẫu 8 bit tương ứng có giá trị −4 + 256 = 252. (Bài giảng chương 1, tr. 59.)",
+      "tags": [
+        "trừ không dấu",
+        "modulo"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-so-hoc-053",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-so-hoc",
+      "difficulty": 3,
+      "prompt": "Trong bù hai 8 bit, 97 + (−52) tạo bit nhớ ra ngoài bằng 1. Nhận định nào đúng?",
+      "choices": [
+        "Kết quả là 45 và không tràn số học có dấu.",
+        "Kết quả là 45 nhưng có tràn số học có dấu.",
+        "Kết quả là −83 nhưng có tràn số học có dấu.",
+        "Kết quả là −83 và không tràn số học có dấu."
+      ],
+      "explanation": "Hai số khác dấu cộng được 45, nằm trong dải. Carry-out không đồng nghĩa với overflow có dấu; bit nhớ ngoài cùng được bỏ qua. (Bài giảng chương 1, tr. 61, 62.)",
+      "tags": [
+        "carry khác overflow",
+        "cộng khác dấu"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-hoc-054",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 0
+    },
+    {
+      "topic": "c1-so-hoc",
+      "difficulty": 3,
+      "prompt": "Tính 75 + 81 trong bù hai 8 bit, chỉ giữ 8 bit thấp. Cặp “giá trị giải mã; trạng thái” nào đúng?",
+      "choices": [
+        "−100; không tràn số học.",
+        "156; không tràn số học.",
+        "100; có tràn số học.",
+        "−100; có tràn số học."
+      ],
+      "explanation": "156 có mẫu 10011100. Trong bù hai 8 bit, mẫu đó là 156 − 256 = −100. Hai số dương tạo mã âm nên bị overflow. (Bài giảng chương 1, tr. 61, 63.)",
+      "tags": [
+        "cộng cùng dấu",
+        "tràn số học"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-hoc-055",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 3
+    },
+    {
+      "topic": "c1-so-hoc",
+      "difficulty": 3,
+      "prompt": "Tính (−104) + (−74) bằng bù hai 8 bit và bỏ bit nhớ ngoài cùng. Kết quả giải mã là gì?",
+      "choices": [
+        "−78, có tràn số học.",
+        "78, không tràn số học.",
+        "−178, không tràn số học.",
+        "78, có tràn số học."
+      ],
+      "explanation": "Tổng toán học −178 nhỏ hơn −128. Giá trị 8 bit còn lại là −178 + 256 = 78; hai số âm cho mã dương báo hiệu overflow. (Bài giảng chương 1, tr. 61, 63.)",
+      "tags": [
+        "tràn âm",
+        "bù hai"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-hoc-056",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 3
+    },
+    {
+      "topic": "c1-so-hoc",
+      "difficulty": 2,
+      "prompt": "Phép cộng nào chắc chắn không gây tràn số học có dấu khi các toán hạng và kết quả được giữ trong bù hai 8 bit?",
+      "choices": [
+        "120 + (−100).",
+        "(−100) + (−40).",
+        "100 + 40.",
+        "90 + 60."
+      ],
+      "explanation": "120 + (−100) = 20. Hai số khác dấu không gây tràn khi cộng. Các phép khác: 100 + 40 = 140; (−100) + (−40) = −140; 90 + 60 = 150, đều ngoài dải. (Bài giảng chương 1, tr. 61.)",
+      "tags": [
+        "điều kiện overflow",
+        "khác dấu"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-hoc-057",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 0
+    },
+    {
+      "topic": "c1-so-hoc",
+      "difficulty": 2,
+      "prompt": "Thực hiện 52 − 97 bằng bù hai 8 bit. Mẫu kết quả nào đúng?",
+      "choices": [
+        "11010011",
+        "10101101",
+        "11010010",
+        "00101101"
+      ],
+      "explanation": "52 − 97 = −45. Mã của 45 là 00101101; lấy bù hai được 11010011. (Bài giảng chương 1, tr. 64.)",
+      "tags": [
+        "phép trừ",
+        "cộng số đối"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-hoc-058",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 0
+    },
+    {
+      "topic": "c1-so-hoc",
+      "difficulty": 3,
+      "prompt": "Trong bù hai 8 bit, phép trừ nào có hiệu toán học nằm ngoài dải biểu diễn?",
+      "choices": [
+        "(−1) − 127.",
+        "127 − 1.",
+        "(−128) − (−1).",
+        "127 − (−1)."
+      ],
+      "explanation": "127 − (−1) = 128, vượt 127. Các hiệu còn lại là 126, −127 và −128, đều biểu diễn được. (Bài giảng chương 1, tr. 54, 64.)",
+      "tags": [
+        "tràn phép trừ",
+        "dải giá trị"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-hoc-059",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 3
+    },
+    {
+      "topic": "c1-so-hoc",
+      "difficulty": 2,
+      "prompt": "Nhân hai số nhị phân không dấu 1011₂ và 1101₂, với đủ bit để chứa tích. Kết quả nào đúng?",
+      "choices": [
+        "10001111₂",
+        "01111111₂",
+        "10011101₂",
+        "10001011₂"
+      ],
+      "explanation": "Hai toán hạng là 11 và 13; tích bằng 143 = 128 + 8 + 4 + 2 + 1, tức 10001111₂. (Bài giảng chương 1, tr. 65.)",
+      "tags": [
+        "nhân nhị phân",
+        "tích"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-hoc-060",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 0
+    },
+    {
+      "topic": "c1-so-hoc",
+      "difficulty": 3,
+      "prompt": "Chia số không dấu 10010011₂ cho 1011₂. Cặp thương và dư nào đúng?",
+      "choices": [
+        "Thương 1100₂, dư 100₂.",
+        "Thương 1110₂, dư 100₂.",
+        "Thương 1101₂, dư 100₂.",
+        "Thương 1101₂, dư 11₂."
+      ],
+      "explanation": "147 = 13×11 + 4, với 4 < 11. Do đó thương là 1101₂ và dư 100₂. (Bài giảng chương 1, tr. 66.)",
+      "tags": [
+        "chia nhị phân",
+        "thương dư"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-hoc-061",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 2
+    },
+    {
+      "topic": "c1-so-hoc",
+      "difficulty": 2,
+      "prompt": "Nhân −11 với 13 và lưu bằng bù hai 16 bit (đủ chứa kết quả). Giá trị thập phân của tích là bao nhiêu?",
+      "choices": [],
+      "answer": -143,
+      "explanation": "Nhân các độ lớn: 11×13 = 143. Hai toán hạng khác dấu nên tích là −143; giá trị này nằm trong dải 16 bit. (Bài giảng chương 1, tr. 67.)",
+      "tags": [
+        "nhân có dấu",
+        "hiệu chỉnh dấu"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-so-hoc-062",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-logic",
+      "difficulty": 2,
+      "prompt": "Với A = 10101010 và B = 00001111, kết quả A AND B là gì?",
+      "choices": [
+        "01010101",
+        "00001010",
+        "10101111",
+        "10100101"
+      ],
+      "explanation": "AND chỉ cho 1 khi cả hai bit tương ứng đều là 1. Mặt nạ 00001111 giữ bốn bit thấp và xóa bốn bit cao của A. (Bài giảng chương 1, tr. 68, 69.)",
+      "tags": [
+        "AND",
+        "mặt nạ"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-logic-063",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 1
+    },
+    {
+      "topic": "c1-logic",
+      "difficulty": 2,
+      "prompt": "Với A = 10101010 và B = 00001111, kết quả A OR B là gì?",
+      "choices": [
+        "10101111",
+        "10100101",
+        "11111010",
+        "00001010"
+      ],
+      "explanation": "OR cho 1 khi ít nhất một bit bằng 1. Bốn bit thấp trở thành 1111, bốn bit cao giữ nguyên 1010. (Bài giảng chương 1, tr. 68, 69.)",
+      "tags": [
+        "OR",
+        "thiết lập bit"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-logic-064",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 0
+    },
+    {
+      "topic": "c1-logic",
+      "difficulty": 2,
+      "prompt": "Với A = 10101010 và B = 00001111, kết quả A XOR B là gì?",
+      "choices": [
+        "01011010",
+        "00001010",
+        "10100101",
+        "10101111"
+      ],
+      "explanation": "XOR cho 1 khi hai bit khác nhau. XOR với 1 đảo bit, XOR với 0 giữ bit, nên bốn bit thấp của A bị đảo. (Bài giảng chương 1, tr. 68, 69.)",
+      "tags": [
+        "XOR",
+        "đảo bit"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-logic-065",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 2
+    },
+    {
+      "topic": "c1-logic",
+      "difficulty": 2,
+      "prompt": "Giới hạn kết quả trong đúng 8 bit, NOT của 00111100 là gì?",
+      "choices": [
+        "10111100",
+        "11000011",
+        "00111101",
+        "11000100"
+      ],
+      "explanation": "NOT đảo riêng từng bit trong 8 vị trí. Cộng thêm 1 sau khi đảo sẽ là phép lấy bù hai, không phải NOT. (Bài giảng chương 1, tr. 68.)",
+      "tags": [
+        "NOT",
+        "8 bit"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-logic-066",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 1
+    },
+    {
+      "topic": "c1-logic",
+      "difficulty": 3,
+      "prompt": "Đánh số bit từ 0 ở phía phải đến 7 ở phía trái. Muốn xóa bit 5 và bit 2 của một byte, giữ nguyên các bit khác, phải AND với mặt nạ nào?",
+      "choices": [
+        "00100100",
+        "11011011",
+        "11101101",
+        "11011010"
+      ],
+      "explanation": "Ở vị trí cần xóa đặt 0, vị trí cần giữ đặt 1. Hai vị trí 5 và 2 có trọng số 32 và 4, nên mặt nạ là 255 − 32 − 4 = 219 = 11011011₂. (Bài giảng chương 1, tr. 69.)",
+      "tags": [
+        "AND mask",
+        "xóa bit"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-logic-067",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 1
+    },
+    {
+      "topic": "c1-logic",
+      "difficulty": 3,
+      "prompt": "Đánh số bit từ phải sang trái, bắt đầu từ 0. Muốn đặt bit 5 và bit 2 thành 1, giữ nguyên các bit khác, phải OR với mặt nạ nào?",
+      "choices": [
+        "00100101",
+        "00100100",
+        "11011011",
+        "00010010"
+      ],
+      "explanation": "OR với 1 đặt bit, OR với 0 giữ nguyên. Chỉ bit 5 và bit 2 của mặt nạ được đặt 1, tương ứng giá trị 36. (Bài giảng chương 1, tr. 69.)",
+      "tags": [
+        "OR mask",
+        "đặt bit"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-logic-068",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 1
+    },
+    {
+      "topic": "c1-logic",
+      "difficulty": 2,
+      "prompt": "Với một mẫu bit A bất kỳ dài 8 bit, đọc A XOR A như số nguyên không dấu sẽ được bao nhiêu? Điền số.",
+      "choices": [],
+      "answer": 0,
+      "explanation": "Mỗi cặp bit giống nhau có XOR bằng 0. Toàn bộ kết quả là 00000000, bất kể giá trị A. (Bài giảng chương 1, tr. 68.)",
+      "tags": [
+        "XOR",
+        "đồng nhất"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-logic-069",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-logic",
+      "difficulty": 3,
+      "prompt": "Một byte A được XOR với 00001111 hai lần liên tiếp. Kết quả cuối cùng là gì?",
+      "choices": [
+        "Bốn bit thấp thành 0, bit cao giữ nguyên.",
+        "Chỉ bốn bit thấp của A bị đảo.",
+        "Giữ nguyên toàn bộ byte A ban đầu.",
+        "Chỉ bốn bit cao của A bị đảo."
+      ],
+      "explanation": "Bốn bit thấp bị đảo hai lần nên trở lại ban đầu; bốn bit cao luôn XOR với 0 nên không thay đổi. Phép logic không truyền nhớ giữa các bit. (Bài giảng chương 1, tr. 68, 69.)",
+      "tags": [
+        "XOR hai lần",
+        "từng bit"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-logic-070",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "answer": 2
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 2,
+      "prompt": "Với số chuẩn hóa IEEE 754 dạng 32 bit, công thức nào khôi phục giá trị từ bit dấu S, mã mũ e và phần lẻ m?",
+      "choices": [
+        "(−1)^S × (1.m)₂ × 2^(e−127).",
+        "(−1)^S × (1.m)₂ × 2^(e+127).",
+        "(−1)^S × (1.m)₂ × 10^(e−127).",
+        "(−1)^S × (0.m)₂ × 2^(e−127)."
+      ],
+      "explanation": "Dạng chuẩn hóa dùng cơ số 2, bit 1 đầu ngầm định và mã mũ lệch: E = e − 127. Công thức này không áp dụng trực tiếp cho các mã đặc biệt. (Bài giảng chương 1, tr. 70, 72, 73.)",
+      "tags": [
+        "chuẩn hóa",
+        "công thức IEEE"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-071",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 0
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 2,
+      "prompt": "Chuẩn hóa số nhị phân 1101.011₂ dưới dạng 1.m × 2^E được biểu thức nào?",
+      "choices": [
+        "1.101011₂ × 2^3.",
+        "1.101011₂ × 2^4.",
+        "1.1011₂ × 2^3.",
+        "1.1101011₂ × 2^3."
+      ],
+      "explanation": "Dời dấu chấm ba vị trí sang trái tạo 1.101011, nên phải nhân 2^3 để giữ nguyên giá trị. (Bài giảng chương 1, tr. 70, 74.)",
+      "tags": [
+        "phần định trị",
+        "phần mũ"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-072",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 0
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 1,
+      "prompt": "IEEE 754 dạng 32 bit phân bổ số bit cho S, e và m lần lượt thế nào?",
+      "choices": [
+        "1; 8; 23.",
+        "1; 7; 24.",
+        "1; 9; 22.",
+        "1; 11; 20."
+      ],
+      "explanation": "Một bit dấu, tám bit mã mũ và 23 bit phần lẻ có tổng 32. Bit 1 đầu của số chuẩn hóa không được lưu trong trường m. (Bài giảng chương 1, tr. 71.)",
+      "tags": [
+        "binary32",
+        "khuôn dạng"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-073",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 0
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 2,
+      "prompt": "Dạng IEEE 754 64 bit có số bit mã mũ, số bit phần lẻ và độ lệch lần lượt là gì?",
+      "choices": [
+        "11; 52; 2047.",
+        "11; 52; 1023.",
+        "15; 48; 16383.",
+        "8; 55; 127."
+      ],
+      "explanation": "Dạng 64 bit có 1 bit dấu, 11 bit mã mũ, 52 bit phần lẻ và bias = 1023. 2047 là giá trị tối đa của trường mũ 11 bit, không phải bias. (Bài giảng chương 1, tr. 71, 72.)",
+      "tags": [
+        "binary64",
+        "bias"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-074",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 1
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 2,
+      "prompt": "Một số chuẩn hóa IEEE 754 32 bit có trường mã mũ e = 10000010₂. Số mũ thực E bằng bao nhiêu? Điền số nguyên.",
+      "choices": [],
+      "answer": 3,
+      "explanation": "e = 130 trong hệ 10. Với bias 127, E = 130 − 127 = 3. (Bài giảng chương 1, tr. 72.)",
+      "tags": [
+        "mã mũ lệch",
+        "binary32"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-so-thuc-075",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 3,
+      "prompt": "Một số chuẩn hóa có bit dấu S = 1, phần định trị 1.01₂ và số mũ thực E = 4. Giá trị thập phân là bao nhiêu?",
+      "choices": [],
+      "answer": -20,
+      "explanation": "1.01₂ = 1 + 1/4 = 1,25. Giá trị là (−1)×1,25×2^4 = −20. (Bài giảng chương 1, tr. 73.)",
+      "tags": [
+        "giải mã số thực",
+        "định trị"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-so-thuc-076",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 3,
+      "prompt": "Mã IEEE 754 32 bit của 9,6875, viết ở hệ 16 theo thứ tự bit từ cao xuống thấp, là gì?",
+      "choices": [
+        "C11B0000₁₆",
+        "411B0000₁₆",
+        "409B0000₁₆",
+        "411A0000₁₆"
+      ],
+      "explanation": "9,6875 = 1.0011011₂×2^3; S = 0, e = 130, m bắt đầu bằng 0011011 rồi đệm 0 đến 23 bit. Ghép lại được 411B0000. (Bài giảng chương 1, tr. 76.)",
+      "tags": [
+        "mã hóa binary32",
+        "hệ 16"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-077",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 1
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 3,
+      "prompt": "Giải mã mẫu IEEE 754 32 bit C1560000₁₆ (bit cao nhất ở bên trái) được giá trị nào?",
+      "choices": [
+        "13,375.",
+        "−26,75.",
+        "−6,6875.",
+        "−13,375."
+      ],
+      "explanation": "S = 1, e = 130 nên E = 3; định trị là 1.101011₂. Kết quả −1.101011₂×2^3 = −1101.011₂ = −13,375. (Bài giảng chương 1, tr. 74.)",
+      "tags": [
+        "giải mã binary32",
+        "dấu"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-078",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 3
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 2,
+      "prompt": "Bộ trường nào biểu diễn +1,0 trong IEEE 754 32 bit?",
+      "choices": [
+        "S = 0; e = 127; m toàn 0.",
+        "S = 1; e = 127; m toàn 0.",
+        "S = 0; e = 128; m toàn 0.",
+        "S = 0; e = 0; m toàn 0."
+      ],
+      "explanation": "Với số chuẩn hóa, m toàn 0 cho định trị 1,0. e = 127 cho số mũ 0; S = 0 cho dấu dương. (Bài giảng chương 1, tr. 75.)",
+      "tags": [
+        "mã của một",
+        "IEEE 754"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-079",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 0
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 2,
+      "prompt": "Hai mẫu IEEE 754 32 bit có e toàn 0, m toàn 0 và chỉ khác nhau ở bit S biểu diễn gì?",
+      "choices": [
+        "+∞ và −∞.",
+        "Hai mã NaN khác nhau.",
+        "+1 và −1.",
+        "+0 và −0."
+      ],
+      "explanation": "e và m cùng toàn 0 là quy ước cho số 0; bit S vẫn phân biệt hai dấu. Mã vô cực cần e toàn 1. (Bài giảng chương 1, tr. 77.)",
+      "tags": [
+        "số không có dấu",
+        "mã đặc biệt"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-080",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 3
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 2,
+      "prompt": "Trong IEEE 754 32 bit, S = 1, e = 11111111₂ và m toàn 0 được hiểu là gì?",
+      "choices": [
+        "Số hữu hạn âm có độ lớn lớn nhất.",
+        "Âm không.",
+        "Âm vô cực.",
+        "Giá trị không phải số (NaN)."
+      ],
+      "explanation": "e toàn 1 và m toàn 0 là vô cực; S = 1 chọn dấu âm. NaN cần có ít nhất một bit 1 trong m. (Bài giảng chương 1, tr. 77.)",
+      "tags": [
+        "vô cực",
+        "mã đặc biệt"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-081",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 2
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 2,
+      "prompt": "Trường hợp nào biểu diễn NaN trong IEEE 754 32 bit?",
+      "choices": [
+        "e toàn 0 và m chỉ gồm các bit 0.",
+        "e toàn 1 và m chỉ gồm các bit 0.",
+        "e bằng 127 và m có ít nhất một bit 1.",
+        "e toàn 1 và m có ít nhất một bit 1."
+      ],
+      "explanation": "NaN dùng mã mũ toàn 1 với phần lẻ khác 0. e = 127 vẫn nằm trong vùng số chuẩn hóa. (Bài giảng chương 1, tr. 77.)",
+      "tags": [
+        "NaN",
+        "mã mũ đặc biệt"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-082",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 3
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 3,
+      "prompt": "Khi áp dụng công thức chuẩn hóa có bit 1 đầu ngầm định cho IEEE 754 32 bit, e được dùng trong phạm vi nào?",
+      "choices": [
+        "0 đến 254.",
+        "0 đến 255.",
+        "1 đến 254.",
+        "1 đến 255."
+      ],
+      "explanation": "Hai đầu e = 0 và e = 255 được dành cho các trường hợp không thuộc công thức chuẩn hóa thông thường. Các mã chuẩn hóa nằm ở 1…254. (Bài giảng chương 1, tr. 72, 73, 77.)",
+      "tags": [
+        "phạm vi số chuẩn hóa",
+        "mã mũ"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-083",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 2
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 3,
+      "prompt": "Trong IEEE 754 32 bit, xét độ lớn 2^200 và 2^−200 khi làm tròn về định dạng này. Cặp nhận định nào đúng?",
+      "choices": [
+        "Cả hai đều nằm ngoài miền do trường dấu không đủ số bit.",
+        "2^200 nhỏ hơn mức dương biểu diễn được; 2^−200 vượt miền hữu hạn.",
+        "Cả hai đều biểu diễn chính xác vì đều là lũy thừa của 2.",
+        "2^200 vượt miền hữu hạn; 2^−200 nhỏ hơn mức dương biểu diễn được."
+      ],
+      "explanation": "Độ lớn quá lớn gây overflow; quá nhỏ có thể bị làm tròn về 0. Việc là lũy thừa của 2 không bảo đảm số mũ nằm trong miền định dạng. (Bài giảng chương 1, tr. 78.)",
+      "tags": [
+        "overflow",
+        "underflow"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-084",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 3
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 2,
+      "prompt": "Với dạng dấu phẩy động mở rộng 80 bit trong bài giảng, bias = 16383. Nếu số mũ thực E = 2 thì mã mũ e (hệ 10) bằng bao nhiêu?",
+      "choices": [],
+      "answer": 16385,
+      "explanation": "Từ E = e − bias suy ra e = E + bias = 2 + 16383 = 16385. Câu này chỉ xét trường mũ. (Bài giảng chương 1, tr. 71, 72.)",
+      "tags": [
+        "80 bit",
+        "bias"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-so-thuc-085",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 2,
+      "prompt": "Vì sao lưu số thập phân 0,7 bằng một số bit phần lẻ nhị phân hữu hạn thường sinh sai số?",
+      "choices": [
+        "Khai triển nhị phân của 0,7 hữu hạn nhưng vượt 23 bit phần lẻ.",
+        "Khai triển nhị phân của 0,7 không kết thúc nên phải xấp xỉ.",
+        "Số mũ chuẩn hóa của 0,7 nằm dưới miền mũ biểu diễn được.",
+        "Độ lệch mã mũ của 0,7 làm thay đổi giá trị dù phần lẻ chính xác."
+      ],
+      "explanation": "0,7 = 7/10 có khai triển nhị phân lặp vô hạn. Cắt hoặc làm tròn tới số bit hữu hạn tạo ra sai số, như các xấp xỉ trên slide. (Bài giảng chương 1, tr. 79.)",
+      "tags": [
+        "sai số làm tròn",
+        "nhị phân vô hạn"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-086",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 1
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 3,
+      "prompt": "Trong IEEE 754 32 bit, khoảng cách từ +1 đến số chuẩn hóa kế tiếp lớn hơn +1 là bao nhiêu?",
+      "choices": [
+        "2^−24.",
+        "2^−8.",
+        "2^−127.",
+        "2^−23."
+      ],
+      "explanation": "Ở quanh 1, số mũ thực bằng 0. Trường phần lẻ có 23 bit, nên tăng bit cuối của m làm giá trị tăng 2^−23; đây là cách định nghĩa machine epsilon thông dụng. (Bài giảng chương 1, tr. 71, 72, 79.)",
+      "tags": [
+        "machine epsilon",
+        "độ chính xác"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-087",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 3
+    },
+    {
+      "topic": "c1-so-thuc",
+      "difficulty": 2,
+      "prompt": "So với dạng 32 bit, dạng 64 bit tăng cả độ rộng trường mũ lẫn phần lẻ. Hệ quả nào đúng?",
+      "choices": [
+        "Miền số mũ rộng hơn và độ chính xác cao hơn, vẫn có làm tròn.",
+        "Miền số mũ rộng hơn và mọi số thực đều được lưu chính xác.",
+        "Miền số mũ rộng hơn nhưng độ chính xác phần lẻ giữ nguyên.",
+        "Độ chính xác cao hơn nhưng miền số mũ vẫn giữ nguyên."
+      ],
+      "explanation": "Thêm bit mã mũ mở rộng phạm vi; thêm bit phần lẻ tăng độ chính xác. Số bit vẫn hữu hạn nên không thể biểu diễn chính xác mọi số thực. (Bài giảng chương 1, tr. 71, 72, 78, 79.)",
+      "tags": [
+        "binary32 và binary64",
+        "phạm vi và độ chính xác"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-so-thuc-088",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 0
+    },
+    {
+      "topic": "c1-ky-tu",
+      "difficulty": 1,
+      "prompt": "Cặp số lượng mã nào đúng cho ASCII chuẩn 7 bit và một bảng mã mở rộng 8 bit?",
+      "choices": [
+        "127 và 255.",
+        "256 và 512.",
+        "128 và 256.",
+        "128 và 255."
+      ],
+      "explanation": "n bit cho 2^n mẫu: 7 bit có 128 mã, 8 bit có 256 mã. Giá trị lớn nhất của mã không phải số lượng mã. (Bài giảng chương 1, tr. 80, 81.)",
+      "tags": [
+        "ASCII chuẩn",
+        "ASCII mở rộng"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-ky-tu-089",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 2
+    },
+    {
+      "topic": "c1-ky-tu",
+      "difficulty": 2,
+      "prompt": "Dải ký tự hiển thị ASCII từ 20₁₆ đến 7E₁₆, tính cả hai đầu, chứa bao nhiêu mã? Điền số nguyên.",
+      "choices": [],
+      "answer": 95,
+      "explanation": "20₁₆ = 32 và 7E₁₆ = 126. Số mã là 126 − 32 + 1 = 95, bao gồm dấu cách. (Bài giảng chương 1, tr. 83.)",
+      "tags": [
+        "ASCII hiển thị",
+        "đếm khoảng"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-ky-tu-090",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-ky-tu",
+      "difficulty": 2,
+      "prompt": "Nhóm nào chỉ gồm các mã điều khiển trong ASCII chuẩn?",
+      "choices": [
+        "00₁₆, 1F₁₆, 7F₁₆.",
+        "00₁₆, 20₁₆, 7F₁₆.",
+        "1F₁₆, 20₁₆, 7E₁₆.",
+        "20₁₆, 30₁₆, 7E₁₆."
+      ],
+      "explanation": "Mã điều khiển thuộc 00…1F và mã 7F. 20 là dấu cách; 30 là chữ số 0; 7E là dấu ~, đều nằm trong nhóm hiển thị. (Bài giảng chương 1, tr. 82, 83.)",
+      "tags": [
+        "mã điều khiển",
+        "ASCII"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-ky-tu-091",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 0
+    },
+    {
+      "topic": "c1-ky-tu",
+      "difficulty": 2,
+      "prompt": "Một byte lưu ký tự “7” theo ASCII. Byte này khác byte lưu số nguyên không dấu 7 thế nào?",
+      "choices": [
+        "Ký tự dùng 00000111; số nguyên dùng 00110111.",
+        "Ký tự dùng 00110111; số nguyên dùng 00000111.",
+        "Ký tự dùng 00110000; số nguyên dùng 00000111.",
+        "Ký tự dùng 00110111; số nguyên dùng 00110000."
+      ],
+      "explanation": "Mã ký tự 7 là 37₁₆ = 55, còn giá trị số nguyên 7 mã hóa trực tiếp là 00000111. Cần phân biệt ký tự số và giá trị số. (Bài giảng chương 1, tr. 16, 83.)",
+      "tags": [
+        "ký tự số",
+        "mã ASCII"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-ky-tu-092",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 1
+    },
+    {
+      "topic": "c1-ky-tu",
+      "difficulty": 2,
+      "prompt": "ASCII của “A” là 41₁₆ và của “a” là 61₁₆. Hiệu mã của “a” trừ mã của “A”, tính ở hệ 10, bằng bao nhiêu?",
+      "choices": [],
+      "answer": 32,
+      "explanation": "61₁₆ − 41₁₆ = 20₁₆ = 32₁₀. Không đọc 20 ở hệ 16 thành 20 ở hệ 10. (Bài giảng chương 1, tr. 83.)",
+      "tags": [
+        "chữ hoa chữ thường",
+        "hiệu mã"
+      ],
+      "responseType": "number",
+      "id": "it1140-c1-ky-tu-093",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation"
+    },
+    {
+      "topic": "c1-ky-tu",
+      "difficulty": 2,
+      "prompt": "Biết mã ASCII của “A” là 41₁₆ và các chữ hoa có mã liên tiếp. Mã của “D” là gì?",
+      "choices": [
+        "64₁₆",
+        "44₁₆",
+        "45₁₆",
+        "43₁₆"
+      ],
+      "explanation": "D đứng sau A ba vị trí nên 41₁₆ + 3 = 44₁₆. 64₁₆ là mã chữ d thường. (Bài giảng chương 1, tr. 82, 83.)",
+      "tags": [
+        "ASCII chữ hoa",
+        "mã liên tiếp"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-ky-tu-094",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 1
+    },
+    {
+      "topic": "c1-ky-tu",
+      "difficulty": 3,
+      "prompt": "Sắp ba ký tự “a”, “9”, “A” theo mã ASCII tăng dần được thứ tự nào?",
+      "choices": [
+        "“A”, “a”, “9”.",
+        "“A”, “9”, “a”.",
+        "“9”, “A”, “a”.",
+        "“a”, “A”, “9”."
+      ],
+      "explanation": "Mã tương ứng là 39₁₆, 41₁₆ và 61₁₆. Thứ tự mã khác cách sắp xếp chữ và số theo thói quen ngôn ngữ. (Bài giảng chương 1, tr. 83.)",
+      "tags": [
+        "so sánh mã",
+        "ASCII"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-ky-tu-095",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 2
+    },
+    {
+      "topic": "c1-ky-tu",
+      "difficulty": 2,
+      "prompt": "Một tệp dùng byte trong vùng 80₁₆…FF₁₆ hiển thị đúng trên hệ dùng bảng mở rộng X nhưng sai trên hệ dùng bảng mở rộng Y. Nguyên nhân nào phù hợp nhất?",
+      "choices": [
+        "Mỗi byte trong bảng Y tự tăng từ 8 bit lên thành 16 bit.",
+        "Phần mở rộng buộc mọi chữ cái phải chuyển thành mã điều khiển.",
+        "Vùng 00₁₆…7F₁₆ không có ký tự chung giữa hai bảng.",
+        "Hai bảng có thể gán ký tự khác nhau cho cùng một mã mở rộng."
+      ],
+      "explanation": "Phần mở rộng do các nhà sản xuất hay nhà phát triển quy định nên không nhất thiết đồng nhất. Cần biết bảng mã dùng khi giải mã. (Bài giảng chương 1, tr. 81, 84.)",
+      "tags": [
+        "bảng mã mở rộng",
+        "tương thích"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-ky-tu-096",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 3
+    },
+    {
+      "topic": "c1-ky-tu",
+      "difficulty": 2,
+      "prompt": "Một ứng dụng cần lưu đồng thời tiếng Việt, tiếng Hy Lạp và tiếng Nhật. Lý do nào phù hợp nhất để dùng Unicode?",
+      "choices": [
+        "Có không gian mã thống nhất hỗ trợ nhiều hệ chữ.",
+        "Có thể tái dùng một mã cho các chữ khác nhau tùy ngôn ngữ.",
+        "Có thể lưu mỗi ký tự của các hệ chữ bằng đúng một byte.",
+        "Có thể giải mã mọi bảng mã cũ mà không cần chuyển đổi."
+      ],
+      "explanation": "Unicode cung cấp hệ mã thống nhất cho nhiều ngôn ngữ. Cách chuyển các mã thành byte vẫn cần một chế độ mã hóa như UTF-8, UTF-16 hoặc UTF-32. (Bài giảng chương 1, tr. 85.)",
+      "tags": [
+        "Unicode",
+        "đa ngôn ngữ"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-ky-tu-097",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 0
+    },
+    {
+      "topic": "c1-ky-tu",
+      "difficulty": 2,
+      "prompt": "Phát biểu nào đúng về các chế độ mã hóa Unicode?",
+      "choices": [
+        "Cùng nội dung luôn có cùng dãy byte trong mọi dạng UTF.",
+        "Cùng nội dung luôn có cùng số byte trong mọi dạng UTF.",
+        "Cùng nội dung có thể có cách mã hóa byte khác nhau theo UTF.",
+        "Cùng nội dung chỉ có một dạng UTF có thể mã hóa chính xác."
+      ],
+      "explanation": "Unicode có nhiều chế độ mã hóa. Con số trong tên UTF liên quan tới đơn vị mã, không phải độ dài cố định của mọi ký tự hay mọi văn bản. (Bài giảng chương 1, tr. 85.)",
+      "tags": [
+        "UTF",
+        "đơn vị mã"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-ky-tu-098",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 2
+    },
+    {
+      "topic": "c1-ky-tu",
+      "difficulty": 2,
+      "prompt": "Chuỗi “IT1140” được lưu bằng 1 byte cho mỗi ký tự ASCII, không thêm ký tự kết thúc hay phần phụ trội. Dung lượng là bao nhiêu?",
+      "choices": [
+        "6 byte.",
+        "48 byte.",
+        "7 byte.",
+        "5 byte."
+      ],
+      "explanation": "Có sáu ký tự I, T, 1, 1, 4, 0 nên chiếm 6 byte, tương đương 48 bit. Hai chữ số 1 vẫn chiếm hai vị trí. (Bài giảng chương 1, tr. 18, 80, 83.)",
+      "tags": [
+        "xâu ASCII",
+        "dung lượng"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-ky-tu-099",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 0
+    },
+    {
+      "topic": "c1-ky-tu",
+      "difficulty": 3,
+      "prompt": "Byte 01000001 được đọc dưới hai quy ước: số nguyên không dấu 8 bit và mã ASCII. Cặp kết quả tương ứng là gì?",
+      "choices": [
+        "65 và ký tự “a”.",
+        "41 và ký tự “a”.",
+        "41 và ký tự “A”.",
+        "65 và ký tự “A”."
+      ],
+      "explanation": "01000001₂ = 65₁₀ = 41₁₆; mã ASCII 41₁₆ là A. Cùng một mẫu bit cần quy ước giải mã để có ý nghĩa đúng. (Bài giảng chương 1, tr. 13, 16, 45, 83.)",
+      "tags": [
+        "giải mã",
+        "ngữ nghĩa dữ liệu"
+      ],
+      "responseType": "choice",
+      "id": "it1140-c1-ky-tu-100",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "answer": 3
+    }
+  ]
 }

@@ -23,7 +23,7 @@ YÊU CẦU NỘI DUNG
 2. Viết hoàn toàn bằng tiếng Việt rõ ràng. Chỉ giữ tên riêng, cú pháp lệnh và thuật ngữ kỹ thuật tiếng Anh khi thực sự cần thiết; lần xuất hiện đầu tiên nên có giải nghĩa tiếng Việt nếu phù hợp.
 3. Mỗi câu phải độc lập, không tham chiếu “câu trên”, “hình trên” hoặc vị trí trong tài liệu nếu hình/nội dung đó không nằm ngay trong câu hỏi.
 4. Không tạo hai câu kiểm tra cùng một ý bằng cách diễn đạt lại.
-5. Mỗi câu có từ 2 đến 6 lựa chọn. Các lựa chọn phải cùng kiểu ngữ pháp, tương đương về độ dài và hợp lý; tránh đáp án gây nhiễu vô nghĩa.
+5. Câu trắc nghiệm (responseType = "choice") có 4 lựa chọn. Các lựa chọn phải cùng kiểu ngữ pháp, tương đương về độ dài và hợp lý; dùng sai lầm thường gặp làm phương án nhiễu, không để đáp án đúng nổi bật vì dài hơn, chi tiết hơn hoặc khác kiểu.
 6. Mặc định chỉ có một đáp án đúng. Chỉ dùng nhiều đáp án khi câu hỏi nói rõ “Chọn tất cả đáp án đúng”.
 7. Không dùng lựa chọn “Tất cả đáp án trên”, “Cả A và B” hoặc “Không có đáp án nào”.
 8. Không dùng chữ cái A/B/C/D trong nội dung lựa chọn. Website tự đánh chữ cái.
@@ -32,6 +32,8 @@ YÊU CẦU NỘI DUNG
 11. difficulty: 1 = nhận biết, 2 = hiểu/vận dụng trực tiếp, 3 = suy luận hoặc vận dụng nhiều bước.
 12. kind chỉ nhận một trong: theory, calculation, code, application.
 13. tags gồm 1–6 từ khóa ngắn, hữu ích cho tìm kiếm.
+14. Dùng responseType = "number" khi điền một số giúp kiểm tra tính toán tốt hơn đoán lựa chọn: choices = [], answer là một số JSON hữu hạn (không phải chuỗi, không phải chỉ số). Đề phải nêu hệ đếm, đơn vị, quy ước và yêu cầu làm tròn nếu cần. Website chấm chính xác theo giá trị, không có dung sai; ưu tiên kết quả nguyên hoặc thập phân hữu hạn. Không dùng dạng này cho chuỗi bit có số 0 đầu, mã hex hoặc nhiều giá trị.
+15. Lập ma trận nội dung trước khi sinh để phủ mọi mục kiến thức, không dành quá nhiều câu cho một mục. Ghi trang nguồn trong explanation nếu tài liệu có số trang. Nếu slide có lỗi, đối chiếu nguồn chuẩn, giải thích đính chính; không sao chép đáp án sai. Không đưa lời giải hay dấu hiệu đáp án vào prompt.
 
 QUY TẮC ID VÀ THAM CHIẾU
 - id của bộ luôn là "it1140".
@@ -40,7 +42,7 @@ QUY TẮC ID VÀ THAM CHIẾU
 - topic của mỗi câu phải trùng đúng một id có trong topics.
 - source của mọi câu phải bằng đúng {{SOURCE_ID_KEBAB_CASE}}.
 - Không được trùng id câu hỏi trong cùng file.
-- answer là CHỈ SỐ bắt đầu từ 0: lựa chọn đầu tiên là 0, lựa chọn thứ hai là 1. Với nhiều đáp án, dùng mảng tăng dần như [0, 2].
+- Với responseType = "choice", answer là CHỈ SỐ bắt đầu từ 0: lựa chọn đầu tiên là 0, lựa chọn thứ hai là 1. Với nhiều đáp án, dùng mảng tăng dần như [0, 2]. Với responseType = "number", answer là GIÁ TRỊ cần điền.
 
 ĐỊNH DẠNG ĐẦU RA BẮT BUỘC
 - Chỉ trả về JSON hợp lệ, bắt đầu bằng { và kết thúc bằng }.
@@ -74,6 +76,7 @@ QUY TẮC ID VÀ THAM CHIẾU
       "source": "{{SOURCE_ID_KEBAB_CASE}}",
       "kind": "theory",
       "difficulty": 1,
+      "responseType": "choice",
       "prompt": "Nội dung câu hỏi?",
       "choices": [
         "Lựa chọn thứ nhất",
@@ -89,5 +92,5 @@ QUY TẮC ID VÀ THAM CHIẾU
 }
 
 TRƯỚC KHI TRẢ KẾT QUẢ
-Hãy tự kiểm tra âm thầm từng câu: JSON hợp lệ; id duy nhất; topic/source tồn tại; số chỉ mục answer nằm trong choices; đáp án đúng thực sự được tài liệu hỗ trợ; không có câu trùng ý; không có nội dung tiếng Anh không cần thiết. Chỉ xuất JSON cuối cùng, không xuất checklist.
+Hãy tự kiểm tra âm thầm từng câu: JSON hợp lệ; id duy nhất; topic/source tồn tại; với choice, chỉ mục answer nằm trong choices; với number, choices rỗng và answer là giá trị số; tự tính lại mọi đáp án; đáp án được tài liệu hỗ trợ; không có câu trùng ý; giải thích không phụ thuộc thứ tự lựa chọn; không có nội dung tiếng Anh không cần thiết. Chỉ xuất JSON cuối cùng, không xuất checklist.
 ```

@@ -66,7 +66,7 @@ for (const entry of manifest.subjects) {
   for (const question of subject.questions) {
     requireExactKeys(
       question,
-      ["id", "topic", "source", "kind", "difficulty", "prompt", "choices", "answer", "explanation", "tags"],
+      ["id", "topic", "source", "kind", "difficulty", "responseType", "prompt", "choices", "answer", "explanation", "tags"],
       question.id || `${subject.id}.questions[]`,
     );
     requireText(question.id, `${subject.id}.questions[].id`);
@@ -76,23 +76,31 @@ for (const entry of manifest.subjects) {
     requireValue(topicIds.has(question.topic), `${question.id} tham chiếu chủ đề không tồn tại: ${question.topic}`);
     requireValue(sourceIds.has(question.source), `${question.id} tham chiếu nguồn không tồn tại: ${question.source}`);
     requireText(question.prompt, `${question.id}.prompt`);
+    const responseType = question.responseType ?? "choice";
+    requireValue(["choice", "number"].includes(responseType), `${question.id}.responseType không hợp lệ.`);
+    const numeric = responseType === "number";
     requireValue(
-      Array.isArray(question.choices) && question.choices.length >= 2 && question.choices.length <= 6,
-      `${question.id} phải có từ 2 đến 6 lựa chọn.`,
+      Array.isArray(question.choices) && (numeric ? question.choices.length === 0 : question.choices.length >= 2 && question.choices.length <= 6),
+      `${question.id}: câu điền số cần choices rỗng; câu trắc nghiệm cần từ 2 đến 6 lựa chọn.`,
     );
     question.choices.forEach((choice, index) => requireText(choice, `${question.id}.choices[${index}]`));
+    requireValue(new Set(question.choices).size === question.choices.length, `${question.id} có lựa chọn bị lặp.`);
     requireText(question.explanation, `${question.id}.explanation`);
     requireValue(questionKinds.has(question.kind), `${question.id}.kind không hợp lệ.`);
     requireValue(Number.isInteger(question.difficulty) && question.difficulty >= 1 && question.difficulty <= 3, `${question.id}.difficulty không hợp lệ.`);
 
-    const answers = Array.isArray(question.answer) ? question.answer : [question.answer];
-    requireValue(answers.length > 0, `${question.id} chưa có đáp án.`);
-    requireValue(!Array.isArray(question.answer) || answers.length >= 2, `${question.id} dùng mảng đáp án nhưng chỉ có một phần tử.`);
-    requireValue(new Set(answers).size === answers.length, `${question.id} có đáp án bị lặp.`);
-    requireValue(
-      answers.every((answer) => Number.isInteger(answer) && answer >= 0 && answer < question.choices.length),
-      `${question.id} có chỉ số đáp án không hợp lệ.`,
-    );
+    if (numeric) {
+      requireValue(typeof question.answer === "number" && Number.isFinite(question.answer), `${question.id}.answer phải là số hữu hạn.`);
+    } else {
+      const answers = Array.isArray(question.answer) ? question.answer : [question.answer];
+      requireValue(answers.length > 0, `${question.id} chưa có đáp án.`);
+      requireValue(!Array.isArray(question.answer) || answers.length >= 2, `${question.id} dùng mảng đáp án nhưng chỉ có một phần tử.`);
+      requireValue(new Set(answers).size === answers.length, `${question.id} có đáp án bị lặp.`);
+      requireValue(
+        answers.every((answer) => Number.isInteger(answer) && answer >= 0 && answer < question.choices.length),
+        `${question.id} có chỉ số đáp án không hợp lệ.`,
+      );
+    }
     requireValue(Array.isArray(question.tags) && question.tags.length >= 1 && question.tags.length <= 6, `${question.id} phải có từ 1 đến 6 tags.`);
     question.tags.forEach((tag, index) => requireText(tag, `${question.id}.tags[${index}]`));
     questionCount += 1;
