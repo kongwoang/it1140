@@ -2047,6 +2047,470 @@
       "source": "chuong-1-bai-giang",
       "kind": "theory",
       "answer": 3
+    },
+    {
+      "id": "it1140-c1-thong-tin-101",
+      "topic": "c1-thong-tin",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "difficulty": 2,
+      "responseType": "choice",
+      "prompt": "Theo mô hình WKID trong bài giảng, nhóm câu hỏi “Ai? Cái gì? Ở đâu? Khi nào?” gắn với tầng nào?",
+      "choices": [
+        "Trí tuệ (Wisdom)",
+        "Tri thức (Knowledge)",
+        "Thông tin (Information)",
+        "Dữ liệu (Data)"
+      ],
+      "answer": 2,
+      "explanation": "Nhóm Who, What, Where, When làm rõ đối tượng và ngữ cảnh của thông tin. Riêng What cũng được nhắc ở tầng dữ liệu, nhưng toàn bộ nhóm này được gắn với tầng thông tin. (Bài giảng chương 1, tr. 9–12.)",
+      "tags": [
+        "WKID",
+        "ngữ cảnh"
+      ]
+    },
+    {
+      "id": "it1140-c1-don-vi-102",
+      "topic": "c1-don-vi",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "difficulty": 1,
+      "responseType": "choice",
+      "prompt": "Một ô lưu trữ chỉ gồm đúng 1 bit. Nó có thể nhận những giá trị nào và có bao nhiêu trạng thái phân biệt?",
+      "choices": [
+        "Giá trị 0 hoặc 1; tổng cộng 2 trạng thái.",
+        "Giá trị từ 0 đến 7; tổng cộng 8 trạng thái.",
+        "Giá trị từ 0 đến 2; tổng cộng 3 trạng thái.",
+        "Giá trị 0 hoặc 1; tổng cộng 1 trạng thái."
+      ],
+      "answer": 0,
+      "explanation": "Bit là chữ số nhị phân, nhận 0 hoặc 1. Hai giá trị tạo hai trạng thái; một byte mới gồm tám bit. (Bài giảng chương 1, tr. 18, 26.)",
+      "tags": [
+        "bit",
+        "trạng thái"
+      ]
+    },
+    {
+      "id": "it1140-c1-he-dem-103",
+      "topic": "c1-he-dem",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "difficulty": 2,
+      "responseType": "number",
+      "prompt": "Trong số 203.41₅, riêng chữ số 1 ở vị trí thứ hai sau dấu chấm đóng góp bao nhiêu vào giá trị thập phân? Điền số thập phân.",
+      "choices": [],
+      "answer": 0.04,
+      "explanation": "Trọng số của vị trí thứ hai sau dấu chấm trong cơ số 5 là 5^−2. Đóng góp của chữ số 1 là 1/25 = 0,04, không phải 1/5 hay 1/100. (Bài giảng chương 1, tr. 25, 33.)",
+      "tags": [
+        "trọng số",
+        "cơ số 5"
+      ]
+    },
+    {
+      "id": "it1140-c1-he-dem-104",
+      "topic": "c1-he-dem",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "difficulty": 3,
+      "responseType": "choice",
+      "prompt": "Chuyển 58,6875₁₀ sang hệ 16 được kết quả nào?",
+      "choices": [
+        "3A.0B₁₆",
+        "A3.B₁₆",
+        "3A.7₁₆",
+        "3A.B₁₆"
+      ],
+      "answer": 3,
+      "explanation": "58 = 3×16 + 10 nên phần nguyên là 3A. Phần lẻ nhân 16 được 0,6875×16 = 11, tức chữ số B; ghép thành 3A.B. (Bài giảng chương 1, tr. 34–37, 43.)",
+      "tags": [
+        "thập phân sang hệ 16",
+        "phần lẻ"
+      ]
+    },
+    {
+      "id": "it1140-c1-he-dem-105",
+      "topic": "c1-he-dem",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "difficulty": 3,
+      "responseType": "choice",
+      "prompt": "Số 83,375₁₀ được biểu diễn thế nào trong hệ 8?",
+      "choices": [
+        "123.6₈",
+        "123.3₈",
+        "321.3₈",
+        "123.03₈"
+      ],
+      "answer": 1,
+      "explanation": "83 = 1×64 + 2×8 + 3 nên phần nguyên là 123₈. Phần lẻ 0,375×8 = 3 nên kết quả là 123.3₈. (Bài giảng chương 1, tr. 34–37, 41.)",
+      "tags": [
+        "thập phân sang hệ 8",
+        "phần lẻ"
+      ]
+    },
+    {
+      "id": "it1140-c1-he-dem-106",
+      "topic": "c1-he-dem",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "difficulty": 2,
+      "responseType": "choice",
+      "prompt": "Đổi 6D.A₁₆ sang hệ 2 bằng cách thay mỗi chữ số hệ 16 bởi bốn bit, không bỏ các bit 0 đầu nhóm. Kết quả nào đúng?",
+      "choices": [
+        "1101 0110.1010₂",
+        "0110 1101.0101₂",
+        "0110 1011.1010₂",
+        "0110 1101.1010₂"
+      ],
+      "answer": 3,
+      "explanation": "6 ứng với 0110, D ứng với 1101 và A ứng với 1010. Giữ thứ tự các nhóm và vị trí dấu chấm: 0110 1101.1010₂. (Bài giảng chương 1, tr. 41, 42.)",
+      "tags": [
+        "hệ 16 sang nhị phân",
+        "nhóm bit"
+      ]
+    },
+    {
+      "id": "it1140-c1-he-dem-107",
+      "topic": "c1-he-dem",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "difficulty": 2,
+      "responseType": "choice",
+      "prompt": "Với các chữ số hợp lệ a₂, a₁, a₀, a₋₁, a₋₂, biểu diễn a₂a₁a₀.a₋₁a₋₂ trong hệ cơ số b có giá trị bằng biểu thức nào?",
+      "choices": [
+        "a₂b² + a₁b + a₀ + a₋₁/b + a₋₂/b²",
+        "a₂b² + a₁b + a₀ + a₋₁b + a₋₂b²",
+        "a₂b² + a₁b + a₀ + a₋₁/b² + a₋₂/b",
+        "a₂b³ + a₁b² + a₀b + a₋₁ + a₋₂/b"
+      ],
+      "answer": 0,
+      "explanation": "Vị trí ngay trước dấu chấm có trọng số b⁰ = 1. Sang trái tăng số mũ từng đơn vị; sang phải là b^−1, b^−2. Nguyên tắc áp dụng cả cơ số 10 và các cơ số khác. (Bài giảng chương 1, tr. 23–25, 33.)",
+      "tags": [
+        "hệ đếm vị trí",
+        "công thức tổng quát"
+      ]
+    },
+    {
+      "id": "it1140-c1-so-nguyen-108",
+      "topic": "c1-so-nguyen",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "difficulty": 2,
+      "responseType": "choice",
+      "prompt": "A là giá trị không dấu của một mẫu n bit và 0 < A < 2^n. Giá trị không dấu của bù một và bù hai của mẫu đó lần lượt là gì?",
+      "choices": [
+        "(2^n − 1) + A; 2^n + A.",
+        "(2^(n−1) − 1) − A; 2^(n−1) − A.",
+        "(2^n − 1) − A; 2^n − A.",
+        "2^n − A; (2^n − 1) − A."
+      ],
+      "answer": 2,
+      "explanation": "Đảo n bit tạo bù một, có giá trị (2^n − 1) − A. Bù hai bằng bù một cộng 1, tức 2^n − A. Điều kiện A > 0 giúp công thức thứ hai nằm trong dải n bit mà không cần viết phép modulo. (Bài giảng chương 1, tr. 51, 52.)",
+      "tags": [
+        "công thức bù một",
+        "công thức bù hai"
+      ]
+    },
+    {
+      "id": "it1140-c1-so-nguyen-109",
+      "topic": "c1-so-nguyen",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "difficulty": 2,
+      "responseType": "number",
+      "prompt": "A = 00110101₂. Cộng A với bù hai 8 bit của chính A và chỉ giữ 8 bit thấp. Đọc kết quả như số nguyên không dấu thì được bao nhiêu?",
+      "choices": [],
+      "answer": 0,
+      "explanation": "A = 53; bù hai có giá trị không dấu 256 − 53 = 203. Tổng là 256, bỏ bit nhớ ra ngoài còn 00000000. Đây là tính chất A cộng bù hai của A bằng 0 theo modulo 2^n. (Bài giảng chương 1, tr. 52.)",
+      "tags": [
+        "bù hai",
+        "phần tử đối"
+      ]
+    },
+    {
+      "id": "it1140-c1-so-hoc-110",
+      "topic": "c1-so-hoc",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "difficulty": 2,
+      "responseType": "choice",
+      "prompt": "Ở một cột khi cộng nhị phân, hai bit toán hạng đều bằng 1 và bit nhớ từ cột bên phải cũng bằng 1. Bit kết quả tại cột này và bit nhớ sang cột bên trái lần lượt bằng bao nhiêu?",
+      "choices": [
+        "0 và 0.",
+        "1 và 1.",
+        "1 và 0.",
+        "0 và 1."
+      ],
+      "answer": 1,
+      "explanation": "1 + 1 + 1 = 3₁₀ = 11₂. Ghi bit thấp 1 tại cột hiện tại và chuyển bit nhớ 1 sang cột kế tiếp. (Bài giảng chương 1, tr. 58.)",
+      "tags": [
+        "cộng bit",
+        "bit nhớ"
+      ]
+    },
+    {
+      "id": "it1140-c1-so-hoc-111",
+      "topic": "c1-so-hoc",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "difficulty": 2,
+      "responseType": "number",
+      "prompt": "Thực hiện phép trừ không dấu 5 bit 10000₂ − 00001₂ bằng cách vay qua các cột. Giá trị thập phân của kết quả là bao nhiêu?",
+      "choices": [],
+      "answer": 15,
+      "explanation": "16 − 1 = 15, có mẫu 01111₂. Việc vay truyền qua các cột 0 làm bốn bit thấp thành 1; không phát sinh tràn vì số bị trừ lớn hơn số trừ. (Bài giảng chương 1, tr. 58, 59.)",
+      "tags": [
+        "vay bit",
+        "trừ nhị phân"
+      ]
+    },
+    {
+      "id": "it1140-c1-so-hoc-112",
+      "topic": "c1-so-hoc",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "difficulty": 2,
+      "responseType": "number",
+      "prompt": "Chia số nguyên có dấu −91 cho +7; phép chia hết và dùng đủ bit để chứa kết quả. Thương thập phân là bao nhiêu?",
+      "choices": [],
+      "answer": -13,
+      "explanation": "Chia các độ lớn: 91/7 = 13. Hai toán hạng khác dấu nên thương là −13. Phép chia hết nên không phát sinh vấn đề làm tròn thương. (Bài giảng chương 1, tr. 67.)",
+      "tags": [
+        "chia có dấu",
+        "hiệu chỉnh dấu"
+      ]
+    },
+    {
+      "id": "it1140-c1-so-hoc-113",
+      "topic": "c1-so-hoc",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "difficulty": 2,
+      "responseType": "choice",
+      "prompt": "Theo quy trình nhân/chia số nguyên có dấu trong bài giảng, thứ tự nào đúng? Giả sử phép chia có số chia khác 0 và có đủ bit cho các giá trị trung gian.",
+      "choices": [
+        "Lấy độ lớn → nhân/chia không dấu → hiệu chỉnh dấu kết quả.",
+        "Lấy độ lớn → hiệu chỉnh dấu kết quả → nhân/chia không dấu.",
+        "Lấy độ lớn → nhân/chia không dấu → giữ dấu toán hạng đầu.",
+        "Lấy bù một → nhân/chia không dấu → hiệu chỉnh dấu kết quả."
+      ],
+      "answer": 0,
+      "explanation": "Bước đầu chuyển về các độ lớn không âm, sau đó tính toán không dấu, cuối cùng xác định dấu theo hai toán hạng. Nhân/chia cùng dấu cho kết quả không âm, khác dấu cho kết quả không dương; trường hợp kết quả bằng 0 cần hiểu đúng. (Bài giảng chương 1, tr. 67.)",
+      "tags": [
+        "nhân chia có dấu",
+        "quy trình"
+      ]
+    },
+    {
+      "id": "it1140-c1-so-thuc-114",
+      "topic": "c1-so-thuc",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "difficulty": 2,
+      "responseType": "choice",
+      "prompt": "Với ký pháp dấu phẩy động V = M × R^E, nếu cơ số R đã cố định thì cần lưu hai thành phần nào để xác định V?",
+      "choices": [
+        "Phần lẻ của V và cơ số R.",
+        "Phần nguyên của V và phần mũ E.",
+        "Phần định trị M và phần mũ E.",
+        "Phần định trị M và cơ số R."
+      ],
+      "answer": 2,
+      "explanation": "R là cơ số, M là phần định trị, E là phần mũ. Khi R được quy ước trước, M (kể cả dấu) cùng E xác định giá trị; M không đồng nghĩa phần nguyên hay phần lẻ của V. (Bài giảng chương 1, tr. 70.)",
+      "tags": [
+        "dấu phẩy động",
+        "M R E"
+      ]
+    },
+    {
+      "id": "it1140-c1-so-thuc-115",
+      "topic": "c1-so-thuc",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "difficulty": 3,
+      "responseType": "number",
+      "prompt": "Biểu diễn 0,15625₁₀ bằng IEEE 754 dạng 32 bit. Trường mã mũ e có giá trị thập phân bao nhiêu?",
+      "choices": [],
+      "answer": 124,
+      "explanation": "0,15625 = 0.00101₂ = 1.01₂×2^−3. E = −3 nên e = E + 127 = 124; số nhỏ hơn 1 có thể có số mũ thực âm trong khi mã mũ vẫn không âm. (Bài giảng chương 1, tr. 70, 72, 76.)",
+      "tags": [
+        "chuẩn hóa số nhỏ hơn một",
+        "mũ âm"
+      ]
+    },
+    {
+      "id": "it1140-c1-so-thuc-116",
+      "topic": "c1-so-thuc",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "difficulty": 2,
+      "responseType": "choice",
+      "prompt": "Trong khuôn dạng dấu phẩy động mở rộng 80 bit trên slide, số bit dành cho dấu, mã mũ và toàn bộ phần định trị lưu trữ lần lượt là bao nhiêu?",
+      "choices": [
+        "1; 8; 71.",
+        "1; 15; 64.",
+        "1; 16; 63.",
+        "1; 11; 68."
+      ],
+      "answer": 1,
+      "explanation": "Bit 79 là dấu; các bit 78…64 tạo trường mũ 15 bit; các bit 63…0 tạo phần định trị lưu trữ 64 bit. Ở dạng x86 mở rộng 80 bit, 64 bit này gồm một bit đầu được lưu tường minh và 63 bit phần lẻ, không phải 64 bit phần lẻ cộng thêm một bit ngầm định. (Bài giảng chương 1, tr. 71, 72.)",
+      "tags": [
+        "80 bit",
+        "khuôn dạng"
+      ]
+    },
+    {
+      "id": "it1140-c1-so-thuc-117",
+      "topic": "c1-so-thuc",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "difficulty": 3,
+      "responseType": "number",
+      "prompt": "Một số chuẩn hóa IEEE 754 dạng 64 bit có S = 1, mã mũ e = 1019₁₀ và phần định trị 1.01₂. Giá trị thập phân của số đó là bao nhiêu?",
+      "choices": [],
+      "answer": -0.078125,
+      "explanation": "Dạng 64 bit có bias = 1023 nên E = 1019 − 1023 = −4. Giá trị là −1,25×2^−4 = −1,25/16 = −0,078125; không được dùng bias 127 của dạng 32 bit. (Bài giảng chương 1, tr. 71–74.)",
+      "tags": [
+        "binary64",
+        "giải mã mũ âm"
+      ]
+    },
+    {
+      "id": "it1140-c1-so-thuc-118",
+      "topic": "c1-so-thuc",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "difficulty": 3,
+      "responseType": "number",
+      "prompt": "Trong IEEE 754 dạng 32 bit, gọi Δ₁ là khoảng cách từ +1 đến số biểu diễn kế tiếp lớn hơn +1, Δ₈ là khoảng cách từ +8 đến số biểu diễn kế tiếp lớn hơn +8. Tỉ số Δ₈/Δ₁ bằng bao nhiêu?",
+      "choices": [],
+      "answer": 8,
+      "explanation": "Tại 1 = 1.0₂×2⁰, bước tăng là 2^−23. Tại 8 = 1.0₂×2³, bước tăng là 2^(3−23). Tỉ số bằng 2³ = 8: các số dấu phẩy động không cách đều trên toàn trục số. (Bài giảng chương 1, tr. 71, 73, 79.)",
+      "tags": [
+        "khoảng cách số thực",
+        "độ chính xác"
+      ]
+    },
+    {
+      "id": "it1140-c1-so-thuc-119",
+      "topic": "c1-so-thuc",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "difficulty": 3,
+      "responseType": "choice",
+      "prompt": "Xấp xỉ 0,7₁₀ bằng số nhị phân dạng 0.b₁b₂…b₁₀ với đúng 10 bit sau dấu chấm, theo quy tắc chọn giá trị gần nhất. Kết quả nào đúng?",
+      "choices": [
+        "0.1011001011₂",
+        "0.1011001110₂",
+        "0.1011001100₂",
+        "0.1011001101₂"
+      ],
+      "answer": 3,
+      "explanation": "Hai giá trị kề 0,7 là 716/1024 = 0,69921875 và 717/1024 = 0,7001953125. Sai số lần lượt là 0,00078125 và 0,0001953125 nên chọn 717/1024 = 0.1011001101₂. Cắt bỏ phần dư cho kết quả khác với làm tròn gần nhất. (Bài giảng chương 1, tr. 79.)",
+      "tags": [
+        "làm tròn gần nhất",
+        "cắt bỏ"
+      ]
+    },
+    {
+      "id": "it1140-c1-so-thuc-120",
+      "topic": "c1-so-thuc",
+      "source": "chuong-1-bai-giang",
+      "kind": "application",
+      "difficulty": 3,
+      "responseType": "choice",
+      "prompt": "Muốn lưu một giá trị xấp xỉ 10^100 dưới dạng số hữu hạn. Xét riêng phạm vi độ lớn của ba dạng dấu phẩy động trong bài giảng, lựa chọn nào đúng?",
+      "choices": [
+        "Cả ba dạng 32 bit, 64 bit và 80 bit đều đủ phạm vi.",
+        "Dạng 64 bit và 80 bit đủ phạm vi; dạng 32 bit không đủ.",
+        "Chỉ dạng 80 bit đủ phạm vi; dạng 32 bit và 64 bit không đủ.",
+        "Dạng 32 bit và 64 bit đủ phạm vi; dạng 80 bit không đủ."
+      ],
+      "answer": 1,
+      "explanation": "Giới hạn độ lớn ở bậc khoảng 10^38, 10^308 và 10^4932. 10^100 vượt dạng 32 bit nhưng nằm trong miền hữu hạn của 64 và 80 bit. Đủ phạm vi không có nghĩa lưu chính xác mọi chữ số; các bậc này không phải biên chính xác. (Bài giảng chương 1, tr. 78.)",
+      "tags": [
+        "phạm vi số thực",
+        "32 64 80 bit"
+      ]
+    },
+    {
+      "id": "it1140-c1-ky-tu-121",
+      "topic": "c1-ky-tu",
+      "source": "chuong-1-bai-giang",
+      "kind": "calculation",
+      "difficulty": 2,
+      "responseType": "number",
+      "prompt": "ASCII chuẩn có 128 mã, trong đó 95 mã thuộc nhóm hiển thị (kể cả dấu cách). Có bao nhiêu mã điều khiển?",
+      "choices": [],
+      "answer": 33,
+      "explanation": "128 − 95 = 33, gồm 32 mã từ 00₁₆ đến 1F₁₆ và một mã 7F₁₆. Dấu cách 20₁₆ thuộc nhóm hiển thị, không phải mã điều khiển. (Bài giảng chương 1, tr. 81, 83.)",
+      "tags": [
+        "mã điều khiển",
+        "ASCII"
+      ]
+    },
+    {
+      "id": "it1140-c1-ky-tu-122",
+      "topic": "c1-ky-tu",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "difficulty": 2,
+      "responseType": "choice",
+      "prompt": "Ba dải mã ASCII viết ở hệ 16 nào lần lượt ứng với chữ số “0”–“9”, chữ hoa “A”–“Z” và chữ thường “a”–“z”?",
+      "choices": [
+        "30–3A; 41–5B; 61–7B.",
+        "00–09; 41–5A; 61–7A.",
+        "30–39; 61–7A; 41–5A.",
+        "30–39; 41–5A; 61–7A."
+      ],
+      "answer": 3,
+      "explanation": "Các dải tương ứng là 30…39, 41…5A, 61…7A. Mã chữ số khác giá trị số; đếm cả hai đầu cho 10, 26 và 26 ký tự. (Bài giảng chương 1, tr. 83.)",
+      "tags": [
+        "dải mã",
+        "chữ số chữ hoa chữ thường"
+      ]
+    },
+    {
+      "id": "it1140-c1-ky-tu-123",
+      "topic": "c1-ky-tu",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "difficulty": 2,
+      "responseType": "choice",
+      "prompt": "Một bảng mã mở rộng 8 bit giữ nguyên 128 mã ASCII chuẩn. Khi ghi mọi mã thành đúng 8 bit, nhận định nào đúng về bit cao nhất?",
+      "choices": [
+        "Mã chuẩn có bit cao nhất 0; mã mở rộng 80₁₆…FF₁₆ có bit cao nhất 1.",
+        "Mã chuẩn có bit cao nhất 1; mã mở rộng 80₁₆…FF₁₆ cũng có bit cao nhất 1.",
+        "Mã chuẩn có bit cao nhất 0; mã mở rộng 80₁₆…FF₁₆ cũng có bit cao nhất 0.",
+        "Mã chuẩn có bit cao nhất 1; mã mở rộng 80₁₆…FF₁₆ có bit cao nhất 0."
+      ],
+      "answer": 0,
+      "explanation": "00₁₆…7F₁₆ tương ứng 00000000…01111111; 80₁₆…FF₁₆ tương ứng 10000000…11111111. Bit cao nhất phân biệt hai vùng mã trong bảng mở rộng được giả định. (Bài giảng chương 1, tr. 81, 84.)",
+      "tags": [
+        "ASCII mở rộng",
+        "bit cao nhất"
+      ]
+    },
+    {
+      "id": "it1140-c1-ky-tu-124",
+      "topic": "c1-ky-tu",
+      "source": "chuong-1-bai-giang",
+      "kind": "theory",
+      "difficulty": 1,
+      "responseType": "choice",
+      "prompt": "Theo bài giảng, tổ chức quản lý bộ mã Unicode là tổ chức nào?",
+      "choices": [
+        "Internet Engineering Task Force (IETF).",
+        "Institute of Electrical and Electronics Engineers (IEEE).",
+        "Unicode Consortium.",
+        "American National Standards Institute (ANSI)."
+      ],
+      "answer": 2,
+      "explanation": "Unicode Consortium phát triển và duy trì Unicode. Bài giảng nhắc ANSI trong phần ASCII và IEEE trong chuẩn số dấu phẩy động; không nên nhầm các tổ chức và phạm vi chuẩn tương ứng. (Bài giảng chương 1, tr. 81, 85.)",
+      "tags": [
+        "Unicode",
+        "tổ chức tiêu chuẩn"
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 ## Thêm hoặc sửa bộ câu hỏi
 
-File `subjects/it1140.json` là ngân hàng câu hỏi chính, hiện có 100 câu chương 1 (80 trắc nghiệm, 20 điền số). Ma trận nội dung và ghi chú rà soát nằm tại `CHUONG_1_REVIEW.md`. Cấu trúc được kiểm soát bởi `schema/subject.schema.json`:
+File `subjects/it1140.json` là ngân hàng câu hỏi chính, hiện có 124 câu chương 1 (96 trắc nghiệm, 28 điền số). Ma trận nội dung và ghi chú rà soát nằm tại `CHUONG_1_REVIEW.md`. Cấu trúc được kiểm soát bởi `schema/subject.schema.json`:
 
 ```json
 {
