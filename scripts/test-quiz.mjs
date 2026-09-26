@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import vm from "node:vm";
+import "./test-chapter3.mjs";
+import "./test-chapter4.mjs";
 
 const bank = JSON.parse(await readFile("data/subjects/it1140.json", "utf8"));
 const chapter = bank.questions.filter((q) => q.source === "chuong-1-bai-giang");
@@ -164,7 +166,7 @@ assert.equal(migration.loadState().chapter, "all");
 
 const filters = vm.createContext({ state: { ...restored, query: "", orders: {}, bookmarks: {} }, currentSubject: () => bank });
 vm.runInContext(source.slice(source.indexOf("  function chapterForQuestion("), source.indexOf("  function activeQuestion(")), filters);
-for (const [id, count] of [["chuong-1", 124], ["chuong-2", 160], ["all", 284]]) {
+for (const [id, count] of [["chuong-1", 124], ["chuong-2", 160], ["chuong-3", 215], ["chuong-4", 133], ["all", bank.questions.length]]) {
   filters.state.chapter = id;
   assert.equal(filters.filteredQuestions().length, count);
 }
