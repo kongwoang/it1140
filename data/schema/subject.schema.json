@@ -4,13 +4,25 @@
   "title": "Ngân hàng câu hỏi IT1140",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "code", "title", "language", "sources", "topics", "questions"],
+  "required": ["id", "code", "title", "language", "chapters", "sources", "topics", "questions"],
   "properties": {
     "$schema": { "type": "string" },
     "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
     "code": { "const": "IT1140" },
     "title": { "const": "Tin học đại cương" },
     "language": { "const": "vi" },
+    "chapters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "label": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
     "sources": {
       "type": "array",
       "items": {
@@ -29,8 +41,9 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "label"],
+        "required": ["id", "label", "chapter"],
         "properties": {
+          "chapter": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
           "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
           "label": { "type": "string", "minLength": 1 }
         }

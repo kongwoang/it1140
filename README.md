@@ -13,9 +13,9 @@ data/
     └── it1140.json               # Ngân hàng câu hỏi IT1140
 ```
 
-Mỗi bộ câu hỏi chứa ba phần độc lập: `sources`, `topics` và `questions`. Mỗi câu hỏi tham chiếu nguồn/chủ đề bằng `source` và `topic`, vì vậy có thể thêm hoặc sửa nội dung mà không cần sửa mã giao diện.
+Mỗi bộ câu hỏi chứa `chapters`, `sources`, `topics` và `questions`. Giao diện chỉ phân loại theo chương; nguồn và nhóm kiến thức được giữ trong JSON để biên tập, đối chiếu tài liệu. Mỗi nhóm kiến thức có `chapter`, mỗi câu có `source` và `topic`.
 
-Dùng [PROMPT_TAO_CAU_HOI.md](./PROMPT_TAO_CAU_HOI.md) để yêu cầu một LLM khác tạo đúng định dạng JSON. Ngân hàng hiện được để trống để chờ nội dung IT1140 mới.
+Dùng [PROMPT_TAO_CAU_HOI.md](./PROMPT_TAO_CAU_HOI.md) để yêu cầu một LLM khác tạo đúng định dạng JSON. Ngân hàng hiện có **284 câu**: chương 1 có 124 câu, chương 2 có 160 câu. Xem ma trận nội dung và các điểm đã đối chiếu tại [chương 1](./data/CHUONG_1_REVIEW.md) và [chương 2](./data/CHUONG_2_REVIEW.md).
 
 ## Lưu trữ dữ liệu
 

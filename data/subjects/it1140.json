@@ -4,45 +4,128 @@
   "code": "IT1140",
   "title": "Tin học đại cương",
   "language": "vi",
+  "chapters": [
+    {
+      "id": "chuong-1",
+      "label": "Chương 1 · Thông tin và dữ liệu"
+    },
+    {
+      "id": "chuong-2",
+      "label": "Chương 2 · Hệ thống máy tính"
+    }
+  ],
   "sources": [
     {
       "id": "chuong-1-bai-giang",
       "label": "Chương 1 · Thông tin và dữ liệu",
+      "type": "lecture"
+    },
+    {
+      "id": "chuong-2-bai-giang",
+      "label": "Bài giảng chương 2 · Hệ thống máy tính",
       "type": "lecture"
     }
   ],
   "topics": [
     {
       "id": "c1-thong-tin",
+      "chapter": "chuong-1",
       "label": "Chương 1 · Thông tin và dữ liệu"
     },
     {
       "id": "c1-don-vi",
+      "chapter": "chuong-1",
       "label": "Chương 1 · Đơn vị và cơ sở hệ đếm"
     },
     {
       "id": "c1-he-dem",
+      "chapter": "chuong-1",
       "label": "Chương 1 · Chuyển đổi hệ đếm"
     },
     {
       "id": "c1-so-nguyen",
+      "chapter": "chuong-1",
       "label": "Chương 1 · Biểu diễn số nguyên"
     },
     {
       "id": "c1-so-hoc",
+      "chapter": "chuong-1",
       "label": "Chương 1 · Số học và tràn số"
     },
     {
       "id": "c1-logic",
+      "chapter": "chuong-1",
       "label": "Chương 1 · Phép toán logic trên bit"
     },
     {
       "id": "c1-so-thuc",
+      "chapter": "chuong-1",
       "label": "Chương 1 · Số thực và IEEE 754"
     },
     {
       "id": "c1-ky-tu",
+      "chapter": "chuong-1",
       "label": "Chương 1 · ASCII và Unicode"
+    },
+    {
+      "id": "c2-mo-hinh",
+      "label": "Mô hình và tổ chức máy tính",
+      "chapter": "chuong-2"
+    },
+    {
+      "id": "c2-cpu",
+      "label": "CPU và hiệu năng",
+      "chapter": "chuong-2"
+    },
+    {
+      "id": "c2-bo-nho",
+      "label": "Bộ nhớ và lưu trữ",
+      "chapter": "chuong-2"
+    },
+    {
+      "id": "c2-vao-ra-bus",
+      "label": "Vào–ra, bus và thành phần PC",
+      "chapter": "chuong-2"
+    },
+    {
+      "id": "c2-phan-mem",
+      "label": "Phần mềm và ngôn ngữ lập trình",
+      "chapter": "chuong-2"
+    },
+    {
+      "id": "c2-he-dieu-hanh",
+      "label": "Vai trò và nhiệm vụ hệ điều hành",
+      "chapter": "chuong-2"
+    },
+    {
+      "id": "c2-tep-thu-muc",
+      "label": "Tệp, thư mục, đường dẫn và wildcard",
+      "chapter": "chuong-2"
+    },
+    {
+      "id": "c2-giao-dien",
+      "label": "Giao diện và Windows",
+      "chapter": "chuong-2"
+    },
+    {
+      "id": "c2-mang-co-ban",
+      "label": "Mạng và thiết bị đầu cuối",
+      "chapter": "chuong-2"
+    },
+    {
+      "id": "c2-thiet-bi-mang",
+      "label": "Hub, switch, router, BTS và firewall",
+      "chapter": "chuong-2"
+    },
+    {
+      "id": "c2-duong-truyen",
+      "label": "Đường truyền và giao thức",
+      "chapter": "chuong-2"
+    },
+    {
+      "id": "c2-phan-loai-mang",
+      "label": "Phạm vi mạng và kiến trúc dịch vụ",
+      "chapter": "chuong-2"
     }
   ],
   "questions": [
@@ -2510,6 +2593,3286 @@
       "tags": [
         "Unicode",
         "tổ chức tiêu chuẩn"
+      ]
+    },
+    {
+      "topic": "c2-mo-hinh",
+      "prompt": "Một bộ điều khiển nhúng đọc cảm biến nhiệt, tính mức công suất cần thiết rồi gửi tín hiệu đến động cơ. Cách ghép nào đúng với ba chức năng nhận, xử lý và xuất thông tin?",
+      "choices": [
+        "Nhận: đọc cảm biến; xử lý: gửi tín hiệu; xuất: tính công suất.",
+        "Nhận: tính công suất; xử lý: đọc cảm biến; xuất: gửi tín hiệu.",
+        "Nhận: gửi tín hiệu; xử lý: tính công suất; xuất: đọc cảm biến.",
+        "Nhận: đọc cảm biến; xử lý: tính công suất; xuất: gửi tín hiệu."
+      ],
+      "answer": 3,
+      "explanation": "Đọc cảm biến nhận dữ liệu từ môi trường; tính công suất biến đổi dữ liệu theo chương trình; gửi tín hiệu đưa kết quả ra. Định nghĩa máy tính dựa vào chức năng, không phụ thuộc hình dạng desktop hay laptop, nên cũng bao gồm bộ điều khiển nhúng. (Bài giảng chương 2, tr. 4–7.)",
+      "difficulty": 2,
+      "kind": "application",
+      "responseType": "choice",
+      "id": "it1140-c2-mo-hinh-001",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mô hình và tổ chức máy tính",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mo-hinh",
+      "prompt": "Nhóm nào chỉ gồm các dạng máy tính được minh họa trong chương?",
+      "choices": [
+        "Điện thoại thông minh, bàn phím, máy chủ, màn hình.",
+        "Máy chủ, máy in, thanh RAM, siêu máy tính.",
+        "Máy tính nhúng, nguồn điện, máy chủ, siêu máy tính.",
+        "Máy tính nhúng, điện thoại thông minh, máy chủ, siêu máy tính."
+      ],
+      "answer": 3,
+      "explanation": "Các dạng máy tính có thể rất khác nhau về hình thức và mục đích. Nguồn điện, bàn phím hay thanh RAM là các thành phần, không phải các dạng máy tính tương ứng trong hình. (Bài giảng chương 2, tr. 5.)",
+      "difficulty": 1,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mo-hinh-002",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mô hình và tổ chức máy tính",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mo-hinh",
+      "prompt": "Một trạm đo ghi nhận nhiệt độ, tính trung bình rồi hiển thị kết quả. Việc tính trung bình thuộc chức năng nào?",
+      "choices": [
+        "Xử lý dữ liệu.",
+        "Nhập dữ liệu.",
+        "Lưu trữ dữ liệu.",
+        "Xuất dữ liệu."
+      ],
+      "answer": 0,
+      "explanation": "Tính trung bình biến đổi các số đo đầu vào thành kết quả mới; nhận số đo là nhập, hiển thị là xuất. (Bài giảng chương 2, tr. 6–7.)",
+      "difficulty": 2,
+      "kind": "application",
+      "responseType": "choice",
+      "id": "it1140-c2-mo-hinh-003",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mô hình và tổ chức máy tính",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mo-hinh",
+      "prompt": "Vì sao chức năng lưu trữ cần thiết ngay cả trước khi bắt đầu xử lý một lô dữ liệu?",
+      "choices": [
+        "Cần chỗ giữ chương trình và dữ liệu để sử dụng khi xử lý.",
+        "Để thay quá trình tính toán bằng các kết quả được lưu sẵn cho mọi đầu vào.",
+        "Để bảo đảm dữ liệu chỉ có thể tồn tại sau khi chương trình đã kết thúc.",
+        "Để giữ dữ liệu ở thiết bị ra mà không cần vùng nhớ cho chương trình."
+      ],
+      "answer": 0,
+      "explanation": "Lưu trữ cung cấp chỗ chứa tạm thời hoặc lâu dài. Nó hỗ trợ xử lý chứ không thay thế xử lý. (Bài giảng chương 2, tr. 7.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mo-hinh-004",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mô hình và tổ chức máy tính",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mo-hinh",
+      "prompt": "Những tác nhân nào có thể trao đổi dữ liệu với máy tính qua hệ thống vào–ra?",
+      "choices": [
+        "Con người, môi trường vật lý và máy tính khác.",
+        "Môi trường vật lý, khối CU và bộ giải mã lệnh.",
+        "Máy tính khác, khối ALU và bộ giải mã lệnh.",
+        "Con người, khối ALU và tập thanh ghi của CPU."
+      ],
+      "answer": 0,
+      "explanation": "Bài giảng nêu cả ba nhóm tác nhân bên ngoài: người, môi trường và máy khác. Các khối trong CPU không phải tác nhân bên ngoài. (Bài giảng chương 2, tr. 7.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mo-hinh-005",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mô hình và tổ chức máy tính",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mo-hinh",
+      "prompt": "Trong mô hình cơ bản, nhóm nào gồm đầy đủ bốn khối chức năng chính?",
+      "choices": [
+        "CPU, bộ nhớ chính, hệ thống vào–ra, khối ALU.",
+        "Bộ nhớ chính, hệ thống vào–ra, khối CU, tập thanh ghi.",
+        "CPU, bộ nhớ chính, hệ thống vào–ra, liên kết hệ thống.",
+        "CPU, hệ thống vào–ra, liên kết hệ thống, khối CU."
+      ],
+      "answer": 2,
+      "explanation": "CU, ALU và thanh ghi là thành phần bên trong CPU; bốn khối ở mức hệ thống gồm CPU, nhớ chính, vào–ra và liên kết. (Bài giảng chương 2, tr. 8–9.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mo-hinh-006",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mô hình và tổ chức máy tính",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mo-hinh",
+      "prompt": "Khối nào có nhiệm vụ kết nối và vận chuyển thông tin giữa CPU, bộ nhớ chính và các mô-đun vào–ra?",
+      "choices": [
+        "Liên kết hệ thống.",
+        "Bộ nhớ ngoài.",
+        "Khối số học và logic.",
+        "Tập thanh ghi CPU."
+      ],
+      "answer": 0,
+      "explanation": "Liên kết hệ thống nối các khối; thanh ghi lưu tạm và ALU tính toán, không thay thế vai trò liên kết. (Bài giảng chương 2, tr. 8–9.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mo-hinh-007",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mô hình và tổ chức máy tính",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mo-hinh",
+      "prompt": "Theo mô hình hoạt động cơ bản, chương trình mà CPU đang thực hiện gồm những gì và được lấy từ đâu?",
+      "choices": [
+        "Một tập lệnh được lấy từ bộ nhớ chính.",
+        "Một tập lệnh được lấy từ thiết bị ra, không đi qua bộ nhớ chính.",
+        "Một tập toán hạng được lấy từ bộ nhớ chính, không có chỉ thị xử lý.",
+        "Một tập lệnh được lấy trực tiếp từ bộ nhớ ngoài trong mọi chu trình."
+      ],
+      "answer": 0,
+      "explanation": "CPU lặp chu trình nhận lệnh từ bộ nhớ chính rồi thực hiện lệnh. Chương trình là tập lệnh, không chỉ là tên tệp. (Bài giảng chương 2, tr. 9–10.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mo-hinh-008",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mô hình và tổ chức máy tính",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mo-hinh",
+      "prompt": "Ở mức khái quát nhất, thứ tự nào mô tả một chu trình lệnh?",
+      "choices": [
+        "Nhận lệnh → bỏ lệnh → ghi toán hạng thành lệnh mới.",
+        "Thực hiện lệnh → giải mã chính lệnh đó → nhận lệnh.",
+        "Nhận lệnh → thực hiện lệnh.",
+        "Ghi kết quả → nhận toán hạng → nhận chính lệnh đang thực hiện."
+      ],
+      "answer": 2,
+      "explanation": "Hai bước khái quát là nhận lệnh và thực hiện. Khi mô tả chi tiết, chúng được triển khai thành nhiều bước bên trong CPU. (Bài giảng chương 2, tr. 10.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mo-hinh-009",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mô hình và tổ chức máy tính",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mo-hinh",
+      "prompt": "Desktop, máy all-in-one và laptop khác nhau về cách tích hợp. Nhận định nào đúng?",
+      "choices": [
+        "All-in-one tích hợp nên không cần đường liên kết giữa các khối.",
+        "Khác hình thức tích hợp nhưng vẫn cần các khối xử lý, nhớ và vào–ra.",
+        "Laptop tích hợp nên không cần bộ nhớ khi chạy chương trình.",
+        "Desktop dùng thiết bị rời nên không cần hệ thống vào–ra."
+      ],
+      "answer": 1,
+      "explanation": "Tích hợp vào một thiết bị không loại bỏ các chức năng của mô hình máy tính. (Bài giảng chương 2, tr. 9, 29–31.)",
+      "difficulty": 2,
+      "kind": "application",
+      "responseType": "choice",
+      "id": "it1140-c2-mo-hinh-010",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mô hình và tổ chức máy tính",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "CPU đang phát tín hiệu để các bộ phận phối hợp thực hiện một lệnh. Bộ phận nào đảm nhiệm vai trò điều khiển này?",
+      "choices": [
+        "ALU.",
+        "CU.",
+        "Tập thanh ghi.",
+        "RAM."
+      ],
+      "answer": 1,
+      "explanation": "CU điều khiển chu trình lệnh và phối hợp các thành phần; ALU trực tiếp thực hiện số học/logic. (Bài giảng chương 2, tr. 11–12.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-cpu-011",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "Trong CPU, phép cộng hai toán hạng và phép AND trên bit thuộc chức năng trực tiếp của khối nào?",
+      "choices": [
+        "Tập thanh ghi.",
+        "ALU.",
+        "CU.",
+        "Mô-đun vào–ra."
+      ],
+      "answer": 1,
+      "explanation": "Arithmetic and Logic Unit thực hiện số học và logic; CU tổ chức hoạt động, thanh ghi giữ thông tin tạm. (Bài giảng chương 2, tr. 12.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-cpu-012",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "Cần giữ tạm một toán hạng và kết quả trung gian ngay trong CPU. Thành phần nào phù hợp nhất?",
+      "choices": [
+        "Khối điều khiển CU.",
+        "Bộ giải mã lệnh.",
+        "Khối số học và logic ALU.",
+        "Tập thanh ghi."
+      ],
+      "answer": 3,
+      "explanation": "Register File chứa thông tin tạm thời phục vụ CPU. Đây không phải nơi lưu trữ lâu dài như ổ đĩa. (Bài giảng chương 2, tr. 12.)",
+      "difficulty": 1,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-cpu-013",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "Thứ tự nào đúng với chu trình lệnh chi tiết được nêu trong bài giảng?",
+      "choices": [
+        "Nhận lệnh → giải mã → nhận toán hạng → thực hiện → ghi kết quả.",
+        "Nhận toán hạng → ghi kết quả → nhận lệnh → giải mã → thực hiện.",
+        "Giải mã → nhận lệnh → thực hiện → nhận toán hạng → ghi kết quả.",
+        "Nhận lệnh → nhận toán hạng → ghi kết quả → giải mã → thực hiện."
+      ],
+      "answer": 0,
+      "explanation": "CPU phải biết lệnh yêu cầu gì, nhận dữ liệu cần thiết rồi mới thực hiện và ghi kết quả. (Bài giảng chương 2, tr. 11.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-cpu-014",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "CPU đã nhận lệnh nhưng chưa xác định được phép toán mà lệnh yêu cầu. Bước tiếp theo trong chu trình của bài giảng là gì?",
+      "choices": [
+        "Giải mã lệnh.",
+        "Ghi kết quả.",
+        "Nhận lệnh mới thay thế lệnh hiện tại.",
+        "Đưa kết quả của lệnh ra thiết bị in."
+      ],
+      "answer": 0,
+      "explanation": "Giải mã xác định ý nghĩa của lệnh trước các bước nhận toán hạng và thực hiện. (Bài giảng chương 2, tr. 11.)",
+      "difficulty": 2,
+      "kind": "application",
+      "responseType": "choice",
+      "id": "it1140-c2-cpu-015",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "Một bộ xử lý thực hiện 240 triệu lệnh trong 2 giây. Tốc độ trung bình là bao nhiêu MIPS?",
+      "choices": [],
+      "answer": 120,
+      "explanation": "MIPS là triệu lệnh mỗi giây: 240/2 = 120 MIPS. (Bài giảng chương 2, tr. 13.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-cpu-016",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "Giả sử tốc độ thực thi giữ ở 150 MIPS trong 4 giây. Bộ xử lý thực hiện bao nhiêu triệu lệnh?",
+      "choices": [],
+      "answer": 600,
+      "explanation": "150 triệu lệnh/giây nhân 4 giây bằng 600 triệu lệnh. (Bài giảng chương 2, tr. 13.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-cpu-017",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "CPU có tần số 2 GHz. Chu kỳ xung nhịp bằng bao nhiêu nano giây (ns)?",
+      "choices": [],
+      "answer": 0.5,
+      "explanation": "T = 1/f = 1/(2×10^9) giây = 0,5 ns. (Bài giảng chương 2, tr. 14.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-cpu-018",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "Chu kỳ xung nhịp là 0,25 ns. Tần số tương ứng bằng bao nhiêu GHz?",
+      "choices": [],
+      "answer": 4,
+      "explanation": "0,25 ns = 0,25×10^−9 giây, nên f = 1/T = 4×10^9 Hz = 4 GHz. (Bài giảng chương 2, tr. 14.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-cpu-019",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "Trong mô hình đơn giản, một thao tác mất đúng 6 chu kỳ của CPU 2 GHz, không có thời gian chờ khác. Thao tác mất bao nhiêu ns?",
+      "choices": [],
+      "answer": 3,
+      "explanation": "Mỗi chu kỳ dài 0,5 ns; 6 chu kỳ mất 3 ns. Đề đã giả định không có độ trễ khác. (Bài giảng chương 2, tr. 14.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-cpu-020",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "Giả sử CPU chạy 2 GHz và trung bình cần đúng 4 chu kỳ cho mỗi lệnh, không có chờ thêm. Tốc độ là bao nhiêu MIPS?",
+      "choices": [],
+      "answer": 500,
+      "explanation": "2×10^9 chu kỳ/giây chia 4 chu kỳ/lệnh bằng 500×10^6 lệnh/giây. Không được đồng nhất GHz với MIPS. (Bài giảng chương 2, tr. 13–14.)",
+      "difficulty": 3,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-cpu-021",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "Chỉ biết máy A có CPU 3 GHz, máy B có CPU 2 GHz. Có thể kết luận điều gì chắc chắn?",
+      "choices": [
+        "A có nhiều chu kỳ xung nhịp mỗi giây hơn B.",
+        "A thực hiện mọi lệnh trong ít chu kỳ hơn B.",
+        "A chạy mọi chương trình nhanh gấp 1,5 lần B.",
+        "A có tốc độ RAM lớn hơn B đúng 1,5 lần."
+      ],
+      "answer": 0,
+      "explanation": "Tần số chỉ là đánh giá gián tiếp. Hiệu năng còn phụ thuộc số chu kỳ/lệnh, bộ nhớ và các thành phần khác. (Bài giảng chương 2, tr. 13–14.)",
+      "difficulty": 3,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-cpu-022",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "Với cùng một công việc cần số chu kỳ như nhau và không có nút thắt khác, giảm chu kỳ xung nhịp T xuống một nửa có hệ quả nào?",
+      "choices": [
+        "Tần số tăng gấp đôi và thời gian hoàn thành giảm một nửa.",
+        "Tần số giữ nguyên và thời gian hoàn thành giảm một nửa.",
+        "Tần số giảm một nửa và thời gian hoàn thành giảm một nửa.",
+        "Tần số tăng gấp đôi và thời gian hoàn thành tăng gấp đôi."
+      ],
+      "answer": 0,
+      "explanation": "f = 1/T. Với số chu kỳ cố định, thời gian tỷ lệ với T; các giả thiết là cần thiết để kết luận về hiệu năng. (Bài giảng chương 2, tr. 13–14.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-cpu-023",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-cpu",
+      "prompt": "Một bảng minh họa siêu máy tính có cột Cores, Rmax (TFlop/s) và Power (kW). Để so sánh tốc độ tính toán dấu phẩy động đo được trong bảng, cần dùng cột nào?",
+      "choices": [
+        "Tên cơ quan sở hữu.",
+        "Cores.",
+        "Power (kW).",
+        "Rmax (TFlop/s)."
+      ],
+      "answer": 3,
+      "explanation": "Rmax biểu diễn kết quả hiệu năng đo trong bảng; số lõi và công suất là các đại lượng khác. Bảng trong slide là minh họa lịch sử, không phải bảng xếp hạng hiện tại. (Bài giảng chương 2, tr. 15.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-cpu-024",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "CPU và hiệu năng",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Hai thao tác cơ bản đối với bộ nhớ là gì?",
+      "choices": [
+        "Định tuyến và chuyển mạch.",
+        "Giải mã lệnh và phát xung nhịp.",
+        "Đọc nội dung và ghi nội dung.",
+        "Nhập phím và hiển thị hình ảnh."
+      ],
+      "answer": 2,
+      "explanation": "Read lấy nội dung đang lưu; write đặt nội dung vào bộ nhớ. (Bài giảng chương 2, tr. 16.)",
+      "difficulty": 1,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-bo-nho-025",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "CPU cần chương trình và dữ liệu đang sử dụng. Thành phần nào giữ vai trò bộ nhớ chính trong mô hình bài giảng?",
+      "choices": [
+        "Vùng nhớ chứa chương trình và dữ liệu đang hoạt động.",
+        "Vùng chỉ giữ chương trình và dữ liệu chưa được dùng, để lưu lâu dài.",
+        "Vùng chỉ giữ bản sao nhỏ tốc độ cao để giảm số lần truy cập RAM.",
+        "Vùng chỉ giữ các bit điều khiển tức thời trong nội bộ một khối ALU."
+      ],
+      "answer": 0,
+      "explanation": "Bộ nhớ chính phục vụ trực tiếp các chương trình/dữ liệu đang được CPU dùng; không đồng nghĩa toàn bộ lưu trữ lâu dài. (Bài giảng chương 2, tr. 16–19.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-bo-nho-026",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "So sánh nào phù hợp với phân cấp nhớ trong bài giảng?",
+      "choices": [
+        "Bộ nhớ trong thường nhanh hơn, dung lượng nhỏ hơn bộ nhớ ngoài.",
+        "Bộ nhớ trong thường nhanh hơn, dung lượng lớn hơn bộ nhớ ngoài.",
+        "Bộ nhớ trong thường chậm hơn, dung lượng nhỏ hơn bộ nhớ ngoài.",
+        "Bộ nhớ trong thường chậm hơn, dung lượng lớn hơn bộ nhớ ngoài."
+      ],
+      "answer": 0,
+      "explanation": "Phân cấp cân bằng tốc độ và dung lượng. Đây là đặc điểm khái quát, không phải so sánh tuyệt đối mọi sản phẩm. (Bài giảng chương 2, tr. 17–18, 21.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-bo-nho-027",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Vì sao không thể dùng riêng tiêu chí “làm bằng bán dẫn” để phân biệt bộ nhớ trong và ngoài?",
+      "choices": [
+        "RAM dùng ánh sáng còn SSD dùng sóng vô tuyến để lưu dữ liệu.",
+        "RAM và SSD đều dùng đĩa từ nhưng có dung lượng khác nhau.",
+        "RAM và SSD đều dùng bán dẫn nhưng thuộc hai vai trò nhớ khác nhau.",
+        "RAM và SSD đều chỉ được xếp vào bộ nhớ trong."
+      ],
+      "answer": 2,
+      "explanation": "Bộ nhớ ngoài cũng có loại bán dẫn như SSD, flash disk, thẻ nhớ. Cần xét vai trò trong hệ thống. (Bài giảng chương 2, tr. 18, 22.)",
+      "difficulty": 3,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-bo-nho-028",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Một vùng nhớ đánh địa chỉ theo byte có địa chỉ từ 1000 đến 1511, tính cả hai đầu. Vùng này có dung lượng bao nhiêu byte?",
+      "choices": [],
+      "answer": 512,
+      "explanation": "Số ngăn là 1511−1000+1 = 512; mỗi ngăn một byte. (Bài giảng chương 2, tr. 19.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-bo-nho-029",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Ghi giá trị mới vào ngăn nhớ tại địa chỉ vật lý 2000 làm thay đổi điều gì trong mô hình ngăn nhớ của bài giảng?",
+      "choices": [
+        "Địa chỉ ngăn nhớ bị xóa; chỉ còn lại nội dung vừa ghi.",
+        "Địa chỉ ngăn nhớ đổi thành giá trị vừa ghi; nội dung giữ nguyên.",
+        "Nội dung ngăn nhớ có thể đổi; địa chỉ của ngăn đó giữ nguyên.",
+        "Nội dung và địa chỉ ngăn nhớ cùng đổi thành giá trị vừa ghi."
+      ],
+      "answer": 2,
+      "explanation": "Địa chỉ xác định vị trí, còn nội dung là thông tin được đọc/ghi tại vị trí đó. (Bài giảng chương 2, tr. 19.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-bo-nho-030",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Theo mô hình ROM/RAM cơ bản của chương, cặp mô tả nào đúng?",
+      "choices": [
+        "ROM và RAM đều chỉ đọc và đều mất dữ liệu khi mất điện.",
+        "ROM và RAM đều giữ dữ liệu khi mất điện và chỉ dùng để ghi.",
+        "ROM chủ yếu để đọc; RAM cho phép đọc/ghi và mất dữ liệu khi mất điện.",
+        "ROM mất dữ liệu khi mất điện; RAM chỉ cho phép đọc dữ liệu."
+      ],
+      "answer": 2,
+      "explanation": "Bài giảng phân biệt ROM với RAM khả biến. Các biến thể ROM có thể được lập trình lại bằng cơ chế riêng, không làm RAM trở thành bộ nhớ bền vững. (Bài giảng chương 2, tr. 19.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-bo-nho-031",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Một văn bản vừa sửa còn trong RAM nhưng chưa được lưu xuống ổ đĩa. Khi mất điện đột ngột, rủi ro trực tiếp là gì?",
+      "choices": [
+        "Chỉ tên tệp thay đổi còn mọi nội dung chưa lưu được bảo toàn.",
+        "Cả RAM lẫn ổ đĩa đều tự lưu phần sửa ngay trước lúc mất điện.",
+        "Phần sửa chưa lưu có thể mất dù bản cũ trên ổ đĩa vẫn còn.",
+        "Bản sửa trong RAM giữ nguyên còn bản cũ trên ổ đĩa chắc chắn mất."
+      ],
+      "answer": 2,
+      "explanation": "RAM mất dữ liệu khi mất nguồn. Lưu trữ ngoài giữ bản đã ghi, không tự đảm bảo giữ các thay đổi chưa lưu. (Bài giảng chương 2, tr. 19, 21.)",
+      "difficulty": 2,
+      "kind": "application",
+      "responseType": "choice",
+      "id": "it1140-c2-bo-nho-032",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Cache giải quyết trực tiếp vấn đề nào?",
+      "choices": [
+        "RAM không thể lưu đồng thời dữ liệu và chương trình.",
+        "Mọi thanh ghi của CPU đều có tốc độ chậm hơn ổ đĩa.",
+        "CPU thiếu chỗ lưu lâu dài toàn bộ các tệp ứng dụng.",
+        "CPU phải chờ RAM vì tốc độ hai bên chênh lệch."
+      ],
+      "answer": 3,
+      "explanation": "Cache nhỏ và nhanh giúp tăng tốc độ trao đổi hiệu dụng giữa CPU và bộ nhớ chính. (Bài giảng chương 2, tr. 20.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-bo-nho-033",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Theo cơ chế cache nêu trong bài giảng, dữ liệu từ RAM được đưa vào cache như thế nào?",
+      "choices": [
+        "Theo từng tên biến, không phụ thuộc các vị trí dữ liệu trong bộ nhớ.",
+        "Theo khối khi cần, để CPU có thể tái sử dụng dữ liệu đã nạp.",
+        "Theo từng tệp hoàn chỉnh từ ổ đĩa, chỉ khi đóng chương trình.",
+        "Theo toàn bộ nội dung RAM trước mỗi lần CPU thực hiện một lệnh."
+      ],
+      "answer": 1,
+      "explanation": "Dữ liệu được nạp theo khối; truy cập lặp vào khối có sẵn tận dụng bộ nhớ nhanh. (Bài giảng chương 2, tr. 20.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-bo-nho-034",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Giả sử một cache dữ liệu chứa được 1024 byte và mỗi khối chiếm 64 byte; bỏ qua thông tin quản lý. Nó chứa đồng thời được bao nhiêu khối?",
+      "choices": [],
+      "answer": 16,
+      "explanation": "1024/64 = 16 khối theo dung lượng dữ liệu giả định. (Bài giảng chương 2, tr. 20.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-bo-nho-035",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Hai chương trình có số lần truy cập nhớ như nhau. Chương trình nào có khả năng hưởng lợi rõ hơn từ cache theo tình huống mô tả?",
+      "choices": [
+        "Truy cập tuần tự các khối mới lớn hơn nhiều dung lượng cache, không đọc lại.",
+        "Truy cập lặp nhiều lần một nhóm khối vừa được nạp.",
+        "Truy cập ngẫu nhiên các khối khác nhau và mỗi khối chỉ đọc đúng một lần.",
+        "Chỉ đọc mỗi khối một lần rồi thay bằng khối khác trước khi có lần dùng tiếp."
+      ],
+      "answer": 1,
+      "explanation": "Truy cập lặp vào khối đang có trong cache giảm nhu cầu chờ RAM. Lợi ích thực tế còn tùy cách tổ chức cache. (Bài giảng chương 2, tr. 20.)",
+      "difficulty": 3,
+      "kind": "application",
+      "responseType": "choice",
+      "id": "it1140-c2-bo-nho-036",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Đặc điểm nào giải thích vì sao hệ điều hành, ứng dụng và dữ liệu được lưu lâu dài trên bộ nhớ ngoài?",
+      "choices": [
+        "Dung lượng lớn, chỉ chứa địa chỉ chứ không chứa chương trình hay dữ liệu.",
+        "Dung lượng nhỏ, tốc độ cao nhất, chủ yếu chứa toán hạng tức thời của CPU.",
+        "Dung lượng lớn, giữ tài nguyên phần mềm và kết nối dưới dạng thiết bị vào–ra.",
+        "Dung lượng nhỏ, giữ bản sao các khối RAM để CPU giảm thời gian chờ."
+      ],
+      "answer": 2,
+      "explanation": "Bộ nhớ ngoài là nơi lưu trữ tài nguyên phần mềm; tốc độ thường chậm hơn nhớ trong nhưng dung lượng lớn. (Bài giảng chương 2, tr. 21.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-bo-nho-037",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Ghép thiết bị với công nghệ lưu trữ nào đúng?",
+      "choices": [
+        "Đĩa cứng HDD: từ; DVD: bán dẫn; SSD: quang.",
+        "Đĩa cứng HDD: bán dẫn; DVD: quang; SSD: từ.",
+        "Đĩa cứng HDD: quang; DVD: từ; SSD: bán dẫn.",
+        "Đĩa cứng HDD: từ; DVD: quang; SSD: bán dẫn."
+      ],
+      "answer": 3,
+      "explanation": "HDD/đĩa mềm thuộc bộ nhớ từ; CD/DVD thuộc bộ nhớ quang; flash, thẻ nhớ, SSD dùng bán dẫn. (Bài giảng chương 2, tr. 22.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-bo-nho-038",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Nhóm nào chỉ gồm bộ nhớ ngoài bán dẫn?",
+      "choices": [
+        "USB flash, thẻ nhớ, SSD.",
+        "USB flash, DVD, SSD.",
+        "Đĩa cứng HDD, CD, USB flash.",
+        "Thẻ nhớ, đĩa mềm, SSD."
+      ],
+      "answer": 0,
+      "explanation": "Flash disk, memory card và SSD cùng nhóm bán dẫn; CD/DVD là quang, HDD/đĩa mềm là từ. (Bài giảng chương 2, tr. 22.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-bo-nho-039",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-bo-nho",
+      "prompt": "Giả sử một bộ nhớ có 2^20 ngăn, mỗi ngăn đúng 1 byte. Theo 1 MiB = 2^20 byte, dung lượng là bao nhiêu MiB?",
+      "choices": [],
+      "answer": 1,
+      "explanation": "2^20 ngăn × 1 byte/ngăn = 2^20 byte = 1 MiB. Không nhầm số byte với số bit. (Bài giảng chương 2, tr. 19.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-bo-nho-040",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Bộ nhớ và lưu trữ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "Hai nhóm thành phần chính của hệ thống vào–ra là gì?",
+      "choices": [
+        "Thiết bị ngoại vi và mô-đun ghép nối vào–ra.",
+        "Mô-đun ghép nối và khối giải mã lệnh, không có ngoại vi.",
+        "Bộ nhớ chính và các khối tính toán trong ALU.",
+        "Thiết bị ngoại vi và tập thanh ghi số học trong CPU."
+      ],
+      "answer": 0,
+      "explanation": "Ngoại vi làm việc với thế giới ngoài; mô-đun I/O ghép nối chúng với hệ thống máy tính. (Bài giảng chương 2, tr. 23–24.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-vao-ra-bus-041",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "Máy quét đưa ảnh giấy vào máy tính đang đảm nhiệm chức năng nào?",
+      "choices": [
+        "Chỉ lưu lâu dài dữ liệu ảnh đã có sẵn, không tạo dữ liệu đầu vào.",
+        "Chỉ chuyển tiếp dữ liệu ảnh giữa hai mạng, không thu nhận từ giấy.",
+        "Chuyển thông tin vật lý thành dữ liệu số đầu vào.",
+        "Chuyển dữ liệu số thành tín hiệu vật lý đầu ra trên giấy."
+      ],
+      "answer": 2,
+      "explanation": "Máy quét là thiết bị vào, số hóa hình ảnh để máy tính lưu trữ/xử lý. (Bài giảng chương 2, tr. 25.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-vao-ra-bus-042",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "Cặp nào lần lượt gồm một thiết bị vào và một thiết bị ra?",
+      "choices": [
+        "Loa; bàn phím.",
+        "Màn hình; chuột.",
+        "Máy in; máy quét.",
+        "Bàn phím; máy in."
+      ],
+      "answer": 3,
+      "explanation": "Bàn phím đưa dữ liệu vào; máy in đưa dữ liệu ra. Phân loại dựa vào chiều trao đổi thông tin với máy tính. (Bài giảng chương 2, tr. 25.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-vao-ra-bus-043",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "Theo phân nhóm ngoại vi trong bài giảng, modem và ổ đĩa lần lượt thuộc nhóm nào?",
+      "choices": [
+        "Thiết bị vào; thiết bị ra.",
+        "Thiết bị ra; thiết bị vào.",
+        "Truyền thông; thiết bị nhớ.",
+        "Thiết bị nhớ; truyền thông."
+      ],
+      "answer": 2,
+      "explanation": "Ngoại vi còn có thiết bị nhớ và truyền thông, không chỉ bàn phím/màn hình. (Bài giảng chương 2, tr. 25.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-vao-ra-bus-044",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "Một bộ điều khiển USB có nhiều cổng nối chuột và bàn phím. Nhận định nào đúng?",
+      "choices": [
+        "Mỗi cổng USB buộc phải chứa một CPU độc lập.",
+        "Một mô-đun ghép nối có thể hỗ trợ nhiều cổng vào–ra.",
+        "Mỗi bộ điều khiển chỉ được nối đúng một ngoại vi.",
+        "Chuột và bàn phím phải nối thẳng vào khối ALU."
+      ],
+      "answer": 1,
+      "explanation": "Sơ đồ minh họa một controller nối nhiều I/O port; ngoại vi đi qua mô-đun ghép nối. (Bài giảng chương 2, tr. 24, 26.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-vao-ra-bus-045",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "CPU phân biệt các cổng vào–ra trong mô hình được nêu bằng cơ chế nào?",
+      "choices": [
+        "Mọi cổng dùng chung một địa chỉ, CPU chỉ dựa vào thứ tự cắm thiết bị.",
+        "Các cổng có địa chỉ xác định để CPU quản lý/truy cập.",
+        "Các cổng được phân biệt bằng phần mở rộng của dữ liệu truyền qua chúng.",
+        "Mỗi cổng được phân biệt bằng địa chỉ của một tệp ứng dụng đang mở."
+      ],
+      "answer": 1,
+      "explanation": "Địa chỉ cổng cho phép CPU truy cập đúng giao tiếp, không phải tên hay màu của thiết bị. (Bài giảng chương 2, tr. 26.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-vao-ra-bus-046",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "Liên kết hệ thống trong bài giảng bao gồm những gì?",
+      "choices": [
+        "Các vi mạch liên kết và đường tín hiệu nối các mạch chức năng.",
+        "Các khối số học và thanh ghi nội bộ CPU, không gồm đường tín hiệu ngoài CPU.",
+        "Các thiết bị nhập và xuất trực tiếp cho người dùng, không gồm chipset.",
+        "Các vùng lưu trữ chương trình và tệp trên ổ đĩa, không gồm vi mạch liên kết."
+      ],
+      "answer": 0,
+      "explanation": "Chipset cùng các đường tín hiệu tạo liên kết giữa CPU, bộ nhớ và mô-đun I/O. (Bài giảng chương 2, tr. 27.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-vao-ra-bus-047",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "Vì sao không thể mặc định mọi chipset đều dùng được với mọi dòng CPU?",
+      "choices": [
+        "Cùng số lõi là đủ bảo đảm mọi đường tín hiệu của CPU giống nhau.",
+        "Cùng dung lượng RAM là đủ bảo đảm mọi giao tiếp CPU đều tương thích.",
+        "Thiết kế liên kết hệ thống gắn với dòng bộ xử lý và giao tiếp tương ứng.",
+        "Cùng tần số xung nhịp là đủ bảo đảm hai CPU dùng cùng mọi chipset."
+      ],
+      "answer": 2,
+      "explanation": "Bài giảng nêu liên kết được thiết kế cho từng dòng bộ xử lý. Cần tương thích giao tiếp, không chỉ cùng là máy PC. (Bài giảng chương 2, tr. 27.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-vao-ra-bus-048",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "CPU muốn chỉ ra vị trí cần truy cập, truyền nội dung và phát tín hiệu đọc/ghi. Ba chức năng này lần lượt thuộc bus nào?",
+      "choices": [
+        "Điều khiển; dữ liệu; địa chỉ.",
+        "Dữ liệu; địa chỉ; điều khiển.",
+        "Địa chỉ; dữ liệu; điều khiển.",
+        "Địa chỉ; điều khiển; dữ liệu."
+      ],
+      "answer": 2,
+      "explanation": "Address bus chỉ địa chỉ, data bus mang nội dung, control bus mang tín hiệu điều khiển. (Bài giảng chương 2, tr. 28.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-vao-ra-bus-049",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "“Bus dữ liệu rộng 32 bit” diễn đạt điều gì?",
+      "choices": [
+        "Có thể truyền đồng thời 32 bit dữ liệu theo mô hình bus song song.",
+        "CPU chắc chắn thực hiện 32 lệnh trong mỗi chu kỳ.",
+        "Máy tính chắc chắn chỉ kết nối được 32 thiết bị.",
+        "Bộ nhớ ngoài chỉ có tối đa 32 byte dung lượng."
+      ],
+      "answer": 0,
+      "explanation": "Độ rộng là số đường truyền thông tin đồng thời, không phải số lệnh hay dung lượng lưu trữ. (Bài giảng chương 2, tr. 28.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-vao-ra-bus-050",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "Giả sử mỗi lần truyền bus dữ liệu đưa được đúng 32 bit. Một lần truyền tương ứng bao nhiêu byte?",
+      "choices": [],
+      "answer": 4,
+      "explanation": "32/8 = 4 byte. (Bài giảng chương 2, tr. 28.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-vao-ra-bus-051",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "Một bus truyền đúng 4 byte mỗi lượt. Để chuyển 20 byte, không có phần phụ trội, cần ít nhất bao nhiêu lượt?",
+      "choices": [],
+      "answer": 5,
+      "explanation": "20/4 = 5 lượt; tốc độ thời gian còn phụ thuộc tần số và giao thức truyền. (Bài giảng chương 2, tr. 28.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-vao-ra-bus-052",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "Giả sử bus địa chỉ có 16 đường nhị phân và mỗi địa chỉ chọn 1 byte. Có thể phân biệt tối đa bao nhiêu byte nhớ?",
+      "choices": [],
+      "answer": 65536,
+      "explanation": "16 bit tạo 2^16 địa chỉ; mỗi địa chỉ chọn 1 byte nên tối đa 65536 byte theo giả thiết. (Bài giảng chương 2, tr. 19, 28.)",
+      "difficulty": 3,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-vao-ra-bus-053",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "Cặp thành phần nào lần lượt đảm nhiệm cấp điện và xử lý đồ họa trong cấu hình PC?",
+      "choices": [
+        "Mainboard; RAM.",
+        "GPU; PSU.",
+        "PSU; GPU.",
+        "RAM; mainboard."
+      ],
+      "answer": 2,
+      "explanation": "PSU là bộ nguồn, GPU xử lý đồ họa. Hai bộ phận không thay cho bộ nhớ RAM hay bo mạch chủ. (Bài giảng chương 2, tr. 29–30.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-vao-ra-bus-054",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "Vai trò nào phù hợp với mainboard trong một PC?",
+      "choices": [
+        "Bộ phận chỉ đổi điện lưới thành nguồn điện cung cấp máy.",
+        "Nền kết nối các thành phần như CPU, RAM và thiết bị mở rộng.",
+        "Kho chỉ chứa tệp ứng dụng thay cho mọi thiết bị lưu trữ.",
+        "Thiết bị chỉ phát âm thanh thay cho loa của máy tính."
+      ],
+      "answer": 1,
+      "explanation": "Bo mạch chủ là nền kết nối các phần cứng. Bộ nguồn mới đảm nhiệm chuyển/cấp điện. (Bài giảng chương 2, tr. 29–30.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-vao-ra-bus-055",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-vao-ra-bus",
+      "prompt": "Trong gaming PC, bộ phận nào được dùng trực tiếp để xử lý vấn đề nhiệt sinh ra khi hoạt động?",
+      "choices": [
+        "Thiết bị trỏ.",
+        "Hệ thống làm mát.",
+        "Dải đèn RGB.",
+        "Ổ đĩa lưu trữ."
+      ],
+      "answer": 1,
+      "explanation": "Hệ thống làm mát kiểm soát nhiệt; RGB chủ yếu phục vụ hiển thị/trang trí, không thay thế tản nhiệt. (Bài giảng chương 2, tr. 30–31.)",
+      "difficulty": 1,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-vao-ra-bus-056",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vào–ra, bus và thành phần PC",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Quan hệ nào phù hợp giữa chương trình và phần mềm theo chương?",
+      "choices": [
+        "Phần mềm chỉ chứa tên lệnh, còn chương trình chỉ chứa tên các thiết bị.",
+        "Phần mềm chỉ là một lệnh máy; chương trình không chứa các lệnh máy.",
+        "Phần mềm thường mang nghĩa rộng hơn dù có liên hệ chặt với chương trình.",
+        "Phần mềm chỉ là dữ liệu đầu vào, còn chương trình chỉ là kết quả đầu ra."
+      ],
+      "answer": 2,
+      "explanation": "Bài giảng dùng phần mềm gần với khái niệm chương trình nhưng có nghĩa rộng hơn; máy tính làm việc theo các chương trình. (Bài giảng chương 2, tr. 33.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-057",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Cài một chương trình soạn thảo khác mà không thay CPU minh họa đặc điểm nào?",
+      "choices": [
+        "Phần cứng phải được chế tạo lại cho mỗi nhiệm vụ mới.",
+        "Thay phần mềm luôn làm thay đổi kiến trúc vật lý CPU.",
+        "Mỗi ứng dụng chỉ sử dụng được trên một chiếc máy cụ thể.",
+        "Phần mềm có thể thay đổi linh hoạt hơn phần cứng."
+      ],
+      "answer": 3,
+      "explanation": "Có thể thay đổi nhiệm vụ máy tính bằng chương trình phù hợp mà không cần thay cấu trúc phần cứng. (Bài giảng chương 2, tr. 33–34.)",
+      "difficulty": 2,
+      "kind": "application",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-058",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Cặp nào lần lượt gồm phần mềm hệ thống và phần mềm ứng dụng?",
+      "choices": [
+        "Hệ điều hành; phần mềm kế toán.",
+        "Hệ điều hành; bộ nạp khởi động.",
+        "Phần mềm kế toán; hệ điều hành.",
+        "Trình soạn thảo; phần mềm kế toán."
+      ],
+      "answer": 0,
+      "explanation": "Hệ điều hành quản lý hệ thống; kế toán phục vụ nghiệp vụ người dùng. Bộ nạp khởi động cũng thuộc nhóm hệ thống. (Bài giảng chương 2, tr. 35.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-059",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Nhóm nào chỉ gồm những ví dụ phần mềm hệ thống trong bài giảng?",
+      "choices": [
+        "Hệ điều hành, BIOS, trình soạn thảo, bootloader.",
+        "Hệ điều hành, BIOS, UEFI, bootloader.",
+        "BIOS, UEFI, phần mềm kế toán, bootloader.",
+        "Hệ điều hành, bảng tính, UEFI, trình vẽ."
+      ],
+      "answer": 1,
+      "explanation": "Các thành phần khởi động và hệ điều hành hỗ trợ hoạt động nền của máy; trình soạn thảo, bảng tính và kế toán là ứng dụng. (Bài giảng chương 2, tr. 35.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-060",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Vì sao phần mềm hệ thống đòi hỏi độ ổn định và an toàn cao?",
+      "choices": [
+        "Lỗi của nó có thể ảnh hưởng môi trường chạy và tài nguyên dùng chung.",
+        "Vì phần mềm hệ thống không cần kiểm soát truy cập tài nguyên chung của các chương trình.",
+        "Vì lỗi hệ thống luôn chỉ ảnh hưởng một tệp ứng dụng riêng và không lan sang phần khác.",
+        "Vì phần mềm hệ thống chỉ dùng sau khi mọi chương trình người dùng đã kết thúc."
+      ],
+      "answer": 0,
+      "explanation": "Phần mềm hệ thống quản lý hoạt động nền và môi trường dùng phần cứng, nên lỗi có thể ảnh hưởng nhiều chương trình. (Bài giảng chương 2, tr. 35.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-061",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Một chương trình quản lý lương và một chương trình mô phỏng kết cấu cầu lần lượt phù hợp nhóm nào?",
+      "choices": [
+        "Phần mềm nhúng; hệ điều hành.",
+        "Nghiệp vụ; tính toán khoa học và kỹ thuật.",
+        "Tính toán khoa học và kỹ thuật; nghiệp vụ.",
+        "Hệ điều hành; phần mềm nhúng."
+      ],
+      "answer": 1,
+      "explanation": "Quản lý lương là nghiệp vụ; mô phỏng kết cấu là tính toán khoa học/kỹ thuật. (Bài giảng chương 2, tr. 36.)",
+      "difficulty": 2,
+      "kind": "application",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-062",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Ghép ví dụ với môi trường phần mềm nào phù hợp nhất?",
+      "choices": [
+        "Điều khiển máy giặt: nhúng; ứng dụng chạy trên trang web: web; ứng dụng điện thoại: di động.",
+        "Điều khiển máy giặt: nhúng; ứng dụng chạy trên trang web: di động; ứng dụng điện thoại: web.",
+        "Điều khiển máy giặt: di động; ứng dụng chạy trên trang web: web; ứng dụng điện thoại: nhúng.",
+        "Điều khiển máy giặt: web; ứng dụng chạy trên trang web: nhúng; ứng dụng điện thoại: di động."
+      ],
+      "answer": 0,
+      "explanation": "Đây là phân loại theo đặc thù/môi trường, khác tiêu chí hệ thống và ứng dụng. Trong thực tế các nhóm môi trường có thể giao nhau. (Bài giảng chương 2, tr. 34, 36.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-063",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Một giải thuật được biểu diễn bằng tập chỉ thị của ngôn ngữ lập trình tạo thành gì?",
+      "choices": [
+        "Ngôn ngữ lập trình.",
+        "Chương trình hợp dịch.",
+        "Chương trình.",
+        "Dữ liệu đầu vào của giải thuật."
+      ],
+      "answer": 2,
+      "explanation": "Lập trình mô tả thao tác giải quyết công việc bằng các chỉ thị để máy tính thực hiện. (Bài giảng chương 2, tr. 37.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-064",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Nhận định nào đúng về ngôn ngữ máy?",
+      "choices": [
+        "Được CPU thực hiện trực tiếp và độc lập với mọi kiến trúc.",
+        "Phải hợp dịch từ từ gợi nhớ và độc lập với mọi kiến trúc.",
+        "Được CPU thực hiện trực tiếp và gắn với kiến trúc phần cứng.",
+        "Chỉ dành cho người đọc và không thể được CPU thực hiện."
+      ],
+      "answer": 2,
+      "explanation": "Mã máy là dạng lệnh CPU hiểu trực tiếp; chương trình mã máy có quan hệ với kiến trúc/tập lệnh. (Bài giảng chương 2, tr. 38.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-065",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Slide biểu diễn một lệnh máy bằng 01D8 ở hệ 16. Điều này có mâu thuẫn với việc lệnh máy là các bit nhị phân không?",
+      "choices": [
+        "Có; CPU chỉ hiểu các ký tự 0 và 1 được gõ trên bàn phím.",
+        "Không; hệ 16 là cách viết gọn mẫu bit của lệnh.",
+        "Không; CPU tự hiểu mọi văn bản có chứa các chữ số hệ 16.",
+        "Có; viết bằng hệ 16 làm lệnh trở thành ngôn ngữ bậc cao."
+      ],
+      "answer": 1,
+      "explanation": "01D8 là ký hiệu viết gọn dãy bit, không thay đổi bản chất mã máy. Mã máy khó nhớ và gắn phần cứng. (Bài giảng chương 2, tr. 38–39.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-066",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Chương trình viết bằng các từ gợi nhớ như ADD, MOV được chuyển sang mã máy bằng công cụ nào?",
+      "choices": [
+        "Trình liên kết các tệp đối tượng.",
+        "Bộ nạp chương trình vào bộ nhớ.",
+        "Trình biên dịch mã nguồn bậc cao.",
+        "Chương trình hợp dịch."
+      ],
+      "answer": 3,
+      "explanation": "Hợp ngữ cần assembler (hợp dịch); việc dùng từ gợi nhớ không khiến CPU trực tiếp thực thi văn bản hợp ngữ. (Bài giảng chương 2, tr. 39.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-067",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Theo ngữ nghĩa ADD AX, BX trong ví dụ bài giảng, nếu AX = 5 và BX = 3 trước lệnh, sau lệnh các giá trị nào đúng? Giả sử không tràn.",
+      "choices": [
+        "AX = 8; BX = 8.",
+        "AX = 8; BX = 3.",
+        "AX = 5; BX = 8.",
+        "AX = 3; BX = 5."
+      ],
+      "answer": 1,
+      "explanation": "Ví dụ cộng nội dung AX và BX rồi ghi vào AX. BX là toán hạng nguồn, không bị thay bởi kết quả. (Bài giảng chương 2, tr. 39.)",
+      "difficulty": 2,
+      "kind": "code",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-068",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Trong đoạn assembly minh họa, thông điệp là “Hello, World” rồi thêm mã xuống dòng 10. Vì sao lệnh ghi đặt độ dài bằng 13 byte?",
+      "choices": [
+        "Chuỗi có 11 ký tự ASCII và thêm 2 byte kết thúc bằng 0.",
+        "Chuỗi có 13 ký tự ASCII trước khi thêm byte xuống dòng.",
+        "Chuỗi có 12 ký tự ASCII và thêm 1 byte xuống dòng.",
+        "Độ dài 13 là số hiệu lời gọi hệ thống, không phải độ dài chuỗi."
+      ],
+      "answer": 2,
+      "explanation": "Hello, World gồm 12 ký tự kể cả dấu phẩy và khoảng trắng; byte 10 là newline. Ví dụ dùng system call để ghi ra rồi thoát. (Bài giảng chương 2, tr. 40.)",
+      "difficulty": 3,
+      "kind": "code",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-069",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-mem",
+      "prompt": "Phát biểu nào đúng về Python, C và Java khi xét như các ngôn ngữ bậc cao?",
+      "choices": [
+        "Ít phụ thuộc phần cứng hơn hợp ngữ nhưng cần cơ chế dịch/thực thi phù hợp.",
+        "Thay từ gợi nhớ bằng mã nhị phân nên không cần bất kỳ cơ chế chuyển đổi nào.",
+        "Phụ thuộc kiến trúc phần cứng hơn hợp ngữ vì dùng cú pháp gần ngôn ngữ tự nhiên.",
+        "Chỉ chạy sau khi người lập trình tự viết lại từng lệnh bằng hợp ngữ của máy đích."
+      ],
+      "answer": 0,
+      "explanation": "Ngôn ngữ bậc cao gần cách biểu đạt của con người hơn và giảm phụ thuộc phần cứng. Ít phụ thuộc không có nghĩa mọi máy chạy trực tiếp mã nguồn mà không cần công cụ. (Bài giảng chương 2, tr. 41.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-mem-070",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phần mềm và ngôn ngữ lập trình",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-he-dieu-hanh",
+      "prompt": "Mô tả nào đúng nhất về hệ điều hành?",
+      "choices": [
+        "Hệ thống chương trình quản lý tài nguyên và cung cấp dịch vụ cho người dùng.",
+        "Một ngôn ngữ lập trình dùng diễn đạt giải thuật, không cung cấp dịch vụ tài nguyên.",
+        "Một bộ dữ liệu cấu hình thiết bị, không có mã chương trình quản lý hoạt động máy.",
+        "Một chương trình nghiệp vụ chuyên tạo báo cáo, sử dụng tài nguyên do ứng dụng khác cấp."
+      ],
+      "answer": 0,
+      "explanation": "Hệ điều hành thuộc phần mềm hệ thống, là lớp quản lý và cung cấp dịch vụ. (Bài giảng chương 2, tr. 43.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-he-dieu-hanh-071",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vai trò và nhiệm vụ hệ điều hành",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-he-dieu-hanh",
+      "prompt": "Hai ứng dụng cùng cần CPU và RAM. Việc phân phối các tài nguyên này thuộc nhiệm vụ nào của hệ điều hành?",
+      "choices": [
+        "Quản lý xác thực tài khoản người dùng.",
+        "Quản lý tên và vị trí các tệp trên đĩa.",
+        "Quản lý cấp phát tài nguyên.",
+        "Quản lý hiển thị các biểu tượng giao diện."
+      ],
+      "answer": 2,
+      "explanation": "Hệ điều hành quản lý CPU, bộ nhớ và thiết bị vào–ra cho các chương trình. (Bài giảng chương 2, tr. 44.)",
+      "difficulty": 2,
+      "kind": "application",
+      "responseType": "choice",
+      "id": "it1140-c2-he-dieu-hanh-072",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vai trò và nhiệm vụ hệ điều hành",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-he-dieu-hanh",
+      "prompt": "Theo dõi một chương trình đang chạy để dừng hoặc tiếp tục hoạt động thuộc nhóm nhiệm vụ nào?",
+      "choices": [
+        "Quản lý cây thư mục trên thiết bị lưu trữ.",
+        "Quản lý chương trình đang thực hiện.",
+        "Quản lý tài khoản và thông tin đăng nhập.",
+        "Quản lý tên và thuộc tính các tệp đã lưu."
+      ],
+      "answer": 1,
+      "explanation": "Hệ điều hành quản lý hoạt động của các chương trình, không chỉ quản lý các tệp của chúng. (Bài giảng chương 2, tr. 44.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-he-dieu-hanh-073",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vai trò và nhiệm vụ hệ điều hành",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-he-dieu-hanh",
+      "prompt": "Nhóm nào chỉ gồm các nhiệm vụ được liệt kê cho hệ điều hành?",
+      "choices": [
+        "Quản lý tệp, tự viết nội dung báo cáo và tính lương theo chính sách doanh nghiệp.",
+        "Quản lý tệp, điều khiển thiết bị, nhận và thực hiện lệnh người dùng.",
+        "Cấp phát bộ nhớ, tự chọn thuật toán nghiệp vụ và sửa mọi lỗi mã nguồn ứng dụng.",
+        "Điều khiển thiết bị, tự soạn thư trả lời và thiết kế bảng trình chiếu."
+      ],
+      "answer": 1,
+      "explanation": "Hệ điều hành cung cấp môi trường và dịch vụ; nội dung nghiệp vụ thuộc ứng dụng, chế tạo phần cứng không phải nhiệm vụ phần mềm. (Bài giảng chương 2, tr. 44.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-he-dieu-hanh-074",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vai trò và nhiệm vụ hệ điều hành",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-he-dieu-hanh",
+      "prompt": "Vì sao một hệ điều hành cho thiết bị này không mặc nhiên cài được lên mọi thiết bị khác?",
+      "choices": [
+        "Chỉ cần đổi phần mở rộng tệp cài đặt là hệ điều hành tự thích nghi mọi kiến trúc.",
+        "Các thiết bị có cùng giao diện đồ họa thì chắc chắn dùng chung được mọi bản cài.",
+        "Hệ điều hành chỉ phụ thuộc vào số lượng tệp người dùng, không phụ thuộc phần cứng.",
+        "Cần phiên bản tương thích kiến trúc phần cứng và nền tảng thiết bị."
+      ],
+      "answer": 3,
+      "explanation": "Hệ điều hành là phần mềm hệ thống có phụ thuộc nền tảng. Danh sách ví dụ không có nghĩa các nền tảng hoán đổi tùy ý. (Bài giảng chương 2, tr. 43.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-he-dieu-hanh-075",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vai trò và nhiệm vụ hệ điều hành",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-he-dieu-hanh",
+      "prompt": "Theo các ví dụ trong bài giảng, ghép nhóm thiết bị với hệ điều hành nào phù hợp?",
+      "choices": [
+        "Máy chủ: watchOS; PC: iOS; điện thoại: Windows PC.",
+        "Máy chủ: Linux; PC: Windows; điện thoại: Android.",
+        "Máy chủ: Android; PC: watchOS; điện thoại: FreeRTOS.",
+        "Máy chủ: iOS; PC: Wear OS; điện thoại: CentOS."
+      ],
+      "answer": 1,
+      "explanation": "Đây là các ví dụ điển hình chứ không phải quan hệ duy nhất: Linux cũng được dùng ở nhiều loại máy khác. (Bài giảng chương 2, tr. 43.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-he-dieu-hanh-076",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vai trò và nhiệm vụ hệ điều hành",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-he-dieu-hanh",
+      "prompt": "Cặp ví dụ nào phù hợp với Smart TV và đồng hồ thông minh, theo thứ tự?",
+      "choices": [
+        "watchOS; webOS.",
+        "CentOS; Ubuntu Desktop.",
+        "webOS; watchOS.",
+        "iOS; Windows PC."
+      ],
+      "answer": 2,
+      "explanation": "Slide nêu webOS/Android/Tizen cho TV và Wear OS/Tizen/watchOS cho đồng hồ. Word là ứng dụng, không phải hệ điều hành. (Bài giảng chương 2, tr. 43.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-he-dieu-hanh-077",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vai trò và nhiệm vụ hệ điều hành",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-he-dieu-hanh",
+      "prompt": "Nhóm nào gồm các ví dụ hệ điều hành cho hệ nhúng trong bài giảng?",
+      "choices": [
+        "FreeRTOS, uClinux, VxWorks.",
+        "Android, iOS, Windows Mobile.",
+        "Windows PC, macOS, Ubuntu Desktop.",
+        "Wear OS, watchOS, Tizen cho đồng hồ."
+      ],
+      "answer": 0,
+      "explanation": "FreeRTOS, uClinux và VxWorks là các ví dụ hệ điều hành nhúng. Không suy ra mọi thiết bị nhúng đều bắt buộc có hệ điều hành. (Bài giảng chương 2, tr. 43.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-he-dieu-hanh-078",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vai trò và nhiệm vụ hệ điều hành",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-he-dieu-hanh",
+      "prompt": "Trong quá trình khởi động và làm việc, vai trò nào phù hợp với hệ điều hành?",
+      "choices": [
+        "Tham gia khởi tạo môi trường sử dụng và quản lý hoạt động sau khi được nạp.",
+        "Chỉ quản lý tệp khi tắt máy, không tham gia điều khiển thiết bị khi ứng dụng hoạt động.",
+        "Chỉ cung cấp màn hình đăng nhập, sau đó giao mọi tài nguyên cho từng ứng dụng tự tranh chấp.",
+        "Thực hiện vai trò của toàn bộ firmware ngay cả khi chưa được nạp vào bộ nhớ."
+      ],
+      "answer": 0,
+      "explanation": "Khởi động còn có firmware/bộ nạp; hệ điều hành tạo môi trường làm việc và quản lý tài nguyên sau khi được nạp. (Bài giảng chương 2, tr. 44.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-he-dieu-hanh-079",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vai trò và nhiệm vụ hệ điều hành",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-he-dieu-hanh",
+      "prompt": "Thao tác nào thuộc nhóm lệnh hệ thống thay vì chỉ thao tác trên một tệp?",
+      "choices": [
+        "Xem nội dung một tệp rồi di chuyển tệp sang thư mục khác.",
+        "Chép một tệp sang thư mục khác và đổi tên bản sao.",
+        "Đổi tên một tệp và xem nội dung tệp đó.",
+        "Thiết lập cấu hình mạng và quản lý người dùng."
+      ],
+      "answer": 3,
+      "explanation": "Các lệnh hệ thống gồm quản lý người dùng, ngày giờ, mạng, định dạng đĩa; hệ lệnh còn hỗ trợ cài đặt/chạy phần mềm. (Bài giảng chương 2, tr. 53.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-he-dieu-hanh-080",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Vai trò và nhiệm vụ hệ điều hành",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Tệp được hiểu thế nào trong phần hệ điều hành?",
+      "choices": [
+        "Vùng logic chia từ một ổ vật lý, chứa được nhiều thư mục và tệp.",
+        "Danh sách các địa chỉ thư mục con, không được chứa nội dung chương trình.",
+        "Đơn vị thời gian mà hệ điều hành dùng để cấp CPU cho một ứng dụng.",
+        "Đơn vị thông tin được hệ điều hành quản lý trên bộ nhớ ngoài."
+      ],
+      "answer": 3,
+      "explanation": "Nội dung tệp có thể là chương trình, dữ liệu hoặc văn bản; không chỉ tài liệu soạn thảo. (Bài giảng chương 2, tr. 45.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-081",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Với tên tệp baocao.docx, cách tách phần tên và phần mở rộng nào đúng?",
+      "choices": [
+        "Phần tên: baocao.doc; phần mở rộng: x.",
+        "Phần tên: baocao; phần mở rộng: docx.",
+        "Phần tên: docx; phần mở rộng: baocao.",
+        "Phần tên: baocao.docx; không có phần mở rộng."
+      ],
+      "answer": 1,
+      "explanation": "Dấu chấm phân cách phần tên và phần mở rộng trong ví dụ; phần mở rộng không bị giới hạn luôn đúng 3 ký tự. (Bài giảng chương 2, tr. 45.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-082",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Một tệp có tên readme và không có phần mở rộng. Nhận định nào đúng theo mô tả tên tệp của chương?",
+      "choices": [
+        "Tệp vẫn có thể hợp lệ vì phần mở rộng không phải lúc nào cũng bắt buộc.",
+        "Tệp chắc chắn không hợp lệ vì mọi tệp bắt buộc có đuôi đúng ba ký tự.",
+        "Tệp chỉ có thể là chương trình thực thi, không thể chứa văn bản.",
+        "Tệp chỉ có thể thuộc thư mục gốc, không được đặt trong thư mục con."
+      ],
+      "answer": 0,
+      "explanation": "Phần tên bắt buộc, phần mở rộng thường dùng để nhận diện loại nhưng không phải mọi tệp đều có. (Bài giảng chương 2, tr. 45, 47.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-083",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Trong tên tệp thông thường trên Windows, lựa chọn nào không hợp lệ do chứa ký tự bị cấm?",
+      "choices": [
+        "ket$qua.txt",
+        "ket?qua.txt",
+        "ket_qua.txt",
+        "ket qua.txt"
+      ],
+      "answer": 1,
+      "explanation": "Dấu ? là ký tự dành riêng, không được dùng như ký tự tên tệp thông thường. Dấu gạch dưới, $ và khoảng trắng có thể hợp lệ. Không áp dụng nhầm wildcard thành tên tệp thật. (Bài giảng chương 2, tr. 46.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-084",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Vì sao không nên hiểu con số khoảng 32767 ký tự là giới hạn luôn áp dụng cho riêng tên một tệp Windows?",
+      "choices": [
+        "Mọi bản Windows luôn dùng quy tắc tên 8 ký tự và đuôi 3 ký tự, không có ngoại lệ.",
+        "Giới hạn tên và đường dẫn luôn bằng nhau vì cả hai cùng được lưu trên đĩa.",
+        "Giới hạn đường dẫn đầy đủ khác giới hạn từng thành phần tên.",
+        "32767 là giới hạn bắt buộc của từng tên, còn đường dẫn chỉ dài tối đa bằng tên đó."
+      ],
+      "answer": 2,
+      "explanation": "Tài liệu Microsoft phân biệt đường dẫn mở rộng với độ dài từng thành phần; thành phần tên thường bị giới hạn khoảng 255 ký tự tùy hệ thống tệp. Slide gộp hai khái niệm nên cần đính chính. (Bài giảng chương 2, tr. 46.)",
+      "difficulty": 3,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-085",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Trong các tên sau trên Windows thông thường, tên nào hợp lệ theo các ký tự được phép?",
+      "choices": [
+        "dulieu*211212.dat",
+        "dulieu?211212.dat",
+        "dulieu:211212.dat",
+        "dulieu$211212.dat"
+      ],
+      "answer": 3,
+      "explanation": "Dấu $ có thể xuất hiện trong tên tệp; ?, : và * là các ký tự dành riêng. Hợp lệ về cú pháp khác với việc tên có đủ gợi nhớ hay không. (Bài giảng chương 2, tr. 46.)",
+      "difficulty": 1,
+      "kind": "application",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-086",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Nhóm phần mở rộng nào thường chỉ tệp thực thi trong môi trường Windows được minh họa?",
+      "choices": [
+        "PAS, BAS.",
+        "COM, EXE.",
+        "TXT, DOC.",
+        "BMP, JPG."
+      ],
+      "answer": 1,
+      "explanation": "COM/EXE thường là tệp thực thi; TXT/DOC là văn bản, BMP/JPG là ảnh, PAS/BAS là mã nguồn. Chỉ đuôi tên không đảm bảo tệp an toàn hoặc chạy được trên mọi phiên bản. (Bài giảng chương 2, tr. 47.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-087",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Ghép phần mở rộng với loại nội dung nào đúng theo ví dụ?",
+      "choices": [
+        "PAS: hình ảnh; XLS: mã nguồn; JPG: bảng tính.",
+        "PAS: tệp thực thi; XLS: âm thanh; JPG: văn bản.",
+        "PAS: bảng tính; XLS: hình ảnh; JPG: mã nguồn.",
+        "PAS: mã nguồn; XLS: bảng tính; JPG: hình ảnh."
+      ],
+      "answer": 3,
+      "explanation": "PAS/BAS thường là mã nguồn; WK1/XLS là bảng tính; BMP/GIF/JPG là ảnh. (Bài giảng chương 2, tr. 47.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-088",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Đổi tên anh.jpg thành anh.txt mà không chuyển đổi nội dung có tác dụng nào chắc chắn?",
+      "choices": [
+        "Đổi tên và có thể đổi cách ứng dụng nhận diện; không tự chuyển dữ liệu ảnh thành văn bản.",
+        "Tự xóa nội dung vì mọi phần mở rộng đều quyết định cấu trúc vật lý.",
+        "Tự chạy tệp như chương trình máy dù chỉ thay phần mở rộng.",
+        "Tự chuyển toàn bộ các điểm ảnh thành một tài liệu văn bản thuần."
+      ],
+      "answer": 0,
+      "explanation": "Phần mở rộng là quy ước tên; chuyển đổi định dạng cần xử lý nội dung. DAT cũng là đuôi chung, không đảm bảo mọi tệp DAT đều là âm thanh/video. (Bài giảng chương 2, tr. 47.)",
+      "difficulty": 3,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-089",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Theo quy tắc wildcard của bài giảng, ? đại diện cho bao nhiêu ký tự tại vị trí xuất hiện?",
+      "choices": [
+        "Một chuỗi có độ dài tùy ý.",
+        "Không hoặc một ký tự.",
+        "Đúng một ký tự.",
+        "Đúng hai ký tự."
+      ],
+      "answer": 2,
+      "explanation": "Trong các câu wildcard của bộ này, ? khớp đúng một ký tự, * khớp chuỗi có thể rỗng; không xét các ngoại lệ của công cụ cụ thể. (Bài giảng chương 2, tr. 48.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-090",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Theo quy tắc ? khớp đúng một ký tự, tên nào khớp Bai?.doc?",
+      "choices": [
+        "Bai12.doc",
+        "BaiA.doc",
+        "BaiA.docx",
+        "Bai.doc"
+      ],
+      "answer": 1,
+      "explanation": "Giữa Bai và .doc phải có đúng một ký tự. Đuôi .doc là phần cố định. (Bài giảng chương 2, tr. 48.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-091",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Theo quy tắc * khớp chuỗi bất kỳ kể cả rỗng, tên nào khớp Bai*.doc nhưng không khớp Bai?.doc?",
+      "choices": [
+        "Bai5.doc",
+        "BaiA.doc",
+        "Bai1.doc",
+        "Bai.doc"
+      ],
+      "answer": 3,
+      "explanation": "Bai.doc có chuỗi rỗng tại vị trí *, nhưng ? đòi hỏi một ký tự. (Bài giảng chương 2, tr. 48.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-092",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Theo quy tắc wildcard của bài giảng, mẫu Bai.* giữ cố định phần nào?",
+      "choices": [
+        "Tên bắt buộc có đúng ba ký tự sau dấu chấm.",
+        "Tên bắt buộc chứa đúng một ký tự trước dấu chấm.",
+        "Tên trước dấu chấm được thay đổi; phần sau bắt buộc là Bai.",
+        "Tên trước dấu chấm là Bai; phần sau dấu chấm được thay đổi."
+      ],
+      "answer": 3,
+      "explanation": "Dấu * nằm sau dấu chấm nên phần mở rộng được thay đổi, còn Bai. là tiền tố cố định. (Bài giảng chương 2, tr. 48.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-093",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Theo quy tắc ? đúng một ký tự và * có thể rỗng, tên nào khớp ?E*.*? Xét đúng chữ hoa/thường như viết.",
+      "choices": [
+        "Test.txt",
+        "ETest.txt",
+        "TEst.txt",
+        "E.txt"
+      ],
+      "answer": 2,
+      "explanation": "Ký tự thứ hai phải là E viết hoa. TEst.txt thỏa; trong ETest.txt ký tự thứ hai là T, còn E.txt có dấu chấm ở vị trí đó. (Bài giảng chương 2, tr. 48.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-094",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Theo quy tắc ? đúng một ký tự, xét các tên: Bai.doc, Bai1.doc, Bai12.doc, BaiA.doc, BaiB.txt. Có bao nhiêu tên khớp Bai?.doc?",
+      "choices": [],
+      "answer": 2,
+      "explanation": "Chỉ Bai1.doc và BaiA.doc có đúng một ký tự xen giữa Bai và .doc. (Bài giảng chương 2, tr. 48.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-tep-thu-muc-095",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Theo quy tắc * khớp chuỗi bất kỳ kể cả rỗng, xét các tên: Bai.doc, Bai1.doc, Bai12.doc, BaiA.doc, BaiB.txt. Có bao nhiêu tên khớp Bai*.doc?",
+      "choices": [],
+      "answer": 4,
+      "explanation": "Bốn tên đầu khớp. BaiB.txt không khớp phần .doc cố định. (Bài giảng chương 2, tr. 48.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-tep-thu-muc-096",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Trong cùng một thư mục Windows thông thường, tình huống nào phù hợp quy tắc tên tệp phân biệt?",
+      "choices": [
+        "baocao.txt và BAOCAO.TXT luôn là hai tệp độc lập trong chế độ không phân biệt hoa/thường.",
+        "baocao.txt và baocao.docx có thể cùng tồn tại.",
+        "Hai tệp đều có tên đầy đủ baocao.txt có thể cùng tồn tại.",
+        "Mỗi thư mục chỉ được chứa một tệp bất kể tên."
+      ],
+      "answer": 1,
+      "explanation": "Phần mở rộng là một phần tên đầy đủ nên hai đuôi khác nhau phân biệt được. Đề nêu chế độ Windows thông thường, không xét thư mục bật phân biệt hoa/thường. (Bài giảng chương 2, tr. 49.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-097",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Máy chỉ có một ổ đĩa vật lý nhưng hiển thị C:, D:, E:. Cách giải thích nào phù hợp?",
+      "choices": [
+        "Các thư mục con trên cùng phân vùng tự động trở thành ổ C:, D:, E:.",
+        "Ổ vật lý có thể được chia thành nhiều phân vùng/ổ logic.",
+        "Mỗi ký tự ổ đĩa luôn tương ứng một ổ vật lý riêng biệt.",
+        "Một ổ vật lý chỉ có thể có một ký tự ổ nên trường hợp này không thể xảy ra."
+      ],
+      "answer": 1,
+      "explanation": "Phân vùng logic không đồng nghĩa số lượng thiết bị vật lý. (Bài giảng chương 2, tr. 49.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-098",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Trong cây thư mục của một phân vùng Windows, nhận định nào đúng?",
+      "choices": [
+        "Mỗi tệp đều phải nằm ngoài mọi thư mục để CPU truy cập được.",
+        "Một thư mục không thể đồng thời có tệp và thư mục con.",
+        "Có thư mục gốc; các thư mục con có thể chứa thư mục con và tệp.",
+        "Thư mục cha luôn là tệp có cùng phần mở rộng với thư mục con."
+      ],
+      "answer": 2,
+      "explanation": "Tổ chức dạng cây: thư mục tương tự cành, tệp tương tự lá; tệp thuộc thư mục gốc hoặc thư mục con. (Bài giảng chương 2, tr. 50.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-099",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Cây thư mục có TC30 trong gốc ổ C:, BAI_TAP trong TC30 và B1.c trong BAI_TAP. Đường dẫn đầy đủ của B1.c là gì?",
+      "choices": [
+        "C:\\BAI_TAP\\TC30\\B1.c",
+        "C:\\TC30\\B1.c\\BAI_TAP",
+        "C:\\B1.c\\TC30\\BAI_TAP",
+        "C:\\TC30\\BAI_TAP\\B1.c"
+      ],
+      "answer": 3,
+      "explanation": "Đi từ gốc qua TC30 rồi BAI_TAP, cuối cùng đến tên tệp B1.c. Thứ tự thư mục mang ý nghĩa cấu trúc. (Bài giảng chương 2, tr. 51–52.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-100",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Thư mục hiện thời là C:\\TC30. Đường dẫn tương đối BAI_TAP\\B1.c được hiểu là tệp nào?",
+      "choices": [
+        "C:\\TC30\\BAI_TAP\\B1.c",
+        "C:\\B1.c",
+        "C:\\TC30\\B1.c",
+        "C:\\BAI_TAP\\B1.c"
+      ],
+      "answer": 0,
+      "explanation": "Đường dẫn tương đối bắt đầu từ thư mục hiện thời, không tự bắt đầu lại từ gốc. (Bài giảng chương 2, tr. 52.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-101",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Một cây có thư mục gốc chứa ba thư mục SETUP, WINDOWS, TC30. WINDOWS có hai thư mục con SYSTEM, JAVA; TC30 có hai thư mục con BAI_TAP, BIN; không có thư mục nào khác. Kể cả gốc, cây có bao nhiêu thư mục?",
+      "choices": [],
+      "answer": 8,
+      "explanation": "Có 1 gốc + 3 thư mục ở tầng kế + 2 con của WINDOWS + 2 con của TC30 = 8. Không đếm các tệp như thư mục. (Bài giảng chương 2, tr. 50–51.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-tep-thu-muc-102",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "Trong đường dẫn C:\\TC30\\BAI_TAP\\B1.c, từ thư mục gốc ổ C: cần đi qua bao nhiêu thư mục con để đến thư mục chứa tệp?",
+      "choices": [],
+      "answer": 2,
+      "explanation": "Đi qua TC30 rồi BAI_TAP. B1.c là tệp, không phải thư mục thứ ba. (Bài giảng chương 2, tr. 51–52.)",
+      "difficulty": 2,
+      "kind": "calculation",
+      "responseType": "number",
+      "id": "it1140-c2-tep-thu-muc-103",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-tep-thu-muc",
+      "prompt": "So sánh sao chép và di chuyển một tệp sang thư mục khác, giả sử thao tác thành công và không ghi đè. Nhận định nào đúng?",
+      "choices": [
+        "Sao chép giữ bản gốc; di chuyển đổi vị trí của tệp khỏi nơi cũ.",
+        "Sao chép và di chuyển đều xóa bản ở nơi cũ, chỉ để một bản tại thư mục đích.",
+        "Sao chép xóa bản gốc; di chuyển giữ bản gốc và tạo thêm bản mới ở đích.",
+        "Sao chép và di chuyển đều giữ hai bản giống nhau ở hai thư mục sau khi hoàn tất."
+      ],
+      "answer": 0,
+      "explanation": "Đây là hai thao tác tệp khác nhau trong hệ lệnh. Định dạng đĩa là thao tác hệ thống riêng, có thể làm mất dữ liệu. (Bài giảng chương 2, tr. 53.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-tep-thu-muc-104",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Tệp, thư mục, đường dẫn và wildcard",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Người dùng nhập lệnh có cú pháp cụ thể bằng bàn phím để thao tác tệp. Hình thái giao tiếp chính trong tình huống là gì?",
+      "choices": [
+        "CLI.",
+        "NUI dựa trên cử chỉ.",
+        "NUI dựa trên giọng nói.",
+        "GUI."
+      ],
+      "answer": 0,
+      "explanation": "CLI dùng dòng lệnh; người dùng cần biết cú pháp, thường phù hợp tác vụ quản trị. (Bài giảng chương 2, tr. 54–55.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-105",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Nhận định nào mô tả đúng GUI?",
+      "choices": [
+        "Gọi chức năng chỉ bằng cử chỉ cơ thể, không dùng thiết bị trỏ hoặc phím tắt.",
+        "Gọi chức năng chỉ bằng cú pháp văn bản, không dùng đối tượng đồ họa.",
+        "Gọi chức năng bằng thành phần đồ họa, thiết bị trỏ hoặc phím tắt.",
+        "Gọi chức năng chỉ bằng giọng nói, không dùng cửa sổ hoặc biểu tượng."
+      ],
+      "answer": 2,
+      "explanation": "GUI không có nghĩa chỉ dùng chuột: còn có bàn phím và phím tắt. (Bài giảng chương 2, tr. 54.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-106",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Một máy Windows có cửa sổ đồ họa và Command Prompt. Điều này cho thấy gì?",
+      "choices": [
+        "Mỗi hình thái buộc phải dùng một CPU vật lý khác nhau.",
+        "Có Command Prompt thì hệ điều hành không còn GUI.",
+        "Có GUI thì không thể thực thi bất kỳ lệnh văn bản nào.",
+        "Một hệ điều hành có thể hỗ trợ nhiều hình thái giao tiếp."
+      ],
+      "answer": 3,
+      "explanation": "GUI/CLI là hình thái tương tác, không phải các nhóm hệ điều hành loại trừ nhau. Linux cũng có thể có GUI. (Bài giảng chương 2, tr. 54, 64.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-107",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Theo các mốc minh họa lịch sử trong slide, thứ tự từ sớm đến muộn là gì?",
+      "choices": [
+        "Apple Lisa → Xerox Star → Windows 1.01.",
+        "Xerox Star → Apple Lisa → Windows 1.01.",
+        "Windows 1.01 → Xerox Star → Apple Lisa.",
+        "Xerox Star → Windows 1.01 → Apple Lisa."
+      ],
+      "answer": 1,
+      "explanation": "Các ảnh minh họa cho thấy GUI xuất hiện ở nhiều hệ thống trước Windows hiện đại. Đây là thứ tự các ví dụ trên slide, không tuyên bố lịch sử GUI chỉ gồm ba hệ thống. (Bài giảng chương 2, tr. 56–58.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-108",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Nhóm tương tác nào phù hợp giao diện tự nhiên NUI?",
+      "choices": [
+        "Dùng từ gợi nhớ hợp ngữ để ra chỉ thị trực tiếp cho CPU.",
+        "Nhập câu lệnh, ghi nhớ tham số và sửa lỗi cú pháp trong terminal.",
+        "Cử chỉ tay, chuyển động cơ thể và lời nói.",
+        "Gọi các hàm API bằng mã nguồn theo giao thức chương trình."
+      ],
+      "answer": 2,
+      "explanation": "NUI khai thác hành động tự nhiên, có thể gồm mắt, đầu, cơ thể, tiếng nói và tín hiệu sinh học. (Bài giảng chương 2, tr. 59–60.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-109",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Để nhận dạng cử chỉ cơ thể trong một trò chơi, tổ hợp nào phù hợp nhất?",
+      "choices": [
+        "Micro cùng công nghệ nhận dạng giọng nói, không có cảm biến chuyển động.",
+        "Camera/cảm biến cùng công nghệ nhận dạng cử chỉ.",
+        "Bàn phím cùng bộ phân tích cú pháp lệnh văn bản.",
+        "Chuột cùng trình xử lý thao tác nhấp nút, không thu nhận tư thế cơ thể."
+      ],
+      "answer": 1,
+      "explanation": "NUI cần thiết bị thu nhận và công nghệ nhận dạng; riêng cảm biến không tự hiểu ý nghĩa hành động. (Bài giảng chương 2, tr. 59.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-110",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Ưu điểm được nhấn mạnh của giao diện tự nhiên là gì?",
+      "choices": [
+        "Giảm yêu cầu thiết bị thu nhận bằng cách buộc người dùng nhập mã nhị phân.",
+        "Loại bỏ phần mềm nhận dạng và yêu cầu người dùng tự mã hóa từng cử chỉ.",
+        "Dễ tiếp cận với nhiều người dùng, kể cả trẻ em, nhờ hành động quen thuộc.",
+        "Phù hợp chủ yếu với việc ghi nhớ cú pháp dài thay vì dùng hành động quen thuộc."
+      ],
+      "answer": 2,
+      "explanation": "Tính tự nhiên có thể giảm rào cản thao tác, nhưng vẫn cần phần cứng và phần mềm thích hợp. (Bài giảng chương 2, tr. 59.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-111",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Dòng hệ điều hành Windows trong chương do tổ chức nào phát triển?",
+      "choices": [
+        "IBM.",
+        "Google.",
+        "Apple.",
+        "Microsoft."
+      ],
+      "answer": 3,
+      "explanation": "Windows là dòng hệ điều hành do Microsoft phát triển; bài giảng nhắc mốc bắt đầu năm 1985. Không dùng tỷ lệ thị phần trên slide như dữ kiện hiện tại. (Bài giảng chương 2, tr. 62.)",
+      "difficulty": 1,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-112",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Khi đối chiếu lịch phát hành Windows 11 với thông báo chính thức của Microsoft, ngày bắt đầu phát hành là ngày nào?",
+      "choices": [
+        "05/11/2022.",
+        "05/10/2021.",
+        "05/11/2021.",
+        "05/10/2020."
+      ],
+      "answer": 1,
+      "explanation": "Microsoft công bố Windows 11 bắt đầu có mặt ngày 05/10/2021. Dòng tháng 11/2021 trong slide cần sửa; đây là mốc lịch sử, không phải câu hỏi phiên bản hiện tại. (Bài giảng chương 2, tr. 62.)",
+      "difficulty": 1,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-113",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Trong các dịch vụ được nêu, dịch vụ nào chủ yếu hỗ trợ đồng bộ tệp của người dùng?",
+      "choices": [
+        "OneDrive.",
+        "Copilot.",
+        "Command Prompt.",
+        "Microsoft Store."
+      ],
+      "answer": 0,
+      "explanation": "OneDrive đồng bộ dữ liệu; Store phân phối ứng dụng, Command Prompt là giao diện dòng lệnh, Copilot là trợ lý AI. (Bài giảng chương 2, tr. 63.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-114",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Ghép dịch vụ với vai trò nào đúng?",
+      "choices": [
+        "Microsoft account: ứng dụng; Store: trợ lý AI; Copilot: định dạng đĩa.",
+        "Microsoft account: định dạng đĩa; Store: tài khoản; Copilot: đồng bộ tệp.",
+        "Microsoft account: trợ lý AI; Store: đồng bộ tệp; Copilot: ứng dụng.",
+        "Microsoft account: tài khoản/đồng bộ; Store: ứng dụng; Copilot: trợ lý AI."
+      ],
+      "answer": 3,
+      "explanation": "Các dịch vụ có vai trò khác nhau và tích hợp với môi trường Windows; chúng không phải ba tên của cùng một chức năng. (Bài giảng chương 2, tr. 63.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-115",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Một ứng dụng desktop cho Windows có thể được tải từ website của nhà phát triển rồi cài đặt. Nhận định nào phù hợp?",
+      "choices": [
+        "Kênh tải từ website quyết định ứng dụng không còn thuộc nền tảng Windows.",
+        "Ứng dụng desktop chỉ có thể cài nếu được phân phối trong Microsoft Store.",
+        "Đây là một kênh phân phối ứng dụng desktop được bài giảng mô tả.",
+        "Ứng dụng tải từ website không thể truy cập dịch vụ của hệ điều hành sau khi cài."
+      ],
+      "answer": 2,
+      "explanation": "Kênh tải không tự đảm bảo an toàn hay tương thích. Bài giảng mô tả ứng dụng desktop có thể được phân phối ngoài Store. (Bài giảng chương 2, tr. 63.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-116",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Vì sao không nên hiểu rằng mọi ứng dụng đóng gói kiểu mới trên Windows chỉ có thể cài từ Microsoft Store?",
+      "choices": [
+        "Vì đóng gói ứng dụng đồng nghĩa không cần xác minh hay cài đặt trên thiết bị đích.",
+        "Có các kênh triển khai được hỗ trợ ngoài Store, tùy chính sách và điều kiện.",
+        "Vì mọi ứng dụng ngoài Store đều là phần mềm hệ thống chứ không phải ứng dụng người dùng.",
+        "Vì cứ có phần mở rộng MSIX thì luôn bỏ qua được mọi chính sách cài đặt của máy."
+      ],
+      "answer": 1,
+      "explanation": "Microsoft hỗ trợ sideload/triển khai ứng dụng ngoài Store trong các điều kiện phù hợp. Cần phân biệt kênh phân phối với kiểu ứng dụng, không dùng phát biểu tuyệt đối trên slide. (Bài giảng chương 2, tr. 63.)",
+      "difficulty": 3,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-117",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-giao-dien",
+      "prompt": "Ghép cách tương tác trong Windows 11 với hình thái nào đúng?",
+      "choices": [
+        "Cửa sổ đồ họa: GUI; Command Prompt: CLI; lệnh giọng nói: NUI.",
+        "Cửa sổ đồ họa: GUI; Command Prompt: NUI; lệnh giọng nói: CLI.",
+        "Cửa sổ đồ họa: CLI; Command Prompt: GUI; lệnh giọng nói: NUI.",
+        "Cửa sổ đồ họa: NUI; Command Prompt: CLI; lệnh giọng nói: GUI."
+      ],
+      "answer": 0,
+      "explanation": "Windows hỗ trợ cả ba hình thái, GUI là hình thái chính được nêu trong bài giảng. (Bài giảng chương 2, tr. 64.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-giao-dien-118",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Giao diện và Windows",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mang-co-ban",
+      "prompt": "Mục đích cốt lõi khi kết nối các máy tính thành mạng là gì?",
+      "choices": [
+        "Buộc mỗi tài nguyên phải có bản riêng trên từng máy, không có chia sẻ.",
+        "Buộc các thiết bị dùng chung một kiến trúc phần cứng trước khi trao đổi.",
+        "Thay việc dùng giao thức bằng một chương trình giống hệt nhau trên mọi máy.",
+        "Chia sẻ tài nguyên và thông tin giữa các thiết bị."
+      ],
+      "answer": 3,
+      "explanation": "Mạng cho phép trao đổi thông tin và dùng chung tài nguyên, không đòi hỏi mọi thiết bị giống nhau. (Bài giảng chương 2, tr. 67.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mang-co-ban-119",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mạng và thiết bị đầu cuối",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mang-co-ban",
+      "prompt": "Nhóm nào bao gồm đủ bốn thành phần mạng được liệt kê trong chương?",
+      "choices": [
+        "Thiết bị mạng, giao thức, đường truyền, bộ nạp khởi động máy.",
+        "Thiết bị đầu cuối, thiết bị mạng, đường truyền, bộ nhớ cache CPU.",
+        "Thiết bị đầu cuối, đường truyền, giao thức, bảng phân vùng đĩa.",
+        "Thiết bị đầu cuối, thiết bị mạng, đường truyền, giao thức."
+      ],
+      "answer": 3,
+      "explanation": "Các thành phần gồm nguồn/đích dữ liệu, thiết bị chuyển tiếp/kết nối, môi trường truyền và các quy tắc truyền tin. (Bài giảng chương 2, tr. 67.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mang-co-ban-120",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mạng và thiết bị đầu cuối",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mang-co-ban",
+      "prompt": "Một camera IP gửi video về máy chủ lưu trữ. Trong lần truyền này, camera giữ vai trò nào?",
+      "choices": [
+        "Trạm thu phát di động chỉ cung cấp vùng phủ sóng cho điện thoại.",
+        "Thiết bị mạng chỉ chuyển tiếp video do đầu cuối khác tạo ra.",
+        "Thiết bị đầu cuối là nguồn dữ liệu.",
+        "Thiết bị lưu trữ chỉ làm đích của dữ liệu từ máy chủ."
+      ],
+      "answer": 2,
+      "explanation": "Đầu cuối có thể là nguồn hoặc đích; không chỉ PC hay điện thoại mới là đầu cuối. (Bài giảng chương 2, tr. 67–68.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mang-co-ban-121",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mạng và thiết bị đầu cuối",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mang-co-ban",
+      "prompt": "Nhóm nào gồm những thiết bị có thể là đầu cuối được điều khiển hoặc sử dụng từ xa qua mạng?",
+      "choices": [
+        "BTS, firewall chuyên dụng, switch của ISP.",
+        "Máy in, camera an ninh, thiết bị gia dụng thông minh.",
+        "Hub, router, switch mạng trục.",
+        "Cáp quang, cáp đồng trục, cáp xoắn đôi."
+      ],
+      "answer": 1,
+      "explanation": "Bài giảng còn nêu phương tiện giao thông thông minh. Thiết bị đầu cuối khác môi trường truyền và linh kiện bên trong CPU. (Bài giảng chương 2, tr. 68.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mang-co-ban-122",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mạng và thiết bị đầu cuối",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mang-co-ban",
+      "prompt": "Trong một mạng xem video, cả TV thông minh nhận nội dung và máy chủ cung cấp nội dung đều có thể là gì?",
+      "choices": [
+        "Thiết bị đầu cuối.",
+        "Chỉ là môi trường truyền tín hiệu.",
+        "Chỉ là thiết bị chuyển tiếp trung gian.",
+        "Chỉ là bộ tập trung truy cập không dây."
+      ],
+      "answer": 0,
+      "explanation": "Vai trò nguồn/đích của dữ liệu làm chúng thành đầu cuối. Máy chủ không mất vai trò đầu cuối chỉ vì phục vụ nhiều người. (Bài giảng chương 2, tr. 68–69.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mang-co-ban-123",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mạng và thiết bị đầu cuối",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mang-co-ban",
+      "prompt": "Nhóm chức năng nào phù hợp vai trò máy chủ?",
+      "choices": [
+        "Chỉ chuyển tiếp giữa các mạng, lựa chọn tuyến nhưng không làm đích của yêu cầu dịch vụ.",
+        "Chỉ lặp tín hiệu tới các cổng còn lại và không quản lý tài nguyên người dùng.",
+        "Chỉ thu phát sóng di động, không xử lý yêu cầu web hoặc xác thực.",
+        "Lưu trữ tập trung, cung cấp dịch vụ, quản lý và xác thực người dùng."
+      ],
+      "answer": 3,
+      "explanation": "Máy chủ có thể phục vụ web, email, tin nhắn, dữ liệu và xác thực. Router/hub/BTS thực hiện các vai trò mạng khác. (Bài giảng chương 2, tr. 69.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mang-co-ban-124",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mạng và thiết bị đầu cuối",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mang-co-ban",
+      "prompt": "Vì sao máy chủ cung cấp dịch vụ cho nhiều người thường được thiết kế hoạt động 24/7?",
+      "choices": [
+        "Để không cần sao lưu hoặc dự phòng khi phần cứng hỏng.",
+        "Để máy khách nhận dịch vụ mà không bao giờ cần gửi yêu cầu.",
+        "Để dữ liệu trên server được chia sẻ tự do, không cần phân quyền.",
+        "Để sẵn sàng tiếp nhận yêu cầu và cung cấp dịch vụ liên tục."
+      ],
+      "answer": 3,
+      "explanation": "24/7 là mục tiêu sẵn sàng của dịch vụ trong ví dụ, không phải điều kiện định nghĩa khiến mọi máy chủ bắt buộc luôn mạnh hoặc không bao giờ được tắt. (Bài giảng chương 2, tr. 69.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mang-co-ban-125",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mạng và thiết bị đầu cuối",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-mang-co-ban",
+      "prompt": "Điểm phân biệt vai trò thiết bị mạng với thiết bị đầu cuối trong mô hình cơ bản là gì?",
+      "choices": [
+        "Thiết bị mạng chỉ có trong WAN, còn mọi thiết bị LAN đều là đầu cuối.",
+        "Thiết bị mạng nối/chuyển dữ liệu; đầu cuối là nguồn hoặc đích của dữ liệu.",
+        "Thiết bị mạng luôn là nguồn tạo nội dung, còn đầu cuối chỉ làm trung gian chuyển tiếp.",
+        "Thiết bị mạng không cần giao thức, chỉ đầu cuối mới phải thống nhất cách truyền."
+      ],
+      "answer": 1,
+      "explanation": "Phân biệt theo vai trò của thành phần trong truyền tin. Thiết bị tích hợp có thể thực hiện nhiều chức năng. (Bài giảng chương 2, tr. 67, 70.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-mang-co-ban-126",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Mạng và thiết bị đầu cuối",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-thiet-bi-mang",
+      "prompt": "Theo hoạt động hub trong bài giảng, khi nhận dữ liệu từ một cổng thì hub làm gì?",
+      "choices": [
+        "Kiểm tra chính sách cho phép/chặn trước khi lọc lưu lượng giữa các phân vùng.",
+        "Chỉ gửi tới cổng đích đã học được và không phát tới các cổng còn lại.",
+        "Phát tới các cổng còn lại thay vì chọn riêng cổng đích.",
+        "Chọn mạng đích theo tuyến liên mạng rồi chuyển tiếp ra cổng tới mạng đó."
+      ],
+      "answer": 2,
+      "explanation": "Hub lặp/phát tín hiệu ra các cổng còn lại, không chọn đích như switch trong trường hợp đã biết cổng nhận. (Bài giảng chương 2, tr. 71.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-thiet-bi-mang-127",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Hub, switch, router, BTS và firewall",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-thiet-bi-mang",
+      "prompt": "Nhược điểm nào gắn với việc hub gửi dữ liệu tới nhiều thiết bị không phải đích?",
+      "choices": [
+        "Tự tạo kết nối riêng biệt không chia sẻ cho mọi cặp thiết bị cùng lúc.",
+        "Tự mã hóa dữ liệu đầu vào trước khi phát lại tới các cổng khác.",
+        "Tự tách mọi cổng thành các mạng độc lập rồi định tuyến giữa chúng.",
+        "Dùng chung khả năng truyền và tăng phạm vi thiết bị nhận được tín hiệu."
+      ],
+      "answer": 3,
+      "explanation": "Cách phát rộng của hub dễ gây nghẽn/tranh chấp và bất lợi về bảo mật so với chuyển tiếp có chọn lọc; không mặc định hub cung cấp mã hóa. (Bài giảng chương 2, tr. 71.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-thiet-bi-mang-128",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Hub, switch, router, BTS và firewall",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-thiet-bi-mang",
+      "prompt": "Trong cùng LAN, switch đã biết cổng của thiết bị nhận đối với một khung unicast. Cách chuyển tiếp phù hợp là gì?",
+      "choices": [
+        "Chuyển tới cổng nối thiết bị nhận.",
+        "Luôn loại bỏ khung vì hai thiết bị ở cùng mạng.",
+        "Luôn gửi tới mọi cổng bất kể loại khung và thông tin đã biết.",
+        "Luôn chuyển sang router của một mạng khác trước."
+      ],
+      "answer": 0,
+      "explanation": "Đề giới hạn trường hợp biết cổng đích. Khung broadcast hoặc đích chưa biết có thể được phát ra nhiều cổng; không hiểu slide thành quy tắc tuyệt đối. (Bài giảng chương 2, tr. 71.)",
+      "difficulty": 3,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-thiet-bi-mang-129",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Hub, switch, router, BTS và firewall",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-thiet-bi-mang",
+      "prompt": "Nếu muốn kết nối nhiều máy trong cùng LAN và hạn chế việc lặp mọi dữ liệu tới tất cả cổng như hub, thiết bị nào phù hợp nhất?",
+      "choices": [
+        "Bộ chuyển đổi môi trường truyền.",
+        "Bộ lặp tín hiệu.",
+        "Switch.",
+        "Hub."
+      ],
+      "answer": 2,
+      "explanation": "Switch thực hiện chuyển tiếp chọn lọc trong các trường hợp phù hợp, giúp sử dụng mạng hiệu quả hơn hub. (Bài giảng chương 2, tr. 71.)",
+      "difficulty": 2,
+      "kind": "application",
+      "responseType": "choice",
+      "id": "it1140-c2-thiet-bi-mang-130",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Hub, switch, router, BTS và firewall",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-thiet-bi-mang",
+      "prompt": "Hai mạng IP khác nhau cần trao đổi dữ liệu. Vai trò kết nối và chuyển dữ liệu giữa chúng thuộc thiết bị nào trong mô hình cơ bản?",
+      "choices": [
+        "Hub lặp tín hiệu.",
+        "Switch chỉ chuyển mạch lớp 2 trong một LAN.",
+        "Router.",
+        "Access Point chỉ làm cầu nối không dây."
+      ],
+      "answer": 2,
+      "explanation": "Router kết nối nhiều mạng và định tuyến dữ liệu từ mạng này sang mạng khác. (Bài giảng chương 2, tr. 71.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-thiet-bi-mang-131",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Hub, switch, router, BTS và firewall",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-thiet-bi-mang",
+      "prompt": "Cặp mô tả nào phân biệt switch và router đúng với mức khái quát trong bài giảng?",
+      "choices": [
+        "Switch: chỉ kiểm soát truy cập; router: chỉ cung cấp kết nối không dây.",
+        "Switch: chuyển giữa các mạng; router: chỉ lặp tín hiệu trong LAN.",
+        "Switch: chuyển tiếp trong LAN; router: chuyển giữa các mạng.",
+        "Switch: chỉ làm máy chủ lưu tệp; router: chỉ làm máy khách dịch vụ."
+      ],
+      "answer": 2,
+      "explanation": "Mô tả nhấn mạnh vai trò, không phủ nhận các thiết bị thực tế có thể tích hợp nhiều lớp chức năng. (Bài giảng chương 2, tr. 71.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-thiet-bi-mang-132",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Hub, switch, router, BTS và firewall",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-thiet-bi-mang",
+      "prompt": "Trong mạng trục của nhà cung cấp Internet, những thiết bị nào được minh họa để chuyển dữ liệu?",
+      "choices": [
+        "Chỉ các thiết bị đầu cuối, không có thành phần chuyển tiếp.",
+        "Chỉ các hub nhỏ và không sử dụng thiết bị định tuyến.",
+        "Chỉ các AP WiFi và không có chuyển mạch hay định tuyến.",
+        "Bộ chuyển mạch và bộ định tuyến."
+      ],
+      "answer": 3,
+      "explanation": "Switch/router có thể dùng cả ở mạng tổ chức và mạng trục với năng lực thích hợp; không chỉ có trong mạng gia đình. (Bài giảng chương 2, tr. 72.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-thiet-bi-mang-133",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Hub, switch, router, BTS và firewall",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-thiet-bi-mang",
+      "prompt": "Trạm BTS có vai trò nào trong mạng di động?",
+      "choices": [
+        "Chỉ cung cấp kho lưu trữ web và email tập trung cho thuê bao.",
+        "Thu phát sóng để cung cấp kết nối di động trong một khu vực.",
+        "Chuyển mạch có dây giữa các cổng Ethernet trong một phòng máy.",
+        "Lọc lưu lượng theo chính sách giữa hai phân vùng LAN có dây."
+      ],
+      "answer": 1,
+      "explanation": "BTS là trạm thu phát sóng; bài giảng liên hệ kết nối 3G/4G/5G cho thiết bị trong vùng phủ. (Bài giảng chương 2, tr. 73.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-thiet-bi-mang-134",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Hub, switch, router, BTS và firewall",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-thiet-bi-mang",
+      "prompt": "Một tổ chức muốn kiểm soát kết nối giữa LAN nội bộ và Internet theo chính sách. Chức năng nào phù hợp?",
+      "choices": [
+        "Cấp vùng phủ sóng WiFi của AP.",
+        "Tường lửa.",
+        "Lặp tín hiệu của hub.",
+        "Chuyển đổi môi trường cáp đồng–quang."
+      ],
+      "answer": 1,
+      "explanation": "Firewall kiểm soát lưu lượng và chặn các kết nối không được phép theo chính sách. (Bài giảng chương 2, tr. 74.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-thiet-bi-mang-135",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Hub, switch, router, BTS và firewall",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-thiet-bi-mang",
+      "prompt": "Tường lửa giữa hai phân vùng mạng nội bộ có thể có tác dụng gì?",
+      "choices": [
+        "Kiểm soát lưu lượng qua ranh giới phân vùng theo quy tắc cho phép/chặn.",
+        "Bảo đảm mọi dữ liệu được phép đi qua đều không có mã độc.",
+        "Thay thế toàn bộ việc phân quyền trên máy chủ của cả hai phân vùng.",
+        "Bỏ nhu cầu cập nhật các thiết bị vì mọi kiểu tấn công đều bị chặn."
+      ],
+      "answer": 0,
+      "explanation": "Firewall không chỉ đặt ở biên Internet và không đảm bảo an toàn tuyệt đối. Có thể triển khai bằng thiết bị, phần mềm hoặc kết hợp. (Bài giảng chương 2, tr. 74.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-thiet-bi-mang-136",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Hub, switch, router, BTS và firewall",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-thiet-bi-mang",
+      "prompt": "Một hộp mạng gia đình có cổng nối Internet, cổng LAN và WiFi. Kết luận nào phù hợp nhất?",
+      "choices": [
+        "Mọi thiết bị được gọi là modem đều mặc nhiên có cùng mọi tính năng của hộp đó.",
+        "Thiết bị có thể tích hợp modem, định tuyến, chuyển mạch và điểm truy cập.",
+        "Một hộp có WiFi thì không thể đồng thời thực hiện định tuyến.",
+        "Có cổng Internet thì mọi chức năng AP/chuyển mạch đều phải nằm ở hộp khác."
+      ],
+      "answer": 1,
+      "explanation": "Slide mô tả thiết bị mạng tích hợp. Không suy ra mọi modem riêng lẻ đều có đủ WiFi/router; cần xem chức năng của từng thiết bị. (Bài giảng chương 2, tr. 70, 75.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-thiet-bi-mang-137",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Hub, switch, router, BTS và firewall",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-thiet-bi-mang",
+      "prompt": "Vai trò chính của WiFi Access Point là gì?",
+      "choices": [
+        "Chỉ kiểm soát chính sách lọc giữa phân vùng, không cung cấp kết nối truy nhập.",
+        "Tạo điểm truy cập không dây cho thiết bị kết nối vào mạng.",
+        "Chỉ chuyển dữ liệu giữa các mạng IP, không cung cấp giao tiếp vô tuyến.",
+        "Chỉ lặp tín hiệu giữa các cổng Ethernet, không kết nối thiết bị WiFi."
+      ],
+      "answer": 1,
+      "explanation": "AP cung cấp truy cập WiFi; có kết nối WiFi không đồng nghĩa đường Internet phía sau hoạt động. (Bài giảng chương 2, tr. 70, 75.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-thiet-bi-mang-138",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Hub, switch, router, BTS và firewall",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-duong-truyen",
+      "prompt": "Đặc điểm cấu tạo nào phân biệt cáp xoắn đôi với cáp đồng trục?",
+      "choices": [
+        "Cả hai đều dùng một lõi quang và chỉ khác lớp bọc cách điện.",
+        "Cáp xoắn đôi có một lõi trung tâm; cáp đồng trục gồm nhiều cặp dây xoắn.",
+        "Cáp xoắn đôi truyền bằng ánh sáng; cáp đồng trục truyền bằng điện.",
+        "Cáp xoắn đôi có các cặp dây xoắn; cáp đồng trục có dây dẫn lõi trung tâm."
+      ],
+      "answer": 3,
+      "explanation": "Phân biệt công nghệ/cấu tạo, không suy luận tốc độ tuyệt đối chỉ từ tên loại cáp. (Bài giảng chương 2, tr. 76.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-duong-truyen-139",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Đường truyền và giao thức",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-duong-truyen",
+      "prompt": "Vì sao không nên học thuộc rằng cáp đồng trục “không còn dùng trong mạng máy tính” như một khẳng định tuyệt đối?",
+      "choices": [
+        "Mọi LAN hiện đại đều bắt buộc chỉ dùng cáp đồng trục.",
+        "Cáp đồng trục không thể mang bất kỳ tín hiệu truyền thông nào.",
+        "Cáp đồng trục chính là tên khác của cáp quang truyền ánh sáng.",
+        "Mạng băng rộng cáp như DOCSIS vẫn có thể dùng đoạn cáp đồng trục."
+      ],
+      "answer": 3,
+      "explanation": "Cáp đồng trục ít gặp hơn trong LAN Ethernet văn phòng hiện đại, nhưng vẫn có vai trò trong mạng truy nhập băng rộng; cần phân biệt ngữ cảnh. (Bài giảng chương 2, tr. 76.)",
+      "difficulty": 3,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-duong-truyen-140",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Đường truyền và giao thức",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-duong-truyen",
+      "prompt": "Cặp nào mô tả đúng cáp quang và phạm vi dùng được nêu?",
+      "choices": [
+        "Truyền bằng điện trên lõi đồng; thường dùng dưới dạng nhiều cặp dây xoắn.",
+        "Truyền bằng điện trên lõi trung tâm; thường đi kèm lớp dẫn bao quanh đồng trục.",
+        "Truyền vô tuyến trong không gian; thường dùng nối tai nghe Bluetooth.",
+        "Truyền bằng ánh sáng; thường dùng trong LAN lớn và mạng Internet."
+      ],
+      "answer": 3,
+      "explanation": "Cáp quang dẫn tín hiệu ánh sáng và được dùng trong nhiều liên kết mạng dung lượng cao. (Bài giảng chương 2, tr. 77.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-duong-truyen-141",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Đường truyền và giao thức",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-duong-truyen",
+      "prompt": "Cặp môi trường/công nghệ nào thường phù hợp LAN có dây và LAN không dây, theo thứ tự?",
+      "choices": [
+        "Cáp quang Ethernet; cáp đồng trục.",
+        "WiFi; cáp xoắn đôi Ethernet.",
+        "Bluetooth; cáp quang Ethernet.",
+        "Cáp xoắn đôi Ethernet; WiFi."
+      ],
+      "answer": 3,
+      "explanation": "Ethernet có thể dùng các môi trường khác nhau; cặp trong đề chọn loại cáp đồng thông dụng và WiFi cho LAN không dây. (Bài giảng chương 2, tr. 76–77.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-duong-truyen-142",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Đường truyền và giao thức",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-duong-truyen",
+      "prompt": "Nhận định nào đúng khi so sánh WiFi với 3G/4G/5G ở mức bài giảng?",
+      "choices": [
+        "Đều dùng truyền vô tuyến nhưng thuộc những hệ thống truy nhập khác nhau.",
+        "WiFi chỉ dùng cáp đồng còn mạng di động mới có truyền vô tuyến.",
+        "WiFi chỉ nối các LAN bằng cáp quang còn 3G/4G/5G chỉ nối bằng cáp xoắn.",
+        "WiFi và mạng di động luôn dùng chung một hệ thống truy nhập, không cần phân biệt."
+      ],
+      "answer": 0,
+      "explanation": "WiFi thường dùng trong LAN; di động cung cấp truy nhập qua mạng nhà mạng. Sóng vô tuyến có thể dùng anten/hướng phủ khác nhau, không phải luôn vô hướng tuyệt đối. (Bài giảng chương 2, tr. 77.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-duong-truyen-143",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Đường truyền và giao thức",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-duong-truyen",
+      "prompt": "Chỉ biết một đường dùng cáp xoắn đôi, một đường dùng cáp quang. Nhận định nào thận trọng và đúng?",
+      "choices": [
+        "Mọi đường xoắn đôi luôn nhanh hơn đường quang, không phụ thuộc chuẩn.",
+        "Tên môi trường đủ xác định băng thông, không cần biết bộ thu phát.",
+        "Cần biết chuẩn, thiết bị và điều kiện đường truyền để so sánh tốc độ cụ thể.",
+        "Mọi đường quang luôn có cùng tốc độ chỉ vì dùng chung môi trường ánh sáng."
+      ],
+      "answer": 2,
+      "explanation": "Loại môi trường là một yếu tố; tốc độ còn phụ thuộc chuẩn, bộ thu phát, khoảng cách và các điều kiện khác. (Bài giảng chương 2, tr. 76–77.)",
+      "difficulty": 3,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-duong-truyen-144",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Đường truyền và giao thức",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-duong-truyen",
+      "prompt": "Máy tính và ứng dụng từ nhiều nhà sản xuất vẫn trao đổi dữ liệu được chủ yếu nhờ điều gì?",
+      "choices": [
+        "Tuân thủ các giao thức và định dạng trao đổi tương thích.",
+        "Chỉ dùng cùng hệ điều hành, không cần thống nhất ý nghĩa thông điệp.",
+        "Chỉ dùng cùng trình duyệt, không cần quy tắc trao đổi giữa các thiết bị mạng.",
+        "Chỉ dùng thiết bị của một hãng, dù các định dạng trao đổi không tương thích."
+      ],
+      "answer": 0,
+      "explanation": "Giao thức tạo sự thỏa thuận giữa các thành phần khác công nghệ, hệ điều hành, thiết bị và ứng dụng. (Bài giảng chương 2, tr. 78.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-duong-truyen-145",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Đường truyền và giao thức",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-duong-truyen",
+      "prompt": "Giao thức mạng quy định những khía cạnh nào?",
+      "choices": [
+        "Chỉ quy định thứ tự gửi, không cần thống nhất dạng và ý nghĩa dữ liệu.",
+        "Cú pháp, ý nghĩa, thứ tự trao đổi và cách xử lý dữ liệu.",
+        "Chỉ quy định ý nghĩa dữ liệu, không quy định định dạng thông điệp.",
+        "Chỉ quy định cấu trúc thông điệp, không quy định ý nghĩa hoặc thứ tự xử lý."
+      ],
+      "answer": 1,
+      "explanation": "Hai bên cần thống nhất cả dạng thông điệp, ý nghĩa và trình tự, không chỉ nối dây với nhau. (Bài giảng chương 2, tr. 78.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-duong-truyen-146",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Đường truyền và giao thức",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-duong-truyen",
+      "prompt": "Trong ví dụ truy cập web, trình tự nào phù hợp cách trao đổi được minh họa?",
+      "choices": [
+        "Yêu cầu kết nối → xác nhận kết nối → yêu cầu nội dung → trả nội dung.",
+        "Yêu cầu nội dung → trả nội dung → yêu cầu kết nối → xác nhận kết nối.",
+        "Trả nội dung → yêu cầu kết nối → xác nhận kết nối → yêu cầu nội dung.",
+        "Xác nhận kết nối → trả nội dung → yêu cầu kết nối → yêu cầu nội dung."
+      ],
+      "answer": 0,
+      "explanation": "Ví dụ nhấn mạnh thông điệp và thứ tự theo giao thức, tương tự hội thoại xin phúc tra. Không coi đây là mô tả đầy đủ của mọi phiên bản giao thức web. (Bài giảng chương 2, tr. 79.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-duong-truyen-147",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Đường truyền và giao thức",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-duong-truyen",
+      "prompt": "Hai thiết bị hiểu cùng định dạng thông điệp nhưng một bên gửi thông điệp ở bước không được phép. Lỗi liên quan khía cạnh nào của giao thức?",
+      "choices": [
+        "Chỉ số lượng máy trong mạng, không liên quan trạng thái giao tiếp.",
+        "Chỉ năng lực lưu trữ của đầu cuối, không liên quan trình tự thông điệp.",
+        "Chỉ cấu tạo vật lý của dây dẫn, không liên quan quy tắc trao đổi.",
+        "Thứ tự trao đổi và trạng thái xử lý."
+      ],
+      "answer": 3,
+      "explanation": "Cùng cú pháp chưa đủ; giao thức còn quy định thời điểm/thứ tự và phản ứng với thông điệp. (Bài giảng chương 2, tr. 78–79.)",
+      "difficulty": 3,
+      "kind": "application",
+      "responseType": "choice",
+      "id": "it1140-c2-duong-truyen-148",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Đường truyền và giao thức",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-loai-mang",
+      "prompt": "Cặp nào dùng hai tiêu chí phân loại mạng khác nhau?",
+      "choices": [
+        "MAN theo kiến trúc dịch vụ; GAN theo phạm vi.",
+        "LAN theo phạm vi; WAN theo kiến trúc dịch vụ.",
+        "PAN theo kiến trúc dịch vụ; P2P theo phạm vi.",
+        "LAN theo phạm vi; Client/Server theo kiến trúc dịch vụ."
+      ],
+      "answer": 3,
+      "explanation": "Phạm vi gồm PAN/LAN/MAN/WAN/GAN; kiến trúc dịch vụ gồm Client/Server và P2P. Một mạng có thể được mô tả đồng thời theo cả hai tiêu chí. (Bài giảng chương 2, tr. 80.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-loai-mang-149",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phạm vi mạng và kiến trúc dịch vụ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-loai-mang",
+      "prompt": "Điện thoại nối tai nghe và đồng hồ qua Bluetooth quanh người dùng là ví dụ điển hình của loại mạng nào?",
+      "choices": [
+        "MAN của một thành phố.",
+        "PAN.",
+        "WAN nối nhiều quốc gia.",
+        "LAN của một tòa nhà."
+      ],
+      "answer": 1,
+      "explanation": "PAN có phạm vi cá nhân vài mét, thường dùng Bluetooth, tiện lợi và tiết kiệm năng lượng cho thiết bị cá nhân. (Bài giảng chương 2, tr. 81.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-loai-mang-150",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phạm vi mạng và kiến trúc dịch vụ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-loai-mang",
+      "prompt": "Một mạng phục vụ máy tính của văn phòng, dùng Ethernet và WiFi để chia sẻ tài nguyên tại chỗ, thường được xếp vào loại nào?",
+      "choices": [
+        "GAN toàn cầu.",
+        "PAN quanh một người.",
+        "WAN xuyên lục địa.",
+        "LAN."
+      ],
+      "answer": 3,
+      "explanation": "LAN phục vụ phạm vi cục bộ, thường có tốc độ cao. Không phải chỉ kết nối bằng dây mới là LAN. (Bài giảng chương 2, tr. 82.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-loai-mang-151",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phạm vi mạng và kiến trúc dịch vụ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-loai-mang",
+      "prompt": "Một hệ thống liên kết nhiều LAN trong phạm vi một đô thị, khoảng vài chục kilômét, phù hợp loại nào theo bài giảng?",
+      "choices": [
+        "MAN.",
+        "PAN.",
+        "Một GAN toàn cầu.",
+        "Một LAN trong một phòng."
+      ],
+      "answer": 0,
+      "explanation": "MAN là mạng đô thị, có thể tập hợp nhiều LAN. Phạm vi là mô tả điển hình, không phải ngưỡng pháp lý cứng. (Bài giảng chương 2, tr. 83.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-loai-mang-152",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phạm vi mạng và kiến trúc dịch vụ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-loai-mang",
+      "prompt": "Mạng nối các chi nhánh ở nhiều vùng cách nhau hàng nghìn kilômét thuộc mô tả điển hình nào?",
+      "choices": [
+        "Một kết nối ngoại vi cục bộ.",
+        "LAN trong gia đình.",
+        "PAN.",
+        "WAN."
+      ],
+      "answer": 3,
+      "explanation": "WAN bao phủ diện rộng. Số người dùng cụ thể không phải điều kiện bắt buộc để được gọi là WAN. (Bài giảng chương 2, tr. 84.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-loai-mang-153",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phạm vi mạng và kiến trúc dịch vụ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-loai-mang",
+      "prompt": "Theo thuật ngữ trong slide, loại mạng có phạm vi toàn cầu, với Internet là ví dụ, được gọi là gì?",
+      "choices": [
+        "Một MAN.",
+        "PAN.",
+        "GAN.",
+        "Một LAN."
+      ],
+      "answer": 2,
+      "explanation": "GAN là Global Area Network. Internet thường cũng được mô tả là mạng của các mạng, có phạm vi toàn cầu. (Bài giảng chương 2, tr. 84.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-loai-mang-154",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phạm vi mạng và kiến trúc dịch vụ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-loai-mang",
+      "prompt": "Một mạng diện rộng mới triển khai chỉ có vài trăm người dùng. Nhận định nào đúng về việc phân loại?",
+      "choices": [
+        "Tự động là MAN vì chưa đạt số người dùng của Internet.",
+        "Vẫn có thể là WAN vì số người dùng không phải ngưỡng định nghĩa cứng.",
+        "Không thể là WAN trước khi đạt đúng một tỷ người dùng.",
+        "Tự động là PAN vì có ít hơn một triệu người dùng."
+      ],
+      "answer": 1,
+      "explanation": "Các con số người dùng trên slide có tính minh họa quy mô. Phân loại theo phạm vi không nên bị thay bằng một ngưỡng số người dùng tuyệt đối. (Bài giảng chương 2, tr. 81–84.)",
+      "difficulty": 3,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-loai-mang-155",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phạm vi mạng và kiến trúc dịch vụ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-loai-mang",
+      "prompt": "Trong kiến trúc Client/Server, cặp vai trò nào đúng?",
+      "choices": [
+        "Client tự cung cấp mọi dịch vụ cho nhau, server không giữ vai trò phục vụ tập trung.",
+        "Client chỉ cung cấp kết nối vật lý, server không xử lý yêu cầu dịch vụ.",
+        "Server chỉ gửi yêu cầu; client chờ và cung cấp dịch vụ cho server.",
+        "Client gửi yêu cầu; server chờ và cung cấp dịch vụ."
+      ],
+      "answer": 3,
+      "explanation": "Đây là mô hình dịch vụ tập trung; một thiết bị có thể đảm nhiệm các vai trò khác nhau trong các dịch vụ khác nhau. (Bài giảng chương 2, tr. 85.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-loai-mang-156",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phạm vi mạng và kiến trúc dịch vụ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-loai-mang",
+      "prompt": "Trong mô hình Client/Server thuần túy của bài giảng, trao đổi phục vụ dịch vụ thường đi theo cách nào?",
+      "choices": [
+        "Mọi máy khách trực tiếp cung cấp cùng dịch vụ cho nhau, không cần vai trò server.",
+        "Máy chủ chỉ đóng vai trò đường truyền, không tiếp nhận yêu cầu dịch vụ.",
+        "Máy khách liên hệ máy chủ thay vì trực tiếp phục vụ máy khách khác.",
+        "Mỗi máy khách luôn phải là máy chủ dự phòng trước khi gửi được yêu cầu."
+      ],
+      "answer": 2,
+      "explanation": "Câu hỏi giới hạn mô hình thuần túy; hệ thống thực tế có thể kết hợp Client/Server và P2P. (Bài giảng chương 2, tr. 85.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-loai-mang-157",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phạm vi mạng và kiến trúc dịch vụ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-loai-mang",
+      "prompt": "Bố trí máy chủ dự phòng trong hệ Client/Server nhằm mục đích gì?",
+      "choices": [
+        "Loại bỏ nhu cầu sao lưu dữ liệu dù các máy chủ cùng gặp lỗi.",
+        "Buộc toàn bộ máy khách cung cấp dịch vụ ngang hàng cho nhau.",
+        "Bảo đảm không cần quản lý truy cập vì mọi yêu cầu đã có bản sao.",
+        "Tăng khả năng sẵn sàng và có thể hỗ trợ năng lực phục vụ."
+      ],
+      "answer": 3,
+      "explanation": "Máy dự phòng giúp phòng sự cố, có thể phối hợp nâng hiệu năng theo thiết kế; không tự loại bỏ các biện pháp vận hành khác. (Bài giảng chương 2, tr. 85.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-loai-mang-158",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phạm vi mạng và kiến trúc dịch vụ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-loai-mang",
+      "prompt": "Đặc điểm nào phù hợp kiến trúc P2P trong bài giảng?",
+      "choices": [
+        "Mọi peer chỉ được nhận tài nguyên, không được cung cấp tài nguyên cho peer khác.",
+        "Mọi peer chỉ dùng dịch vụ qua một máy chủ tập trung duy nhất.",
+        "Các peer có vai trò ngang hàng và có thể trực tiếp cung cấp dịch vụ cho nhau.",
+        "Mọi peer bắt buộc có cùng cấu hình và cùng năng lực xử lý."
+      ],
+      "answer": 2,
+      "explanation": "Ngang hàng nói về vai trò dịch vụ, không có nghĩa cấu hình hay năng lực mọi máy giống nhau. (Bài giảng chương 2, tr. 86.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-loai-mang-159",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phạm vi mạng và kiến trúc dịch vụ",
+        "chương 2"
+      ]
+    },
+    {
+      "topic": "c2-phan-loai-mang",
+      "prompt": "So với máy chủ thường trực trong mô hình Client/Server, yêu cầu kết nối của các peer trong mô hình P2P được mô tả thế nào?",
+      "choices": [
+        "Mọi peer bắt buộc duy trì kết nối 24/7 để được gọi là P2P.",
+        "Không bắt buộc mọi peer luôn trực tuyến; peer phải kết nối khi tham gia trao đổi.",
+        "Chỉ một peer được phép kết nối, các peer khác luôn phải ngoại tuyến.",
+        "Mọi peer có thể truyền dữ liệu cho nhau dù cả hai đều mất kết nối."
+      ],
+      "answer": 1,
+      "explanation": "P2P không yêu cầu mọi peer duy trì kết nối thường xuyên, nhưng việc trao đổi vẫn cần các bên có khả năng liên lạc tại thời điểm cần. (Bài giảng chương 2, tr. 85–86.)",
+      "difficulty": 2,
+      "kind": "theory",
+      "responseType": "choice",
+      "id": "it1140-c2-phan-loai-mang-160",
+      "source": "chuong-2-bai-giang",
+      "tags": [
+        "Phạm vi mạng và kiến trúc dịch vụ",
+        "chương 2"
       ]
     }
   ]

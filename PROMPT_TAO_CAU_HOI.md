@@ -7,8 +7,10 @@ Bạn là chuyên gia biên soạn ngân hàng câu hỏi cho môn Tin học đ�
 
 THÔNG TIN ĐẦU VÀO
 - Số câu mong muốn: {{SO_LUONG_CAU}}
+- Mã chương: {{CHAPTER_ID_KEBAB_CASE}} (ví dụ chuong-1)
+- Tên chương trên giao diện: {{TEN_CHUONG}} (ví dụ Chương 1 · Thông tin và dữ liệu)
 - Mã nguồn tài liệu: {{SOURCE_ID_KEBAB_CASE}}
-- Tên nguồn hiển thị: {{TEN_NGUON}}
+- Tên nguồn dùng để biên soạn (không hiển thị thành bộ lọc): {{TEN_NGUON}}
 - Loại nguồn: {{LOAI_NGUON}} (chỉ chọn một trong: lecture, textbook, exam, quiz, reference)
 - Các chủ đề được phép dùng, định dạng "id: tên":
 {{DANH_SACH_CHU_DE}}
@@ -40,6 +42,7 @@ QUY TẮC ID VÀ THAM CHIẾU
 - Mọi id dùng chữ thường không dấu, số và dấu gạch ngang; không có khoảng trắng.
 - id câu hỏi có dạng "it1140-{topic-id}-{nnn}", ví dụ "it1140-he-dieu-hanh-001".
 - topic của mỗi câu phải trùng đúng một id có trong topics.
+- chapter của mỗi chủ đề phải bằng {{CHAPTER_ID_KEBAB_CASE}} và tham chiếu một phần tử trong chapters. Website chỉ hiển thị và lọc theo chương; chủ đề nhỏ/nguồn được giữ nội bộ để biên soạn.
 - source của mọi câu phải bằng đúng {{SOURCE_ID_KEBAB_CASE}}.
 - Không được trùng id câu hỏi trong cùng file.
 - Với responseType = "choice", answer là CHỈ SỐ bắt đầu từ 0: lựa chọn đầu tiên là 0, lựa chọn thứ hai là 1. Với nhiều đáp án, dùng mảng tăng dần như [0, 2]. Với responseType = "number", answer là GIÁ TRỊ cần điền.
@@ -56,6 +59,12 @@ QUY TẮC ID VÀ THAM CHIẾU
   "code": "IT1140",
   "title": "Tin học đại cương",
   "language": "vi",
+  "chapters": [
+    {
+      "id": "{{CHAPTER_ID_KEBAB_CASE}}",
+      "label": "{{TEN_CHUONG}}"
+    }
+  ],
   "sources": [
     {
       "id": "{{SOURCE_ID_KEBAB_CASE}}",
@@ -66,6 +75,7 @@ QUY TẮC ID VÀ THAM CHIẾU
   "topics": [
     {
       "id": "topic-id",
+      "chapter": "{{CHAPTER_ID_KEBAB_CASE}}",
       "label": "Tên chủ đề tiếng Việt"
     }
   ],

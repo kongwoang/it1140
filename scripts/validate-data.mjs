@@ -36,7 +36,7 @@ for (const entry of manifest.subjects) {
   subjectIds.add(entry.id);
 
   const subject = await readJson(entry.file.replace(/^\.\//, ""));
-  requireExactKeys(subject, ["$schema", "id", "code", "title", "language", "sources", "topics", "questions"], entry.file);
+  requireExactKeys(subject, ["$schema", "id", "code", "title", "language", "chapters", "sources", "topics", "questions"], entry.file);
   requireValue(subject.id === entry.id, `Mã trong ${entry.file} không khớp manifest.`);
   requireValue(slugPattern.test(subject.id), `${subject.id} không phải kebab-case hợp lệ.`);
   requireValue(subject.code === "IT1140", `${subject.id}.code phải là IT1140.`);
@@ -44,10 +44,18 @@ for (const entry of manifest.subjects) {
   requireValue(subject.title === "Tin học đại cương", `${subject.id}.title phải là Tin học đại cương.`);
   requireValue(subject.language === "vi", `${subject.id}.language phải là vi.`);
   requireValue(Array.isArray(subject.sources), `${subject.id}.sources phải là mảng.`);
+  requireValue(Array.isArray(subject.chapters), `${subject.id}.chapters phải là mảng.`);
   requireValue(Array.isArray(subject.topics), `${subject.id}.topics phải là mảng.`);
   requireValue(Array.isArray(subject.questions), `${subject.id}.questions phải là mảng.`);
 
   const sourceIds = new Set(subject.sources.map((source) => source.id));
+  const chapterIds = new Set(subject.chapters.map((chapter) => chapter.id));
+  requireValue(chapterIds.size === subject.chapters.length, `${subject.id} có mã chương bị trùng.`);
+  subject.chapters.forEach((chapter, index) => {
+    requireExactKeys(chapter, ["id", "label"], `${subject.id}.chapters[${index}]`);
+    requireValue(slugPattern.test(chapter.id), `${chapter.id} không phải kebab-case hợp lệ.`);
+    requireText(chapter.label, `${chapter.id}.label`);
+  });
   const topicIds = new Set(subject.topics.map((topic) => topic.id));
   requireValue(sourceIds.size === subject.sources.length, `${subject.id} có mã nguồn bị trùng.`);
   requireValue(topicIds.size === subject.topics.length, `${subject.id} có mã chủ đề bị trùng.`);
@@ -58,7 +66,8 @@ for (const entry of manifest.subjects) {
     requireValue(sourceTypes.has(source.type), `${source.id}.type không hợp lệ.`);
   });
   subject.topics.forEach((topic, index) => {
-    requireExactKeys(topic, ["id", "label"], `${subject.id}.topics[${index}]`);
+    requireExactKeys(topic, ["id", "label", "chapter"], `${subject.id}.topics[${index}]`);
+    requireValue(chapterIds.has(topic.chapter), `${topic.id} tham chiếu chương không tồn tại: ${topic.chapter}`);
     requireValue(slugPattern.test(topic.id), `${topic.id} không phải kebab-case hợp lệ.`);
     requireText(topic.label, `${topic.id}.label`);
   });

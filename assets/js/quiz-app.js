@@ -34,15 +34,13 @@ async function loadQuizData() {
       languageAria: "Ngôn ngữ",
       subjectLabel: "Nội dung",
       searchLabel: "Tìm",
-      topicLabel: "Chủ đề",
-      sourceLabel: "Nguồn",
+      chapterLabel: "Chương",
       pinnedOnly: "Đã ghim",
       progressLabel: "Tiến độ",
       correctLabel: "Đúng",
       wrongLabel: "Sai",
       accuracyLabel: "Tỉ lệ",
       questionsLabel: "Câu hỏi",
-      currentSourceLabel: "Nguồn hiện tại",
       searchPlaceholder: "Nhập từ khóa câu hỏi...",
       modeAria: "Chế độ quiz",
       modes: {
@@ -55,8 +53,7 @@ async function loadQuizData() {
       reset: "Đặt lại",
       resetTitle: "Xóa tiến độ hiện tại",
       bookmarkTitle: "Ghim câu hỏi",
-      allTopics: "Tất cả chủ đề",
-      allSources: "Tất cả nguồn",
+      allChapters: "Tất cả chương",
       generatedTag: "Từ bài giảng",
       multipleAnswerTag: "Chọn nhiều đáp án",
       noQuestion: "Chưa có câu hỏi phù hợp. Ngân hàng IT1140 đang được cập nhật.",
@@ -85,8 +82,7 @@ async function loadQuizData() {
     subjectTitle: document.getElementById("subjectTitle"),
     subjectSelect: document.getElementById("subjectSelect"),
     searchInput: document.getElementById("searchInput"),
-    topicFilter: document.getElementById("topicFilter"),
-    sourceFilter: document.getElementById("sourceFilter"),
+    chapterFilter: document.getElementById("chapterFilter"),
     bookmarkOnly: document.getElementById("bookmarkOnly"),
     modeSwitch: document.getElementById("modeSwitch"),
     modeButtons: Array.from(document.querySelectorAll(".mode-btn")),
@@ -109,7 +105,6 @@ async function loadQuizData() {
     nextBtn: document.getElementById("nextBtn"),
     filteredCount: document.getElementById("filteredCount"),
     questionMap: document.getElementById("questionMap"),
-    sourceText: document.getElementById("sourceText"),
   };
 
   const initialSubjectId = data.subjects[0] ? data.subjects[0].id : "";
@@ -155,8 +150,7 @@ async function loadQuizData() {
       subjectId: initialSubjectId,
       language: "vi",
       mode: "practice",
-      topic: "all",
-      source: "all",
+      chapter: "all",
       query: "",
       bookmarkOnly: false,
       currentIndex: 0,
@@ -171,7 +165,14 @@ async function loadQuizData() {
   function loadState() {
     try {
       const saved = JSON.parse(localStorage.getItem(storageKey));
-      return { ...defaultState(), ...(saved || {}) };
+      const restored = { ...defaultState(), ...(saved || {}) };
+      const subject = data.subjects.find((item) => item.id === restored.subjectId) || data.subjects[0];
+      if (!Object.prototype.hasOwnProperty.call(saved || {}, "chapter")) {
+        restored.chapter = subject?.topics.find((topic) => topic.id === restored.topic)?.chapter || "all";
+      }
+      delete restored.topic;
+      delete restored.source;
+      return restored;
     } catch (_error) {
       return defaultState();
     }
@@ -212,14 +213,6 @@ async function loadQuizData() {
     return mapText("subjects", subject.id, subject.title);
   }
 
-  function topicLabel(subject, topic) {
-    return mapText("topics", `${subject.id}:${topic.id}`, topic.label);
-  }
-
-  function sourceLabel(subject, source) {
-    return mapText("sources", `${subject.id}:${source.id}`, source.label);
-  }
-
   function difficultyLabel(level) {
     return mapText("difficulty", level, i18n.vi.difficulty[2]);
   }
@@ -232,12 +225,9 @@ async function loadQuizData() {
     };
   }
 
-  function sourceById(subject, id) {
-    return subject.sources.find((item) => item.id === id);
-  }
-
-  function topicById(subject, id) {
-    return subject.topics.find((item) => item.id === id);
+  function chapterForQuestion(subject, question) {
+    const topic = subject.topics.find((item) => item.id === question.topic);
+    return (subject.chapters || []).find((chapter) => chapter.id === topic?.chapter);
   }
 
   function fold(text) {
@@ -264,11 +254,10 @@ async function loadQuizData() {
 
     const query = fold(state.query.trim());
     const base = subject.questions.filter((question) => {
-      const matchesTopic = state.topic === "all" || question.topic === state.topic;
-      const matchesSource = state.source === "all" || question.source === state.source;
+      const matchesChapter = state.chapter === "all" || chapterForQuestion(subject, question)?.id === state.chapter;
       const matchesBookmark = !state.bookmarkOnly || Boolean(state.bookmarks[question.id]);
       const matchesQuery = !query || questionHaystack(question).includes(query);
-      return matchesTopic && matchesSource && matchesBookmark && matchesQuery;
+      return matchesChapter && matchesBookmark && matchesQuery;
     });
 
     const order = state.orders[subject.id] || [];
@@ -288,8 +277,12 @@ async function loadQuizData() {
     return questions[state.currentIndex];
   }
 
+  function examScopeKey() {
+    return `${state.subjectId}:${state.chapter}`;
+  }
+
   function isExamRevealed() {
-    return Boolean(state.examRevealed[state.subjectId]);
+    return Boolean(state.examRevealed[examScopeKey()]);
   }
 
   function isRevealed(question) {
@@ -364,21 +357,12 @@ async function loadQuizData() {
   }
 
   function populateFilters(subject) {
-    const existingTopic = subject.topics.some((topic) => topic.id === state.topic);
-    const existingSource = subject.sources.some((source) => source.id === state.source);
-    if (!existingTopic) state.topic = "all";
-    if (!existingSource) state.source = "all";
-
-    els.topicFilter.innerHTML = "";
-    els.topicFilter.append(new Option(t("allTopics"), "all", state.topic === "all", state.topic === "all"));
-    subject.topics.forEach((topic) => {
-      els.topicFilter.append(new Option(topicLabel(subject, topic), topic.id, state.topic === topic.id, state.topic === topic.id));
-    });
-
-    els.sourceFilter.innerHTML = "";
-    els.sourceFilter.append(new Option(t("allSources"), "all", state.source === "all", state.source === "all"));
-    subject.sources.forEach((source) => {
-      els.sourceFilter.append(new Option(sourceLabel(subject, source), source.id, state.source === source.id, state.source === source.id));
+    const chapters = subject.chapters || [];
+    if (!chapters.some((chapter) => chapter.id === state.chapter)) state.chapter = "all";
+    els.chapterFilter.innerHTML = "";
+    els.chapterFilter.append(new Option(t("allChapters"), "all", state.chapter === "all", state.chapter === "all"));
+    chapters.forEach((chapter) => {
+      els.chapterFilter.append(new Option(chapter.label, chapter.id, state.chapter === chapter.id, state.chapter === chapter.id));
     });
   }
 
@@ -425,12 +409,10 @@ async function loadQuizData() {
     els.tagRow.innerHTML = "";
     if (!question) return;
 
-    const topic = topicById(subject, question.topic);
-    const source = sourceById(subject, question.source);
+    const chapter = chapterForQuestion(subject, question);
     const tags = [
-      { text: topic ? topicLabel(subject, topic) : question.topic, className: "" },
+      ...(chapter ? [{ text: chapter.label, className: "" }] : []),
       { text: difficultyLabel(question.difficulty), className: "" },
-      { text: source ? sourceLabel(subject, source) : question.source, className: "source" },
     ];
 
     if (question.kind === "generated") {
@@ -653,7 +635,6 @@ async function loadQuizData() {
 
     const questions = filteredQuestions();
     const question = activeQuestion();
-    const source = question ? sourceById(subject, question.source) : null;
     const content = question ? localizedQuestion(question) : null;
 
     els.subjectCode.textContent = "IT1140";
@@ -666,7 +647,6 @@ async function loadQuizData() {
     els.questionText.textContent = content ? content.prompt : t("noQuestion");
     els.bookmarkBtn.classList.toggle("is-active", Boolean(question && state.bookmarks[question.id]));
     els.bookmarkBtn.textContent = question && state.bookmarks[question.id] ? "★" : "☆";
-    els.sourceText.textContent = source ? sourceLabel(subject, source) : "-";
 
     renderTags(subject, question);
     renderChoices(question);
@@ -690,14 +670,8 @@ async function loadQuizData() {
     render();
   });
 
-  els.topicFilter.addEventListener("change", (event) => {
-    state.topic = event.target.value;
-    state.currentIndex = 0;
-    render();
-  });
-
-  els.sourceFilter.addEventListener("change", (event) => {
-    state.source = event.target.value;
+  els.chapterFilter.addEventListener("change", (event) => {
+    state.chapter = event.target.value;
     state.currentIndex = 0;
     render();
   });
@@ -729,7 +703,9 @@ async function loadQuizData() {
       delete state.answers[question.id];
       delete state.submitted[question.id];
     });
-    delete state.examRevealed[subject.id];
+    Object.keys(state.examRevealed).forEach((key) => {
+      if (key === subject.id || key.startsWith(`${subject.id}:`)) delete state.examRevealed[key];
+    });
     state.currentIndex = 0;
     render();
   });
@@ -761,7 +737,7 @@ async function loadQuizData() {
     if (!question) return;
 
     if (state.mode === "exam") {
-      state.examRevealed[state.subjectId] = true;
+      state.examRevealed[examScopeKey()] = true;
     } else if (state.mode === "practice" && isAnswered(question)) {
       state.submitted[question.id] = true;
     }

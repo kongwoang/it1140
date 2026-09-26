@@ -10,11 +10,14 @@ File `subjects/it1140.json` là ngân hàng câu hỏi chính, hiện có 124 c�
   "code": "IT1140",
   "title": "Tên hiển thị",
   "language": "vi",
+  "chapters": [
+    { "id": "chuong-1", "label": "Chương 1 · Thông tin và dữ liệu" }
+  ],
   "sources": [
     { "id": "bai-1", "label": "Bài 1", "type": "lecture" }
   ],
   "topics": [
-    { "id": "co-ban", "label": "Kiến thức cơ bản" }
+    { "id": "co-ban", "label": "Kiến thức cơ bản", "chapter": "chuong-1" }
   ],
   "questions": [
     {
@@ -37,7 +40,9 @@ Với `responseType: "choice"` (mặc định nếu bỏ trường), `answer` l�
 
 Với `responseType: "number"`, dùng `choices: []` và `answer` là giá trị số JSON, ví dụ `-46` hoặc `45.625`. Câu hỏi phải nêu đơn vị và hệ đếm cần trả lời; nếu kết quả vô hạn phải chọn câu khác hoặc quy định làm tròn rõ ràng. Web chấm bằng giá trị số chính xác, không có sai số dung sai; chấp nhận dấu phẩy hoặc dấu chấm thập phân, số âm, ký pháp khoa học. Không nhận biểu thức, phân số dạng `1/2`, đơn vị hay dấu phân cách hàng nghìn. Tiến độ và chuỗi người học nhập chỉ lưu ở localStorage.
 
-Khi thêm chương vào cùng bộ, nối thêm nguồn, chủ đề và câu hỏi; giữ nguyên ID câu cũ để không mất liên kết tiến độ. Không ghi đè toàn bộ ngân hàng bằng JSON chỉ có chương mới.
+Giao diện chỉ phân loại theo `chapters`. Mỗi phần tử `topics` phải có `chapter` trỏ tới một ID trong `chapters`; `topics` và `sources` vẫn là thông tin biên soạn nội bộ, không xuất hiện dưới dạng bộ lọc hoặc nhãn nguồn/chủ đề nhỏ trên giao diện.
+
+Khi thêm chương vào cùng bộ, nối thêm chương, nguồn, chủ đề và câu hỏi; giữ nguyên ID câu cũ để không mất liên kết tiến độ. Không ghi đè toàn bộ ngân hàng bằng JSON chỉ có chương mới.
 
 Khi thêm một file bộ câu hỏi mới, khai báo file đó trong `manifest.json`. Chạy lệnh sau để kiểm tra trước khi đưa lên GitHub:
 

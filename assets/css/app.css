@@ -330,8 +330,7 @@ button {
 }
 
 .stat-row,
-.rail-heading,
-.source-note {
+.rail-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -339,8 +338,7 @@ button {
 }
 
 .stat-row span,
-.rail-heading span,
-.source-note span {
+.rail-heading span {
   color: var(--muted);
   font-size: 13px;
   font-weight: 800;
@@ -680,20 +678,6 @@ button {
   border-color: #efaca3;
 }
 
-.source-note {
-  align-items: flex-start;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.source-note strong {
-  max-height: 72px;
-  overflow: auto;
-  line-height: 1.4;
-  font-size: 12.5px;
-  word-break: break-word;
-  scrollbar-width: thin;
-}
 
 .lab-layout {
   display: grid;

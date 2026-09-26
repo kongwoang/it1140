@@ -93,7 +93,7 @@ for (const value of [undefined, null, "", " ", "abc", "1/2", "1,2.3", "0x10", "I
 for (const [value, expected] of [["0", 0], [0, 0], ["-46", -46], [" 45,625 ", 45.625], ["45.625", 45.625], ["+1.5e3", 1500], [".5", 0.5]]) {
   assert.equal(context.parseNumericAnswer(value), expected);
 }
-for (const q of chapter) {
+for (const q of bank.questions) {
   delete context.state.answers[q.id];
   assert.equal(context.isAnswered(q), false, q.id);
   assert.equal(context.answerMatches(q), false, q.id);
@@ -114,4 +114,78 @@ context.state.answers[multi.id] = [0];
 assert.equal(context.answerMatches(multi), false);
 assert.equal(context.answerLabel(multi), "A. A; C. C");
 
-console.log(`OK: ${chapter.length} questions, ${numericKeys.size} numeric + ${calculatedChoices.size} choice calculations, balanced keys, numeric parsing, grading and persistence.`);
+// Chapter 2: independent arithmetic, wildcard rules and path resolution.
+const chapter2 = bank.questions.filter((q) => q.source === "chuong-2-bai-giang");
+const q2 = (n) => chapter2.find((q) => q.id.endsWith(`-${String(n).padStart(3, "0")}`));
+assert.equal(chapter2.length, 160);
+assert.equal(new Set(chapter2.map((q) => q.prompt)).size, 160);
+assert.equal(chapter2.filter((q) => q.responseType === "number").length, 16);
+assert.deepEqual([0, 1, 2, 3].map((i) => chapter2.filter((q) => q.responseType === "choice" && q.answer === i).length), [36, 36, 36, 36]);
+assert.deepEqual(bank.topics.filter((t) => t.chapter === "chuong-2").map((t) => chapter2.filter((q) => q.topic === t.id).length), [10, 14, 16, 16, 14, 10, 24, 14, 8, 12, 10, 12]);
+const names = ["Bai.doc", "Bai1.doc", "Bai12.doc", "BaiA.doc", "BaiB.txt"];
+const numericKeys2 = new Map([
+  [16, 240 / 2], [17, 150 * 4], [18, 1e9 / 2e9], [19, 1 / 0.25],
+  [20, 6 / 2e9 * 1e9], [21, 2e9 / 4 / 1e6], [29, 1511 - 1000 + 1],
+  [35, 1024 / 64], [40, 2 ** 20 / 2 ** 20], [51, 32 / 8], [52, Math.ceil(20 / 4)],
+  [53, 2 ** 16], [95, names.filter((s) => /^Bai.\.doc$/.test(s)).length],
+  [96, names.filter((s) => /^Bai.*\.doc$/.test(s)).length], [102, 1 + 3 + 2 + 2],
+  [103, String.raw`C:\TC30\BAI_TAP\B1.c`.split("\\").length - 2],
+]);
+assert.equal(numericKeys2.size, 16);
+for (const [n, expected] of numericKeys2) assert.equal(q2(n).answer, expected, `Chapter 2 numeric ${n}`);
+assert.equal(q2(68).choices[q2(68).answer], `AX = ${5 + 3}; BX = 3.`);
+assert.equal(Buffer.byteLength("Hello, World\n", "ascii"), 13);
+for (const [n, pattern] of [[91, /^Bai.\.doc$/], [92, /^Bai\.doc$/], [94, /^.E.*\..*$/]]) {
+  assert.deepEqual(q2(n).choices.flatMap((s, i) => pattern.test(s) ? [i] : []), [q2(n).answer]);
+}
+for (const n of [100, 101]) assert.equal(q2(n).choices[q2(n).answer], String.raw`C:\TC30\BAI_TAP\B1.c`);
+for (const q of chapter2) {
+  assert.equal(q.choices.some((s) => s.includes("\\\\")), false, `No double path separators: ${q.id}`);
+  if (q.responseType === "choice") {
+    assert.equal(q.choices.length, 4);
+    // Catch gross length cues, while retaining a manual semantic review.
+    assert.ok(q.choices[q.answer].length <= Math.max(...q.choices.filter((_, i) => i !== q.answer).map((s) => s.length)) * 1.55, q.id);
+  }
+}
+
+// Preserve progress while migrating old topic/source filters to chapters.
+const saved = { subjectId: "it1140", topic: bank.topics[0].id, source: "chuong-1-bai-giang", answers: { old: 2 }, bookmarks: { old: true } };
+const migration = vm.createContext({ initialSubjectId: "it1140", storageKey: "test", data: { subjects: [bank] }, localStorage: { getItem: () => JSON.stringify(saved) } });
+vm.runInContext(source.slice(source.indexOf("  function defaultState("), source.indexOf("  function saveState(")), migration);
+const restored = migration.loadState();
+assert.equal(restored.chapter, "chuong-1");
+assert.equal(restored.answers.old, 2);
+assert.equal(restored.bookmarks.old, true);
+assert.equal("source" in restored || "topic" in restored, false);
+saved.chapter = "chuong-2";
+assert.equal(migration.loadState().chapter, "chuong-2");
+migration.localStorage.getItem = () => "bad JSON";
+assert.equal(migration.loadState().chapter, "all");
+
+const filters = vm.createContext({ state: { ...restored, query: "", orders: {}, bookmarks: {} }, currentSubject: () => bank });
+vm.runInContext(source.slice(source.indexOf("  function chapterForQuestion("), source.indexOf("  function activeQuestion(")), filters);
+for (const [id, count] of [["chuong-1", 124], ["chuong-2", 160], ["all", 284]]) {
+  filters.state.chapter = id;
+  assert.equal(filters.filteredQuestions().length, count);
+}
+filters.state.chapter = "chuong-2";
+filters.state.bookmarkOnly = true;
+filters.state.bookmarks[chapter[0].id] = true;
+filters.state.bookmarks[chapter2[0].id] = true;
+assert.deepEqual(Array.from(filters.filteredQuestions(), (q) => q.id), [chapter2[0].id]);
+filters.state.bookmarkOnly = false;
+filters.state.query = "xung nhip";
+assert.ok(filters.filteredQuestions().length > 0);
+assert.ok(filters.filteredQuestions().every((q) => q.source === "chuong-2-bai-giang"));
+filters.state.query = "";
+filters.state.orders.it1140 = chapter2.map((q) => q.id).reverse();
+assert.equal(filters.filteredQuestions()[0].id, chapter2.at(-1).id);
+vm.runInContext(source.slice(source.indexOf("  function examScopeKey("), source.indexOf("  function isRevealed(")), filters);
+filters.state.examRevealed = { "it1140:chuong-1": true, it1140: true };
+assert.equal(filters.isExamRevealed(), false);
+filters.state.chapter = "chuong-1";
+assert.equal(filters.isExamRevealed(), true);
+filters.state.chapter = "all";
+assert.equal(filters.isExamRevealed(), false);
+
+console.log(`OK: ${bank.questions.length} questions, ${numericKeys.size + numericKeys2.size} numeric checks, choice calculations, balanced keys, grading, persistence, chapter migration/filtering and exam isolation.`);
