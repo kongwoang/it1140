@@ -15,7 +15,18 @@ data/
 
 Mỗi bộ câu hỏi chứa `chapters`, `sources`, `topics` và `questions`. Giao diện chỉ phân loại theo chương; nguồn và nhóm kiến thức được giữ trong JSON để biên tập, đối chiếu tài liệu. Mỗi nhóm kiến thức có `chapter`, mỗi câu có `source` và `topic`.
 
-Dùng [PROMPT_TAO_CAU_HOI.md](./PROMPT_TAO_CAU_HOI.md) để yêu cầu một LLM khác tạo đúng định dạng JSON. Ngân hàng hiện có **632 câu**: chương 1 có 124 câu, chương 2 có 160 câu, chương 3 có 215 câu và chương 4 có 133 câu. Xem ma trận nội dung và các điểm đã đối chiếu tại [chương 1](./data/CHUONG_1_REVIEW.md), [chương 2](./data/CHUONG_2_REVIEW.md), [chương 3](./data/CHUONG_3_REVIEW.md) và [chương 4](./data/CHUONG_4_REVIEW.md).
+Dùng [PROMPT_TAO_CAU_HOI.md](./PROMPT_TAO_CAU_HOI.md) để yêu cầu một LLM khác tạo đúng định dạng JSON. Ngân hàng hiện có **1.140 câu** cho 12 chương: lần lượt **124, 160, 215, 133, 52, 52, 55, 60, 58, 92, 65, 74** câu. Xem ma trận nội dung và các điểm đã đối chiếu tại [chương 1](./data/CHUONG_1_REVIEW.md), [chương 2](./data/CHUONG_2_REVIEW.md), [chương 3](./data/CHUONG_3_REVIEW.md), [chương 4](./data/CHUONG_4_REVIEW.md) và [chương 5–12](./data/CHUONG_5_12_REVIEW.md).
+
+## Kiểm chứng câu hỏi
+
+```sh
+node scripts/validate-data.mjs
+node scripts/test-quiz.mjs
+python -m pip install numpy==2.2.6
+python scripts/test-python-quiz.py
+```
+
+Python 3.10+ cần thiết cho các ví dụ `match/case` (CI dùng 3.12). Bộ 243 fixture trong `scripts/fixtures/python-quiz-cases.json` chạy đúng đoạn mã hiển thị và so với đáp án trong ngân hàng. Khi sửa câu đọc mã, sửa cả fixture tương ứng; không đưa mã từ nguồn không tin cậy vào bộ kiểm thử này. Website vẫn là tĩnh, không cần Python phía máy chủ; các công cụ này chỉ chạy khi kiểm thử/phát hành. Câu Turtle là câu ôn tập, không bổ sung Tk vào môi trường thực hành trên trình duyệt.
 
 ## Lưu trữ dữ liệu
 

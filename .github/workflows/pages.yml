@@ -27,6 +27,14 @@ jobs:
         run: |
           node scripts/validate-data.mjs
           node scripts/test-quiz.mjs
+      - name: Chuẩn bị Python kiểm chứng đáp án
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Kiểm chứng các câu đọc mã Python và NumPy
+        run: |
+          python -m pip install numpy==2.2.6
+          python scripts/test-python-quiz.py
       - name: Cấu hình GitHub Pages
         uses: actions/configure-pages@v6
       - name: Chuẩn bị website tĩnh
