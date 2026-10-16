@@ -239,7 +239,7 @@ async function loadQuizData() {
   }
 
   function questionHaystack(question) {
-    const variants = [question.prompt, question.choices.join(" "), question.explanation];
+    const variants = [question.prompt, question.choices.join(" "), question.explanation].map(IT1140Text.plain);
     return fold(
       [
         ...variants,
@@ -380,7 +380,12 @@ async function loadQuizData() {
     if (question.responseType === "number") return String(question.answer).replace(".", ",");
     const content = localizedQuestion(question);
     return correctAnswers(question)
-      .map((index) => `${optionLabel(index)}. ${content.choices[index] || ""}`.trim())
+      .map((index) => {
+        const choice = content.choices[index] || "";
+        const marker = "`".repeat(Math.max(1, ...[...choice.matchAll(/`+/g)].map(m => m[0].length + 1)));
+        const label = question.kind === "code" ? `${marker}${choice}${marker}` : choice;
+        return `${optionLabel(index)}. ${label}`.trim();
+      })
       .join("; ");
   }
 
@@ -491,15 +496,15 @@ async function loadQuizData() {
       control.name = `answer-${question.id}`;
       control.checked = selected.includes(index);
       control.disabled = isLocked(question);
-      control.setAttribute("aria-label", `${optionLabel(index)}. ${choice}`);
+      control.setAttribute("aria-label", `${optionLabel(index)}. ${IT1140Text.plain(choice)}`);
 
       const letter = document.createElement("span");
       letter.className = "choice-letter";
       letter.textContent = optionLabel(index);
 
-      const text = document.createElement("span");
+      const text = document.createElement("div");
       text.className = "choice-text";
-      text.textContent = choice;
+      IT1140Text.render(text, choice, { code: question.kind === "code" });
 
       option.append(control, letter, text);
       option.addEventListener("click", (event) => {
@@ -542,8 +547,9 @@ async function loadQuizData() {
       els.feedbackBox.classList.add("bad");
     }
 
+    IT1140Text.render(title, title.textContent, { inline: true });
     const detail = document.createElement("div");
-    detail.textContent = content.explanation || "";
+    IT1140Text.render(detail, content.explanation || "");
     els.feedbackBox.append(title, detail);
     els.feedbackBox.hidden = false;
   }
@@ -644,7 +650,7 @@ async function loadQuizData() {
 
     els.filteredCount.textContent = String(questions.length);
     els.questionCount.textContent = question ? t("questionCount", state.currentIndex + 1, questions.length) : t("questionCountEmpty");
-    els.questionText.textContent = content ? content.prompt : t("noQuestion");
+    IT1140Text.render(els.questionText, content ? content.prompt : t("noQuestion"), { heading: true });
     els.bookmarkBtn.classList.toggle("is-active", Boolean(question && state.bookmarks[question.id]));
     els.bookmarkBtn.textContent = question && state.bookmarks[question.id] ? "★" : "☆";
 

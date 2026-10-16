@@ -6,6 +6,8 @@
     count: document.getElementById("exerciseProgress"),
     title: document.getElementById("exerciseTitle"),
     task: document.getElementById("exerciseTask"),
+    files: document.getElementById("exerciseFiles"),
+    fileContents: document.getElementById("exerciseFileContents"),
     library: document.getElementById("exerciseLibrary"),
     level: document.getElementById("exerciseLevel"),
     editor: document.getElementById("pythonEditor"),
@@ -214,12 +216,13 @@
     if (!exercise) return;
 
     els.title.textContent = exercise.title;
-    els.task.textContent = exercise.task;
+    IT1140Text.render(els.task, exercise.task);
+    renderSampleFiles(exercise);
     els.library.textContent = exercise.library;
     els.level.textContent = exercise.level;
     setEditorValue(state.code[id] ?? "");
     els.input.value = state.input[id] ?? exercise.tests?.[0]?.input ?? "";
-    els.hintBox.textContent = exercise.hint;
+    IT1140Text.render(els.hintBox, exercise.hint);
     els.hintBox.hidden = true;
     els.hint.textContent = "Xem gợi ý";
     els.output.textContent = exercise.browserRunnable === false
@@ -240,6 +243,26 @@
       setStatus("Sẵn sàng", "ready");
     }
     renderList();
+  }
+
+  function renderSampleFiles(exercise) {
+    const files = Object.entries(exercise.tests?.[0]?.files || {});
+    els.files.hidden = files.length === 0;
+    els.files.open = false;
+    els.fileContents.replaceChildren();
+    for (const [name, content] of files) {
+      const title = document.createElement("h3");
+      const filename = document.createElement("code");
+      filename.textContent = name;
+      title.append(filename);
+      const pre = document.createElement("pre");
+      pre.className = "question-code";
+      pre.tabIndex = 0;
+      const code = document.createElement("code");
+      code.textContent = content || "(Tệp rỗng)";
+      pre.append(code);
+      els.fileContents.append(title, pre);
+    }
   }
 
   function setStatus(text, kind = "ready") {

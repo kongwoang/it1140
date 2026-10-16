@@ -46,6 +46,18 @@ Khi thêm chương vào cùng bộ, nối thêm chương, nguồn, chủ đề v
 
 Sửa nội dung trực tiếp trong JSON. Thư mục `scripts/question-bank-authoring/` lưu quyết định biên tập và mã của đợt mở rộng một lần, không phải lệnh cần chạy trước mỗi lần phát hành. `build.mjs` chủ động từ chối chạy lại trên bộ đã mở rộng để không ghi đè các sửa đổi về sau.
 
+### Trình bày mã và ngữ cảnh độc lập
+
+Trong `prompt`, `choices`, `explanation` và phần `task`/`hint` của bài Python:
+
+- Dùng một cặp backtick cho mã nội dòng, ví dụ chuỗi JSON ``"Gọi `len(a)` để đếm phần tử."``.
+- Dùng rào ba backtick trên dòng riêng cho chương trình, thêm `python` ở dòng mở; mã giả hoặc dữ liệu dùng `text`. Trong JSON, xuống dòng vẫn viết bằng `\n`. Không dùng thẻ HTML.
+- Giữ nguyên thụt lề và dòng trống trong chương trình. Khối mã có thể nằm giữa hai đoạn văn; câu hỏi sau khối mã vẫn hiển thị như văn bản.
+- `kind: "code"` dành cho câu đọc mã; toàn bộ đầu ra trong các lựa chọn dùng font monospace. Câu hỏi lý thuyết/tính toán có lựa chọn xen lời văn và mã thì chỉ đánh dấu phần mã.
+- Nêu đầy đủ biến, kiểu dữ liệu, khởi tạo, hàm và quy ước mà người học cần biết; nói rõ các lựa chọn được xét riêng hay nối tiếp. Không dùng “cùng ví dụ trên” thay cho dữ kiện.
+
+`scripts/format-question-content.mjs` hỗ trợ thêm dấu trình bày vào nội dung có sẵn, kiểm tra văn bản sau khi bỏ dấu không thay đổi. Đây chỉ là công cụ định dạng, không thay việc duyệt nội dung. `scripts/test-question-content.mjs` kiểm tra bộ hiển thị, khối mã khớp ca chạy thật và các câu đã sửa ngữ cảnh.
+
 Khi thêm một file bộ câu hỏi mới, khai báo file đó trong `manifest.json`. Chạy lệnh sau để kiểm tra trước khi đưa lên GitHub:
 
 ```bash
@@ -69,6 +81,8 @@ Mỗi ca kiểm thử có dạng:
 ```
 
 Với bài đọc/ghi tệp, thêm `files` để tạo tệp đầu vào và `expectedFiles` để kiểm tra tệp đầu ra. Với bài đồ họa Matplotlib, dùng `checks` để kiểm tra đối tượng biểu đồ và ảnh đã lưu. Bài không thể chạy trong trình duyệt (hiện là Turtle) đặt `browserRunnable: false` và `tests: []`; giao diện sẽ hướng dẫn người học chạy chương trình trên máy.
+
+Mục “Tệp dữ liệu mẫu” hiển thị tên và nội dung `files` của ca đầu tiên, đúng các tệp được nạp khi bấm “Chạy input này”. Không hiển thị nội dung `expectedFiles` như dữ liệu vào.
 
 Các bài hiện tại được lấy theo `IT1140_Tai_lieu_Giang_vien.pdf` và chia theo trường `section`. Chạy lệnh sau để kiểm tra schema trước khi đưa lên GitHub:
 

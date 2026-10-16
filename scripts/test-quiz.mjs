@@ -5,6 +5,7 @@ import "./test-chapter3.mjs";
 import "./test-chapter4.mjs";
 import "./test-chapters5-12.mjs";
 import "./test-question-bank.mjs";
+import "./test-question-content.mjs";
 
 const bank = JSON.parse(await readFile("data/subjects/it1140.json", "utf8"));
 const chapter = bank.questions.filter((q) => q.source === "chuong-1-bai-giang" && Number(q.id.slice(-3))<=124);
@@ -178,6 +179,7 @@ migration.localStorage.getItem = () => "bad JSON";
 assert.equal(migration.loadState().chapter, "all");
 
 const filters = vm.createContext({ state: { ...restored, query: "", orders: {}, bookmarks: {} }, currentSubject: () => bank });
+vm.runInContext(await readFile("assets/js/question-content.js", "utf8"), filters);
 vm.runInContext(source.slice(source.indexOf("  function chapterForQuestion("), source.indexOf("  function activeQuestion(")), filters);
 for (const [id, count] of [["chuong-1", 208], ["chuong-2", 208], ["chuong-3", 248], ["chuong-4", 218], ["chuong-5", 118], ["chuong-6", 158], ["chuong-7", 158], ["chuong-8", 158], ["chuong-9", 158], ["chuong-10", 208], ["chuong-11", 128], ["chuong-12", 128], ["all", bank.questions.length]]) {
   filters.state.chapter = id;

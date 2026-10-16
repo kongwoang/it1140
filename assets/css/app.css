@@ -473,9 +473,10 @@ button {
   position: relative;
 }
 
-.question-panel h2 {
+.question-text {
   margin: 0;
-  max-height: min(26vh, 188px);
+  min-width: 0;
+  max-height: min(40vh, 360px);
   overflow: auto;
   padding: 0 4px 10px 8px;
   border-bottom: 1px solid var(--line-soft);
@@ -485,6 +486,67 @@ button {
   white-space: pre-wrap;
   scrollbar-width: thin;
 }
+
+.question-text h2 { margin: 0; font: inherit; font-weight: 700; }
+
+.question-text p,
+.choice-text p,
+.feedback p,
+#exerciseTask p,
+#exerciseHint p { margin: 0 0 10px; white-space: pre-wrap; }
+
+.question-text code,
+.choice-text code,
+.feedback code,
+#exerciseTask code,
+#exerciseHint code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.94em;
+  font-weight: 400;
+  font-variant-ligatures: none;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.question-text :not(pre) > code,
+.choice-text :not(pre) > code,
+.feedback :not(pre) > code,
+#exerciseTask :not(pre) > code,
+#exerciseHint :not(pre) > code {
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: var(--surface-inset);
+}
+
+.question-code {
+  max-width: 100%;
+  margin: 12px 0;
+  padding: 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: #f3f6fa;
+  color: #172b46;
+  overflow-x: auto;
+  white-space: pre;
+  tab-size: 4;
+  line-height: 1.65;
+}
+
+.question-code code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.94em;
+  font-weight: 400;
+  font-variant-ligatures: none;
+  overflow-wrap: normal;
+}
+#exerciseFiles summary { cursor: pointer; font-weight: 700; }
+#exerciseFileContents h3 { margin: 12px 0 0; font-size: 14px; }
+#exerciseFileContents h3 code { font-family: monospace; }
+.answer-code { display: block; white-space: pre-wrap; }
+.choice-text > :last-child,
+.feedback p:last-child,
+#exerciseTask p:last-child,
+#exerciseHint p:last-child { margin-bottom: 0; }
 
 .choice-list {
   display: grid;

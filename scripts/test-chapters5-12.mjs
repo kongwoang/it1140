@@ -1,5 +1,10 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import vm from "node:vm";
+
+const textContext = vm.createContext({});
+vm.runInContext(await readFile("assets/js/question-content.js", "utf8"), textContext);
+const { blocks } = textContext.IT1140Text;
 
 const bank = JSON.parse(await readFile("data/subjects/it1140.json", "utf8"));
 const fixtures = JSON.parse(await readFile("scripts/fixtures/python-quiz-cases.json", "utf8"));
@@ -38,7 +43,10 @@ for (const t of fixtures) {
   assert.ok(q, t.id);
   const expected = q.responseType === "number" ? String(q.answer) : q.choices[q.answer];
   assert.equal(t.expected, expected, `Fixture follows published answer: ${t.id}`);
-  if (q.kind === "code") assert.ok(q.prompt.endsWith(t.code), `Fixture executes displayed code: ${t.id}`);
+  if (q.kind === "code") assert.deepEqual(
+    Array.from(blocks(q.prompt).filter(p => p.type === "code"), p => p.text),
+    [t.code], `Fixture executes exactly the displayed program: ${t.id}`,
+  );
 }
 // Independent checks for non-executable mathematical and graphics questions.
 const find = (chapter, number) => {
@@ -63,6 +71,6 @@ assert.deepEqual([1, ...pascal.slice(1).map((x,i) => x + pascal[i]), 1], [1,4,6,
 const circle = find(11, 17);
 assert.equal(circle.choices[circle.answer], "(50,50), hướng bắc");
 const css = await readFile("assets/css/app.css", "utf8");
-assert.match(css, /\.question-panel h2\s*\{[^}]*white-space: pre-wrap/s);
+assert.match(css, /\.question-code\s*\{[^}]*white-space: pre;/s);
 assert.match(css, /\.choice-text\s*\{[^}]*white-space: pre-wrap/s);
 console.log("OK: chapters 5–12 — 508 questions, coverage groups, balanced keys, code fixtures, 16 independent numeric checks, preserved indentation.");

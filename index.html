@@ -7,7 +7,7 @@
     <meta name="description" content="Ôn tập và thực hành Tin học đại cương IT1140 trực tiếp trên trình duyệt." />
     <meta name="theme-color" content="#0f766e" />
     <link rel="canonical" href="https://it1140.hoangpc.io.vn/" />
-    <link rel="stylesheet" href="./assets/css/app.css?v=13" />
+    <link rel="stylesheet" href="./assets/css/app.css?v=15" />
   </head>
   <body>
     <div class="app-shell">
@@ -94,7 +94,7 @@
           </div>
 
           <article class="question-panel">
-            <h2 id="questionText">Đang tải ngân hàng câu hỏi…</h2>
+            <div id="questionText" class="question-text"><h2>Đang tải ngân hàng câu hỏi…</h2></div>
             <div class="choice-list" id="choiceList"></div>
             <div class="feedback" id="feedbackBox" hidden></div>
           </article>
@@ -141,9 +141,13 @@
           </header>
 
           <section class="panel task-card">
-            <p id="exerciseTask">Đang tải nội dung…</p>
+            <div id="exerciseTask">Đang tải nội dung…</div>
             <button type="button" class="text-btn" id="toggleHintBtn">Xem gợi ý</button>
-            <p class="hint-box" id="exerciseHint" hidden></p>
+            <div class="hint-box" id="exerciseHint" hidden></div>
+            <details id="exerciseFiles" hidden>
+              <summary>Tệp dữ liệu mẫu</summary>
+              <div id="exerciseFileContents"></div>
+            </details>
           </section>
 
           <section class="editor-panel">
@@ -192,7 +196,8 @@
 
       </main>
     </div>
-    <script src="./assets/js/quiz-app.js?v=7" defer></script>
-    <script src="./assets/js/python-lab.js?v=9" defer></script>
+    <script src="./assets/js/question-content.js?v=2" defer></script>
+    <script src="./assets/js/quiz-app.js?v=9" defer></script>
+    <script src="./assets/js/python-lab.js?v=11" defer></script>
   </body>
 </html>

@@ -13,6 +13,19 @@ Ngày biên tập: 16/10/2026. Đây là phân loại chuyên môn để ôn t�
 
 ## Ma trận nội dung và số lượng hiện tại
 
+Đợt rà soát ngữ cảnh và trình bày sau mở rộng (16/10/2026): sửa nội dung **44 đề** mà không đổi ID hay đáp án; bổ sung quy tắc năm nhuận vào bài thực hành 1.9. Không coi đây là bằng chứng thực nghiệm rằng toàn bộ câu đã hết nhập nhằng.
+
+- C3–130: nêu đủ miền chữ số PIN và điều kiện cho phép lặp/số 0 ở đầu, bỏ phụ thuộc “cùng mô hình”.
+- C4–017, 021, 023, 062: quy tắc quân hậu, ý nghĩa cạnh hình thang và cách dừng/gọi giai thừa. C4–144, 147, 151, 166, 210: bổ sung khởi tạo, cập nhật, giá trị trả về và miền hợp lệ để có thể kiểm chứng phản ví dụ.
+- C5–094; C6–049, 052, 057, 079: xét từng thao tác độc lập, phân biệt số hạng/tổng/hệ số trong chuỗi, yêu cầu sau mã xe lỗi, cách cộng khi không có số 0 và kiểu của danh sách a.
+- C7–050, 052, 055, 065, 099: định nghĩa Pascal, quy tắc tháp Hà Nội, truy hồi tổ hợp, đầy đủ thân hàm f và quan hệ tham chiếu khi truyền list.
+- C8–069, 084, 107, 146; C9–056, 058, 109, 126, 128: miền chuỗi/số thực, cách gọi isdigit, thứ tự sorted mặc định, loại bản ghi và không thực hiện nối tiếp các lựa chọn.
+- C10–051, 065, 078, 079, 092, 168: định nghĩa mean/std, biến line/path/score và giả định mảng NumPy tương thích.
+- C11–024, 037, 047, 054, 056, 058, 091, 117, 123: có tính lần quay cuối hay không, đối tượng Axes/Turtle, cận bin, IQR, chỉ số subplot, chữ ký callback và dữ liệu y của parabol.
+- Tách 738 chương trình Python nguyên vẹn, hai đoạn mã giả và một định nghĩa hàm bổ sung thành khối mã; mã nội dòng, lựa chọn đầu ra và mã trong lời giải dùng monospace. Không thay nội dung mã để khớp phép kiểm tra. C2–069 là bài đếm byte, đổi kind từ code sang calculation để lời văn của lựa chọn giữ font bình thường.
+- Bài đọc tệp có mục mở rộng “Tệp dữ liệu mẫu”, hiển thị đúng các tệp của ca đầu được dùng khi chạy input. Không công khai đáp án tệp đầu ra làm dữ liệu mẫu.
+- Kiểm tra tự động: 776 ca chạy Python/NumPy, 171 tính toán độc lập, so khớp nguyên văn 738 chương trình hiển thị, toàn bộ phương án của hai bài phản ví dụ đã sửa, XSS dưới dạng văn bản, thụt lề/dòng trống, bộ lọc và chọn nhiều đáp án. Prompt biên soạn được cập nhật để yêu cầu ngữ cảnh độc lập và dấu định dạng mã tường minh.
+
 Các chủ đề nhỏ vẫn được giữ trong JSON phục vụ biên tập, không đưa nguồn hoặc nhóm chủ đề nhỏ trở lại UI. Số trang dưới đây là phạm vi tài liệu nền, không phải khẳng định câu mới chép nguyên văn một trang.
 
 | Chương | Số câu | Hướng bổ sung và kiểm tra | Tài liệu nền |
