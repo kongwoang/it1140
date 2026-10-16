@@ -70,7 +70,7 @@ async function loadQuizData() {
       prev: "Trước",
       next: "Tiếp",
       difficulty: {
-        1: "Cơ bản",
+        1: "Dễ",
         2: "Vừa",
         3: "Khó",
       },

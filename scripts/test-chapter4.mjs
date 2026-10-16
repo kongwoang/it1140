@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 const bank = JSON.parse(await readFile('data/subjects/it1140.json', 'utf8'));
-const qs = bank.questions.filter(q => q.source === 'chuong-4-bai-giang');
+const qs = bank.questions.filter(q => q.source === 'chuong-4-bai-giang' && Number(q.id.slice(-3))<=133);
 const byId = n => qs.find(q => q.id.endsWith(`-${String(n).padStart(3, '0')}`));
 assert.equal(qs.length, 133);
 assert.equal(new Set(qs.map(q => q.prompt)).size, 133);

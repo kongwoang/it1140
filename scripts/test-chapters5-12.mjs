@@ -6,11 +6,11 @@ const fixtures = JSON.parse(await readFile("scripts/fixtures/python-quiz-cases.j
 const byId = new Map(bank.questions.map(q => [q.id, q]));
 const fixtureIds = new Set(fixtures.map(t => t.id));
 assert.equal(fixtureIds.size, fixtures.length, "No duplicate execution fixtures");
-assert.equal(fixtures.length, 243);
+assert.equal(fixtures.length, 776);
 const totals = [52, 52, 55, 60, 58, 92, 65, 74];
 const numericTotals = [15, 12, 8, 2, 5, 4, 10, 2];
 for (let n = 5; n <= 12; n++) {
-  const qs = bank.questions.filter(q => q.source === `chuong-${n}-bai-giang`);
+  const qs = bank.questions.filter(q => q.source === `chuong-${n}-bai-giang` && Number(q.id.slice(-3))<=totals[n-5]);
   assert.equal(qs.length, totals[n - 5], `Chapter ${n} count`);
   assert.equal(qs.filter(q => q.responseType === "number").length, numericTotals[n - 5]);
   assert.equal(new Set(qs.map(q => q.prompt)).size, qs.length, `Chapter ${n} unique prompts`);

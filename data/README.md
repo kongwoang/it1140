@@ -2,7 +2,7 @@
 
 ## Thêm hoặc sửa bộ câu hỏi
 
-File `subjects/it1140.json` là ngân hàng câu hỏi chính, hiện có 124 câu chương 1 (96 trắc nghiệm, 28 điền số). Ma trận nội dung và ghi chú rà soát nằm tại `CHUONG_1_REVIEW.md`. Cấu trúc được kiểm soát bởi `schema/subject.schema.json`:
+File `subjects/it1140.json` là ngân hàng câu hỏi chính, hiện có 2.096 câu cho 12 chương, gồm 96 câu chọn nhiều đáp án. Ma trận nội dung và ghi chú rà soát hiện tại nằm tại `QUESTION_BANK_REVIEW.md`; các file `CHUONG_*_REVIEW.md` lưu lịch sử bộ trước khi mở rộng. Cấu trúc được kiểm soát bởi `schema/subject.schema.json`:
 
 ```json
 {
@@ -36,13 +36,15 @@ File `subjects/it1140.json` là ngân hàng câu hỏi chính, hiện có 124 c�
 }
 ```
 
-Với `responseType: "choice"` (mặc định nếu bỏ trường), `answer` là chỉ số bắt đầu từ `0`. Câu có nhiều đáp án dùng mảng, ví dụ `"answer": [0, 2]`.
+Với `responseType: "choice"` (mặc định nếu bỏ trường), `answer` là chỉ số bắt đầu từ `0`. Câu có nhiều đáp án dùng mảng tăng dần gồm 2–3 chỉ số trong bốn lựa chọn, ví dụ `"answer": [0, 2]`, và đề phải ghi “Chọn tất cả đáp án đúng.” Giao diện tự dùng checkbox. Chỉ chấm đúng khi chọn đủ và không chọn thừa; thứ tự bấm không ảnh hưởng kết quả.
 
 Với `responseType: "number"`, dùng `choices: []` và `answer` là giá trị số JSON, ví dụ `-46` hoặc `45.625`. Câu hỏi phải nêu đơn vị và hệ đếm cần trả lời; nếu kết quả vô hạn phải chọn câu khác hoặc quy định làm tròn rõ ràng. Web chấm bằng giá trị số chính xác, không có sai số dung sai; chấp nhận dấu phẩy hoặc dấu chấm thập phân, số âm, ký pháp khoa học. Không nhận biểu thức, phân số dạng `1/2`, đơn vị hay dấu phân cách hàng nghìn. Tiến độ và chuỗi người học nhập chỉ lưu ở localStorage.
 
 Giao diện chỉ phân loại theo `chapters`. Mỗi phần tử `topics` phải có `chapter` trỏ tới một ID trong `chapters`; `topics` và `sources` vẫn là thông tin biên soạn nội bộ, không xuất hiện dưới dạng bộ lọc hoặc nhãn nguồn/chủ đề nhỏ trên giao diện.
 
 Khi thêm chương vào cùng bộ, nối thêm chương, nguồn, chủ đề và câu hỏi; giữ nguyên ID câu cũ để không mất liên kết tiến độ. Không ghi đè toàn bộ ngân hàng bằng JSON chỉ có chương mới.
+
+Sửa nội dung trực tiếp trong JSON. Thư mục `scripts/question-bank-authoring/` lưu quyết định biên tập và mã của đợt mở rộng một lần, không phải lệnh cần chạy trước mỗi lần phát hành. `build.mjs` chủ động từ chối chạy lại trên bộ đã mở rộng để không ghi đè các sửa đổi về sau.
 
 Khi thêm một file bộ câu hỏi mới, khai báo file đó trong `manifest.json`. Chạy lệnh sau để kiểm tra trước khi đưa lên GitHub:
 

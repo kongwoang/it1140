@@ -4,9 +4,10 @@ import vm from "node:vm";
 import "./test-chapter3.mjs";
 import "./test-chapter4.mjs";
 import "./test-chapters5-12.mjs";
+import "./test-question-bank.mjs";
 
 const bank = JSON.parse(await readFile("data/subjects/it1140.json", "utf8"));
-const chapter = bank.questions.filter((q) => q.source === "chuong-1-bai-giang");
+const chapter = bank.questions.filter((q) => q.source === "chuong-1-bai-giang" && Number(q.id.slice(-3))<=124);
 const question = (n) => chapter.find((q) => q.id.endsWith(`-${String(n).padStart(3, "0")}`));
 const correctText = (n) => question(n).choices[question(n).answer];
 assert.equal(chapter.length, 124);
@@ -107,7 +108,18 @@ for (const q of bank.questions) {
   // Persistence round-trip preserves numeric text and choice indices.
   context.state = JSON.parse(JSON.stringify(context.state));
   assert.equal(context.answerMatches(q), true, q.id);
-  context.state.answers[q.id] = q.responseType === "number" ? String(q.answer + 1) : (q.answer + 1) % 4;
+  if (Array.isArray(q.answer)) {
+    // Every real multi-answer question: reordering is accepted, every proper
+    // subset and every superset is rejected, including after persistence.
+    context.state.answers[q.id] = [...q.answer].reverse();
+    assert.equal(context.answerMatches(q), true, `Order-independent ${q.id}`);
+    for (let mask=0;mask<2**q.choices.length;mask++) {
+      const selected=q.choices.flatMap((_,i)=>mask&(1<<i)?[i]:[]);
+      context.state.answers[q.id] = selected;
+      assert.equal(context.answerMatches(q), JSON.stringify(selected)===JSON.stringify(q.answer), `Subset/superset ${mask}: ${q.id}`);
+    }
+    context.state.answers[q.id] = [];
+  } else context.state.answers[q.id] = q.responseType === "number" ? String(q.answer + 1) : (q.answer + 1) % 4;
   assert.equal(context.answerMatches(q), false, q.id);
 }
 const multi = { id: "legacy-multiple", choices: ["A", "B", "C"], answer: [0, 2] };
@@ -118,7 +130,7 @@ assert.equal(context.answerMatches(multi), false);
 assert.equal(context.answerLabel(multi), "A. A; C. C");
 
 // Chapter 2: independent arithmetic, wildcard rules and path resolution.
-const chapter2 = bank.questions.filter((q) => q.source === "chuong-2-bai-giang");
+const chapter2 = bank.questions.filter((q) => q.source === "chuong-2-bai-giang" && Number(q.id.slice(-3))<=160);
 const q2 = (n) => chapter2.find((q) => q.id.endsWith(`-${String(n).padStart(3, "0")}`));
 assert.equal(chapter2.length, 160);
 assert.equal(new Set(chapter2.map((q) => q.prompt)).size, 160);
@@ -167,7 +179,7 @@ assert.equal(migration.loadState().chapter, "all");
 
 const filters = vm.createContext({ state: { ...restored, query: "", orders: {}, bookmarks: {} }, currentSubject: () => bank });
 vm.runInContext(source.slice(source.indexOf("  function chapterForQuestion("), source.indexOf("  function activeQuestion(")), filters);
-for (const [id, count] of [["chuong-1", 124], ["chuong-2", 160], ["chuong-3", 215], ["chuong-4", 133], ["chuong-5", 52], ["chuong-6", 52], ["chuong-7", 55], ["chuong-8", 60], ["chuong-9", 58], ["chuong-10", 92], ["chuong-11", 65], ["chuong-12", 74], ["all", bank.questions.length]]) {
+for (const [id, count] of [["chuong-1", 208], ["chuong-2", 208], ["chuong-3", 248], ["chuong-4", 218], ["chuong-5", 118], ["chuong-6", 158], ["chuong-7", 158], ["chuong-8", 158], ["chuong-9", 158], ["chuong-10", 208], ["chuong-11", 128], ["chuong-12", 128], ["all", bank.questions.length]]) {
   filters.state.chapter = id;
   assert.equal(filters.filteredQuestions().length, count);
 }

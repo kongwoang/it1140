@@ -624,8 +624,8 @@
   },
   {
     "id": "it1140-c8-toan-tu-023",
-    "code": "print(\"%s=%.1f\" % (\"x\", 2.25))",
-    "expected": "x=2.2"
+    "code": "print(\"%s=%.1f\" % (\"x\", 2.26))",
+    "expected": "x=2.3"
   },
   {
     "id": "it1140-c8-toan-tu-024",
@@ -1262,6 +1262,3104 @@
     "id": "it1140-c12-bigdata-046",
     "code": "print(100*20*60)",
     "expected": "120000",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-057",
+    "code": "x = 0\ny = x + 2\nx *= 3\nprint(y)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-071",
+    "code": "x = -2\ny = x + 2\nx *= 3\nprint(y)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-077",
+    "code": "x = 4\ny = x + 2\nx *= 3\nprint(y)",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-109",
+    "code": "a = 0\nb = a\na += 1\nprint(b)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-111",
+    "code": "a = -1\nb = a\na += 1\nprint(b)",
+    "expected": "-1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-056",
+    "code": "a = 7\nb = a\na += 1\nprint(b)",
+    "expected": "7",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-059",
+    "code": "x = 0\ny = x\nx, y = y + 1, x - 1\nprint(x - y)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-060",
+    "code": "x = -3\ny = x\nx, y = y + 1, x - 1\nprint(x - y)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-084",
+    "code": "x = 5\ny = x\nx, y = y + 1, x - 1\nprint(x - y)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-115",
+    "code": "n = -1\nprint(n // 4)",
+    "expected": "-1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-101",
+    "code": "n = 0\nprint(n // 4)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-062",
+    "code": "n = 7\nprint(n // 4)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-055",
+    "code": "n = -5\nprint(n % 4)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-103",
+    "code": "n = 0\nprint(n % 4)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-054",
+    "code": "n = 7\nprint(n % 4)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-091",
+    "code": "n = 0\nprint(2 ** n + 1)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-110",
+    "code": "n = 1\nprint(2 ** n + 1)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-098",
+    "code": "n = 3\nprint(2 ** n + 1)",
+    "expected": "9",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-061",
+    "code": "x = -3\nprint(-x ** 2)",
+    "expected": "-9",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-105",
+    "code": "x = 0\nprint(-x ** 2)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-090",
+    "code": "x = 4\nprint(-x ** 2)",
+    "expected": "-16",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-065",
+    "code": "x = -2.9\nprint(int(x))",
+    "expected": "-2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-069",
+    "code": "x = 0.9\nprint(int(x))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-117",
+    "code": "x = 3.9\nprint(int(x))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-116",
+    "code": "s = \"\"\nprint(len(s * 2))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-092",
+    "code": "s = \"08\"\nprint(len(s * 2))",
+    "expected": "4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-088",
+    "code": "s = \"A B\"\nprint(len(s * 2))",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-074",
+    "code": "s = \"000\"\nprint(int(s) + 2)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-104",
+    "code": "s = \"-3\"\nprint(int(s) + 2)",
+    "expected": "-1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-118",
+    "code": "s = \"15\"\nprint(int(s) + 2)",
+    "expected": "17",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-106",
+    "code": "n = 0\nq, r = divmod(n, 10)\nprint(q + r)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-078",
+    "code": "n = 27\nq, r = divmod(n, 10)\nprint(q + r)",
+    "expected": "9",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-113",
+    "code": "n = -1\nq, r = divmod(n, 10)\nprint(q + r)",
+    "expected": "8",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-096",
+    "code": "a = -2\na += 2 * 3\na //= 2\nprint(a)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-114",
+    "code": "a = 0\na += 2 * 3\na //= 2\nprint(a)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-063",
+    "code": "a = 5\na += 2 * 3\na //= 2\nprint(a)",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-070",
+    "code": "x = True\nprint(type(x).__name__)",
+    "expected": "bool"
+  },
+  {
+    "id": "it1140-c5-bien-kieu-067",
+    "code": "x = \"True\"\nprint(type(x).__name__)",
+    "expected": "str"
+  },
+  {
+    "id": "it1140-c5-bien-kieu-082",
+    "code": "x = 1.0\nprint(type(x).__name__)",
+    "expected": "float"
+  },
+  {
+    "id": "it1140-c5-bien-kieu-108",
+    "code": "print(\"2\" + \"0\")",
+    "expected": "20"
+  },
+  {
+    "id": "it1140-c5-bien-kieu-087",
+    "code": "print(\"2\" * 3)",
+    "expected": "222"
+  },
+  {
+    "id": "it1140-c5-bien-kieu-075",
+    "code": "print(str(2 + 3) + \"0\")",
+    "expected": "50"
+  },
+  {
+    "id": "it1140-c5-so-hoc-058",
+    "code": "print(3 / 2)",
+    "expected": "1.5"
+  },
+  {
+    "id": "it1140-c5-so-hoc-083",
+    "code": "print(3 // 2)",
+    "expected": "1"
+  },
+  {
+    "id": "it1140-c5-so-hoc-080",
+    "code": "print(3 / 3)",
+    "expected": "1.0"
+  },
+  {
+    "id": "it1140-c5-bien-kieu-107",
+    "code": "a, b = 2, 5\na, b = b, a + b\nprint(a * 10 + b)",
+    "expected": "57",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-089",
+    "code": "x = 7\nx = (x + 1) * (x - 1)\nprint(x // 5)",
+    "expected": "9",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-085",
+    "code": "s = \"07\"\nprint(int(s) * len(s))",
+    "expected": "14",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-bien-kieu-097",
+    "code": "a = 3\nb = 2\nprint(int(a / b) + len(str(a / b)))",
+    "expected": "4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c5-so-hoc-066",
+    "code": "n = 367\nprint(n // 60 * 60 + n % 60)",
+    "expected": "367",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-091",
+    "code": "x = -3\nif x < 0:\n    y = -x\nelse:\n    y = x + 1\nprint(y)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-136",
+    "code": "x = 0\nif x < 0:\n    y = -x\nelse:\n    y = x + 1\nprint(y)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-120",
+    "code": "x = 4\nif x < 0:\n    y = -x\nelse:\n    y = x + 1\nprint(y)",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-122",
+    "code": "score = 4.9\nif score >= 8:\n    rank = 3\nelif score >= 5:\n    rank = 2\nelse:\n    rank = 1\nprint(rank)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-126",
+    "code": "score = 5\nif score >= 8:\n    rank = 3\nelif score >= 5:\n    rank = 2\nelse:\n    rank = 1\nprint(rank)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-135",
+    "code": "score = 8\nif score >= 8:\n    rank = 3\nelif score >= 5:\n    rank = 2\nelse:\n    rank = 1\nprint(rank)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-070",
+    "code": "x = -1\ny = 0\nif x >= 0:\n    y += 1\nif x <= 0:\n    y += 2\nprint(y)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-143",
+    "code": "x = 0\ny = 0\nif x >= 0:\n    y += 1\nif x <= 0:\n    y += 2\nprint(y)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-064",
+    "code": "x = 1\ny = 0\nif x >= 0:\n    y += 1\nif x <= 0:\n    y += 2\nprint(y)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-096",
+    "code": "x = -1\ny = 0\nif x >= 0:\n    y += 1\nelif x <= 0:\n    y += 2\nprint(y)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-137",
+    "code": "x = 0\ny = 0\nif x >= 0:\n    y += 1\nelif x <= 0:\n    y += 2\nprint(y)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-060",
+    "code": "x = 1\ny = 0\nif x >= 0:\n    y += 1\nelif x <= 0:\n    y += 2\nprint(y)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-112",
+    "code": "x = -2\nif x % 2 == 0:\n    if x > 0:\n        y = 10\n    else:\n        y = 20\nelse:\n    y = 30\nprint(y)",
+    "expected": "20",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-055",
+    "code": "x = 0\nif x % 2 == 0:\n    if x > 0:\n        y = 10\n    else:\n        y = 20\nelse:\n    y = 30\nprint(y)",
+    "expected": "20",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-074",
+    "code": "x = 3\nif x % 2 == 0:\n    if x > 0:\n        y = 10\n    else:\n        y = 20\nelse:\n    y = 30\nprint(y)",
+    "expected": "30",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-155",
+    "code": "x = 2\ncount = 0\nif 2 <= x < 5:\n    count += 1\nif x == 5:\n    count += 2\nprint(count)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-109",
+    "code": "x = 5\ncount = 0\nif 2 <= x < 5:\n    count += 1\nif x == 5:\n    count += 2\nprint(count)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-132",
+    "code": "x = 1\ncount = 0\nif 2 <= x < 5:\n    count += 1\nif x == 5:\n    count += 2\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-068",
+    "code": "x = 0\ny = 0\nif x != 0 and 12 // x > 2:\n    y = 1\nprint(y)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-062",
+    "code": "x = 3\ny = 0\nif x != 0 and 12 // x > 2:\n    y = 1\nprint(y)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-076",
+    "code": "x = 6\ny = 0\nif x != 0 and 12 // x > 2:\n    y = 1\nprint(y)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-141",
+    "code": "s = \"\"\ny = 0\nif s:\n    y = len(s)\nelse:\n    y = -1\nprint(y)",
+    "expected": "-1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-092",
+    "code": "s = \"0\"\ny = 0\nif s:\n    y = len(s)\nelse:\n    y = -1\nprint(y)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-108",
+    "code": "s = \"  \"\ny = 0\nif s:\n    y = len(s)\nelse:\n    y = -1\nprint(y)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-056",
+    "code": "n = 0\ntotal = 0\nfor i in range(1, n + 1):\n    total += i\nprint(total)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-097",
+    "code": "n = 1\ntotal = 0\nfor i in range(1, n + 1):\n    total += i\nprint(total)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-089",
+    "code": "n = 4\ntotal = 0\nfor i in range(1, n + 1):\n    total += i\nprint(total)",
+    "expected": "10",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-099",
+    "code": "n = 0\ncount = 0\nfor i in range(n, 0, -2):\n    count += 1\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-087",
+    "code": "n = 5\ncount = 0\nfor i in range(n, 0, -2):\n    count += 1\nprint(count)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-086",
+    "code": "n = 6\ncount = 0\nfor i in range(n, 0, -2):\n    count += 1\nprint(count)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-065",
+    "code": "n = 0\ntotal = 0\nfor i in range(n):\n    if i % 2 == 0:\n        continue\n    total += i\nprint(total)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-150",
+    "code": "n = 4\ntotal = 0\nfor i in range(n):\n    if i % 2 == 0:\n        continue\n    total += i\nprint(total)",
+    "expected": "4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-104",
+    "code": "n = 6\ntotal = 0\nfor i in range(n):\n    if i % 2 == 0:\n        continue\n    total += i\nprint(total)",
+    "expected": "9",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-094",
+    "code": "n = 0\ntotal = 0\nfor i in range(n):\n    if i == 3:\n        break\n    total += i\nprint(total)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-146",
+    "code": "n = 3\ntotal = 0\nfor i in range(n):\n    if i == 3:\n        break\n    total += i\nprint(total)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-102",
+    "code": "n = 8\ntotal = 0\nfor i in range(n):\n    if i == 3:\n        break\n    total += i\nprint(total)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-101",
+    "code": "n = 0\ncount = 0\nfor i in range(n):\n    for j in range(3):\n        count += 1\n        if j == 1:\n            break\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-148",
+    "code": "n = 1\ncount = 0\nfor i in range(n):\n    for j in range(3):\n        count += 1\n        if j == 1:\n            break\nprint(count)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-114",
+    "code": "n = 3\ncount = 0\nfor i in range(n):\n    for j in range(3):\n        count += 1\n        if j == 1:\n            break\nprint(count)",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-131",
+    "code": "n = 1\ncount = 0\nfor i in range(n):\n    for j in range(i):\n        count += 1\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-085",
+    "code": "n = 3\ncount = 0\nfor i in range(n):\n    for j in range(i):\n        count += 1\nprint(count)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-111",
+    "code": "n = 5\ncount = 0\nfor i in range(n):\n    for j in range(i):\n        count += 1\nprint(count)",
+    "expected": "10",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-147",
+    "code": "n = 0\ncount = 0\nwhile n > 0:\n    n //= 2\n    count += 1\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-121",
+    "code": "n = 1\ncount = 0\nwhile n > 0:\n    n //= 2\n    count += 1\nprint(count)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-071",
+    "code": "n = 8\ncount = 0\nwhile n > 0:\n    n //= 2\n    count += 1\nprint(count)",
+    "expected": "4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-138",
+    "code": "n = 0\ntotal = 0\nwhile n > 0:\n    total += n % 10\n    n //= 10\nprint(total)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-152",
+    "code": "n = 105\ntotal = 0\nwhile n > 0:\n    total += n % 10\n    n //= 10\nprint(total)",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-083",
+    "code": "n = 909\ntotal = 0\nwhile n > 0:\n    total += n % 10\n    n //= 10\nprint(total)",
+    "expected": "18",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-127",
+    "code": "n = 0\ncount = 0\nwhile n >= 10:\n    n //= 10\n    count += 1\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-153",
+    "code": "n = 10\ncount = 0\nwhile n >= 10:\n    n //= 10\n    count += 1\nprint(count)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-067",
+    "code": "n = 100\ncount = 0\nwhile n >= 10:\n    n //= 10\n    count += 1\nprint(count)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-113",
+    "code": "n = 0\nx = 1\nwhile x < n:\n    x *= 2\nprint(x)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-140",
+    "code": "n = 8\nx = 1\nwhile x < n:\n    x *= 2\nprint(x)",
+    "expected": "8",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-098",
+    "code": "n = 9\nx = 1\nwhile x < n:\n    x *= 2\nprint(x)",
+    "expected": "16",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-110",
+    "code": "n = 0\nx = 0\nwhile x < n:\n    x += 1\n    if x % 2 == 0:\n        continue\n    n -= 1\nprint(x)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-128",
+    "code": "n = 3\nx = 0\nwhile x < n:\n    x += 1\n    if x % 2 == 0:\n        continue\n    n -= 1\nprint(x)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-105",
+    "code": "n = 6\nx = 0\nwhile x < n:\n    x += 1\n    if x % 2 == 0:\n        continue\n    n -= 1\nprint(x)",
+    "expected": "4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-149",
+    "code": "a = []\ncount = 0\nfor value in a:\n    if value >= 5:\n        count += 1\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-090",
+    "code": "a = [4,5,6]\ncount = 0\nfor value in a:\n    if value >= 5:\n        count += 1\nprint(count)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-100",
+    "code": "a = [5,5,0]\ncount = 0\nfor value in a:\n    if value >= 5:\n        count += 1\nprint(count)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-134",
+    "code": "a = [-3,0]\ntotal = 0\nfor value in a:\n    if value > 0:\n        total += value\nprint(total)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-142",
+    "code": "a = [2,-1,4]\ntotal = 0\nfor value in a:\n    if value > 0:\n        total += value\nprint(total)",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-072",
+    "code": "a = [0,5,5]\ntotal = 0\nfor value in a:\n    if value > 0:\n        total += value\nprint(total)",
+    "expected": "10",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-077",
+    "code": "a = [1,-2,3,0,4]\ncount = 0\nfor value in a:\n    if value == 0:\n        break\n    if value < 0:\n        continue\n    count += 1\nprint(count)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-058",
+    "code": "a = [0,2,3]\ncount = 0\nfor value in a:\n    if value == 0:\n        break\n    if value < 0:\n        continue\n    count += 1\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-117",
+    "code": "a = [-1,-2,5]\ncount = 0\nfor value in a:\n    if value == 0:\n        break\n    if value < 0:\n        continue\n    count += 1\nprint(count)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-139",
+    "code": "a = [3,2,1]\nbest = a[0]\nchanges = 0\nfor value in a[1:]:\n    if value > best:\n        best = value\n        changes += 1\nprint(changes)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-116",
+    "code": "a = [1,3,3,4]\nbest = a[0]\nchanges = 0\nfor value in a[1:]:\n    if value > best:\n        best = value\n        changes += 1\nprint(changes)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-151",
+    "code": "a = [-5,-2,-1]\nbest = a[0]\nchanges = 0\nfor value in a[1:]:\n    if value > best:\n        best = value\n        changes += 1\nprint(changes)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-095",
+    "code": "a = [1,3]\nlast = -1\nfor i in range(len(a)):\n    if a[i] == 2:\n        last = i\nprint(last)",
+    "expected": "-1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-144",
+    "code": "a = [2,1,2]\nlast = -1\nfor i in range(len(a)):\n    if a[i] == 2:\n        last = i\nprint(last)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-157",
+    "code": "a = [2]\nlast = -1\nfor i in range(len(a)):\n    if a[i] == 2:\n        last = i\nprint(last)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-103",
+    "code": "a = [1]\ncount = 0\nfor i in range(1, len(a)):\n    if a[i] > a[i-1]:\n        count += 1\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-081",
+    "code": "a = [1,2,2,4]\ncount = 0\nfor i in range(1, len(a)):\n    if a[i] > a[i-1]:\n        count += 1\nprint(count)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-066",
+    "code": "a = [4,3,2]\ncount = 0\nfor i in range(1, len(a)):\n    if a[i] > a[i-1]:\n        count += 1\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-084",
+    "code": "year = 1900\nif year % 400 == 0 or (year % 4 == 0 and year % 100 != 0):\n    days = 29\nelse:\n    days = 28\nprint(days)",
+    "expected": "28",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-145",
+    "code": "year = 2000\nif year % 400 == 0 or (year % 4 == 0 and year % 100 != 0):\n    days = 29\nelse:\n    days = 28\nprint(days)",
+    "expected": "29",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-123",
+    "code": "year = 2023\nif year % 400 == 0 or (year % 4 == 0 and year % 100 != 0):\n    days = 29\nelse:\n    days = 28\nprint(days)",
+    "expected": "28",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-106",
+    "code": "hours = 0\nif hours <= 40:\n    pay = hours * 10\nelse:\n    pay = 400 + (hours - 40) * 15\nprint(pay)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-075",
+    "code": "hours = 40\nif hours <= 40:\n    pay = hours * 10\nelse:\n    pay = 400 + (hours - 40) * 15\nprint(pay)",
+    "expected": "400",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-088",
+    "code": "hours = 42\nif hours <= 40:\n    pay = hours * 10\nelse:\n    pay = 400 + (hours - 40) * 15\nprint(pay)",
+    "expected": "430",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-158",
+    "code": "x = 2\nmatch x:\n    case 1 | 2:\n        y = 10\n    case 3:\n        y = 20\n    case _:\n        y = 0\nprint(y)",
+    "expected": "10",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-069",
+    "code": "x = 3\nmatch x:\n    case 1 | 2:\n        y = 10\n    case 3:\n        y = 20\n    case _:\n        y = 0\nprint(y)",
+    "expected": "20",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-125",
+    "code": "x = 4\nmatch x:\n    case 1 | 2:\n        y = 10\n    case 3:\n        y = 20\n    case _:\n        y = 0\nprint(y)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-124",
+    "code": "a = [5]\ntotal = 0\nfor i, value in enumerate(a):\n    total += i * value\nprint(total)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-053",
+    "code": "a = [2,3,4]\ntotal = 0\nfor i, value in enumerate(a):\n    total += i * value\nprint(total)",
+    "expected": "11",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-073",
+    "code": "a = [-1,0,2]\ntotal = 0\nfor i, value in enumerate(a):\n    total += i * value\nprint(total)",
+    "expected": "4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-063",
+    "code": "n = 1\ncount = 0\nfor i in range(n):\n    for j in range(n):\n        if i == j:\n            continue\n        count += 1\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-078",
+    "code": "n = 2\ncount = 0\nfor i in range(n):\n    for j in range(n):\n        if i == j:\n            continue\n        count += 1\nprint(count)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-154",
+    "code": "n = 3\ncount = 0\nfor i in range(n):\n    for j in range(n):\n        if i == j:\n            continue\n        count += 1\nprint(count)",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-156",
+    "code": "a = []\nrun = 0\nbest = 0\nfor value in a:\n    if value > 0:\n        run += 1\n        best = max(best, run)\n    else:\n        run = 0\nprint(best)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-093",
+    "code": "a = [1,2,0,3]\nrun = 0\nbest = 0\nfor value in a:\n    if value > 0:\n        run += 1\n        best = max(best, run)\n    else:\n        run = 0\nprint(best)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-080",
+    "code": "a = [1,-1,2,3,4]\nrun = 0\nbest = 0\nfor value in a:\n    if value > 0:\n        run += 1\n        best = max(best, run)\n    else:\n        run = 0\nprint(best)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-130",
+    "code": "a = [1,2,3,4]\ns = 0\nfor value in a:\n    s += value\n    if s >= 5:\n        break\nprint(s)",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-059",
+    "code": "a = [5,-3]\ns = 0\nfor value in a:\n    s += value\n    if s >= 5:\n        break\nprint(s)",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-mau-bai-tap-054",
+    "code": "a = [1,1]\ns = 0\nfor value in a:\n    s += value\n    if s >= 5:\n        break\nprint(s)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-vong-lap-133",
+    "code": "n = 3\na = []\nfor i in range(n):\n    for j in range(i, n):\n        a.append(i + j)\nprint(sum(a))",
+    "expected": "12",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c6-dieu-kien-082",
+    "code": "x = 4\nif x > 0:\n    x -= 5\nelse:\n    x += 5\nif x < 0:\n    x = -x\nprint(x)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-093",
+    "code": "def adjust(x):\n    if x < 0:\n        return 0\n    return x + 2\nprint(adjust(-2))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-079",
+    "code": "def adjust(x):\n    if x < 0:\n        return 0\n    return x + 2\nprint(adjust(0))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-086",
+    "code": "def adjust(x):\n    if x < 0:\n        return 0\n    return x + 2\nprint(adjust(3))",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-116",
+    "code": "def add(a, b):\n    return a + b\ndef twice(x):\n    return add(x, x)\nprint(twice(-3))",
+    "expected": "-6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-156",
+    "code": "def add(a, b):\n    return a + b\ndef twice(x):\n    return add(x, x)\nprint(twice(0))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-139",
+    "code": "def add(a, b):\n    return a + b\ndef twice(x):\n    return add(x, x)\nprint(twice(4))",
+    "expected": "8",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-151",
+    "code": "def f(x):\n    return x + 1\n    x += 10\nprint(f(-1))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-123",
+    "code": "def f(x):\n    return x + 1\n    x += 10\nprint(f(0))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-141",
+    "code": "def f(x):\n    return x + 1\n    x += 10\nprint(f(4))",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-118",
+    "code": "def f(x):\n    print(x + 1)\nf(-1)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-126",
+    "code": "def f(x):\n    print(x + 1)\nf(0)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-083",
+    "code": "def f(x):\n    print(x + 1)\nf(4)",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-128",
+    "code": "x = -3\ndef f(x):\n    x += 5\n    return x\ny = f(x)\nprint(y - x)",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-063",
+    "code": "x = 0\ndef f(x):\n    x += 5\n    return x\ny = f(x)\nprint(y - x)",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-154",
+    "code": "x = 5\ndef f(x):\n    x += 5\n    return x\ny = f(x)\nprint(y - x)",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-078",
+    "code": "a = []\ndef add_item(items):\n    items.append(9)\nadd_item(a)\nprint(len(a))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-133",
+    "code": "a = [1]\ndef add_item(items):\n    items.append(9)\nadd_item(a)\nprint(len(a))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-082",
+    "code": "a = [1,2]\ndef add_item(items):\n    items.append(9)\nadd_item(a)\nprint(len(a))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-073",
+    "code": "a = []\ndef replace(items):\n    items = [9, 9]\nreplace(a)\nprint(len(a))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-060",
+    "code": "a = [1]\ndef replace(items):\n    items = [9, 9]\nreplace(a)\nprint(len(a))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-149",
+    "code": "a = [1,2,3]\ndef replace(items):\n    items = [9, 9]\nreplace(a)\nprint(len(a))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-103",
+    "code": "a = []\ndef f(items):\n    items = items + [8]\n    return len(items)\nb = f(a)\nprint(b - len(a))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-152",
+    "code": "a = [1]\ndef f(items):\n    items = items + [8]\n    return len(items)\nb = f(a)\nprint(b - len(a))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-136",
+    "code": "a = [1,2]\ndef f(items):\n    items = items + [8]\n    return len(items)\nb = f(a)\nprint(b - len(a))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-105",
+    "code": "x = -2\ndef f():\n    global x\n    x *= 2\nf()\nprint(x)",
+    "expected": "-4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-090",
+    "code": "x = 0\ndef f():\n    global x\n    x *= 2\nf()\nprint(x)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-085",
+    "code": "x = 3\ndef f():\n    global x\n    x *= 2\nf()\nprint(x)",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-077",
+    "code": "x = -2\ndef f():\n    x = 7\n    return x\nprint(f() + x)",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-072",
+    "code": "x = 0\ndef f():\n    x = 7\n    return x\nprint(f() + x)",
+    "expected": "7",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-140",
+    "code": "x = 3\ndef f():\n    x = 7\n    return x\nprint(f() + x)",
+    "expected": "10",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-129",
+    "code": "def scale(a, factor=3):\n    return a * factor\nprint(scale(-2))",
+    "expected": "-6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-130",
+    "code": "def scale(a, factor=3):\n    return a * factor\nprint(scale(0))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-062",
+    "code": "def scale(a, factor=3):\n    return a * factor\nprint(scale(4))",
+    "expected": "12",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-114",
+    "code": "def mix(a, b=2, c=5):\n    return a + 10 * b + c\nprint(mix(-1, c=1))",
+    "expected": "20",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-110",
+    "code": "def mix(a, b=2, c=5):\n    return a + 10 * b + c\nprint(mix(0, c=1))",
+    "expected": "21",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-122",
+    "code": "def mix(a, b=2, c=5):\n    return a + 10 * b + c\nprint(mix(4, c=1))",
+    "expected": "25",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-117",
+    "code": "def mix(a, b=2):\n    return a - b\nprint(mix(b=3, a=-1))",
+    "expected": "-4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-131",
+    "code": "def mix(a, b=2):\n    return a - b\nprint(mix(b=3, a=0))",
+    "expected": "-3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-113",
+    "code": "def mix(a, b=2):\n    return a - b\nprint(mix(b=3, a=7))",
+    "expected": "4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-069",
+    "code": "def apply(func, value):\n    return func(value)\ndef square(x):\n    return x * x\nprint(apply(square, -3))",
+    "expected": "9",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-059",
+    "code": "def apply(func, value):\n    return func(value)\ndef square(x):\n    return x * x\nprint(apply(square, 0))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-064",
+    "code": "def apply(func, value):\n    return func(value)\ndef square(x):\n    return x * x\nprint(apply(square, 4))",
+    "expected": "16",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-101",
+    "code": "a = []\nresult = list(map(lambda v: v + 2, a))\nprint(sum(result))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-121",
+    "code": "a = [1,2]\nresult = list(map(lambda v: v + 2, a))\nprint(sum(result))",
+    "expected": "7",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-125",
+    "code": "a = [-2,0,2]\nresult = list(map(lambda v: v + 2, a))\nprint(sum(result))",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-135",
+    "code": "a = []\nresult = list(filter(lambda v: v > 0, a))\nprint(len(result))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-146",
+    "code": "a = [-1,0,1]\nresult = list(filter(lambda v: v > 0, a))\nprint(len(result))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-148",
+    "code": "a = [1,2,3]\nresult = list(filter(lambda v: v > 0, a))\nprint(len(result))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-145",
+    "code": "from functools import reduce\na = []\nprint(reduce(lambda s, v: s * 10 + v, a, 0))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-132",
+    "code": "from functools import reduce\na = [1,2,3]\nprint(reduce(lambda s, v: s * 10 + v, a, 0))",
+    "expected": "123",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-074",
+    "code": "from functools import reduce\na = [0,4,2]\nprint(reduce(lambda s, v: s * 10 + v, a, 0))",
+    "expected": "42",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-057",
+    "code": "f = lambda x: x * 2 if x >= 0 else -x\nprint(f(-3))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-134",
+    "code": "f = lambda x: x * 2 if x >= 0 else -x\nprint(f(0))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-137",
+    "code": "f = lambda x: x * 2 if x >= 0 else -x\nprint(f(4))",
+    "expected": "8",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-138",
+    "code": "def f(n):\n    if n == 0:\n        return 1\n    return 2 * f(n-1)\nprint(f(0))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-076",
+    "code": "def f(n):\n    if n == 0:\n        return 1\n    return 2 * f(n-1)\nprint(f(1))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-100",
+    "code": "def f(n):\n    if n == 0:\n        return 1\n    return 2 * f(n-1)\nprint(f(4))",
+    "expected": "16",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-104",
+    "code": "def f(n):\n    if n <= 1:\n        return n\n    return f(n-1) + f(n-2)\nprint(f(0))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-142",
+    "code": "def f(n):\n    if n <= 1:\n        return n\n    return f(n-1) + f(n-2)\nprint(f(2))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-155",
+    "code": "def f(n):\n    if n <= 1:\n        return n\n    return f(n-1) + f(n-2)\nprint(f(6))",
+    "expected": "8",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-119",
+    "code": "def digits(n):\n    if n < 10:\n        return n\n    return n % 10 + digits(n // 10)\nprint(digits(0))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-109",
+    "code": "def digits(n):\n    if n < 10:\n        return n\n    return n % 10 + digits(n // 10)\nprint(digits(105))",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-147",
+    "code": "def digits(n):\n    if n < 10:\n        return n\n    return n % 10 + digits(n // 10)\nprint(digits(808))",
+    "expected": "16",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-081",
+    "code": "def steps(n):\n    if n <= 1:\n        return 0\n    return 1 + steps(n // 2)\nprint(steps(1))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-157",
+    "code": "def steps(n):\n    if n <= 1:\n        return 0\n    return 1 + steps(n // 2)\nprint(steps(8))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-097",
+    "code": "def steps(n):\n    if n <= 1:\n        return 0\n    return 1 + steps(n // 2)\nprint(steps(9))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-096",
+    "code": "def total(a):\n    if not a:\n        return 0\n    return a[0] + total(a[1:])\nprint(total([]))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-075",
+    "code": "def total(a):\n    if not a:\n        return 0\n    return a[0] + total(a[1:])\nprint(total([3]))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-158",
+    "code": "def total(a):\n    if not a:\n        return 0\n    return a[0] + total(a[1:])\nprint(total([2,-1,4]))",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-153",
+    "code": "def power(a, n):\n    if n == 0:\n        return 1\n    return a * power(a, n-1)\nprint(power(0, 0))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-127",
+    "code": "def power(a, n):\n    if n == 0:\n        return 1\n    return a * power(a, n-1)\nprint(power(-2, 3))",
+    "expected": "-8",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-091",
+    "code": "def power(a, n):\n    if n == 0:\n        return 1\n    return a * power(a, n-1)\nprint(power(3, 2))",
+    "expected": "9",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-095",
+    "code": "def f(n):\n    if n <= 1:\n        return 1\n    return f(n-1) + 2\nprint(f(0))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-108",
+    "code": "def f(n):\n    if n <= 1:\n        return 1\n    return f(n-1) + 2\nprint(f(1))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-112",
+    "code": "def f(n):\n    if n <= 1:\n        return 1\n    return f(n-1) + 2\nprint(f(4))",
+    "expected": "7",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-084",
+    "code": "def outer(k):\n    def inner(x):\n        return x + k\n    return inner\nf = outer(-2)\nprint(f(4))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-106",
+    "code": "def outer(k):\n    def inner(x):\n        return x + k\n    return inner\nf = outer(0)\nprint(f(4))",
+    "expected": "4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-124",
+    "code": "def outer(k):\n    def inner(x):\n        return x + k\n    return inner\nf = outer(3)\nprint(f(4))",
+    "expected": "7",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-088",
+    "code": "def bounds(a):\n    return min(a), max(a)\nlow, high = bounds([5])\nprint(high - low)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-098",
+    "code": "def bounds(a):\n    return min(a), max(a)\nlow, high = bounds([-2,4])\nprint(high - low)",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-144",
+    "code": "def bounds(a):\n    return min(a), max(a)\nlow, high = bounds([3,3,3])\nprint(high - low)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-094",
+    "code": "a = []\nprint(sum(map(lambda v: v*v, filter(lambda v: v < 0, a))))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-067",
+    "code": "a = [-2,1,-3]\nprint(sum(map(lambda v: v*v, filter(lambda v: v < 0, a))))",
+    "expected": "13",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ung-dung-092",
+    "code": "a = [0,2]\nprint(sum(map(lambda v: v*v, filter(lambda v: v < 0, a))))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-115",
+    "code": "def f(x):\n    if x % 2 == 0:\n        return x // 2\n    return x * 3 + 1\na = 0\nprint(f(f(a)))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-058",
+    "code": "def f(x):\n    if x % 2 == 0:\n        return x // 2\n    return x * 3 + 1\na = 3\nprint(f(f(a)))",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-066",
+    "code": "def f(x):\n    if x % 2 == 0:\n        return x // 2\n    return x * 3 + 1\na = 4\nprint(f(f(a)))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-111",
+    "code": "a = []\ndef f(items):\n    local = items[:]\n    local.append(9)\n    return sum(local)\nprint(f(a) - sum(a))",
+    "expected": "9",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-150",
+    "code": "a = [1]\ndef f(items):\n    local = items[:]\n    local.append(9)\n    return sum(local)\nprint(f(a) - sum(a))",
+    "expected": "9",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-pham-vi-056",
+    "code": "a = [-2,3]\ndef f(items):\n    local = items[:]\n    local.append(9)\n    return sum(local)\nprint(f(a) - sum(a))",
+    "expected": "9",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-089",
+    "code": "calls = 0\ndef f(n):\n    global calls\n    calls += 1\n    if n == 0:\n        return 0\n    return f(n-1) + n\nf(0)\nprint(calls)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-068",
+    "code": "calls = 0\ndef f(n):\n    global calls\n    calls += 1\n    if n == 0:\n        return 0\n    return f(n-1) + n\nf(1)\nprint(calls)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-de-quy-071",
+    "code": "calls = 0\ndef f(n):\n    global calls\n    calls += 1\n    if n == 0:\n        return 0\n    return f(n-1) + n\nf(4)\nprint(calls)",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c7-ham-143",
+    "code": "def f(x):\n    if x > 0:\n        return x\na = f(0)\nprint(a is None)",
+    "expected": "True"
+  },
+  {
+    "id": "it1140-c7-pham-vi-120",
+    "code": "x = 5\ndef f():\n    x = x + 1\ntry:\n    f()\nexcept UnboundLocalError:\n    print(\"bien cuc bo chua co gia tri\")",
+    "expected": "bien cuc bo chua co gia tri"
+  },
+  {
+    "id": "it1140-c8-co-ban-156",
+    "code": "text = \"\"\nprint(len(text[1:-1]))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-128",
+    "code": "text = \"ab\"\nprint(len(text[1:-1]))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-147",
+    "code": "text = \"abcde\"\nprint(len(text[1:-1]))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-119",
+    "code": "text = \"\"\nprint(len(text[::2]))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-150",
+    "code": "text = \"abc\"\nprint(len(text[::2]))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-091",
+    "code": "text = \"abcd\"\nprint(len(text[::2]))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-099",
+    "code": "text = \"\"\nprint(len(text[-2:]))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-087",
+    "code": "text = \"a\"\nprint(len(text[-2:]))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-141",
+    "code": "text = \"abcd\"\nprint(len(text[-2:]))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-094",
+    "code": "text = \"a\"\nprint(len(text[3:1]))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-135",
+    "code": "text = \"abcd\"\nprint(len(text[3:1]))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-139",
+    "code": "text = \"abcdef\"\nprint(len(text[3:1]))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-075",
+    "code": "text = \"abc\"\nprint(text.find(\"ab\"))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-078",
+    "code": "text = \"xabc\"\nprint(text.find(\"ab\"))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-132",
+    "code": "text = \"xyz\"\nprint(text.find(\"ab\"))",
+    "expected": "-1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-100",
+    "code": "text = \"\"\nprint(text.rfind(\"a\"))",
+    "expected": "-1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-149",
+    "code": "text = \"banana\"\nprint(text.rfind(\"a\"))",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-115",
+    "code": "text = \"abc\"\nprint(text.rfind(\"a\"))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-109",
+    "code": "text = \"aaa\"\nprint(text.count(\"aa\"))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-116",
+    "code": "text = \"aaaa\"\nprint(text.count(\"aa\"))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-145",
+    "code": "text = \"baab\"\nprint(text.count(\"aa\"))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-083",
+    "code": "text = \"\"\nprint(len(text.split()))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-086",
+    "code": "text = \" a   b \"\nprint(len(text.split()))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-071",
+    "code": "text = \"a,b c\"\nprint(len(text.split()))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-155",
+    "code": "text = \"\"\nprint(len(text.split(\",\")))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-152",
+    "code": "text = \"a,,b\"\nprint(len(text.split(\",\")))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-072",
+    "code": "text = \"a,b,\"\nprint(len(text.split(\",\")))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-102",
+    "code": "text = \"   \"\nprint(len(text.strip()))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-068",
+    "code": "text = \" a b \"\nprint(len(text.strip()))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-104",
+    "code": "text = \"\\ta\\n\"\nprint(len(text.strip()))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-129",
+    "code": "text = \"abc\"\nprint(len(text.replace(\"a\", \"\", 1)))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-117",
+    "code": "text = \"baa\"\nprint(len(text.replace(\"a\", \"\", 1)))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-148",
+    "code": "text = \"xyz\"\nprint(len(text.replace(\"a\", \"\", 1)))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-074",
+    "code": "text = \"a12b\"\ncount = 0\nfor char in text:\n    if char.isdigit():\n        count += 1\nprint(count)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-076",
+    "code": "text = \"-3.5\"\ncount = 0\nfor char in text:\n    if char.isdigit():\n        count += 1\nprint(count)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-126",
+    "code": "text = \"abc\"\ncount = 0\nfor char in text:\n    if char.isdigit():\n        count += 1\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-118",
+    "code": "text = \"AEIOU\"\ncount = 0\nfor char in text.lower():\n    if char in \"aeiou\":\n        count += 1\nprint(count)",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-092",
+    "code": "text = \"sky\"\ncount = 0\nfor char in text.lower():\n    if char in \"aeiou\":\n        count += 1\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-111",
+    "code": "text = \"banana\"\ncount = 0\nfor char in text.lower():\n    if char in \"aeiou\":\n        count += 1\nprint(count)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-136",
+    "code": "text = \"\"\ncount = 0\nfor i in range(len(text)-1):\n    if text[i] == text[i+1]:\n        count += 1\nprint(count)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-066",
+    "code": "text = \"aaa\"\ncount = 0\nfor i in range(len(text)-1):\n    if text[i] == text[i+1]:\n        count += 1\nprint(count)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-134",
+    "code": "text = \"bookkeeper\"\ncount = 0\nfor i in range(len(text)-1):\n    if text[i] == text[i+1]:\n        count += 1\nprint(count)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-142",
+    "code": "text = \"\"\nresult = \"\"\nfor char in text:\n    if char not in result:\n        result += char\nprint(len(result))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-153",
+    "code": "text = \"abac\"\nresult = \"\"\nfor char in text:\n    if char not in result:\n        result += char\nprint(len(result))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-140",
+    "code": "text = \"AaA\"\nresult = \"\"\nfor char in text:\n    if char not in result:\n        result += char\nprint(len(result))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-112",
+    "code": "text = \"abc\"\nprint(len(text.encode(\"utf-8\")))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-089",
+    "code": "text = \"é\"\nprint(len(text.encode(\"utf-8\")))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-130",
+    "code": "text = \"Aé\"\nprint(len(text.encode(\"utf-8\")))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-103",
+    "code": "text = \"Hi!\"\nn = 0\nfor char in text:\n    if char == \".\" or char == \"!\" or char == \"?\":\n        n += 1\nprint(n)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-110",
+    "code": "text = \"A... B?\"\nn = 0\nfor char in text:\n    if char == \".\" or char == \"!\" or char == \"?\":\n        n += 1\nprint(n)",
+    "expected": "4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-van-dung-063",
+    "code": "text = \"\"\nn = 0\nfor char in text:\n    if char == \".\" or char == \"!\" or char == \"?\":\n        n += 1\nprint(n)",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-toan-tu-124",
+    "code": "text = \"\"\nprint(len(\"-\".join(text.split())))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-toan-tu-095",
+    "code": "text = \" a b \"\nprint(len(\"-\".join(text.split())))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-toan-tu-088",
+    "code": "text = \"a bb c\"\nprint(len(\"-\".join(text.split())))",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c8-co-ban-108",
+    "code": "text = \"ab\"\nprint(repr(text[::-1]))",
+    "expected": "'ba'"
+  },
+  {
+    "id": "it1140-c8-co-ban-157",
+    "code": "text = \"a b\"\nprint(repr(text[::-1]))",
+    "expected": "'b a'"
+  },
+  {
+    "id": "it1140-c8-co-ban-097",
+    "code": "text = \"\"\nprint(repr(text[::-1]))",
+    "expected": "''"
+  },
+  {
+    "id": "it1140-c8-co-ban-125",
+    "code": "text = \"abcdef\"\nprint(repr(text[1::2]))",
+    "expected": "'bdf'"
+  },
+  {
+    "id": "it1140-c8-co-ban-062",
+    "code": "text = \"ab\"\nprint(repr(text[1::2]))",
+    "expected": "'b'"
+  },
+  {
+    "id": "it1140-c8-co-ban-067",
+    "code": "text = \"a\"\nprint(repr(text[1::2]))",
+    "expected": "''"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-133",
+    "code": "text = \"aXb\"\nprint(repr(text.strip(\"ab\")))",
+    "expected": "'X'"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-137",
+    "code": "text = \"abba\"\nprint(repr(text.strip(\"ab\")))",
+    "expected": "''"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-127",
+    "code": "text = \"XabY\"\nprint(repr(text.strip(\"ab\")))",
+    "expected": "'XabY'"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-085",
+    "code": "text = \"abaca\"\nprint(text.replace(\"a\", \"X\", 2))",
+    "expected": "XbXca"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-073",
+    "code": "text = \"bbb\"\nprint(text.replace(\"a\", \"X\", 2))",
+    "expected": "bbb"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-101",
+    "code": "text = \"aaaa\"\nprint(text.replace(\"a\", \"X\", 2))",
+    "expected": "XXaa"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-113",
+    "code": "text = \"hELLO wORLD\"\nprint(text.title())",
+    "expected": "Hello World"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-077",
+    "code": "text = \"a b\"\nprint(text.title())",
+    "expected": "A B"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-081",
+    "code": "text = \"IT1140\"\nprint(text.title())",
+    "expected": "It1140"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-114",
+    "code": "text = \"hELLO wORLD\"\nprint(text.capitalize())",
+    "expected": "Hello world"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-106",
+    "code": "text = \"a b\"\nprint(text.capitalize())",
+    "expected": "A b"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-090",
+    "code": "text = \"IT1140\"\nprint(text.capitalize())",
+    "expected": "It1140"
+  },
+  {
+    "id": "it1140-c8-toan-tu-096",
+    "code": "x = 1.234\nprint(f\"{x:.2f}\")",
+    "expected": "1.23"
+  },
+  {
+    "id": "it1140-c8-toan-tu-105",
+    "code": "x = -2.718\nprint(f\"{x:.2f}\")",
+    "expected": "-2.72"
+  },
+  {
+    "id": "it1140-c8-toan-tu-061",
+    "code": "x = 0\nprint(f\"{x:.2f}\")",
+    "expected": "0.00"
+  },
+  {
+    "id": "it1140-c8-toan-tu-158",
+    "code": "x = 7\nprint(f\"{x:04d}\")",
+    "expected": "0007"
+  },
+  {
+    "id": "it1140-c8-toan-tu-082",
+    "code": "x = -7\nprint(f\"{x:04d}\")",
+    "expected": "-007"
+  },
+  {
+    "id": "it1140-c8-toan-tu-122",
+    "code": "x = 1234\nprint(f\"{x:04d}\")",
+    "expected": "1234"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-144",
+    "code": "text = \"ababc\"\nprint(repr(text.removeprefix(\"ab\")))",
+    "expected": "'abc'"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-154",
+    "code": "text = \"aabb\"\nprint(repr(text.removeprefix(\"ab\")))",
+    "expected": "'aabb'"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-138",
+    "code": "text = \"ab\"\nprint(repr(text.removeprefix(\"ab\")))",
+    "expected": "''"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-065",
+    "code": "text = \" a b \"\nprint(text.replace(\" \", \"\"))",
+    "expected": "ab"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-131",
+    "code": "text = \"a\\tb\"\nprint(text.replace(\" \", \"\"))",
+    "expected": "a\tb"
+  },
+  {
+    "id": "it1140-c8-phuong-thuc-098",
+    "code": "text = \"a  b\"\nprint(text.replace(\" \", \"\"))",
+    "expected": "ab"
+  },
+  {
+    "id": "it1140-c8-van-dung-064",
+    "code": "text = \" A   B \"\nclean = \" \".join(text.lower().split())\nprint(clean)",
+    "expected": "a b"
+  },
+  {
+    "id": "it1140-c8-van-dung-143",
+    "code": "text = \"A\\tB\"\nclean = \" \".join(text.lower().split())\nprint(clean)",
+    "expected": "a b"
+  },
+  {
+    "id": "it1140-c8-van-dung-093",
+    "code": "text = \"ABC\"\nclean = \" \".join(text.lower().split())\nprint(clean)",
+    "expected": "abc"
+  },
+  {
+    "id": "it1140-c8-toan-tu-080",
+    "code": "text = \"7\"\nprint(text.zfill(4))",
+    "expected": "0007"
+  },
+  {
+    "id": "it1140-c8-toan-tu-151",
+    "code": "text = \"-7\"\nprint(text.zfill(4))",
+    "expected": "-007"
+  },
+  {
+    "id": "it1140-c8-toan-tu-120",
+    "code": "text = \"12345\"\nprint(text.zfill(4))",
+    "expected": "12345"
+  },
+  {
+    "id": "it1140-c9-list-060",
+    "code": "a = []\nb = a + [7]\nprint(len(a) + len(b))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-103",
+    "code": "a = [1]\nb = a + [7]\nprint(len(a) + len(b))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-134",
+    "code": "a = [1,2]\nb = a + [7]\nprint(len(a) + len(b))",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-080",
+    "code": "a = []\na.append([7, 8])\nprint(len(a))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-155",
+    "code": "a = [1]\na.append([7, 8])\nprint(len(a))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-110",
+    "code": "a = [1,2]\na.append([7, 8])\nprint(len(a))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-145",
+    "code": "a = []\na.extend([7, 8])\nprint(len(a))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-140",
+    "code": "a = [1]\na.extend([7, 8])\nprint(len(a))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-077",
+    "code": "a = [1,2]\na.extend([7, 8])\nprint(len(a))",
+    "expected": "4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-117",
+    "code": "a = [5]\nx = a.pop()\nprint(x + len(a))",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-114",
+    "code": "a = [2,7]\nx = a.pop()\nprint(x + len(a))",
+    "expected": "8",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-123",
+    "code": "a = [1,2,3]\nx = a.pop()\nprint(x + len(a))",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-067",
+    "code": "a = []\na.insert(1, 9)\nprint(a[0])",
+    "expected": "9",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-129",
+    "code": "a = [1]\na.insert(1, 9)\nprint(a[0])",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-096",
+    "code": "a = [2,3]\na.insert(1, 9)\nprint(a[0])",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-073",
+    "code": "a = []\nprint(sum(a[1::2]))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-158",
+    "code": "a = [1,2,3,4]\nprint(sum(a[1::2]))",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-091",
+    "code": "a = [5,6,7]\nprint(sum(a[1::2]))",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-122",
+    "code": "a = []\ndel a[1:3]\nprint(len(a))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-139",
+    "code": "a = [1,2]\ndel a[1:3]\nprint(len(a))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-083",
+    "code": "a = [1,2,3,4]\ndel a[1:3]\nprint(len(a))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-102",
+    "code": "a = []\nprint(a.count(2))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-154",
+    "code": "a = [2,2,1]\nprint(a.count(2))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-084",
+    "code": "a = [1,3]\nprint(a.count(2))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-085",
+    "code": "a = []\nb = a\nb.append(5)\nprint(len(a))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-142",
+    "code": "a = [1]\nb = a\nb.append(5)\nprint(len(a))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-138",
+    "code": "a = [1,2]\nb = a\nb.append(5)\nprint(len(a))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-059",
+    "code": "a = []\nb = a[:]\nb.append(5)\nprint(len(a))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-124",
+    "code": "a = [1]\nb = a[:]\nb.append(5)\nprint(len(a))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-078",
+    "code": "a = [1,2]\nb = a[:]\nb.append(5)\nprint(len(a))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-089",
+    "code": "a = [[]]\nb = a.copy()\nb[0].append(5)\nprint(len(a[0]))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-133",
+    "code": "a = [[1]]\nb = a.copy()\nb[0].append(5)\nprint(len(a[0]))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-095",
+    "code": "a = [[1,2]]\nb = a.copy()\nb[0].append(5)\nprint(len(a[0]))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-150",
+    "code": "a = [[]]\nb = a.copy()\nb[0] = [5]\nprint(len(a[0]))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-148",
+    "code": "a = [[1]]\nb = a.copy()\nb[0] = [5]\nprint(len(a[0]))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-132",
+    "code": "a = [[1,2]]\nb = a.copy()\nb[0] = [5]\nprint(len(a[0]))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-082",
+    "code": "a = []\nb = a\na = []\nprint(len(b))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-116",
+    "code": "a = [1]\nb = a\na = []\nprint(len(b))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-143",
+    "code": "a = [1,2]\nb = a\na = []\nprint(len(b))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-097",
+    "code": "a = []\nb = a\na.clear()\nprint(len(b))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-079",
+    "code": "a = [1]\nb = a\na.clear()\nprint(len(b))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-100",
+    "code": "a = [1,2]\nb = a\na.clear()\nprint(len(b))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-063",
+    "code": "a = []\nprint(sum(v*v for v in a if v % 2))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-068",
+    "code": "a = [1,2,3]\nprint(sum(v*v for v in a if v % 2))",
+    "expected": "10",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-104",
+    "code": "a = [-3,-2,0]\nprint(sum(v*v for v in a if v % 2))",
+    "expected": "9",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-105",
+    "code": "a = [1]\nprint(sum(x*y for x in a for y in a if x < y))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-106",
+    "code": "a = [1,2]\nprint(sum(x*y for x in a for y in a if x < y))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tham-chieu-136",
+    "code": "a = [1,2,3]\nprint(sum(x*y for x in a for y in a if x < y))",
+    "expected": "11",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tuple-131",
+    "code": "a = tuple([])\nprint(len(a + (7,)))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tuple-144",
+    "code": "a = tuple([1])\nprint(len(a + (7,)))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tuple-092",
+    "code": "a = tuple([1,2])\nprint(len(a + (7,)))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tuple-107",
+    "code": "a = []\nb = [3, 4]\nprint(len(list(zip(a, b))))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tuple-153",
+    "code": "a = [1]\nb = [3, 4]\nprint(len(list(zip(a, b))))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tuple-069",
+    "code": "a = [1,2,3]\nb = [3, 4]\nprint(len(list(zip(a, b))))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tuple-093",
+    "code": "z = zip([], [4, 5, 6])\nfirst = list(z)\nsecond = list(z)\nprint(len(first) - len(second))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tuple-146",
+    "code": "z = zip([1], [4, 5, 6])\nfirst = list(z)\nsecond = list(z)\nprint(len(first) - len(second))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tuple-064",
+    "code": "z = zip([1,2], [4, 5, 6])\nfirst = list(z)\nsecond = list(z)\nprint(len(first) - len(second))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tuple-090",
+    "code": "a = []\nd = {}\nfor value in a:\n    d[value] = d.get(value, 0) + 1\nprint(len(d))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tuple-065",
+    "code": "a = [1,1,2]\nd = {}\nfor value in a:\n    d[value] = d.get(value, 0) + 1\nprint(len(d))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-tuple-137",
+    "code": "a = [2,2,2]\nd = {}\nfor value in a:\n    d[value] = d.get(value, 0) + 1\nprint(len(d))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c9-list-115",
+    "code": "a = [3,1,2]\na.sort()\nprint(a)",
+    "expected": "[1, 2, 3]"
+  },
+  {
+    "id": "it1140-c9-list-088",
+    "code": "a = [2,2,1]\na.sort()\nprint(a)",
+    "expected": "[1, 2, 2]"
+  },
+  {
+    "id": "it1140-c9-list-111",
+    "code": "a = [-1,-3,0]\na.sort()\nprint(a)",
+    "expected": "[-3, -1, 0]"
+  },
+  {
+    "id": "it1140-c9-list-157",
+    "code": "a = [3,1,2]\na.reverse()\nprint(a)",
+    "expected": "[2, 1, 3]"
+  },
+  {
+    "id": "it1140-c9-list-070",
+    "code": "a = [2,2,1]\na.reverse()\nprint(a)",
+    "expected": "[1, 2, 2]"
+  },
+  {
+    "id": "it1140-c9-list-062",
+    "code": "a = [-1,-3,0]\na.reverse()\nprint(a)",
+    "expected": "[0, -3, -1]"
+  },
+  {
+    "id": "it1140-c9-tham-chieu-081",
+    "code": "a = [[0] * 2] * 1\na[0][0] = 7\nprint(a)",
+    "expected": "[[7, 0]]"
+  },
+  {
+    "id": "it1140-c9-tham-chieu-118",
+    "code": "a = [[0] * 2] * 2\na[0][0] = 7\nprint(a)",
+    "expected": "[[7, 0], [7, 0]]"
+  },
+  {
+    "id": "it1140-c9-tham-chieu-076",
+    "code": "a = [[0] * 2] * 3\na[0][0] = 7\nprint(a)",
+    "expected": "[[7, 0], [7, 0], [7, 0]]"
+  },
+  {
+    "id": "it1140-c9-tham-chieu-074",
+    "code": "a = [[0] * 2 for _ in range(1)]\na[0][0] = 7\nprint(a)",
+    "expected": "[[7, 0]]"
+  },
+  {
+    "id": "it1140-c9-tham-chieu-149",
+    "code": "a = [[0] * 2 for _ in range(2)]\na[0][0] = 7\nprint(a)",
+    "expected": "[[7, 0], [0, 0]]"
+  },
+  {
+    "id": "it1140-c9-tham-chieu-071",
+    "code": "a = [[0] * 2 for _ in range(3)]\na[0][0] = 7\nprint(a)",
+    "expected": "[[7, 0], [0, 0], [0, 0]]"
+  },
+  {
+    "id": "it1140-c9-list-087",
+    "code": "a = [1,3,2]\nprint(sorted(a, reverse=True))",
+    "expected": "[3, 2, 1]"
+  },
+  {
+    "id": "it1140-c9-list-098",
+    "code": "a = [2,1,2]\nprint(sorted(a, reverse=True))",
+    "expected": "[2, 2, 1]"
+  },
+  {
+    "id": "it1140-c9-list-066",
+    "code": "a = [-2,0,1]\nprint(sorted(a, reverse=True))",
+    "expected": "[1, 0, -2]"
+  },
+  {
+    "id": "it1140-c9-tuple-121",
+    "code": "a = [1,2]\nfirst, *middle, last = a\nprint(middle)",
+    "expected": "[]"
+  },
+  {
+    "id": "it1140-c9-tuple-108",
+    "code": "a = [1,2,3]\nfirst, *middle, last = a\nprint(middle)",
+    "expected": "[2]"
+  },
+  {
+    "id": "it1140-c9-tuple-099",
+    "code": "a = [1,2,3,4]\nfirst, *middle, last = a\nprint(middle)",
+    "expected": "[2, 3]"
+  },
+  {
+    "id": "it1140-c9-list-147",
+    "code": "a = [1,2,3]\na[1:2] = [7, 8]\nprint(a)",
+    "expected": "[1, 7, 8, 3]"
+  },
+  {
+    "id": "it1140-c9-list-112",
+    "code": "a = [1]\na[1:2] = [7, 8]\nprint(a)",
+    "expected": "[1, 7, 8]"
+  },
+  {
+    "id": "it1140-c9-list-113",
+    "code": "a = [1,2]\na[1:2] = [7, 8]\nprint(a)",
+    "expected": "[1, 7, 8]"
+  },
+  {
+    "id": "it1140-c9-tham-chieu-135",
+    "code": "a = [5,6,7]\nprint([value for i, value in enumerate(a) if i % 2 == 0])",
+    "expected": "[5, 7]"
+  },
+  {
+    "id": "it1140-c9-tham-chieu-101",
+    "code": "a = [2,4]\nprint([value for i, value in enumerate(a) if i % 2 == 0])",
+    "expected": "[2]"
+  },
+  {
+    "id": "it1140-c9-tham-chieu-086",
+    "code": "a = [9]\nprint([value for i, value in enumerate(a) if i % 2 == 0])",
+    "expected": "[9]"
+  },
+  {
+    "id": "it1140-c9-tuple-130",
+    "code": "a = ([], 5)\na[0].append(9)\nprint(a)",
+    "expected": "([9], 5)"
+  },
+  {
+    "id": "it1140-c9-tuple-061",
+    "code": "a = ([1], 5)\na[0].append(9)\nprint(a)",
+    "expected": "([1, 9], 5)"
+  },
+  {
+    "id": "it1140-c9-tuple-120",
+    "code": "a = ([1,2], 5)\na[0].append(9)\nprint(a)",
+    "expected": "([1, 2, 9], 5)"
+  },
+  {
+    "id": "it1140-c9-tuple-075",
+    "code": "d = {\"b\": 1, \"a\": 2}\nprint(sorted(d))",
+    "expected": "['a', 'b']"
+  },
+  {
+    "id": "it1140-c9-tuple-072",
+    "code": "d = {\"c\": 0}\nprint(sorted(d))",
+    "expected": "['c']"
+  },
+  {
+    "id": "it1140-c9-tuple-152",
+    "code": "d = {}\nprint(sorted(d))",
+    "expected": "[]"
+  },
+  {
+    "id": "it1140-c9-tham-chieu-127",
+    "code": "a = [1, 2, 3, 4, 5]\na[:] = [x for x in a if x % 2]\nprint(a)",
+    "expected": "[1, 3, 5]"
+  },
+  {
+    "id": "it1140-c9-tuple-125",
+    "code": "a = [(\"An\", 8), (\"Binh\", 9), (\"Chi\", 8)]\na.sort(key=lambda item: (-item[1], item[0]))\nprint(a[1][0])",
+    "expected": "An"
+  },
+  {
+    "id": "it1140-c10-thu-vien-103",
+    "code": "import math\nprint(math.floor(-2.1))",
+    "expected": "-3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-098",
+    "code": "import math\nprint(math.floor(0))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-187",
+    "code": "import math\nprint(math.floor(2.9))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-192",
+    "code": "import math\nprint(math.ceil(-2.1))",
+    "expected": "-2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-189",
+    "code": "import math\nprint(math.ceil(0))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-102",
+    "code": "import math\nprint(math.ceil(2.1))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-195",
+    "code": "import math as m\nprint(m.factorial(0))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-149",
+    "code": "import math as m\nprint(m.factorial(1))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-197",
+    "code": "import math as m\nprint(m.factorial(5))",
+    "expected": "120",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-147",
+    "code": "from math import gcd\nprint(gcd(12, 18))",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-170",
+    "code": "from math import gcd\nprint(gcd(0, 7))",
+    "expected": "7",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-205",
+    "code": "from math import gcd\nprint(gcd(-12, 18))",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-177",
+    "code": "import math\nprint(math.isqrt(0))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-113",
+    "code": "import math\nprint(math.isqrt(15))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-128",
+    "code": "import math\nprint(math.isqrt(16))",
+    "expected": "4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-129",
+    "code": "import math\nprint(math.log2(1))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-137",
+    "code": "import math\nprint(math.log2(8))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-125",
+    "code": "import math\nprint(math.log2(32))",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-111",
+    "code": "import math\nprint(round(math.degrees(0 * math.pi), 0))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-186",
+    "code": "import math\nprint(round(math.degrees(0.5 * math.pi), 0))",
+    "expected": "90",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-159",
+    "code": "import math\nprint(round(math.degrees(1 * math.pi), 0))",
+    "expected": "180",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-150",
+    "code": "import random\na = []\nrandom.Random(17).shuffle(a)\nprint(sum(a))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-104",
+    "code": "import random\na = [1,2,3]\nrandom.Random(17).shuffle(a)\nprint(sum(a))",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-thu-vien-132",
+    "code": "import random\na = [-2,0,4]\nrandom.Random(17).shuffle(a)\nprint(sum(a))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-module-194",
+    "code": "from math import floor as down\nx = -1.2\nprint(down(x) + 1)",
+    "expected": "-1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-module-139",
+    "code": "from math import floor as down\nx = 0\nprint(down(x) + 1)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-module-203",
+    "code": "from math import floor as down\nx = 2.8\nprint(down(x) + 1)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-178",
+    "code": "import numpy as np\na = np.array([], dtype=int)\nprint(int(a.size))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-164",
+    "code": "import numpy as np\na = np.array([1,2], dtype=int)\nprint(int(a.size))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-176",
+    "code": "import numpy as np\na = np.array([[1,2],[3,4]], dtype=int)\nprint(int(a.size))",
+    "expected": "4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-108",
+    "code": "import numpy as np\na = np.array([])\nprint(a.ndim)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-114",
+    "code": "import numpy as np\na = np.array([[1,2]])\nprint(a.ndim)",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-156",
+    "code": "import numpy as np\na = np.array([[[1]]])\nprint(a.ndim)",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-201",
+    "code": "import numpy as np\na = np.arange(0)\nprint(int(a.sum()))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-118",
+    "code": "import numpy as np\na = np.arange(1)\nprint(int(a.sum()))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-207",
+    "code": "import numpy as np\na = np.arange(5)\nprint(int(a.sum()))",
+    "expected": "10",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-110",
+    "code": "import numpy as np\na = np.array([], dtype=int)\nprint(int((a * 2).sum()))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-126",
+    "code": "import numpy as np\na = np.array([1,2], dtype=int)\nprint(int((a * 2).sum()))",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-174",
+    "code": "import numpy as np\na = np.array([-1,3], dtype=int)\nprint(int((a * 2).sum()))",
+    "expected": "4",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-151",
+    "code": "import numpy as np\na = np.array([1], dtype=int)\nb = a[1:]\nb[:] = 9\nprint(int(a.sum()))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-208",
+    "code": "import numpy as np\na = np.array([1,2], dtype=int)\nb = a[1:]\nb[:] = 9\nprint(int(a.sum()))",
+    "expected": "10",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-123",
+    "code": "import numpy as np\na = np.array([1,2,3], dtype=int)\nb = a[1:]\nb[:] = 9\nprint(int(a.sum()))",
+    "expected": "19",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-116",
+    "code": "import numpy as np\na = np.array([1], dtype=int)\nb = a[1:].copy()\nb[:] = 9\nprint(int(a.sum()))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-172",
+    "code": "import numpy as np\na = np.array([1,2], dtype=int)\nb = a[1:].copy()\nb[:] = 9\nprint(int(a.sum()))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-183",
+    "code": "import numpy as np\na = np.array([1,2,3], dtype=int)\nb = a[1:].copy()\nb[:] = 9\nprint(int(a.sum()))",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-099",
+    "code": "import numpy as np\na = np.array([], dtype=int)\nprint(int(a[a > 0].sum()))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-169",
+    "code": "import numpy as np\na = np.array([-2,0,3], dtype=int)\nprint(int(a[a > 0].sum()))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-096",
+    "code": "import numpy as np\na = np.array([1,2,3], dtype=int)\nprint(int(a[a > 0].sum()))",
+    "expected": "6",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-182",
+    "code": "import numpy as np\na = np.arange(6).reshape(2, 3)\nprint(a.sum(axis=0).tolist())",
+    "expected": "[3, 5, 7]"
+  },
+  {
+    "id": "it1140-c10-numpy-204",
+    "code": "import numpy as np\na = np.arange(6).reshape(2, 3)\nprint(a.sum(axis=1).tolist())",
+    "expected": "[3, 12]"
+  },
+  {
+    "id": "it1140-c10-numpy-171",
+    "code": "import numpy as np\na = np.arange(6).reshape(2, 3)\nprint(a.sum(axis=-1).tolist())",
+    "expected": "[3, 12]"
+  },
+  {
+    "id": "it1140-c10-numpy-135",
+    "code": "import numpy as np\na = np.arange(0).reshape(2, -1)\nprint(a.shape[1])",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-148",
+    "code": "import numpy as np\na = np.arange(4).reshape(2, -1)\nprint(a.shape[1])",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-162",
+    "code": "import numpy as np\na = np.arange(10).reshape(2, -1)\nprint(a.shape[1])",
+    "expected": "5",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-142",
+    "code": "import numpy as np\na = np.array([0], dtype=np.uint8)\nprint(int((a + a)[0]))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-136",
+    "code": "import numpy as np\na = np.array([100], dtype=np.uint8)\nprint(int((a + a)[0]))",
+    "expected": "200",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-124",
+    "code": "import numpy as np\na = np.array([200], dtype=np.uint8)\nprint(int((a + a)[0]))",
+    "expected": "144",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-190",
+    "code": "import numpy as np\na = np.array([0], dtype=np.uint8)\nb = a.astype(np.uint16)\nprint(int((b + b)[0]))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-143",
+    "code": "import numpy as np\na = np.array([100], dtype=np.uint8)\nb = a.astype(np.uint16)\nprint(int((b + b)[0]))",
+    "expected": "200",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-188",
+    "code": "import numpy as np\na = np.array([200], dtype=np.uint8)\nb = a.astype(np.uint16)\nprint(int((b + b)[0]))",
+    "expected": "400",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-196",
+    "code": "import numpy as np\na = np.array([7])\nprint(int(a.argmax()))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-165",
+    "code": "import numpy as np\na = np.array([4,9,9])\nprint(int(a.argmax()))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-134",
+    "code": "import numpy as np\na = np.array([-1,-3,-2])\nprint(int(a.argmax()))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-200",
+    "code": "import numpy as np\na = np.array([2])\nprint(float(a.mean()))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-097",
+    "code": "import numpy as np\na = np.array([1,3])\nprint(float(a.mean()))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-163",
+    "code": "import numpy as np\na = np.array([-2,0,2])\nprint(float(a.mean()))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-numpy-167",
+    "code": "import numpy as np\na = np.array([[1,2],[3,4]])\nb = np.array([10,20])\nprint((a + b).tolist())",
+    "expected": "[[11, 22], [13, 24]]"
+  },
+  {
+    "id": "it1140-c10-numpy-109",
+    "code": "import numpy as np\na = np.array([[1,2],[3,4]])\nb = np.array([[10],[20]])\nprint((a + b).tolist())",
+    "expected": "[[11, 12], [23, 24]]"
+  },
+  {
+    "id": "it1140-c10-numpy-184",
+    "code": "import numpy as np\na = np.array([[1,2],[3,4]])\nb = np.array(0)\nprint((a + b).tolist())",
+    "expected": "[[1, 2], [3, 4]]"
+  },
+  {
+    "id": "it1140-c10-tep-152",
+    "code": "from io import StringIO\nf = StringIO(\"\")\nf.read(2)\nprint(len(f.read()))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-153",
+    "code": "from io import StringIO\nf = StringIO(\"a\")\nf.read(2)\nprint(len(f.read()))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-112",
+    "code": "from io import StringIO\nf = StringIO(\"abcde\")\nf.read(2)\nprint(len(f.read()))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-094",
+    "code": "from io import StringIO\nf = StringIO(\"\")\nprint(len(f.readlines()))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-141",
+    "code": "from io import StringIO\nf = StringIO(\"a\\n\")\nprint(len(f.readlines()))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-155",
+    "code": "from io import StringIO\nf = StringIO(\"a\\n\\nb\")\nprint(len(f.readlines()))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-145",
+    "code": "from io import StringIO\nf = StringIO()\nprint(f.write(\"\"))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-193",
+    "code": "from io import StringIO\nf = StringIO()\nprint(f.write(\"é\"))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-166",
+    "code": "from io import StringIO\nf = StringIO()\nprint(f.write(\"A\\nB\"))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-105",
+    "code": "from io import BytesIO\nf = BytesIO(b\"abcdef\")\nf.seek(0)\nprint(f.read().decode(\"ascii\"))",
+    "expected": "abcdef"
+  },
+  {
+    "id": "it1140-c10-tep-154",
+    "code": "from io import BytesIO\nf = BytesIO(b\"abcdef\")\nf.seek(2)\nprint(f.read().decode(\"ascii\"))",
+    "expected": "cdef"
+  },
+  {
+    "id": "it1140-c10-tep-133",
+    "code": "from io import BytesIO\nf = BytesIO(b\"abcdef\")\nf.seek(5)\nprint(f.read().decode(\"ascii\"))",
+    "expected": "f"
+  },
+  {
+    "id": "it1140-c10-tep-199",
+    "code": "from pathlib import PurePosixPath\np = PurePosixPath(\"a.csv\")\nprint(p.suffix)",
+    "expected": ".csv"
+  },
+  {
+    "id": "it1140-c10-tep-127",
+    "code": "from pathlib import PurePosixPath\np = PurePosixPath(\"archive.tar.gz\")\nprint(p.suffix)",
+    "expected": ".gz"
+  },
+  {
+    "id": "it1140-c10-tep-191",
+    "code": "from pathlib import PurePosixPath\np = PurePosixPath(\"a.TXT\")\nprint(p.suffix)",
+    "expected": ".TXT"
+  },
+  {
+    "id": "it1140-c10-tep-179",
+    "code": "import csv\nfrom io import StringIO\nrows = list(csv.reader(StringIO(\"\")))\nprint(len(rows))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-120",
+    "code": "import csv\nfrom io import StringIO\nrows = list(csv.reader(StringIO(\"a,b\\n\")))\nprint(len(rows))",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-175",
+    "code": "import csv\nfrom io import StringIO\nrows = list(csv.reader(StringIO(\"a,b\\nc,d\\n\")))\nprint(len(rows))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-117",
+    "code": "import csv\nfrom io import StringIO\nrow = next(csv.reader(StringIO(\"a,b\")))\nprint(len(row))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-095",
+    "code": "import csv\nfrom io import StringIO\nrow = next(csv.reader(StringIO(\"\\\"a,b\\\",c\")))\nprint(len(row))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-tep-144",
+    "code": "import csv\nfrom io import StringIO\nrow = next(csv.reader(StringIO(\"a,,c\")))\nprint(len(row))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-du-lieu-131",
+    "code": "import json\na = json.loads(\"[]\")\nprint(len(a))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-du-lieu-198",
+    "code": "import json\na = json.loads(\"[1,2,3]\")\nprint(len(a))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-du-lieu-130",
+    "code": "import json\na = json.loads(\"{\\\"a\\\":1,\\\"b\\\":2}\")\nprint(len(a))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-du-lieu-140",
+    "code": "import json\na = json.loads(\"null\")\nprint(type(a).__name__)",
+    "expected": "NoneType"
+  },
+  {
+    "id": "it1140-c10-du-lieu-101",
+    "code": "import json\na = json.loads(\"true\")\nprint(type(a).__name__)",
+    "expected": "bool"
+  },
+  {
+    "id": "it1140-c10-du-lieu-206",
+    "code": "import json\na = json.loads(\"[1,2]\")\nprint(type(a).__name__)",
+    "expected": "list"
+  },
+  {
+    "id": "it1140-c10-du-lieu-161",
+    "code": "import json\na = json.loads(json.dumps((1,2)))\nprint(type(a).__name__)",
+    "expected": "list"
+  },
+  {
+    "id": "it1140-c10-du-lieu-180",
+    "code": "import json\na = json.loads(json.dumps({\"a\":1}))\nprint(type(a).__name__)",
+    "expected": "dict"
+  },
+  {
+    "id": "it1140-c10-du-lieu-122",
+    "code": "import json\na = json.loads(json.dumps([1,2]))\nprint(type(a).__name__)",
+    "expected": "list"
+  },
+  {
+    "id": "it1140-c10-du-lieu-202",
+    "code": "import pickle\na = pickle.loads(pickle.dumps((1,2)))\nprint(type(a).__name__)",
+    "expected": "tuple"
+  },
+  {
+    "id": "it1140-c10-du-lieu-157",
+    "code": "import pickle\na = pickle.loads(pickle.dumps({\"a\":1}))\nprint(type(a).__name__)",
+    "expected": "dict"
+  },
+  {
+    "id": "it1140-c10-du-lieu-173",
+    "code": "import pickle\na = pickle.loads(pickle.dumps([1,2]))\nprint(type(a).__name__)",
+    "expected": "list"
+  },
+  {
+    "id": "it1140-c10-du-lieu-115",
+    "code": "lines = [\"A\", \"B\", \"C\"]\nn = 0\nresult = [] if n == 0 else lines[-n:]\nprint(len(result))",
+    "expected": "0",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-du-lieu-146",
+    "code": "lines = [\"A\", \"B\", \"C\"]\nn = 2\nresult = [] if n == 0 else lines[-n:]\nprint(len(result))",
+    "expected": "2",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-du-lieu-181",
+    "code": "lines = [\"A\", \"B\", \"C\"]\nn = 5\nresult = [] if n == 0 else lines[-n:]\nprint(len(result))",
+    "expected": "3",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-du-lieu-160",
+    "code": "import json\na = json.loads(\"{}\")\nprint(a.get(\"score\", 0) + 1)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-du-lieu-158",
+    "code": "import json\na = json.loads(\"{\\\"score\\\":0}\")\nprint(a.get(\"score\", 0) + 1)",
+    "expected": "1",
+    "numeric": true
+  },
+  {
+    "id": "it1140-c10-du-lieu-121",
+    "code": "import json\na = json.loads(\"{\\\"score\\\":8}\")\nprint(a.get(\"score\", 0) + 1)",
+    "expected": "9",
     "numeric": true
   }
 ]
