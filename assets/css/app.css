@@ -830,6 +830,10 @@ button {
   gap: 7px;
 }
 
+#exerciseTask {
+  white-space: pre-wrap;
+}
+
 .text-btn {
   justify-self: start;
   border: 0;

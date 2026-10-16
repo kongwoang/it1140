@@ -41,26 +41,26 @@ for (const t of fixtures) {
   if (q.kind === "code") assert.ok(q.prompt.endsWith(t.code), `Fixture executes displayed code: ${t.id}`);
 }
 // Independent checks for non-executable mathematical and graphics questions.
-const find = fragment => {
-  const found = bank.questions.filter(q => /^it1140-c(?:[5-9]|1[0-2])-/.test(q.id) && q.prompt.includes(fragment));
-  assert.equal(found.length, 1, fragment);
+const find = (chapter, number) => {
+  const found = bank.questions.filter(q => q.source === `chuong-${chapter}-bai-giang` && q.id.endsWith(`-${String(number).padStart(3, "0")}`));
+  assert.equal(found.length, 1, `Chapter ${chapter}, question ${number}`);
   return found[0];
 };
 const numericChecks = [
-  ["Điền f(0)", 7], ["tổng số lời gọi fact", 5 + 1],
-  ["Điền F(12)", 233], ["nghiệm x bằng", (15 - 10) / 5],
-  ["Độ rộng nét bút mặc định", 1], ["Góc quay ngoài mỗi lần", 360 / 5],
-  ["Mỗi lần left", 360 / 3], ["Tổng độ dài các đoạn", 2 * (0+1+2+3+4+5)],
-  ["Tổng góc quay thêm", 36 * 10], ["Tổng góc quay là", 5 * 144],
-  ["mặc định tạo bao nhiêu giá trị x", 256], ["Chiều rộng ảnh danh nghĩa", 8 * 80],
-  ["Số phần tử ở bin cuối", [0,1,2,3,4].filter(x => x >= 2 && x <= 4).length],
-  ["Điền IQR", 18 - 10], ["sau 60 giây nhận", 100 * 20 * 60],
-  ["Giá trị của khóa", "a b a b a".split(" ").filter(x => x === "a").length],
+  [7, 30, 7], [7, 45, 5 + 1],
+  [7, 48, 233], [10, 50, (15 - 10) / 5],
+  [11, 3, 1], [11, 6, 360 / 5],
+  [11, 7, 360 / 3], [11, 21, 2 * (0+1+2+3+4+5)],
+  [11, 24, 36 * 10], [11, 34, 5 * 144],
+  [11, 40, 256], [11, 41, 8 * 80],
+  [11, 54, [0,1,2,3,4].filter(x => x >= 2 && x <= 4).length],
+  [11, 36, 18 - 10], [12, 46, 100 * 20 * 60],
+  [12, 52, "a b a b a".split(" ").filter(x => x === "a").length],
 ];
-for (const [fragment, expected] of numericChecks) assert.equal(find(fragment).answer, expected, fragment);
+for (const [chapter, number, expected] of numericChecks) assert.equal(find(chapter, number).answer, expected, `C${chapter}/${number}`);
 const pascal = [1,3,3,1];
 assert.deepEqual([1, ...pascal.slice(1).map((x,i) => x + pascal[i]), 1], [1,4,6,4,1]);
-const circle = find("Gọi circle(50,90)");
+const circle = find(11, 17);
 assert.equal(circle.choices[circle.answer], "(50,50), hướng bắc");
 const css = await readFile("assets/css/app.css", "utf8");
 assert.match(css, /\.question-panel h2\s*\{[^}]*white-space: pre-wrap/s);

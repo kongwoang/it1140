@@ -22,7 +22,7 @@ TÀI LIỆU NGUỒN
 
 YÊU CẦU NỘI DUNG
 1. Chỉ sử dụng kiến thức có trong tài liệu nguồn. Không tự bịa dữ kiện, định nghĩa, số liệu hoặc đáp án. Nếu tài liệu không đủ để tạo số câu yêu cầu, hãy tạo ít câu hơn.
-2. Viết hoàn toàn bằng tiếng Việt rõ ràng. Chỉ giữ tên riêng, cú pháp lệnh và thuật ngữ kỹ thuật tiếng Anh khi thực sự cần thiết; lần xuất hiện đầu tiên nên có giải nghĩa tiếng Việt nếu phù hợp.
+2. Bám cách dùng từ và cách nêu yêu cầu của đề cương/tài liệu nguồn. Viết tiếng Việt tự nhiên, đầy đủ chủ ngữ và vị ngữ; đặt dữ kiện trước rồi hỏi trực tiếp điều cần xác định. Không viết kiểu ghi chú rút gọn như “bản Euclid kiểm tra r=0 trước cập nhật”, “cặp giá trị giải mã; trạng thái” hoặc “phát biểu nào thận trọng”. Chỉ giữ tên riêng, cú pháp lệnh và thuật ngữ tiếng Anh khi cần; giải nghĩa ngay trong câu nếu người mới học có thể chưa biết.
 3. Mỗi câu phải độc lập, không tham chiếu “câu trên”, “hình trên” hoặc vị trí trong tài liệu nếu hình/nội dung đó không nằm ngay trong câu hỏi.
 4. Không tạo hai câu kiểm tra cùng một ý bằng cách diễn đạt lại.
 5. Câu trắc nghiệm (responseType = "choice") có 4 lựa chọn. Các lựa chọn phải cùng kiểu ngữ pháp, tương đương về độ dài và hợp lý; dùng sai lầm thường gặp làm phương án nhiễu, không để đáp án đúng nổi bật vì dài hơn, chi tiết hơn hoặc khác kiểu.
@@ -36,6 +36,9 @@ YÊU CẦU NỘI DUNG
 13. tags gồm 1–6 từ khóa ngắn, hữu ích cho tìm kiếm.
 14. Dùng responseType = "number" khi điền một số giúp kiểm tra tính toán tốt hơn đoán lựa chọn: choices = [], answer là một số JSON hữu hạn (không phải chuỗi, không phải chỉ số). Đề phải nêu hệ đếm, đơn vị, quy ước và yêu cầu làm tròn nếu cần. Website chấm chính xác theo giá trị, không có dung sai; ưu tiên kết quả nguyên hoặc thập phân hữu hạn. Không dùng dạng này cho chuỗi bit có số 0 đầu, mã hex hoặc nhiều giá trị.
 15. Lập ma trận nội dung trước khi sinh để phủ mọi mục kiến thức, không dành quá nhiều câu cho một mục. Ghi trang nguồn trong explanation nếu tài liệu có số trang. Nếu slide có lỗi, đối chiếu nguồn chuẩn, giải thích đính chính; không sao chép đáp án sai. Không đưa lời giải hay dấu hiệu đáp án vào prompt.
+16. Mỗi câu chỉ hỏi một yêu cầu chính. Tách điều kiện dài thành câu hoặc dòng riêng. Không dùng “URL trên”, “theo cách dựng trên”, “cùng ví dụ trước” khi dữ kiện đó không có ngay trong câu; ghi lại đầy đủ URL, công thức hoặc quy trình cần thiết.
+17. Với câu đọc mã, giữ đúng mã, thụt lề, dấu nháy và escape. Hỏi rõ nội dung được in ra, giá trị biến hay số lần lặp. Với mã giả, nêu quy ước cận vòng lặp và cách đánh số phần tử; không trộn mã giả rút gọn vào một câu văn dài.
+18. Đọc lại cả đề và từng lựa chọn như khi đọc thành tiếng. Các lựa chọn phải trả lời đúng kiểu câu hỏi: hỏi “điều gì” thì không mở đầu mọi lựa chọn bằng “Có/Không”; hỏi một giá trị thì ghi giá trị hoặc câu trả lời thống nhất. Diễn đạt lại điều kiện của tài liệu cho rõ, không tự bỏ điều kiện hoặc đổi dữ kiện để câu ngắn hơn.
 
 QUY TẮC ID VÀ THAM CHIẾU
 - id của bộ luôn là "it1140".
@@ -102,5 +105,5 @@ QUY TẮC ID VÀ THAM CHIẾU
 }
 
 TRƯỚC KHI TRẢ KẾT QUẢ
-Hãy tự kiểm tra âm thầm từng câu: JSON hợp lệ; id duy nhất; topic/source tồn tại; với choice, chỉ mục answer nằm trong choices; với number, choices rỗng và answer là giá trị số; tự tính lại mọi đáp án; đáp án được tài liệu hỗ trợ; không có câu trùng ý; giải thích không phụ thuộc thứ tự lựa chọn; không có nội dung tiếng Anh không cần thiết. Chỉ xuất JSON cuối cùng, không xuất checklist.
+Hãy tự kiểm tra âm thầm từng câu: người học có hiểu yêu cầu khi chỉ đọc riêng câu này không; câu văn có tự nhiên và bám cách dùng từ trong tài liệu không; các dữ kiện và định dạng mã có đầy đủ không; JSON hợp lệ; id duy nhất; topic/source tồn tại; với choice, chỉ mục answer nằm trong choices; với number, choices rỗng và answer là giá trị số; tự tính lại mọi đáp án; đáp án được tài liệu hỗ trợ; không có câu trùng ý; giải thích không phụ thuộc thứ tự lựa chọn; không có nội dung tiếng Anh không cần thiết. Chỉ xuất JSON cuối cùng, không xuất checklist.
 ```
