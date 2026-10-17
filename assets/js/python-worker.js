@@ -157,6 +157,7 @@ except SyntaxError as exc:
 
     self.postMessage({ type: "status", runId, status: "packages" });
     await pyodide.loadPackagesFromImports(code);
+    self.postMessage({ type: "status", runId, status: "running" });
 
     const cases = mode === "single" ? [{ label: "Chạy input hiện tại", input, files, output: "", checks: [] }] : tests;
     // Single-case runs must also remove other samples' files: otherwise a

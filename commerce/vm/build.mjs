@@ -27,11 +27,11 @@ await writeFile(resolve(out,'assets/css/app.css'),style+`\n.study-block{position
 await writeFile(resolve(out,'assets/css/app.css'),(await readFile(resolve(out,'assets/css/app.css'),'utf8'))+`\n.preview-banner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 18px;margin-bottom:16px;border:1px solid #bbd9cb;border-radius:12px;background:#e7f3ed;color:#173f32}.preview-banner a{font-weight:700;color:#075e50;text-decoration:underline}\n`);
 let html=await readFile(resolve(root,'index.html'),'utf8');
 html=html.replace('<script src="./assets/js/question-content.js','<script src="/commerce-access.js" defer></script>\n    <script src="/study-client.js" defer></script>\n    <script src="/python-sandbox.js" defer></script>\n    <script src="./assets/js/question-content.js');
-assert.equal(html.split('./assets/js/quiz-app.js?v=10').length,2);
-html=html.replace('./assets/js/quiz-app.js?v=10','/assets/js/commerce-quiz.js');
+assert.equal(html.split('./assets/js/quiz-app.js?v=11').length,2);
+html=html.replace('./assets/js/quiz-app.js?v=11','/assets/js/commerce-quiz.js');
 html=html.replace('<div class="top-actions">','<div class="top-actions"><a class="ghost-btn" href="/">Tài khoản</a>');
 // The brand remains a route back to the account when quiz actions are hidden.
-html=html.replace('<h1 id="subjectTitle">Tin học đại cương</h1>','<h1><a id="subjectTitle" href="/" aria-label="Tài khoản IT1140">Tin học đại cương</a></h1>');
+html=html.replace('<h1 id="subjectTitle">Tin học đại cương</h1>','<h1><a id="subjectTitle" href="/" title="Về tài khoản">Tin học đại cương</a></h1>');
 await writeFile(resolve(out,'learn.html'),html);
 assert.ok(html.includes('<body>'));
 const demo=html.replace('<body>','<body data-access="preview">').replace('      <nav class="section-tabs"','      <aside class="preview-banner"><strong id="previewSummary">Học thử miễn phí · Khoảng 10% nội dung</strong><a href="/">Mở toàn bộ · 20.000đ</a></aside>\n      <nav class="section-tabs"');
@@ -68,10 +68,10 @@ lab=lab.replace('  initialize();',`  window.addEventListener('it1140:study-stopp
     els.run.disabled = els.runInput.disabled = true; saveCurrentCode();
   });
   initialize();`);
-lab=lab.replace('worker.addEventListener("error", () => {cancelRun();finishWithError("Không khởi động được môi trường Python.");});',
-  'worker.addEventListener("error", event => { cancelRun(); finishWithError("Không khởi động được Python: " + (event.message || "Không tải được module từ CDN. Hãy kiểm tra mạng và tải lại trang.")); });');
-assert.equal(lab.split('new Worker("./assets/js/python-worker.js?v=6", { type: "module" })').length,2);
-lab=lab.replace('new Worker("./assets/js/python-worker.js?v=6", { type: "module" })','window.IT1140CreatePythonWorker()');
+lab=lab.replace('worker.addEventListener("error", () => {if (worker !== runningWorker) return;cancelRun();finishWithError("Không khởi động được môi trường Python.");});',
+  'worker.addEventListener("error", event => { if (worker !== runningWorker) return; cancelRun(); finishWithError("Không khởi động được Python: " + (event.message || "Không tải được module từ CDN. Hãy kiểm tra mạng và tải lại trang.")); });');
+assert.equal(lab.split('new Worker("./assets/js/python-worker.js?v=7", { type: "module" })').length,2);
+lab=lab.replace('new Worker("./assets/js/python-worker.js?v=7", { type: "module" })','window.IT1140CreatePythonWorker()');
 assert.ok(!lab.includes('new Worker('),'Commercial lab must never construct an account-origin worker');
 await writeFile(resolve(out,'assets/js/python-lab.js'),lab);
 // Content hashes avoid stale cached legacy editors/clients during cutover and

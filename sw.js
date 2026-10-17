@@ -1,13 +1,13 @@
-const CACHE_NAME = "it1140-static-v26";
+const CACHE_NAME = "it1140-static-v28";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./assets/css/app.css?v=19",
+  "./assets/css/app.css?v=20",
   "./assets/js/question-content.js?v=2",
-  "./assets/js/quiz-app.js?v=10",
-  "./assets/js/python-lab.js?v=14",
+  "./assets/js/quiz-app.js?v=11",
+  "./assets/js/python-lab.js?v=15",
   "./assets/js/python-practice.js?v=1",
-  "./assets/js/python-worker.js?v=6",
+  "./assets/js/python-worker.js?v=7",
   "./assets/js/python-errors.js?v=1",
   "./assets/js/python-errors.js",
   "./assets/js/python-editor.js?v=1",

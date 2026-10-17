@@ -63,7 +63,7 @@ const exercise={id:'py-one',title:'One',task:'A task',hint:'A hint',library:'Pyt
 async function harness(commercial,store=new Map()) {
   const elements=new Map(),get=id=>{if(!elements.has(id))elements.set(id,new Element());return elements.get(id);};
   get('timedMinutes').value='30';
-  const events={},intervals=[],workers=[];let wallTime=now;
+  const events={},intervals=[],workers=[],timeouts=new Map();let wallTime=now,serial=0;
   class Clock extends Date {static now(){return wallTime;}}
   class Worker {
     constructor(){this.events={};this.posts=[];workers.push(this);}
@@ -75,7 +75,7 @@ async function harness(commercial,store=new Map()) {
   const scope={Date:Clock,Worker,Option:class extends Element {constructor(label,value){super();this.textContent=label;this.value=value;}},
     localStorage:{getItem:key=>store.get(key) || null,setItem:(key,value)=>store.set(key,value)},
     document:{getElementById:get,createElement:()=>new Element(),addEventListener:(name,fn)=>events[name]=fn},
-    setTimeout:()=>1,clearTimeout(){},setInterval:fn=>intervals.push(fn),
+    setTimeout:(fn,delay)=>{timeouts.set(++serial,{fn,delay});return serial;},clearTimeout:id=>timeouts.delete(id),setInterval:fn=>intervals.push(fn),
     getComputedStyle:()=>({lineHeight:'24'}),
     fetch:async url=>({ok:true,json:async()=>url.endsWith('/py-one')?structuredClone(exercise):{userScope:'test-user',exercises:[structuredClone(exercise)]}}),
     IT1140Text:{render:(el,text)=>el.textContent=text},navigator:{},Blob,URL};
@@ -88,12 +88,35 @@ async function harness(commercial,store=new Map()) {
   const flush=async()=>{for(let i=0;i<25;i++)await Promise.resolve();};await flush();
   const key=commercial?'it1140-commerce-python:v2:test-user':'it1140-python-lab:v4';
   return {get,workers,store,flush,state:()=>JSON.parse(store.get(key)),fill:(id,text)=>{get(id).value=text;get(id).emit('input');},
+    timeouts,fireTimeout:delay=>{const entry=[...timeouts].find(([,v])=>v.delay===delay);assert.ok(entry,`timer ${delay}`);timeouts.delete(entry[0]);entry[1].fn();},
     confirm:value=>scope.confirm=()=>value,
     advance:ms=>{wallTime+=ms;for(const fn of intervals)fn();},stopStudy:()=>{for(const fn of events['it1140:study-stopped'] || [])fn();}};
 }
 
 for(const commercial of [false,true]) {
   const name=commercial?'commercial':'static';
+  test(`${name}: syntax errors count as an attempt against the full test set without pretending cases ran`,async()=>{
+    const h=await harness(commercial);h.fill('pythonEditor','print(');h.get('runPythonBtn').click();const w=h.workers.at(-1),run=w.posts.at(-1);
+    w.events.message({data:{runId:run.runId,mode:'tests',error:'SyntaxError',diagnostic:{type:'SyntaxError',message:'unclosed parenthesis',line:1},tests:[]}});
+    assert.equal(h.state().practice.records['py-one'][0].total,2);assert.equal(h.state().practice.records['py-one'][0].passed,0);
+    assert.equal(h.get('pythonTests').children.length,2);assert.match(h.get('pythonTests').children[0].textContent,/Chưa chạy/);
+    assert.equal(h.get('pythonTests').children[0].className,'is-pending');assert.equal(h.get('pythonHistory').hidden,false);
+  });
+  test(`${name}: infrastructure load timeout differs from program timeout and never records a failed submission`,async()=>{
+    const h=await harness(commercial);h.fill('pythonEditor','print(1)');h.get('runPythonBtn').click();h.fireTimeout(120000);
+    assert.match(h.get('pythonOutput').textContent,/120 giây/);assert.match(h.get('pythonOutput').textContent,/kiểm tra mạng/);
+    assert.equal(h.state().practice.records['py-one'],undefined);assert.equal(h.get('pythonEditor').value,'print(1)');
+    h.get('runPythonBtn').click();const w=h.workers.at(-1),run=w.posts.at(-1);
+    w.events.message({data:{type:'status',runId:run.runId,status:'running'}});
+    assert.equal([...h.timeouts.values()].some(t=>t.delay===120000),false);h.fireTimeout(60000);
+    assert.match(h.get('pythonOutput').textContent,/vòng lặp/);assert.equal(h.state().practice.records['py-one'],undefined);
+  });
+  test(`${name}: late errors from a cancelled worker cannot terminate a newer run`,async()=>{
+    const h=await harness(commercial);h.fill('pythonEditor','print(1)');h.get('runPythonBtn').click();const old=h.workers.at(-1);
+    h.get('stopPythonBtn').click();h.get('runPythonBtn').click();const current=h.workers.at(-1);old.events.error({message:'late worker error'});
+    assert.equal(current.terminated,undefined);assert.equal(h.get('runPythonBtn').disabled,true);current.complete();
+    assert.equal(h.state().practice.records['py-one'][0].passed,2);
+  });
   test(`${name}: empty results and history stay hidden; running, grading and failures remain visible`,async()=>{
     const h=await harness(commercial);
     assert.equal(h.get('pythonResults').hidden,true);assert.equal(h.get('pythonHistory').hidden,true);assert.equal(h.get('pythonStatus').hidden,true);

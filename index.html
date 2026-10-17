@@ -7,9 +7,10 @@
     <meta name="description" content="Ôn tập và thực hành Tin học đại cương IT1140 trực tiếp trên trình duyệt." />
     <meta name="theme-color" content="#0f766e" />
     <link rel="canonical" href="https://it1140.hoangpc.io.vn/" />
-    <link rel="stylesheet" href="./assets/css/app.css?v=19" />
+    <link rel="stylesheet" href="./assets/css/app.css?v=20" />
   </head>
   <body>
+    <a class="skip-link" id="skipStudy" href="#questionText">Đến nội dung</a>
     <div class="app-shell">
       <header class="topbar">
         <div class="brand">
@@ -26,7 +27,7 @@
             <select id="subjectSelect"></select>
           </label>
 
-          <div class="segmented" role="tablist" aria-label="Chế độ quiz" id="modeSwitch">
+          <div class="segmented" role="group" aria-label="Chế độ ôn tập" id="modeSwitch">
             <button type="button" class="mode-btn is-active" data-mode="practice">Luyện</button>
             <button type="button" class="mode-btn" data-mode="exam">Thi</button>
             <button type="button" class="mode-btn" data-mode="review">Ôn</button>
@@ -38,8 +39,8 @@
       </header>
 
       <nav class="section-tabs" aria-label="Khu vực học tập">
-        <button type="button" class="section-tab is-active" data-view="quizView" aria-selected="true">Ôn câu hỏi</button>
-        <button type="button" class="section-tab" data-view="pythonLabView" aria-selected="false">Thực hành Python</button>
+        <button type="button" class="section-tab is-active" data-view="quizView" aria-pressed="true">Ôn câu hỏi</button>
+        <button type="button" class="section-tab" data-view="pythonLabView" aria-pressed="false">Thực hành Python</button>
       </nav>
 
       <main class="layout" id="quizView" data-section-view>
@@ -47,7 +48,7 @@
           <section class="panel filters">
             <label class="field">
               <span data-i18n="searchLabel">Tìm</span>
-              <input id="searchInput" type="search" autocomplete="off" placeholder="Nhập từ khóa câu hỏi..." />
+              <input id="searchInput" type="search" autocomplete="off" maxlength="150" placeholder="Nhập từ khóa câu hỏi..." />
             </label>
 
             <label class="field">
@@ -95,7 +96,7 @@
 
           <article class="question-panel">
             <p id="quizStorageWarning" role="alert" hidden>Không lưu được tiến độ trên trình duyệt. Đừng đóng hoặc tải lại trang khi đang làm bài.</p>
-            <div id="questionText" class="question-text"><h2>Đang tải ngân hàng câu hỏi…</h2></div>
+            <div id="questionText" class="question-text" tabindex="-1"><h2>Đang tải ngân hàng câu hỏi…</h2></div>
             <div class="choice-list" id="choiceList"></div>
             <div class="feedback" id="feedbackBox" hidden></div>
           </article>
@@ -228,10 +229,10 @@
       </main>
     </div>
     <script src="./assets/js/question-content.js?v=2" defer></script>
-    <script src="./assets/js/quiz-app.js?v=10" defer></script>
+    <script src="./assets/js/quiz-app.js?v=11" defer></script>
     <script src="./assets/js/python-errors.js?v=1" defer></script>
     <script src="./assets/js/python-editor.js?v=1" defer></script>
     <script src="./assets/js/python-practice.js?v=1" defer></script>
-    <script src="./assets/js/python-lab.js?v=14" defer></script>
+    <script src="./assets/js/python-lab.js?v=15" defer></script>
   </body>
 </html>

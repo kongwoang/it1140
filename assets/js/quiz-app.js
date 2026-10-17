@@ -129,10 +129,11 @@ async function loadQuizData() {
       buttons.forEach((button) => {
         const active = button.dataset.view === viewId;
         button.classList.toggle("is-active", active);
-        button.setAttribute("aria-selected", String(active));
+        button.setAttribute("aria-pressed", String(active));
       });
       const quizActions = document.querySelector(".top-actions");
       if (quizActions) quizActions.hidden = viewId !== "quizView";
+      document.getElementById("skipStudy").href = viewId === "pythonLabView" ? "#pythonEditor" : "#questionText";
       try {
         localStorage.setItem("it1140-active-view", viewId);
       } catch (_error) {
@@ -340,7 +341,7 @@ async function loadQuizData() {
       const isActive = button.dataset.mode === state.mode;
       button.textContent = dictionary().modes[button.dataset.mode] || button.dataset.mode;
       button.classList.toggle("is-active", isActive);
-      button.setAttribute("aria-selected", String(isActive));
+      button.setAttribute("aria-pressed", String(isActive));
     });
 
   }

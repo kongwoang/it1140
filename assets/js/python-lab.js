@@ -36,6 +36,7 @@
   let studyStopped = false;
   let activeRunId = 0;
   let timeoutId;
+  let runPhase = "loading";
   let warningTimer;
   let errorLine = null;
   let runningCode = "";
@@ -383,9 +384,10 @@
 
   function getWorker() {
     if (!worker) {
-      worker = new Worker("./assets/js/python-worker.js?v=6", { type: "module" });
-      worker.addEventListener("message", handleWorkerMessage);
-      worker.addEventListener("error", () => {cancelRun();finishWithError("Không khởi động được môi trường Python.");});
+      worker = new Worker("./assets/js/python-worker.js?v=7", { type: "module" });
+      const runningWorker = worker;
+      worker.addEventListener("message", event => {if (worker === runningWorker) handleWorkerMessage(event);});
+      worker.addEventListener("error", () => {if (worker !== runningWorker) return;cancelRun();finishWithError("Không khởi động được môi trường Python.");});
     }
     return worker;
   }
@@ -395,8 +397,8 @@
     document.getElementById("pythonTestPanel").hidden = !results.length;
     results.forEach((result, index) => {
       const item = document.createElement("li");
-      item.className = result.passed ? "is-passed" : "is-failed";
-      item.textContent = `${result.passed ? "✓" : "×"} ${result.label}${result.error ? ` — ${result.error}` : ""}`;
+      item.className = result.skipped ? "is-pending" : result.passed ? "is-passed" : "is-failed";
+      item.textContent = result.skipped ? `— ${result.label} · Chưa chạy` : `${result.passed ? "✓" : "×"} ${result.label}${result.error ? ` — ${result.error}` : ""}`;
       if (!result.passed && result.difference) {
         const pre = document.createElement("pre"), d = result.difference;
         pre.textContent = `Dòng đầu tiên khác: ${d.line}\nCần in: ${d.expected}\nĐã in:  ${d.actual}\n${d.help}`;
@@ -407,7 +409,7 @@
         pre.textContent = d.missing ? `Chưa tạo tệp: ${d.name}` : d.unreadable ? `Không đọc được tệp ${d.name} dưới dạng văn bản UTF-8.` : `Tệp ${d.name} · Dòng ${d.line || 1}\nCần ghi: ${JSON.stringify(d.expected ?? "")}\nĐã ghi:  ${JSON.stringify(d.actual ?? "")}\n${d.help || ""}`;
         item.append(pre);
       }
-      if (!result.passed) {
+      if (!result.passed && !result.skipped) {
         const details = document.createElement("details"), summary = document.createElement("summary"), pre = document.createElement("pre");
         summary.textContent = "stdin của ca này";pre.textContent = result.input || "(Không có dữ liệu stdin)";
         details.append(summary, pre);item.append(details);
@@ -423,8 +425,9 @@
     if (message.runId !== activeRunId) return;
 
     if (message.type === "status") {
+      if (message.status === "running" && runPhase !== "running") {runPhase = "running";armRunTimeout();}
       setStatus(
-        message.status === "loading" ? "Đang khởi động Python…" : "Đang nạp thư viện…",
+        message.status === "running" ? "Đang chạy mã…" : message.status === "loading" ? "Đang khởi động Python…" : "Đang nạp thư viện…",
         "running",
       );
       return;
@@ -453,15 +456,17 @@
       document.getElementById("pythonTestPanel").hidden = true;
       setStatus(message.error ? "Mã có lỗi" : "Đã chạy", message.error ? "error" : "success");
     } else {
-      const allPassed = !message.error && message.tests.length > 0 && message.tests.every((test) => test.passed);
-      if (message.tests.length) {
+      const expected = currentExercise()?.tests || [], results = message.tests;
+      const allPassed = !message.error && expected.length > 0 && results.length === expected.length && results.every((test) => test.passed);
+      if (results.length < expected.length) for (const test of expected.slice(results.length)) results.push({label:test.label,passed:false,skipped:true});
+      if (expected.length) {
         P.record(state.practice, currentId, {at:Date.now(), mode:timedSubmission ? "timed" : "practice",
-          total:message.tests.length, passed:message.tests.filter(test => test.passed).length,
+          total:expected.length, passed:results.filter(test => test.passed).length,
           assisted:!timedSubmission && Boolean(state.practice.hinted[currentId]),
           elapsedMs:timedSubmission ? session().endedAt-session().startedAt : null});
         saveState();
       }
-      renderTests(message.tests);
+      renderTests(results);
       if (allPassed && els.editor.value === runningCode) {
         state.completed[currentId] = true;
         setStatus("Hoàn thành", "success");
@@ -505,6 +510,7 @@
     els.run.disabled = true;
     els.runInput.disabled = true;
     busy = true;
+    runPhase = "loading";
     document.getElementById("stopPythonBtn").hidden = false;
     els.tests.innerHTML = "";
     document.getElementById("pythonResults").hidden = false;
@@ -526,11 +532,18 @@
       cancelRun();finishWithError("Không khởi động được Python. Hãy tải lại trang hoặc kiểm tra mạng. " + error.message);return;
     }
 
-    timeoutId = setTimeout(() => {
-      cancelRun();
-      finishWithError("Chương trình chạy quá 60 giây và đã được dừng. Hãy kiểm tra vòng lặp hoặc tối ưu lại mã.");
-    }, runTimeoutMs);
+    armRunTimeout();
     renderPractice();
+  }
+
+  function armRunTimeout() {
+    clearTimeout(timeoutId);const generation = activeRunId, executing = runPhase === "running";
+    timeoutId = setTimeout(() => {
+      if (generation !== activeRunId) return;
+      cancelRun();
+      finishWithError(executing ? "Chương trình chạy quá 60 giây và đã được dừng. Hãy kiểm tra vòng lặp hoặc tối ưu lại mã."
+        : "Chưa tải xong Python hoặc thư viện sau 120 giây. Hãy kiểm tra mạng rồi chạy lại. Mã đang viết vẫn được giữ.");
+    }, executing ? runTimeoutMs : 120000);
   }
 
   function renderPractice() {
@@ -705,7 +718,7 @@
   els.run.addEventListener("click", () => startRun("tests"));
   els.runInput.addEventListener("click", () => startRun("single"));
   els.reset.addEventListener("click", () => {
-    if (session() || studyStopped) return;
+    if (session() || studyStopped || els.editor.disabled) return;
     const exercise = currentExercise();
     if (!exercise) return;
     if (els.editor.value && !window.confirm("Xóa mã đang viết của bài này? Lịch sử nộp bài vẫn được giữ.")) return;

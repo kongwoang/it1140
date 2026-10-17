@@ -1,6 +1,6 @@
 (() => {
   const preview=document.body.dataset.access==='preview';
-  let rejectReady,resolveReady,stopped=false,heartbeat;
+  let rejectReady,resolveReady,stopped=false,heartbeat,pinging=false,lastPingStarted=0;
   const ready=new Promise((resolve,reject)=>{resolveReady=resolve;rejectReady=reject;});
   // Both study modules await this promise. Avoid an unhandled rejection if one is absent.
   ready.catch(()=>{});
@@ -16,11 +16,14 @@
     window.dispatchEvent(new Event('it1140:study-stopped'));
   }
   async function ping(){
-    if(stopped)return;
-    try{const response=await fetch('/api/study/heartbeat',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
+    if(stopped||pinging)return;
+    clearTimeout(heartbeat);pinging=true;lastPingStarted=Date.now();
+    const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),15000);
+    try{const response=await fetch('/api/study/heartbeat',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}',signal:controller.signal});
+      if(stopped)return;
       if(!response.ok){block(response.status===401?'Vui lòng đăng nhập lại.':'Phiên học không còn hiệu lực. Quay lại tài khoản để tiếp tục.',response.status===401);return;}
-    }catch{block('Không kiểm tra được phiên học. Mã và câu trả lời đang viết vẫn được giữ; hãy kết nối mạng và tải lại.');return;}
-    heartbeat=setTimeout(ping,55000+Math.random()*10000);
+    }catch{if(!stopped)block('Không kiểm tra được phiên học. Mã và câu trả lời đang viết vẫn được giữ; hãy kết nối mạng và tải lại.');}
+    finally{clearTimeout(timeout);pinging=false;if(!stopped)heartbeat=setTimeout(ping,55000+Math.random()*10000);}
   }
   window.IT1140Study={ready,block,preview,apiBase:preview?'/api/preview':'/api/course'};
   (async()=>{
@@ -39,5 +42,5 @@
       resolveReady();heartbeat=setTimeout(ping,55000+Math.random()*10000);
     }catch(error){block(error.message);rejectReady(error);}
   })();
-  document.addEventListener('visibilitychange',()=>{if(!preview&&!document.hidden&&!stopped){clearTimeout(heartbeat);ping();}});
+  document.addEventListener('visibilitychange',()=>{if(!preview&&!document.hidden&&!stopped&&Date.now()-lastPingStarted>=5000){clearTimeout(heartbeat);ping();}});
 })();
