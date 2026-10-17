@@ -114,7 +114,11 @@ export function createApp({pool,cfg,sendMail,publicRoot=resolve(import.meta.dirn
         if(r.rows[0].result.outcome==='review')logger.warn('payment_review',{transactionId:String(p.id),reason:r.rows[0].result.reason});
         return json({success:true});
       }
-      const a=await guard(pool,sessionToken);
+      const courseRequest=path.startsWith('/api/course/');
+      // One authoritative authorization read per request, not one per caller.
+      // In-flight responses cannot recall bytes already sent; every new request
+      // rechecks the DB and no application-side entitlement/lease cache is used.
+      const a=await guard(pool,sessionToken,{paid:courseRequest||path==='/api/study/claim'||path==='/api/study/heartbeat',study:courseRequest||path==='/api/study/heartbeat'});
       await rate(pool,'api:'+a.user_id,300,60);
       if(path==='/api/me'&&method==='GET')return json({id:a.user_id,email:a.email,lifetime:a.owned,deviceId:a.device_id});
       if(path==='/api/auth/logout'&&method==='POST'){
@@ -129,12 +133,12 @@ export function createApp({pool,cfg,sendMail,publicRoot=resolve(import.meta.dirn
           if(n>=2)throw new Fault(429,'replacement_limit');await revokeDevice(db,a.user_id,data.id,'self_revoke');});return json({success:true});
       }
       if(path==='/api/study/claim'&&method==='POST'){
-        const data=parse(await bytes(request));const paid=await guard(pool,sessionToken,{paid:true});
+        const data=parse(await bytes(request));
         if(data.takeover===true)await rate(pool,'takeover:'+a.user_id,5,3600);
-        return json(await claim(pool,paid,data.takeover===true));
+        return json(await claim(pool,a,data.takeover===true));
       }
       if(path==='/api/study/heartbeat'&&method==='POST'){
-        const active=await guard(pool,sessionToken,{paid:true,study:true});return json(await claim(pool,active));
+        return json(await claim(pool,a));
       }
       if(path==='/api/study/release'&&method==='POST'){await pool.query('delete from app.leases where user_id=$1 and session_id=$2',[a.user_id,a.session_id]);return json({success:true});}
       if(path==='/api/orders'&&method==='POST'){
@@ -148,13 +152,12 @@ export function createApp({pool,cfg,sendMail,publicRoot=resolve(import.meta.dirn
         const o=(await pool.query("select o.*,exists(select 1 from app.payments p where p.order_id=o.id and p.outcome='review') needs_review from app.orders o where o.id=$1 and o.user_id=$2",[id,a.user_id])).rows[0];
         if(!o)throw new Fault(404,'not_found');return json({...orderView(o,cfg),needsReview:o.needs_review});
       }
-      if(path.startsWith('/api/course/')){
+      if(courseRequest){
         const data=method==='POST'?parse(await bytes(request)):{};
         const result=await transaction(pool,async db=>{
-          const active=await guard(db,sessionToken,{paid:true,study:true});
           if(path==='/api/course/exams'&&method==='POST')await rate(db,'exam:'+a.user_id,10,3600);
           if(path==='/api/course/grade'&&method==='POST')await rate(db,'grade:'+a.user_id,90,60);
-          return courseRoute(path,method,url,data,db,active);
+          return courseRoute(path,method,url,data,db,a);
         });return json(result);
       }
       throw new Fault(404,'not_found');

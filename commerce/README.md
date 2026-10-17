@@ -13,7 +13,7 @@ Các file Worker/Supabase ở thư mục commerce là nguyên mẫu đối chi�
 - Cấp tối đa 20 câu/lần, không kèm đáp án/giải thích. Chấm hoặc xem lời giải một câu ở server sau khi được cấp câu đó. Thi có phạm vi cố định trong DB, tối đa 100 câu (UI 40), nộp một lần, retry trả kết quả cũ. Giữ 2.096 câu, điền số, nhiều đáp án, chương/tìm/ghim/trộn và tiến độ cục bộ.
 - Python giữ IDE, kiểm tra, file mẫu, gợi ý, tải .py và 70 bài; tải chi tiết khi chọn bài. Code chạy trên browser, không chạy chung backend thanh toán. Điểm Python cục bộ không phải điểm thi đáng tin cậy.
 - Giá, owner, người nhận lấy từ server. QR riêng, hạn 30 phút. HMAC raw body + timestamp, giao dịch trùng không cấp hai lần; ledger/paid/quyền học cùng transaction. Đúng bank/account/mã/tiền/chiều/thời gian mới cấp; sai vào đối soát. Webhook trễ nhưng tiền vào đúng hạn vẫn hợp lệ.
-- Public build không có data JSON/SQL/env/key. Service worker thương mại không cache API và thay cache cũ. Tiến độ/mã lưu theo ID tài khoản trên thiết bị, **chưa đồng bộ cloud**.
+- Public build không có data JSON/SQL/env/key. Chỉ CSS/JS không cá nhân hóa được cache công khai 5 phút; HTML/API/service worker giữ private/no-store. Service worker thương mại không cache API và thay cache cũ. Tiến độ/mã lưu theo ID tài khoản trên thiết bị, **chưa đồng bộ cloud**.
 - Container app non-root/read-only, DB và app không mở cổng công khai; runtime DB role không phải owner. Migration riêng có checksum, health/preflight, CLI, backup/restore và bộ tải staging.
 
 ## Giới hạn trước khi bán
