@@ -94,6 +94,19 @@ async function harness(commercial,store=new Map()) {
 
 for(const commercial of [false,true]) {
   const name=commercial?'commercial':'static';
+  test(`${name}: empty results and history stay hidden; running, grading and failures remain visible`,async()=>{
+    const h=await harness(commercial);
+    assert.equal(h.get('pythonResults').hidden,true);assert.equal(h.get('pythonHistory').hidden,true);assert.equal(h.get('pythonStatus').hidden,true);
+    h.fill('pythonEditor','print(0)');h.get('runPythonInputBtn').click();
+    assert.equal(h.get('pythonResults').hidden,false);assert.equal(h.get('pythonTestPanel').hidden,true);assert.equal(h.get('pythonStatus').hidden,false);
+    h.workers.at(-1).complete();assert.equal(h.get('pythonHistory').hidden,true);assert.equal(h.get('pythonTestPanel').hidden,true);
+    h.get('runPythonBtn').click();h.workers.at(-1).complete(false);
+    assert.equal(h.get('pythonTestPanel').hidden,false);assert.equal(h.get('pythonHistory').hidden,false);
+    h.get('runPythonBtn').click();const w=h.workers.at(-1);
+    w.events.message({data:{runId:w.posts.at(-1).runId,type:'fatal',error:'Runtime unavailable'}});
+    assert.equal(h.get('pythonResults').hidden,false);assert.equal(h.get('pythonTestPanel').hidden,true);
+    assert.equal(h.get('pythonOutput').textContent,'Runtime unavailable');assert.equal(h.get('pythonStatus').hidden,false);
+  });
   test(`${name}: timed buffers survive reload, submit immutable code and preserve ordinary drafts`,async()=>{
     const h=await harness(commercial);h.fill('pythonEditor','# ordinary draft');h.get('startTimedBtn').click();await h.flush();
     assert.equal(h.get('pythonEditor').value,'');assert.equal(h.get('toggleHintBtn').hidden,true);

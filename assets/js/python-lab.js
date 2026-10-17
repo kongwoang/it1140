@@ -13,7 +13,6 @@
     editor: document.getElementById("pythonEditor"),
     highlight: document.getElementById("pythonHighlight"),
     lineNumbers: document.getElementById("pythonLineNumbers"),
-    editorStats: document.getElementById("pythonEditorStats"),
     copy: document.getElementById("copyPythonBtn"),
     download: document.getElementById("downloadPythonBtn"),
     input: document.getElementById("pythonInput"),
@@ -144,7 +143,6 @@
     const lineCount = Math.max(1, code.split("\n").length);
     els.highlight.innerHTML = highlightPython(code);
     els.lineNumbers.innerHTML = `<div class="line-number-list">${Array.from({ length: lineCount }, (_, index) => `<span${index + 1 === errorLine ? ' class="error-line"' : ''}>${index + 1}</span>`).join("")}</div>`;
-    els.editorStats.textContent = `${lineCount} dòng · ${code.length} ký tự`;
     syncEditorScroll();
     clearTimeout(warningTimer);
     warningTimer = setTimeout(renderWarnings, 350);
@@ -339,17 +337,15 @@
     els.hint.textContent = "Xem gợi ý";
     els.output.textContent = exercise.browserRunnable === false
       ? (exercise.executionNote || "Bài này cần chạy trên máy có môi trường Python phù hợp.")
-      : "Kết quả chạy mã sẽ xuất hiện tại đây.";
+      : "";
+    document.getElementById("pythonResults").hidden = exercise.browserRunnable !== false;
+    document.getElementById("pythonTestPanel").hidden = true;
     els.tests.innerHTML = "";
     els.chart.hidden = true;
     els.chart.removeAttribute("src");
     els.run.disabled = exercise.browserRunnable === false;
     els.runInput.disabled = exercise.browserRunnable === false;
     if (exercise.browserRunnable === false) {
-      const item = document.createElement("li");
-      item.className = "is-pending";
-      item.textContent = "Bài Turtle: nộp mã và ảnh kết quả sau khi chạy trên máy.";
-      els.tests.append(item);
       setStatus("Chạy trên máy", "ready");
     } else {
       setStatus("Sẵn sàng", "ready");
@@ -382,6 +378,7 @@
   function setStatus(text, kind = "ready") {
     els.status.textContent = text;
     els.status.dataset.status = kind;
+    els.status.hidden = text === "Sẵn sàng";
   }
 
   function getWorker() {
@@ -395,6 +392,7 @@
 
   function renderTests(results) {
     els.tests.innerHTML = "";
+    document.getElementById("pythonTestPanel").hidden = !results.length;
     results.forEach((result, index) => {
       const item = document.createElement("li");
       item.className = result.passed ? "is-passed" : "is-failed";
@@ -443,7 +441,7 @@
     }
 
     const output = message.output || "";
-    els.output.textContent = output || (message.error ? "Chương trình dừng vì lỗi." : "Chương trình chạy xong nhưng không in ra kết quả.");
+    els.output.textContent = output || (message.error ? "Chương trình dừng vì lỗi." : "Không có đầu ra.");
     // A timed submission is immutable; feedback becomes available after grading.
     const timedSubmission = message.mode !== "single" && session()?.phase === "submitted";
     if (timedSubmission) {session().phase = "review";saveState();}
@@ -452,10 +450,7 @@
     if (message.error && !message.diagnostic) els.output.textContent = message.error;
     if (message.mode === "single") {
       els.tests.innerHTML = "";
-      const item = document.createElement("li");
-      item.className = message.error ? "is-failed" : "is-passed";
-      item.textContent = message.error ? "× Chạy input — mã có lỗi" : "✓ Chạy input hiện tại";
-      els.tests.append(item);
+      document.getElementById("pythonTestPanel").hidden = true;
       setStatus(message.error ? "Mã có lỗi" : "Đã chạy", message.error ? "error" : "success");
     } else {
       const allPassed = !message.error && message.tests.length > 0 && message.tests.every((test) => test.passed);
@@ -491,6 +486,8 @@
     clearTimeout(timeoutId);
     busy = false;
     els.output.textContent = message;
+    document.getElementById("pythonResults").hidden = false;
+    document.getElementById("pythonTestPanel").hidden = true;
     setStatus("Không thể chạy", "error");
     renderPractice();
   }
@@ -510,6 +507,8 @@
     busy = true;
     document.getElementById("stopPythonBtn").hidden = false;
     els.tests.innerHTML = "";
+    document.getElementById("pythonResults").hidden = false;
+    document.getElementById("pythonTestPanel").hidden = mode !== "tests";
     els.chart.hidden = true;
     els.output.textContent = "Đang chuẩn bị…";
     setStatus("Đang chạy", "running");
@@ -557,15 +556,15 @@
       document.getElementById("timedLabel").textContent = s.phase === "running" ? "Lượt có giờ · Không gợi ý" : "Đã nộp · Mã đã khóa";
       document.getElementById("timedClock").textContent = s.phase === "running" ? P.clock(P.remaining(s)) : P.clock(s.endedAt-s.startedAt);
       document.getElementById("timedClock").setAttribute("aria-label", s.phase === "running" ? "Thời gian còn lại" : "Thời gian làm bài");
-      const text = s.phase === "running" ? "Hết giờ sẽ tự nộp bài. Bản nháp luyện tập được giữ riêng."
-        : s.phase === "submitted" ? (busy ? "Đang chấm bài đã nộp…" : "Bài đã lưu. Bấm “Chấm bài đã nộp” để lấy kết quả.")
-        : last?.mode === "timed" ? `Đạt ${last.passed}/${last.total} ca kiểm tra · ${P.clock(last.elapsedMs)}. Chọn “Sửa bài đã nộp” để luyện lại.` : "Lượt đã kết thúc. Về luyện tập để thử lại.";
+      const text = s.phase === "running" ? "Tự nộp khi hết giờ."
+        : s.phase === "submitted" ? (busy ? "Đang chấm…" : "Chấm lại bài đã lưu để lấy kết quả.")
+        : last?.mode === "timed" ? `${last.passed}/${last.total} ca đạt` : "Đã kết thúc.";
       if (notice.textContent !== text) notice.textContent = text;
     }
     const rows = state.practice?.records[currentId] || [];
+    document.getElementById("pythonHistory").hidden = !rows.length;
     document.getElementById("pythonHistoryTitle").textContent = `Lịch sử nộp bài${rows.length ? ` · ${rows.length} lượt gần nhất` : ""}`;
     const list = document.getElementById("pythonAttempts");list.replaceChildren();
-    if (!rows.length) {const li = document.createElement("li");li.textContent = "Chưa có lượt kiểm tra nào.";list.append(li);}
     for (const row of [...rows].reverse()) {
       const li = document.createElement("li");
       li.textContent = `${new Date(row.at).toLocaleString("vi-VN")} — ${row.mode === "timed" ? `Có giờ · ${P.clock(row.elapsedMs)}` : "Luyện tập"} — ${row.passed}/${row.total} ca đạt${row.assisted ? " · Đã mở gợi ý" : ""}`;
@@ -635,6 +634,7 @@
       selectExercise(state.practice.session?.exerciseId || (exercises.some((item) => item.id === state.currentId) ? state.currentId : exercises[0]?.id));
     } catch (error) {
       els.output.textContent = error.message;
+      document.getElementById("pythonResults").hidden = false;
       setStatus("Không tải được bài tập", "error");
     }
   }

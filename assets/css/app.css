@@ -937,7 +937,7 @@ button {
 
 .ide-toolbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   gap: 12px;
   padding: 9px 13px;
@@ -947,20 +947,10 @@ button {
   font-size: 12px;
 }
 
-.ide-toolbar-meta,
 .ide-toolbar-actions {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.ide-language {
-  border: 1px solid rgba(15, 118, 110, 0.25);
-  border-radius: 5px;
-  padding: 2px 7px;
-  background: rgba(15, 118, 110, 0.08);
-  color: var(--teal-dark);
-  font-weight: 900;
 }
 
 .ide-tool-btn {
@@ -1141,6 +1131,8 @@ button {
   grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);
   gap: 10px;
 }
+
+.result-grid:has(> [hidden]) { grid-template-columns: minmax(0, 1fr); }
 
 .result-panel pre {
   min-height: 88px;

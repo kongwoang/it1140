@@ -50,7 +50,7 @@
     $('chapterFilter').disabled=busy;$('searchInput').disabled=busy||state.mode==='exam';$('bookmarkOnly').disabled=busy||state.mode==='exam';
     $('bookmarkBtn').textContent=state.pins[q?.id]?'★':'☆';$('bookmarkBtn').disabled=!q||busy;
     $('tagRow').replaceChildren();
-    if(q){for(const label of [catalogue.chapters.find(c=>c.id===q.chapter)?.label,q.multiple?'Chọn nhiều đáp án':q.responseType==='number'?'Điền số':'Chọn một đáp án'].filter(Boolean)){const span=document.createElement('span');span.className='tag';span.textContent=label;$('tagRow').append(span);}}
+    if(q){for(const label of [catalogue.chapters.find(c=>c.id===q.chapter)?.label,q.multiple?'Chọn nhiều đáp án':q.responseType==='number'?'Điền số':null].filter(Boolean)){const span=document.createElement('span');span.className='tag';span.textContent=label;$('tagRow').append(span);}}
     IT1140Text.render($('questionText'),busy?'Đang tải câu hỏi…':q?.prompt||'Chưa có câu hỏi phù hợp.',{heading:true});
     $('choiceList').replaceChildren();$('feedbackBox').hidden=true;
     if(q&&!busy){

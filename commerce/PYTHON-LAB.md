@@ -46,6 +46,8 @@ Trước khi bán, chủ website vẫn cần xác nhận quyền khai thác thư
 
 Đây là tự luyện theo bộ bài hiện có, không khẳng định thời lượng/cấu trúc đề thi HUST, không chứng nhận điểm hoặc đảm bảo đạt mọi input ngoài các ca đã kiểm tra. Sandbox cách ly và danh sách nội dung học thử không thay đổi.
 
+Giao diện chỉ hiện kết quả sau khi chạy, lịch sử sau lần kiểm tra đầu tiên. Chạy riêng stdin không tạo một bảng kiểm tra trống. Đã bỏ nhãn Python/bộ đếm ký tự trùng với trình soạn thảo, mô tả đầu ra lặp và thông báo “Sẵn sàng”; vẫn giữ trạng thái đang chạy, lỗi, cảnh báo lưu mã, gợi ý và dữ liệu mẫu.
+
 ## Kiểm chứng
 
 ```sh

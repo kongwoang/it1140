@@ -7,7 +7,7 @@
     <meta name="description" content="Ôn tập và thực hành Tin học đại cương IT1140 trực tiếp trên trình duyệt." />
     <meta name="theme-color" content="#0f766e" />
     <link rel="canonical" href="https://it1140.hoangpc.io.vn/" />
-    <link rel="stylesheet" href="./assets/css/app.css?v=17" />
+    <link rel="stylesheet" href="./assets/css/app.css?v=18" />
   </head>
   <body>
     <div class="app-shell">
@@ -21,7 +21,7 @@
         </div>
 
         <div class="top-actions">
-          <label class="field compact">
+          <label class="field compact" id="subjectField" hidden>
             <span data-i18n="subjectLabel">Nội dung</span>
             <select id="subjectSelect"></select>
           </label>
@@ -143,14 +143,14 @@
               </div>
               <h2 id="exerciseTitle">Đang tải bài tập…</h2>
             </div>
-            <span class="python-status" id="pythonStatus" data-status="ready">Sẵn sàng</span>
+            <span class="python-status" id="pythonStatus" data-status="ready" role="status" hidden></span>
           </header>
 
           <section class="panel practice-bar" aria-label="Luyện có giờ">
             <div id="timedSetup" class="practice-controls">
               <label for="timedMinutes">Luyện có giờ</label>
               <select id="timedMinutes"><option value="15">15 phút</option><option value="30" selected>30 phút</option><option value="45">45 phút</option><option value="60">60 phút</option><option value="90">90 phút</option></select>
-              <button type="button" class="secondary-btn" id="startTimedBtn" disabled>Bắt đầu với mã trống</button>
+              <button type="button" class="secondary-btn" id="startTimedBtn" title="Bắt đầu lượt mới với mã trống; giữ riêng bản nháp luyện tập." disabled>Bắt đầu</button>
             </div>
             <div id="timedActive" class="practice-controls" hidden>
               <strong id="timedLabel">Lượt có giờ · Không gợi ý</strong>
@@ -174,10 +174,6 @@
 
           <section class="editor-panel">
             <div class="ide-toolbar">
-              <div class="ide-toolbar-meta">
-                <span class="ide-language">Python</span>
-                <span id="pythonEditorStats">0 dòng · 0 ký tự</span>
-              </div>
               <div class="ide-toolbar-actions">
                 <button type="button" class="ide-tool-btn" id="outdentPythonBtn" title="Shift + Tab">← Lề</button>
                 <button type="button" class="ide-tool-btn" id="indentPythonBtn" title="Tab · 4 dấu cách">Lề →</button>
@@ -210,19 +206,19 @@
             <details id="pythonExpected" hidden><summary>Output của ca mẫu</summary><pre id="pythonExpectedOutput" class="question-code"></pre></details>
           </section>
 
-          <div class="result-grid">
+          <div class="result-grid" id="pythonResults" hidden>
             <section class="panel result-panel">
-              <div class="rail-heading"><span>Kết quả</span><strong>Đầu ra chương trình</strong></div>
+              <div class="rail-heading"><span>Kết quả</span></div>
               <section id="pythonDiagnostic" class="python-diagnostic" aria-live="polite" hidden></section>
-              <pre id="pythonOutput" aria-live="polite">Kết quả chạy mã sẽ xuất hiện tại đây.</pre>
+              <pre id="pythonOutput" aria-live="polite"></pre>
               <img id="pythonChart" class="python-chart" alt="Biểu đồ do mã Python tạo" hidden />
             </section>
-            <section class="panel result-panel">
-              <div class="rail-heading"><span>Kiểm tra</span><strong>Tự động</strong></div>
+            <section class="panel result-panel" id="pythonTestPanel" hidden>
+              <div class="rail-heading"><span>Kiểm tra</span></div>
               <ul class="test-results" id="pythonTests"></ul>
             </section>
           </div>
-          <details class="panel practice-history" id="pythonHistory">
+          <details class="panel practice-history" id="pythonHistory" hidden>
             <summary id="pythonHistoryTitle">Lịch sử nộp bài</summary>
             <ol id="pythonAttempts"></ol>
           </details>
@@ -231,10 +227,10 @@
       </main>
     </div>
     <script src="./assets/js/question-content.js?v=2" defer></script>
-    <script src="./assets/js/quiz-app.js?v=9" defer></script>
+    <script src="./assets/js/quiz-app.js?v=10" defer></script>
     <script src="./assets/js/python-errors.js?v=1" defer></script>
     <script src="./assets/js/python-editor.js?v=1" defer></script>
     <script src="./assets/js/python-practice.js?v=1" defer></script>
-    <script src="./assets/js/python-lab.js?v=13" defer></script>
+    <script src="./assets/js/python-lab.js?v=14" defer></script>
   </body>
 </html>

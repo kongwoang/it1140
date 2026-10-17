@@ -346,6 +346,7 @@ async function loadQuizData() {
   }
 
   function populateSubjectSelect() {
+    document.getElementById("subjectField").hidden = data.subjects.length < 2;
     els.subjectSelect.innerHTML = "";
     data.subjects.forEach((subject) => {
       const option = document.createElement("option");

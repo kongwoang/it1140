@@ -27,7 +27,8 @@ await writeFile(resolve(out,'assets/css/app.css'),style+`\n.study-block{position
 await writeFile(resolve(out,'assets/css/app.css'),(await readFile(resolve(out,'assets/css/app.css'),'utf8'))+`\n.preview-banner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 18px;margin-bottom:16px;border:1px solid #bbd9cb;border-radius:12px;background:#e7f3ed;color:#173f32}.preview-banner a{font-weight:700;color:#075e50;text-decoration:underline}\n`);
 let html=await readFile(resolve(root,'index.html'),'utf8');
 html=html.replace('<script src="./assets/js/question-content.js','<script src="/commerce-access.js" defer></script>\n    <script src="/study-client.js" defer></script>\n    <script src="/python-sandbox.js" defer></script>\n    <script src="./assets/js/question-content.js');
-html=html.replace('./assets/js/quiz-app.js?v=9','/assets/js/commerce-quiz.js');
+assert.equal(html.split('./assets/js/quiz-app.js?v=10').length,2);
+html=html.replace('./assets/js/quiz-app.js?v=10','/assets/js/commerce-quiz.js');
 html=html.replace('<div class="top-actions">','<div class="top-actions"><a class="ghost-btn" href="/">Tài khoản</a>');
 await writeFile(resolve(out,'learn.html'),html);
 assert.ok(html.includes('<body>'));
@@ -58,7 +59,7 @@ lab=lab.replace('const exercise = currentExercise();\n    if (!exercise) return;
     } catch (error) {
       if (generation !== selectionGeneration) return;
       els.editor.disabled = els.input.disabled = false;
-      els.output.textContent = error.message; return;
+      els.output.textContent = error.message; document.getElementById('pythonResults').hidden = false; return;
     }`);
 lab=lab.replace('  initialize();',`  window.addEventListener('it1140:study-stopped', () => {
     worker?.terminate(); worker = undefined; clearTimeout(timeoutId);
