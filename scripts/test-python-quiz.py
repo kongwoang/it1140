@@ -1,5 +1,6 @@
 """Execute repository-authored quiz snippets; never run arbitrary uploaded banks here."""
 import json
+import argparse
 import math
 from pathlib import Path
 import subprocess
@@ -7,8 +8,11 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
+parser = argparse.ArgumentParser(description="Run only repository-authored code fixtures; the bank supplies answer values, never executable code.")
+parser.add_argument("--bank", type=Path, default=ROOT / "data/subjects/it1140.json")
+args = parser.parse_args()
 cases = json.loads((ROOT / "scripts/fixtures/python-quiz-cases.json").read_text(encoding="utf-8"))
-bank = json.loads((ROOT / "data/subjects/it1140.json").read_text(encoding="utf-8"))
+bank = json.loads(args.bank.read_text(encoding="utf-8"))
 questions = {q["id"]: q for q in bank["questions"]}
 errors = []
 with tempfile.TemporaryDirectory(prefix="it1140-quiz-test-") as working_dir:

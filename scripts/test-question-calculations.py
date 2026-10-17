@@ -1,5 +1,6 @@
 """Independent Python witnesses for authored numerical questions (not uploads)."""
 import json
+import argparse
 import math
 from pathlib import Path
 import subprocess
@@ -7,7 +8,10 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-bank = json.loads((ROOT / "data/subjects/it1140.json").read_text(encoding="utf-8"))
+parser = argparse.ArgumentParser(description="Check fixed repository-authored arithmetic witnesses against a selected bank.")
+parser.add_argument("--bank", type=Path, default=ROOT / "data/subjects/it1140.json")
+args = parser.parse_args()
+bank = json.loads(args.bank.read_text(encoding="utf-8"))
 questions = {q["id"]: q for q in bank["questions"]}
 cases = json.loads((ROOT / "scripts/fixtures/question-bank-calculations.json").read_text(encoding="utf-8"))
 errors = []
