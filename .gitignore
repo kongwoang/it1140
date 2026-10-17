@@ -5,6 +5,7 @@ template.html
 .vm-dist/
 commerce/vm/deploy/secrets/
 commerce/vm/deploy/backups/
+commerce/vm/deploy/content/
 commerce/vm/load/fixtures.json
 node_modules/
 .wrangler/

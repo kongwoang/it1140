@@ -1,11 +1,19 @@
 (() => {
   const $=id=>document.getElementById(id),money=n=>new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND'}).format(n);
-  let config,challengeId,orderId,poll,timer;
+  let config,challengeId,orderId,poll,timer,botWidget;
+  const botMessages={bot_required:'Hãy hoàn thành bước xác minh chống bot.',bot_invalid:'Xác minh đã hết hạn hoặc không hợp lệ. Hãy thử lại.',bot_unavailable:'Chưa kết nối được dịch vụ chống bot. Vui lòng thử lại.',bot_not_configured:'Hệ thống chưa cấu hình chống bot.'};
   const messages={hust_email_required:'Hãy dùng đúng email HUST được hỗ trợ.',invalid_otp:'Mã sai, đã dùng hoặc hết hạn. Mỗi mã được nhập tối đa 5 lần.',otp_cooldown:'Chờ 60 giây trước khi xin mã mới.',rate_limited:'Bạn thao tác quá nhanh. Vui lòng thử lại sau.',replacement_limit:'Đã hết lượt tự thay trình duyệt trong 30 ngày. Hãy liên hệ hỗ trợ.',reauthenticate:'Hãy xác minh lại bằng OTP trước khi thực hiện thao tác này.',study_conflict:'Một trình duyệt khác đang học bằng tài khoản này.',unauthenticated:'Vui lòng đăng nhập lại.',sales_disabled:'Thanh toán chưa được mở.',mail_not_configured:'Hệ thống đang chờ cấu hình gửi email.',mail_unavailable:'Chưa gửi được email. Hãy thử lại sau.',purchase_required:'Tài khoản chưa có quyền học.',invalid_enrollment:'Lượt xác minh đã hết hạn. Hãy xin mã mới.',service_unavailable:'Dịch vụ tạm thời chưa sẵn sàng.',account_disabled:'Tài khoản đang tạm khóa. Vui lòng liên hệ hỗ trợ.'};
   function status(message,error=false){$('status').textContent=message;$('status').classList.toggle('error',error);}
   async function api(path,data){
     const r=await fetch(path,{credentials:'same-origin',cache:'no-store',...(data===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})});
-    const v=await r.json();if(!r.ok){const e=Error(messages[v.error]||'Không thể thực hiện. Vui lòng thử lại.');e.code=v.error;e.data=v;throw e;}return v;
+    const v=await r.json();if(!r.ok){const e=Error(messages[v.error]||botMessages[v.error]||'Không thể thực hiện. Vui lòng thử lại.');e.code=v.error;e.data=v;throw e;}return v;
+  }
+  async function prepareBot(){
+    if(!config.turnstileSiteKey)return;
+    $('botChallenge').hidden=false;
+    await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';script.async=true;
+      script.onload=resolve;script.onerror=()=>reject(Error('Không tải được bước chống bot. Hãy kiểm tra mạng và tải lại trang.'));document.head.append(script);});
+    botWidget=window.turnstile.render($('botChallenge'),{sitekey:config.turnstileSiteKey,action:'otp',theme:'auto','error-callback':()=>status('Xác minh chống bot chưa thành công. Hãy thử lại.',true)});
   }
   function action(button,fn){button.addEventListener('click',async()=>{button.disabled=true;try{await fn();}catch(e){status(e.message,true);}finally{button.disabled=false;}});}
   function authView(){clearInterval(poll);$('emailForm').hidden=false;$('otpForm').hidden=true;$('member').hidden=true;$('order').hidden=true;$('enrollment').hidden=true;$('requestOtp').disabled=!config?.ready;}
@@ -25,9 +33,11 @@
       row.append(p,b);box.append(row);}
   }
   $('emailForm').addEventListener('submit',async e=>{e.preventDefault();$('requestOtp').disabled=true;
-    try{const r=await api('/api/auth/request',{email:$('email').value});challengeId=r.challengeId;$('otp').value='';$('emailForm').hidden=true;$('otpForm').hidden=false;$('enrollment').hidden=true;$('otp').focus();status('Mã đã được gửi. Kiểm tra cả thư rác; mã có hiệu lực 10 phút.');
+    try{const botToken=botWidget===undefined?undefined:window.turnstile.getResponse(botWidget);
+      if(config.turnstileSiteKey&&!botToken)throw Error(botMessages.bot_required);
+      const r=await api('/api/auth/request',{email:$('email').value,botToken});challengeId=r.challengeId;$('otp').value='';$('emailForm').hidden=true;$('otpForm').hidden=false;$('enrollment').hidden=true;$('otp').focus();status('Mã đã được gửi. Kiểm tra cả thư rác; mã có hiệu lực 10 phút.');
       clearTimeout(timer);timer=setTimeout(()=>{$('requestOtp').disabled=false;},60000);
-    }catch(error){status(error.message,true);$('requestOtp').disabled=false;}});
+    }catch(error){status(error.message,true);$('requestOtp').disabled=false;}finally{if(botWidget!==undefined)window.turnstile.reset(botWidget);}});
   $('otpForm').addEventListener('submit',async e=>{e.preventDefault();$('verifyOtp').disabled=true;
     try{await api('/api/auth/verify',{challengeId,code:$('otp').value,label:$('label').value});$('otp').value='';await showMember();}
     catch(error){if(error.code==='device_limit'){$('otpForm').hidden=true;$('enrollment').hidden=false;renderDevices(error.data.devices,true);status('Xác minh thành công. Hãy chọn một trình duyệt để thay thế.');}else status(error.message,true);}
@@ -50,6 +60,6 @@
     if('serviceWorker'in navigator){await navigator.serviceWorker.register('/commerce-sw.js',{updateViaCache:'none'});
       if(!navigator.serviceWorker.controller?.scriptURL.endsWith('/commerce-sw.js'))await new Promise((resolve,reject)=>{const t=setTimeout(()=>reject(Error('Hãy đóng các tab IT1140 cũ rồi mở lại để cập nhật.')),10000);function changed(){if(navigator.serviceWorker.controller?.scriptURL.endsWith('/commerce-sw.js')){clearTimeout(t);navigator.serviceWorker.removeEventListener('controllerchange',changed);resolve();}}navigator.serviceWorker.addEventListener('controllerchange',changed);changed();});}
     config=await api('/api/config');$('price').textContent=money(config.price);if(config.supportEmail){$('support').hidden=false;$('support').href='mailto:'+config.supportEmail;}
-    $('email').placeholder='ten@'+config.domains[0];if(!config.ready){status('Bản thương mại đang chờ cấu hình gửi email, chưa mở bán.');return;}await showMember();
+    $('email').placeholder='ten@'+config.domains[0];if(!config.ready){status('Bản thương mại đang chờ cấu hình đăng nhập, chưa mở bán.');return;}await prepareBot();await showMember();
   }catch(e){status(e.message,true);}})();
 })();

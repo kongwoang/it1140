@@ -17,7 +17,7 @@ if(command==='init-secrets'){
   const files={db_owner_password:owner,app_database_password:app,
     migration_database_url:`postgresql://it1140_owner:${owner}@db:5432/it1140`,
     runtime_database_url:`postgresql://it1140_app:${app}@db:5432/it1140`,
-    otp_secret:randomBytes(48).toString('hex'),sepay_secret:randomBytes(32).toString('hex'),smtp_password:''};
+    otp_secret:randomBytes(48).toString('hex'),sepay_secret:randomBytes(32).toString('hex'),smtp_password:'',turnstile_secret:''};
   // Exclusive creation: never overwrite an existing database password or signing key.
   for(const [name,content] of Object.entries(files)){
     const path=resolve(dir,name);await writeFile(path,content+'\n',{flag:'wx',mode:0o600});
@@ -44,7 +44,7 @@ if(command==='init-secrets'){
       const privileges=(await pool.query("select has_schema_privilege(current_user,'app','CREATE') ddl,has_table_privilege(current_user,'public.it1140_migrations','SELECT') migrations")).rows[0];
       if(privileges.ddl||privileges.migrations)throw Error('Runtime role must not own schema or access migration control table');
       if(cfg.smtpReady){const smtp=mailTransport(cfg);try{await smtp.verify();}finally{smtp.close();}}
-      console.log(JSON.stringify({database:true,smtp:cfg.smtpReady,payments:cfg.live,domains:cfg.domains,origin:cfg.origin}));
+      console.log(JSON.stringify({database:true,smtp:cfg.smtpReady,botProtection:cfg.botReady,payments:cfg.live,domains:cfg.domains,origin:cfg.origin}));
     }else if(command==='status'){
       const r=await pool.query("select (select count(*) from app.users) users,(select count(*) from app.entitlements where revoked_at is null) entitled,(select count(*) from app.payments where outcome='review') review_payments,(select count(*) from app.leases where expires_at>now()) active_study");console.log(JSON.stringify(r.rows[0]));
     }else if(command==='reviews'){

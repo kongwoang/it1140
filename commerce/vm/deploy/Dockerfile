@@ -4,8 +4,7 @@ COPY commerce/package*.json ./commerce/
 RUN npm ci --prefix commerce --omit=dev --ignore-scripts --no-audit --no-fund
 COPY commerce/vm ./commerce/vm
 COPY commerce/public ./commerce/public
-COPY commerce/worker.mjs ./commerce/worker.mjs
-COPY data ./data
+COPY commerce/payments.mjs ./commerce/payments.mjs
 COPY assets ./assets
 COPY index.html ./index.html
 RUN node commerce/vm/build.mjs

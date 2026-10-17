@@ -125,7 +125,7 @@ test('actual payment SQL: exact price/receiver, transactional dedupe and non-exp
 test('production sessions only use Secure HttpOnly host cookies; no tokens in JSON',async()=>{
   const f=await fixture();try{
     const cfg={...f.cfg,dev:false,origin:'https://staging.example.test'},mail=[];
-    const app=createApp({pool:f.pool,cfg,sendMail:async m=>mail.push(m)});
+    const app=createApp({pool:f.pool,cfg,sendMail:async m=>mail.push(m),botVerifier:async()=>{}});
     const start=await app.fetch(new Request(cfg.origin+'/api/auth/request',{method:'POST',headers:{Origin:cfg.origin,'Content-Type':'application/json'},body:JSON.stringify({email:'secure@sis.hust.edu.vn'})}));
     const browser=start.headers.getSetCookie()[0].split(';')[0],challenge=await start.json();
     assert.match(browser,/^__Host-it1140-browser=/);assert.match(start.headers.getSetCookie()[0],/Secure/);

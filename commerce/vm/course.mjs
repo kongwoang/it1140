@@ -1,11 +1,10 @@
-import { readFileSync } from 'node:fs';
 import { createHash,randomInt,randomUUID } from 'node:crypto';
 import { Fault,uuid } from './store.mjs';
-const raw=readFileSync(new URL('../../data/subjects/it1140.json',import.meta.url));
-// This file lives in commerce/vm, so data is two levels up from commerce.
+import { readContent } from './content.mjs';
+const raw=readContent('subjects/it1140.json');
 export const version=createHash('sha256').update(raw).digest('hex').slice(0,16);
 export const bank=JSON.parse(raw);
-export const python=JSON.parse(readFileSync(new URL('../../data/python-exercises.json',import.meta.url)));
+export const python=JSON.parse(readContent('python-exercises.json'));
 export const questions=new Map(bank.questions.map(q=>[q.id,q]));
 const topicChapter=new Map(bank.topics.map(t=>[t.id,t.chapter]));
 const fold=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/đ/g,'d');

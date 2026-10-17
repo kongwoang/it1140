@@ -1,5 +1,7 @@
 import bank from '../data/subjects/it1140.json' with { type: 'json' };
 import exercises from '../data/python-exercises.json' with { type: 'json' };
+import { verifyWebhook,paymentCode,bankTime } from './payments.mjs';
+export { verifyWebhook,paymentCode,bankTime } from './payments.mjs';
 
 const encoder = new TextEncoder();
 const PRODUCT = 'it1140-lifetime';
@@ -73,33 +75,6 @@ async function body(request, limit = 16384) {
 function parse(bytes) {
   try { const data = JSON.parse(new TextDecoder().decode(bytes)); if (data && !Array.isArray(data) && typeof data === 'object') return data; } catch { /* handled below */ }
   throw new HttpError(400, 'invalid_json');
-}
-export async function verifyWebhook(request, bytes, secret, now = Date.now()) {
-  const timestamp = request.headers.get('X-SePay-Timestamp') || '';
-  const signature = request.headers.get('X-SePay-Signature') || '';
-  if (!secret || secret.length < 32 || !/^\d{10}$/.test(timestamp) || !/^sha256=[a-f0-9]{64}$/i.test(signature)) return false;
-  if (Math.abs(now / 1000 - Number(timestamp)) > 300) return false;
-  const key = await crypto.subtle.importKey('raw', encoder.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']);
-  const prefix = encoder.encode(`${timestamp}.`);
-  const message = new Uint8Array(prefix.length + bytes.length);
-  message.set(prefix); message.set(bytes, prefix.length);
-  const expected = Uint8Array.from(signature.slice(7).match(/../g), x => Number.parseInt(x, 16));
-  return crypto.subtle.verify('HMAC', key, expected, message);
-}
-export function paymentCode(data) {
-  const contentCodes = [...String(data.content || '').toUpperCase().matchAll(/\bIT1140[A-F0-9]{16}\b/g)].map(m => m[0]);
-  const explicit = typeof data.code === 'string' ? data.code.toUpperCase() : '';
-  if (/^IT1140[A-F0-9]{16}$/.test(explicit)) contentCodes.push(explicit);
-  const codes = [...new Set(contentCodes)];
-  return codes.length === 1 ? codes[0] : null;
-}
-export function bankTime(value) {
-  // SePay transactionDate uses the bank's local Vietnam time, not UTC.
-  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(value)) return null;
-  const date = new Date(value.replace(' ', 'T') + '+07:00');
-  if (!Number.isFinite(date.getTime())) return null;
-  const local = new Date(date.getTime() + 7 * 3600000).toISOString().slice(0, 19).replace('T', ' ');
-  return local === value ? date.toISOString() : null;
 }
 function publicOrder(order, env) {
   const qr = new URL('https://vietqr.app/img');

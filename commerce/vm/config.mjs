@@ -7,7 +7,7 @@ export function stagingOrigin(value){
 
 export function configuration(input=process.env) {
   const env={...input};
-  for(const key of ['DATABASE_URL','OTP_SECRET','SEPAY_WEBHOOK_SECRET','SMTP_PASSWORD']) {
+  for(const key of ['DATABASE_URL','OTP_SECRET','SEPAY_WEBHOOK_SECRET','SMTP_PASSWORD','TURNSTILE_SECRET']) {
     if(env[key+'_FILE']) env[key]=readFileSync(env[key+'_FILE'],'utf8').trim();
   }
   const dev=env.NODE_ENV==='development';
@@ -25,7 +25,10 @@ export function configuration(input=process.env) {
     || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(env.SUPPORT_EMAIL||'') || env.SELLER_READY!=='true'))throw Error('Live payments require bank, HMAC secret, support and SELLER_READY');
   const smtpReady=Boolean(env.SMTP_HOST&&env.SMTP_FROM&&env.SMTP_USER&&env.SMTP_PASSWORD);
   if(!dev&&!smtpReady)throw Error('Production requires authenticated SMTP');
+  const botReady=Boolean(env.TURNSTILE_SITE_KEY&&env.TURNSTILE_SECRET);
+  if(Boolean(env.TURNSTILE_SITE_KEY)!==Boolean(env.TURNSTILE_SECRET))throw Error('Turnstile requires both site key and secret');
+  if(!dev&&(!botReady||env.TURNSTILE_SITE_KEY.startsWith('1x000000')||env.TURNSTILE_SITE_KEY.startsWith('2x000000')||env.TURNSTILE_SITE_KEY.startsWith('3x000000')))throw Error('Production requires real Turnstile credentials');
   const poolSize=Number(env.DB_POOL_SIZE||10),otpMax=Number(env.OTP_MAX_PER_HOUR||1500),port=Number(env.PORT||4180);
   if(!Number.isInteger(poolSize)||poolSize<1||poolSize>30||!Number.isInteger(otpMax)||otpMax<1||otpMax>10000||!Number.isInteger(port)||port<1||port>65535)throw Error('Invalid resource limits');
-  return {...env,origin,dev,domains,live,smtpReady,port,poolSize};
+  return {...env,origin,dev,domains,live,smtpReady,botReady,port,poolSize};
 }

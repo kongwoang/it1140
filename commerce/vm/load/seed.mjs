@@ -13,12 +13,13 @@ try{
   if((await pool.query('select count(*)::int n from app.users')).rows[0].n>0)throw Error('Load seeding requires an EMPTY dedicated database. Do not reseed an active DB.');
   await transaction(pool,async db=>{
     for(let i=0;i<count;i++){
-      const user=randomUUID(),device=randomUUID(),session=randomUUID(),secret=token();
+      const user=randomUUID(),device=randomUUID(),session=randomUUID(),secret=token(),browserToken=token();
       await db.query('insert into app.users(id,email) values($1,$2)',[user,`load-${i}@example.invalid`]);
-      await db.query("insert into app.devices(id,user_id,token_hash,label) values($1,$2,$3,'Synthetic load browser')",[device,user,hash(token())]);
+      await db.query("insert into app.devices(id,user_id,token_hash,label) values($1,$2,$3,'Synthetic load browser')",[device,user,hash(browserToken)]);
       await db.query("insert into app.sessions(id,user_id,device_id,token_hash,expires_at) values($1,$2,$3,$4,now()+interval '2 hours')",[session,user,device,hash(secret)]);
       await db.query("insert into app.entitlements(user_id,product_id) values($1,'it1140-lifetime')",[user]);
-      fixture.push({cookie:(origin.startsWith('https:')?'__Host-it1140-':'it1140-dev-')+'session='+secret});
+      const prefix=origin.startsWith('https:')?'__Host-it1140-':'it1140-dev-';
+      fixture.push({cookie:prefix+'session='+secret+'; '+prefix+'browser='+browserToken});
     }
   });
   await writeFile(new URL('./fixtures.json',import.meta.url),JSON.stringify({origin,createdAt:new Date().toISOString(),users:fixture}),{mode:0o600,flag:'wx'});

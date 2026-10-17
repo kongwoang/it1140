@@ -14,14 +14,14 @@ export async function rate(db,key,max,seconds){
   const r=await db.query('select app.rate_limit($1,$2,$3) ok',[key,max,seconds]);
   if(!r.rows[0].ok)throw new Fault(429,'rate_limited');
 }
-export async function guard(db,sessionToken,{paid=false,study=false}={}){
-  if(!sessionToken||sessionToken.length>128)throw new Fault(401,'unauthenticated');
+export async function guard(db,sessionToken,{browserToken,paid=false,study=false}={}){
+  if(!/^[A-Za-z0-9_-]{43}$/.test(sessionToken||'')||!/^[A-Za-z0-9_-]{43}$/.test(browserToken||''))throw new Fault(401,'unauthenticated');
   const {rows}=await db.query(`select s.id session_id,s.user_id,s.device_id,s.authenticated_at,u.email,
     exists(select 1 from app.entitlements e where e.user_id=s.user_id and e.product_id='it1140-lifetime' and e.revoked_at is null) owned,
     l.session_id lease_session,l.expires_at lease_expires,l.generation
     from app.sessions s join app.users u on u.id=s.user_id join app.devices d on d.id=s.device_id
     left join app.leases l on l.user_id=s.user_id
-    where s.token_hash=$1 and s.revoked_at is null and s.expires_at>now() and u.disabled_at is null and d.revoked_at is null`,[hash(sessionToken)]);
+    where s.token_hash=$1 and d.token_hash=$2 and s.revoked_at is null and s.expires_at>now() and u.disabled_at is null and d.revoked_at is null`,[hash(sessionToken),hash(browserToken)]);
   const a=rows[0];if(!a)throw new Fault(401,'unauthenticated');
   if(paid&&!a.owned)throw new Fault(403,'purchase_required');
   if(study&&(a.lease_session!==a.session_id||new Date(a.lease_expires)<=new Date()))throw new Fault(409,'study_conflict');

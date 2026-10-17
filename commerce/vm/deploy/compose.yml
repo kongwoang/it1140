@@ -45,6 +45,8 @@ services:
       OTP_SECRET_FILE: /run/secrets/otp_secret
       SMTP_PASSWORD_FILE: /run/secrets/smtp_password
       SEPAY_WEBHOOK_SECRET_FILE: /run/secrets/sepay_secret
+      TURNSTILE_SECRET_FILE: /run/secrets/turnstile_secret
+      TURNSTILE_SITE_KEY: '${TURNSTILE_SITE_KEY:-}'
       SMTP_HOST: '${SMTP_HOST:?Set SMTP_HOST}'
       SMTP_PORT: '${SMTP_PORT:-587}'
       SMTP_SECURE: '${SMTP_SECURE:-false}'
@@ -59,7 +61,9 @@ services:
       SELLER_READY: '${SELLER_READY:-false}'
       TRUST_PROXY: 'true'
       DB_POOL_SIZE: '10'
-    secrets: [runtime_database_url, otp_secret, smtp_password, sepay_secret]
+      COURSE_DATA_DIR: /run/it1140-content
+    secrets: [runtime_database_url, otp_secret, smtp_password, sepay_secret, turnstile_secret]
+    volumes: ['./content:/run/it1140-content:ro']
     depends_on:
       db: {condition: service_healthy}
     networks: [backend, edge]
@@ -99,3 +103,4 @@ secrets:
   otp_secret: {file: ./secrets/otp_secret}
   smtp_password: {file: ./secrets/smtp_password}
   sepay_secret: {file: ./secrets/sepay_secret}
+  turnstile_secret: {file: ./secrets/turnstile_secret}

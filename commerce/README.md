@@ -6,12 +6,12 @@ Các file Worker/Supabase ở thư mục commerce là nguyên mẫu đối chi�
 
 ## Chức năng
 
-- OTP email HUST: mặc định đúng domain `sis.hust.edu.vn`, `hust.edu.vn`; 6 số ngẫu nhiên, hiệu lực 10 phút, tối đa 5 lần thử, dùng một lần và ràng buộc trình duyệt xin mã. Mã mới vô hiệu mã cũ. Rate limit email/IP/tổng số thư. Database lưu HMAC mã, không lưu/ trả OTP gốc trong API hoặc log production.
-- Phiên opaque 7 ngày, băm trong database, cookie HttpOnly/Secure/SameSite=Lax; kiểm tra phiên, thiết bị và quyền ở server. OTP lại xoay phiên trên hồ sơ trình duyệt đó. Không thu mật khẩu trường. **Chưa có Microsoft OAuth** vì chưa có app Entra được kiểm tra với HUST.
+- OTP email HUST: mặc định đúng domain `sis.hust.edu.vn`, `hust.edu.vn`; 6 số ngẫu nhiên, hiệu lực 10 phút, tối đa 5 lần thử, dùng một lần và ràng buộc trình duyệt xin mã. Xin lại mã chỉ vô hiệu mã chưa xác minh của chính hồ sơ đó, không vô hiệu mã đang ở trình duyệt khác. Production bắt buộc Turnstile xác minh server-side, đúng hostname/action `otp`, token dùng một lần. Rate limit email/IP/tổng số thư; yêu cầu bị từ chối bởi cooldown không trừ ngân sách thư chung. Database lưu HMAC mã, không lưu/ trả OTP gốc trong API hoặc log production.
+- Phiên opaque 7 ngày, băm trong database, cookie HttpOnly/Secure/SameSite=Lax; mỗi request phải có cả cookie phiên và cookie hồ sơ khớp DB. Sao chép riêng cookie phiên bị từ chối. OTP lại xoay phiên trên hồ sơ trình duyệt đó. Không thu mật khẩu trường. **Chưa có Microsoft OAuth** vì chưa có app Entra được kiểm tra với HUST.
 - Tối đa 2 hồ sơ trình duyệt; hồ sơ thứ ba xác minh OTP rồi chọn thay thế. Tối đa 2 lần tự thay/thu hồi trong 30 ngày. Thao tác nhạy cảm cần xác minh trong 10 phút gần nhất; CLI hỗ trợ có audit.
 - Một phiên học hoạt động: lease 5 phút, heartbeat khoảng mỗi phút có jitter. Chuyển phiên chủ động; phiên cũ bị từ chối ở các yêu cầu tiếp theo. Nhiều tab cùng phiên không bị tính thành nhiều người. Không khóa IP hay fingerprint.
 - Cấp tối đa 20 câu/lần, không kèm đáp án/giải thích. Chấm hoặc xem lời giải một câu ở server sau khi được cấp câu đó. Thi có phạm vi cố định trong DB, tối đa 100 câu (UI 40), nộp một lần, retry trả kết quả cũ. Giữ 2.096 câu, điền số, nhiều đáp án, chương/tìm/ghim/trộn và tiến độ cục bộ.
-- Python giữ IDE, kiểm tra, file mẫu, gợi ý, tải .py và 70 bài; tải chi tiết khi chọn bài. Code chạy trên browser, không chạy chung backend thanh toán. Điểm Python cục bộ không phải điểm thi đáng tin cậy.
+- Python giữ IDE, kiểm tra, file mẫu, gợi ý, tải .py và 70 bài; tải chi tiết khi chọn bài. Code chạy trong worker của iframe opaque-origin (`sandbox allow-scripts`, không `allow-same-origin`), CSP chỉ cho tải môi trường Pyodide đã ghim phiên bản, không cho gọi API tài khoản. Giao tiếp qua MessageChannel riêng, đầu ra được giới hạn và lọc. Không chạy code Python trên backend thanh toán. Điểm Python cục bộ không phải điểm thi đáng tin cậy.
 - Giá, owner, người nhận lấy từ server. QR riêng, hạn 30 phút. HMAC raw body + timestamp, giao dịch trùng không cấp hai lần; ledger/paid/quyền học cùng transaction. Đúng bank/account/mã/tiền/chiều/thời gian mới cấp; sai vào đối soát. Webhook trễ nhưng tiền vào đúng hạn vẫn hợp lệ.
 - Public build không có data JSON/SQL/env/key. Chỉ CSS/JS không cá nhân hóa được cache công khai 5 phút; HTML/API/service worker giữ private/no-store. Service worker thương mại không cache API và thay cache cũ. Tiến độ/mã lưu theo ID tài khoản trên thiết bị, **chưa đồng bộ cloud**.
 - Container app non-root/read-only, DB và app không mở cổng công khai; runtime DB role không phải owner. Migration riêng có checksum, health/preflight, CLI, backup/restore và bộ tải staging.
@@ -20,7 +20,7 @@ Các file Worker/Supabase ở thư mục commerce là nguyên mẫu đối chi�
 
 Không thể bảo đảm “không hack được” hoặc chống chia sẻ tuyệt đối. Hồ sơ trình duyệt dựa vào cookie, không chứng minh máy vật lý. Người mua vẫn có thể chuyển OTP/copy cookie/học luân phiên/chụp màn hình/tích lũy câu hỏi qua API hợp lệ. Logout không thu hồi được tài liệu đã hiển thị.
 
-Ngân hàng hiện đã công khai trên GitHub/Pages; private repo/paywall không thu hồi bản sao cũ. Phải xác nhận quyền bán tài liệu/nội dung. Không quảng cáo bộ hiện tại là chưa từng công khai.
+Ngân hàng hiện đã công khai trên GitHub/Pages; private repo/paywall không thu hồi bản sao cũ. Phải xác nhận quyền bán tài liệu/nội dung. Không quảng cáo bộ hiện tại là chưa từng công khai. Production nạp `COURSE_DATA_DIR` qua volume read-only, không đóng gói data/ hay đáp án trong Docker image. Chỉnh bộ thương mại mới trong `commerce/vm/deploy/content/` (gitignore/dockerignore), không chỉnh bản tracked `data/` nếu muốn giữ riêng tư. Việc chuyển repository thành private hoặc gỡ website miễn phí cần chủ website quyết định riêng.
 
 `vm/public/legal.html` là bản **chờ chủ website biên tập** thông tin người bán, quyền riêng tư, hoàn tiền, phạm vi và việc duy trì quyền học. Chưa có hoàn tiền/hóa đơn tự động hoặc admin web; dùng CLI qua SSH. Không mở bán chỉ bằng cách đổi cờ mà chưa hoàn thiện chính sách.
 
@@ -57,12 +57,17 @@ Từ gốc repo, tạo secrets một lần:
 ```sh
 npm ci --prefix commerce --ignore-scripts
 node commerce/vm/ops.mjs init-secrets
+node commerce/vm/init-content.mjs
 cp commerce/vm/deploy/.env.example commerce/vm/deploy/.env
 ```
 
-Init không in secret và không ghi đè. Secrets directory chỉ chủ máy truy cập. Container Node dùng UID 1000: bảo đảm file secrets app/migrate có owner 1000 và mode 600; nếu tạo bằng root thì chown đúng từng file đã kiểm tra. Không chmod đọc rộng. Mất mật khẩu DB không được khắc phục bằng tạo file khác; đổi file secret không tự đổi password trong PostgreSQL.
+Init không in secret và không ghi đè. Secrets directory chỉ chủ máy truy cập. Container Node dùng UID 1000: bảo đảm file secrets app/migrate và content có owner 1000 và mode 600, thư mục content và subjects mode 700; nếu tạo bằng root thì chown đúng từng file/thư mục đã kiểm tra. Không chmod đọc rộng. `init-content` chỉ sao chép bộ đã công khai làm điểm bắt đầu, từ chối ghi đè; nó không biến dữ liệu lịch sử thành bí mật. Mất mật khẩu DB không được khắc phục bằng tạo file khác; đổi file secret không tự đổi password trong PostgreSQL.
 
 Sửa .env trên VM: DOMAIN/ACME_EMAIL, SMTP host/port/user/from, email hỗ trợ. Điền password vào `deploy/secrets/smtp_password`; cấu hình SPF/DKIM/DMARC và thử email HUST. Secret `sepay_secret` phải khớp SePay. Giữ PAYMENTS_ENABLED=false, SELLER_READY=false. Không gửi secrets/OTP vào chat/Git/screenshot. Chính chủ tự liên kết MB và nhập OTP trực tiếp tại dịch vụ chính thức.
+
+Tạo Turnstile widget Managed với allowlist **đúng hostname staging/production**, không dùng Any Hostname. Điền site key công khai vào TURNSTILE_SITE_KEY và secret vào `deploy/secrets/turnstile_secret`; không dùng test key ở production. Không cần chuyển nameserver hay bật Cloudflare proxy. App xác minh token qua Siteverify, kiểm tra hostname và action `otp`, fail-closed khi dịch vụ lỗi. Bổ sung việc sử dụng dịch vụ chống bot của Cloudflare trong chính sách quyền riêng tư. Xem [xác minh phía server](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/) và [CSP](https://developers.cloudflare.com/turnstile/reference/content-security-policy/).
+
+Nếu đã có bộ secrets từ phiên bản trước, **không chạy lại init-secrets hoặc đổi password DB**. Tạo riêng file turnstile_secret còn thiếu bằng chế độ exclusive/mode 600, nhập secret trực tiếp trên VM; tạo content bằng init-content nếu thư mục chưa có. Preflight sau đó phải đạt cả SMTP và chống bot. Fixture load test cũ chỉ chứa cookie phiên không dùng được nữa: tạo fixture mới trên DB thử tải trống.
 
 ```sh
 cd commerce/vm/deploy
@@ -81,10 +86,10 @@ Webhook SePay: `https://STAGING-DOMAIN/api/webhooks/sepay`, JSON, chiều tiền
 
 ## Nghiệm thu
 
-- Thư HUST thực sự nhận được; OTP sai/hết hạn/replay/browser khác bị chặn. Email không tự chứng minh đang còn là sinh viên.
+- Thư HUST thực sự nhận được; OTP sai/hết hạn/replay/browser khác bị chặn. Turnstile thiếu/sai/đã dùng/khác hostname/action bị chặn; spam xin lại không làm cạn hạn mức chung. Email không tự chứng minh đang còn là sinh viên.
 - Hai hồ sơ, một phiên; hồ sơ thứ ba phải thay; thử chuyển phiên/nhiều tab/ngủ máy/mất cookie/Wi-Fi/4G/mất mạng. Không mất mã đang viết.
 - Người chưa mua/bị khóa/thu hồi không vào API; đổi ID đơn không đọc đơn khác; giá/account/paid không sửa từ browser. Không lộ answer key trong bundle/catalog.
-- Luyện/Ôn/Thi/chương/tìm/ghim/trộn; thi không sửa kết quả sau nộp; câu số/nhiều lựa chọn. Python/file mẫu/Matplotlib trên Chrome/Safari/mobile; tải CDN lần đầu cần mạng.
+- Luyện/Ôn/Thi/chương/tìm/ghim/trộn; thi không sửa kết quả sau nộp; câu số/nhiều lựa chọn. Python/file mẫu/Matplotlib trên Chrome/Safari/mobile; tải CDN lần đầu cần mạng. Xác nhận worker Python origin `null`, không đọc /api/me và không POST /api/auth/logout được kể cả yêu cầu gửi cookie. Không bỏ sandbox để khắc phục lỗi tải CDN.
 - Webhook sai chữ ký/body/timestamp, trùng/cạnh tranh, sai/thiếu/thừa/muộn/hủy và webhook trễ. Ngắt DB rồi retry không cấp trùng.
 - Backup/restore và load test trên VM thật. Chủ website hoàn thiện legal/quyền nội dung/liên hệ/chính sách/nghĩa vụ bán hàng.
 - Chỉ sau nghiệm thu mới đặt SELLER_READY=true, PAYMENTS_ENABLED=true và restart app. Cutover domain production cần chủ website phê duyệt riêng.

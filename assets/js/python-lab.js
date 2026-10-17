@@ -196,10 +196,16 @@
       button.className = "exercise-item";
       button.classList.toggle("is-active", exercise.id === currentId);
       button.classList.toggle("is-complete", Boolean(state.completed[exercise.id]));
-      button.innerHTML = `
-        <span class="exercise-number">${state.completed[exercise.id] ? "✓" : index + 1}</span>
-        <span><strong>${exercise.title}</strong><small>${exercise.library} · ${exercise.level}</small></span>
-      `;
+      const number = document.createElement("span");
+      number.className = "exercise-number";
+      number.textContent = state.completed[exercise.id] ? "✓" : index + 1;
+      const description = document.createElement("span");
+      const title = document.createElement("strong");
+      title.textContent = exercise.title;
+      const metadata = document.createElement("small");
+      metadata.textContent = `${exercise.library} · ${exercise.level}`;
+      description.append(title, metadata);
+      button.append(number, description);
       button.addEventListener("click", () => selectExercise(exercise.id));
       els.list.append(button);
     });
