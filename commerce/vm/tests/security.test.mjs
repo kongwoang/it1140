@@ -132,3 +132,23 @@ test('anonymous enrollment is bounded and uses an indexed token lookup',async()=
     assert.equal((await f.pool.query("select 1 from pg_indexes where schemaname='app' and indexname='otp_enrollment_active'")).rows.length,1);
   }finally{await f.close();}
 });
+
+test('authorization matrix denies unpaid/disabled users, foreign orders and cross-origin mutations',async()=>{
+  const f=await fixture();try{
+    const buyer=f.browser(),other=f.browser(),anonymous=f.browser();
+    await f.login(buyer,'buyer@sis.hust.edu.vn');await f.login(other,'other@sis.hust.edu.vn');
+    const buyerId=(await buyer.call('/api/me').then(r=>r.json())).id;
+    const order=(await f.pool.query('select * from app.create_order($1,$2,$3)',[buyerId,'IT1140CCCCCCCCCCCCCCCC',f.cfg.BANK_ACCOUNT])).rows[0];
+    assert.equal((await buyer.call('/api/orders/'+order.id)).status,200);
+    assert.equal((await other.call('/api/orders/'+order.id)).status,404);
+    assert.equal((await anonymous.call('/api/orders/'+order.id)).status,401);
+    for(const path of ['/api/course/catalog','/api/course/questions','/api/course/python'])assert.equal((await buyer.call(path)).status,403);
+    assert.equal((await buyer.call('/api/course/exams',{count:1})).status,403);
+    for(const origin of ['null','https://evil.example',''])assert.equal((await buyer.call('/api/auth/logout',{}, {headers:{Origin:origin}})).status,403);
+    assert.equal((await buyer.call('/api/me')).status,200);
+    await f.grant(buyer);await buyer.call('/api/study/claim',{});
+    assert.equal((await buyer.call('/api/course/catalog')).status,200);
+    await f.pool.query('update app.users set disabled_at=now() where id=$1',[buyerId]);
+    for(const path of ['/api/me','/api/course/catalog','/api/orders/'+order.id])assert.equal((await buyer.call(path)).status,401);
+  }finally{await f.close();}
+});

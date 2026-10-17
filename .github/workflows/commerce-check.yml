@@ -36,8 +36,10 @@ jobs:
           cache: npm
           cache-dependency-path: commerce/package-lock.json
       - run: npm ci --prefix commerce --ignore-scripts --no-audit --no-fund
+      - run: npm audit --prefix commerce --omit=dev --audit-level=high
       - run: npm run build --prefix commerce
       - run: npm test --prefix commerce
+      - run: npm run test:prototype --prefix commerce
       - run: npm run check:deploy --prefix commerce
       - run: node commerce/vm/ops.mjs init-secrets
       - run: docker compose --env-file commerce/vm/deploy/.env.example -f commerce/vm/deploy/compose.yml config --quiet
@@ -52,6 +54,7 @@ jobs:
           docker compose --env-file .env.example -f compose.yml -f compose.ci.yml up -d --wait --wait-timeout 90 app
           docker compose --env-file .env.example -f compose.yml -f compose.ci.yml exec -T app node commerce/vm/ops.mjs preflight
           docker compose --env-file .env.example -f compose.yml -f compose.ci.yml exec -T app node commerce/vm/health.mjs
+          docker compose --env-file .env.example -f compose.yml -f compose.ci.yml exec -T app sh -c 'test ! -d /app/data && test ! -f /app/commerce/worker.mjs'
           docker compose --env-file .env.example -f compose.yml -f compose.ci.yml run --rm --no-deps proxy caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
       - name: Dọn container CI
         if: always()
