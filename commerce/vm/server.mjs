@@ -1,14 +1,12 @@
 import { createServer } from 'node:http';
 import { isIP } from 'node:net';
 import { Readable } from 'node:stream';
-import nodemailer from 'nodemailer';
 import { configuration } from './config.mjs';
 import { database } from './db.mjs';
 import { createApp } from './app.mjs';
+import { mailTransport } from './mail.mjs';
+export { mailTransport } from './mail.mjs';
 
-export function mailTransport(cfg){return nodemailer.createTransport({host:cfg.SMTP_HOST,port:Number(cfg.SMTP_PORT||587),
-  secure:cfg.SMTP_SECURE==='true',requireTLS:cfg.SMTP_SECURE!=='true',pool:true,maxConnections:3,
-  auth:{user:cfg.SMTP_USER,pass:cfg.SMTP_PASSWORD},connectionTimeout:10000,socketTimeout:15000});}
 export function httpServer(app,cfg){
   const server=createServer({maxHeaderSize:16384,requestTimeout:15000,headersTimeout:10000,keepAliveTimeout:65000},async(req,res)=>{
     try{

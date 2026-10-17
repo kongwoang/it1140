@@ -1486,7 +1486,38 @@
           "files": {
             "a.txt": "chi co a\n"
           },
-          "expectedFiles": {}
+          "expectedFiles": {},
+          "checks": ["import os\nassert not os.path.exists('gop.txt'), 'Thiếu tệp nguồn thì không được tạo gop.txt.'"]
+        },
+        {
+          "label": "Dòng cuối nguồn chưa có dấu xuống dòng",
+          "input": "",
+          "output": "2\n",
+          "files": {"a.txt": "trai", "b.txt": "phai"},
+          "expectedFiles": {"gop.txt": "trai\nphai\n"}
+        },
+        {
+          "label": "Thiếu tệp a.txt",
+          "input": "",
+          "output": "THIEU_TEP\n",
+          "files": {"b.txt": "chi co b\n"},
+          "expectedFiles": {},
+          "checks": ["import os\nassert not os.path.exists('gop.txt'), 'Thiếu tệp nguồn thì không được tạo gop.txt.'"]
+        },
+        {
+          "label": "Thiếu cả hai tệp",
+          "input": "",
+          "output": "THIEU_TEP\n",
+          "files": {},
+          "expectedFiles": {},
+          "checks": ["import os\nassert not os.path.exists('gop.txt'), 'Thiếu tệp nguồn thì không được tạo gop.txt.'"]
+        },
+        {
+          "label": "Hai tệp rỗng",
+          "input": "",
+          "output": "0\n",
+          "files": {"a.txt": "", "b.txt": ""},
+          "expectedFiles": {"gop.txt": ""}
         }
       ],
       "section": "Phần 4 · Module và tập tin"

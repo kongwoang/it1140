@@ -4,9 +4,10 @@ import { resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { configuration } from './config.mjs';
 import { database } from './db.mjs';
-import { mailTransport } from './server.mjs';
+import { mailTransport } from './mail.mjs';
 import { transaction,uuid } from './store.mjs';
-import { emailAddress } from './app.mjs';
+import { emailAddress } from './identity.mjs';
+import { privateDatabaseBackup } from './database-backup.mjs';
 const [command,...args]=process.argv.slice(2);
 const option=name=>{const i=args.indexOf('--'+name);return i>=0?args[i+1]:undefined;};
 
@@ -30,14 +31,24 @@ if(command==='init-secrets'){
   const url=process.env.MIGRATION_DATABASE_URL_FILE?(await readFile(process.env.MIGRATION_DATABASE_URL_FILE,'utf8')).trim():process.env.MIGRATION_DATABASE_URL;
   if(!url)throw Error('MIGRATION_DATABASE_URL required');
   const u=new URL(url),env={...process.env,PGHOST:u.hostname,PGPORT:u.port||'5432',PGUSER:decodeURIComponent(u.username),PGPASSWORD:decodeURIComponent(u.password),PGDATABASE:u.pathname.slice(1)};
+  if(!['postgres:','postgresql:'].includes(u.protocol))throw Error('Use a PostgreSQL database URL');
+  if(u.searchParams.has('sslmode')){
+    const mode=u.searchParams.get('sslmode');
+    if(!['disable','allow','prefer','require','verify-ca','verify-full'].includes(mode))throw Error('Invalid database sslmode');
+    env.PGSSLMODE=mode;
+  }
   if(command==='restore'&&option('confirm')!=='RESTORE_TO_EMPTY_DATABASE')throw Error('Restore only to a new empty DB: --confirm RESTORE_TO_EMPTY_DATABASE');
   // No --clean: an accidental restore cannot silently drop an existing database.
-  const r=spawnSync(command==='backup'?'pg_dump':'pg_restore',command==='backup'?['--format=custom','--no-owner','--no-acl','--file',filename]:['--exit-on-error','--single-transaction','--no-owner','--no-acl','--dbname',env.PGDATABASE,filename],{env,stdio:'inherit'});
-  if(r.error)throw Error('Install PostgreSQL client tools on the operator host.');if(r.status!==0)process.exit(r.status||1);
+  if(command==='backup')await privateDatabaseBackup(filename,env);
+  else {
+    const r=spawnSync('pg_restore',['--exit-on-error','--single-transaction','--no-owner','--no-acl','--dbname',env.PGDATABASE,filename],{env,stdio:'inherit'});
+    if(r.error)throw Error('Install PostgreSQL client tools on the operator host.');if(r.status!==0)process.exit(r.status||1);
+  }
 }else{
   const cfg=configuration(),pool=database(cfg.DATABASE_URL,2);
   try{
     if(command==='preflight'){
+      await import('./preview.mjs'); // Explicitly validate mounted content/allowlist here, not in recovery commands.
       await pool.query('select 1 from app.products');
       const role=(await pool.query('select rolsuper,rolcreatedb,rolcreaterole from pg_roles where rolname=current_user')).rows[0];
       if(role.rolsuper||role.rolcreatedb||role.rolcreaterole)throw Error('Runtime DB role is overprivileged');

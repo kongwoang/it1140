@@ -3,12 +3,18 @@ import assert from 'node:assert/strict';
 import { fixture } from './helpers.mjs';
 import { configuration } from '../config.mjs';
 import { verifyBot } from '../bot.mjs';
-import { token } from '../store.mjs';
+import { token,equal } from '../store.mjs';
 import { contentRoot } from '../content.mjs';
 import { readFile } from 'node:fs/promises';
 import { verifyWebhook,paymentCode,bankTime } from '../../payments.mjs';
 import { createApp } from '../app.mjs';
 import { randomUUID } from 'node:crypto';
+
+test('constant-time comparison handles malformed Unicode without throwing',()=>{
+  assert.equal(equal('é','a'),false);assert.equal(equal('😀','ab'),false);
+  assert.equal(equal('same','same'),true);assert.equal(equal('same','diff'),false);
+  assert.equal(equal(null,'x'),false);
+});
 
 test('submitted exams from an old bank cannot silently display new wording or removed IDs',async()=>{
   const f=await fixture();try{

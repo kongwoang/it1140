@@ -7,7 +7,7 @@
     <meta name="description" content="Ôn tập và thực hành Tin học đại cương IT1140 trực tiếp trên trình duyệt." />
     <meta name="theme-color" content="#0f766e" />
     <link rel="canonical" href="https://it1140.hoangpc.io.vn/" />
-    <link rel="stylesheet" href="./assets/css/app.css?v=15" />
+    <link rel="stylesheet" href="./assets/css/app.css?v=16" />
   </head>
   <body>
     <div class="app-shell">
@@ -172,7 +172,7 @@
               <div class="code-editor-viewport">
                 <pre id="pythonHighlight" class="code-highlight" aria-hidden="true"></pre>
                 <label class="sr-only" for="pythonEditor">Mã nguồn Python</label>
-                <textarea id="pythonEditor" class="code-editor" maxlength="200000" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+                <textarea id="pythonEditor" class="code-editor" aria-description="Tab thụt lề 4 dấu cách, Shift+Tab lùi lề. Nhấn Escape để rời trình soạn thảo bằng bàn phím." maxlength="200000" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
               </div>
             </div>
             <ul id="pythonWarnings" class="python-warnings" aria-live="polite" hidden></ul>
@@ -184,6 +184,8 @@
           </section>
 
           <section class="panel stdin-panel">
+            <label class="sr-only" for="pythonSampleCase">Ca dữ liệu mẫu</label>
+            <select id="pythonSampleCase" aria-label="Ca dữ liệu mẫu"></select>
             <label class="sr-only" for="pythonInput">Dữ liệu stdin</label>
             <textarea id="pythonInput" class="stdin-editor" aria-label="stdin" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
           </section>

@@ -1,10 +1,12 @@
 import { createHash,randomInt,randomUUID } from 'node:crypto';
 import { Fault,uuid } from './store.mjs';
 import { readContent } from './content.mjs';
+import { validateCourse } from './content-validation.mjs';
 const raw=readContent('subjects/it1140.json');
 export const version=createHash('sha256').update(raw).digest('hex').slice(0,16);
 export const bank=JSON.parse(raw);
 export const python=JSON.parse(readContent('python-exercises.json'));
+validateCourse(bank,python);
 export const questions=new Map(bank.questions.map(q=>[q.id,q]));
 const topicChapter=new Map(bank.topics.map(t=>[t.id,t.chapter]));
 const fold=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/đ/g,'d');

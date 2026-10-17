@@ -1368,3 +1368,4 @@ button {
 .python-diagnostic p{margin:8px 0;line-height:1.6}.python-diagnostic details{margin-top:10px}.python-diagnostic pre,.test-results pre{white-space:pre-wrap;overflow-wrap:anywhere;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.82rem}
 .line-number-list .error-line{background:#b83232;color:#fff;font-weight:700}
 .lab-sidebar input[type=search],.lab-sidebar select{display:block;width:100%;box-sizing:border-box;margin:10px 0;padding:9px;border:1px solid #c1d0cc;border-radius:6px;background:var(--panel,#fff);color:var(--ink,#173f32);font:inherit;max-width:100%}
+.stdin-panel select{max-width:100%;margin-bottom:10px;padding:8px;border:1px solid #c1d0cc;border-radius:6px;background:var(--panel,#fff);color:var(--ink,#173f32);font:inherit}

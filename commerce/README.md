@@ -139,6 +139,8 @@ Prune xóa OTP/rate-limit quá 2 ngày và bài thi luyện quá 30 ngày, khôn
 
 Dùng pg_dump PostgreSQL 17, format custom/no-owner/no-acl, mã hóa và lưu **ngoài VM**. CLI `backup --file /ABS/PATH/file.dump`, `restore --file /ABS/PATH/file.dump --confirm RESTORE_TO_EMPTY_DATABASE` cần MIGRATION_DATABASE_URL và PostgreSQL client trên máy quản trị. Không đặt mật khẩu trong command line. Restore tới DB **mới đang trống**, không dùng --clean; chạy migration để cấp lại role rồi kiểm tra login/quyền/giao dịch. Volume Docker không thay backup; không chạy `docker compose down -v`.
 
+Backup tạo tệp độc quyền với quyền 0600, từ chối ghi đè tệp/symlink đã có và ghi qua descriptor đã mở. Nếu thất bại, tệp rỗng/không hoàn chỉnh có thể còn lại nhưng không dùng được để restore; kiểm tra trước khi xóa/đổi tên rồi thử lại bằng tên mới. Lệnh backup/restore không cần ngân hàng nội dung hoặc cấu hình web đang hoạt động, để còn dùng được khi mount nội dung hỏng. Preflight vẫn kiểm tra nội dung và allowlist. Backup DB **không chứa** `COURSE_DATA_DIR`: phải sao lưu riêng bộ bài và nguồn soạn riêng tư, không đưa chúng lên Git công khai.
+
 Rollback image tương thích schema, giữ DB/secrets/quyền mua. Nếu chưa an toàn: tắt bán và thông báo hỗ trợ, không mở lại endpoint nguyên mẫu trả cả đáp án. Chủ website chốt chính sách lưu/xóa email/giao dịch/audit trước production.
 
 ## Trạng thái xác minh

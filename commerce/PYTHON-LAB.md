@@ -29,7 +29,10 @@ Trước khi bán, chủ website vẫn cần xác nhận quyền khai thác thư
 - Cảnh báo nhanh cho ngoặc/nháy chưa đóng và Tab thật; đây là kiểm tra từ vựng nhẹ, không thay thế trình biên dịch Python, nhất là cú pháp mới/f-string phức tạp.
 - Khi chạy, compile với tên `main.py`; lỗi có loại, dòng/cột, giải thích tiếng Việt, nút tới dòng và traceback mở rộng. Không nhảy tới dòng cũ nếu mã đã được sửa trong lúc chạy.
 - Sai kết quả: chỉ ra dòng đầu tiên khác, cần in/đã in, stdin của ca. Phân biệt chưa tạo tệp, tệp không đọc được UTF-8 và sai nội dung tệp.
+- Chọn ca dữ liệu mẫu để nạp cả stdin lẫn tệp tương ứng; nút “Dùng dữ liệu ca này” giúp chạy lại ca bị sai. Mỗi lượt chạy dọn các tệp đã khai báo của toàn bài, tránh tệp từ ca trước làm sai ca thiếu tệp. Không xóa tệp thật trên máy người học.
+- stdout được bỏ qua dấu cách cuối dòng/dòng trống cuối như trước; nội dung tệp được so sánh giữ nguyên dấu cách và dấu xuống dòng (chỉ chuẩn hóa CRLF/CR về LF). Bài gộp tệp có thêm kiểm tra không tạo đầu ra khi thiếu nguồn.
 - `input()` và `sys.stdin` đọc cùng luồng. `sys.exit(0)` kết thúc bình thường. Thu đầu ra tối đa 200000 ký tự; worker bị dừng sau 60 giây. Các giới hạn này giữ trình duyệt ổn định hơn, không phải sandbox tài nguyên tuyệt đối.
+- Lời nhắc truyền vào `input("...")` được ghi vào stdout như Python thường, không âm thầm bị bỏ đi. Nếu đề chỉ yêu cầu in kết quả thì lời nhắc sẽ khiến ca sai. Dữ liệu stdin hỗ trợ xuống dòng Windows; metadata chương trình là `main.py`, thư mục làm việc được khôi phục giữa các ca. Escape rời trình soạn thảo, tránh giữ người dùng chỉ dùng bàn phím trong ô Tab-thụt-lề.
 - Chuyển bài hủy lượt chạy cũ để không đánh dấu hoàn thành nhầm bài. Nếu sửa mã trong lúc kiểm tra, kết quả đúng của bản cũ không tự đánh dấu hoàn thành bản mới.
 
 ## Kiểm chứng

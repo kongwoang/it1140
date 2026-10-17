@@ -49,16 +49,19 @@ if "matplotlib.pyplot" in sys.modules:
     import matplotlib.pyplot as plt
     plt.close("all")
 
-_lab_scope = {"__name__": "__main__"}
-_lab_stdin = io.StringIO(_lab_input_text)
+_lab_scope = {"__name__": "__main__", "__file__": "main.py", "__package__": None}
+_lab_stdin = io.StringIO(_lab_input_text, newline=None)
 _lab_buffer = _IT1140Output()
 _lab_error = ""
 _lab_diagnostic = None
 _lab_check_error = ""
 _lab_original_input = builtins.input
 _lab_original_stdin = sys.stdin
+_lab_original_argv = sys.argv
+_lab_original_cwd = os.getcwd()
 
-def _lab_input(_lab_prompt=""):
+def _lab_input(_lab_prompt="", /):
+    print(_lab_prompt, end="")
     _lab_line = _lab_stdin.readline()
     if _lab_line == "":
         raise EOFError("Không còn dữ liệu đầu vào")
@@ -67,6 +70,7 @@ def _lab_input(_lab_prompt=""):
 try:
     builtins.input = _lab_input
     sys.stdin = _lab_stdin
+    sys.argv = ["main.py"]
     with contextlib.redirect_stdout(_lab_buffer), contextlib.redirect_stderr(_lab_buffer):
         exec(compile(_lab_user_code, "main.py", "exec"), _lab_scope)
 except BaseException as _lab_exc:
@@ -76,6 +80,8 @@ except BaseException as _lab_exc:
 finally:
     builtins.input = _lab_original_input
     sys.stdin = _lab_original_stdin
+    sys.argv = _lab_original_argv
+    os.chdir(_lab_original_cwd)
 
 if not _lab_error:
     for _lab_check in json.loads(_lab_checks_json):
@@ -153,10 +159,9 @@ except SyntaxError as exc:
     await pyodide.loadPackagesFromImports(code);
 
     const cases = mode === "single" ? [{ label: "Chạy input hiện tại", input, files, output: "", checks: [] }] : tests;
-    const cleanupNames = [...new Set(cases.flatMap((test) => [
-      ...Object.keys(test.files || {}),
-      ...Object.keys(test.expectedFiles || {}),
-    ]))];
+    // Single-case runs must also remove other samples' files: otherwise a
+    // previously present source would remain when selecting a "missing file" case.
+    const cleanupNames = globalThis.IT1140PythonErrors.caseFileNames([...tests, ...cases]);
     const results = [];
     let lastOutput = "";
     let firstError = "";

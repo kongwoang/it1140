@@ -38,6 +38,7 @@
   let warningTimer;
   let errorLine = null;
   let runningCode = "";
+  let selectedTestIndex = 0;
   let editHistory = [], historyIndex = -1;
   let state = loadState();
 
@@ -149,7 +150,8 @@
     const index = Math.min(lines.length, Math.max(1, line)) - 1;
     const start = lines.slice(0, index).reduce((sum, text) => sum + text.length + 1, 0);
     els.editor.focus();
-    els.editor.setSelectionRange(start + Math.min(lines[index].length, column - 1), start + lines[index].length);
+    const characterOffset = Array.from(lines[index]).slice(0, Math.max(0, column - 1)).join("").length;
+    els.editor.setSelectionRange(start + characterOffset, start + lines[index].length);
     els.editor.scrollTop = Math.max(0, (index - 3) * (parseFloat(getComputedStyle(els.editor).lineHeight) || 24));
     syncEditorScroll();
   }
@@ -224,15 +226,9 @@
 
   function loadState() {
     try {
-      return {
-        code: {},
-        input: {},
-        completed: {},
-        currentId: "",
-        ...(JSON.parse(localStorage.getItem(storageKey)) || {}),
-      };
+      return IT1140PythonEditor.normalizeState(JSON.parse(localStorage.getItem(storageKey)));
     } catch (_error) {
-      return { code: {}, input: {}, completed: {}, currentId: "" };
+      return { code: {}, input: {}, testCase: {}, completed: {}, currentId: "" };
     }
   }
 
@@ -306,11 +302,15 @@
 
     els.title.textContent = exercise.title;
     IT1140Text.render(els.task, exercise.task);
-    renderSampleFiles(exercise);
+    selectedTestIndex = Number.isInteger(state.testCase[id]) && exercise.tests?.[state.testCase[id]] ? state.testCase[id] : 0;
+    renderSampleFiles(exercise, selectedTestIndex);
+    const samples = document.getElementById("pythonSampleCase");samples.replaceChildren();
+    (exercise.tests || []).forEach((test,index) => samples.append(new Option(test.label, String(index))));
+    samples.value = String(selectedTestIndex);samples.hidden = !exercise.tests?.length;
     els.library.textContent = exercise.library;
     els.level.textContent = exercise.level;
     setEditorValue(state.code[id] ?? "");
-    els.input.value = state.input[id] ?? exercise.tests?.[0]?.input ?? "";
+    els.input.value = state.input[id] ?? exercise.tests?.[selectedTestIndex]?.input ?? "";
     IT1140Text.render(els.hintBox, exercise.hint);
     els.hintBox.hidden = true;
     els.hint.textContent = "Xem gợi ý";
@@ -334,8 +334,8 @@
     renderList();
   }
 
-  function renderSampleFiles(exercise) {
-    const files = Object.entries(exercise.tests?.[0]?.files || {});
+  function renderSampleFiles(exercise, testIndex = 0) {
+    const files = Object.entries(exercise.tests?.[testIndex]?.files || {});
     els.files.hidden = files.length === 0;
     els.files.open = false;
     els.fileContents.replaceChildren();
@@ -361,7 +361,7 @@
 
   function getWorker() {
     if (!worker) {
-      worker = new Worker("./assets/js/python-worker.js?v=5", { type: "module" });
+      worker = new Worker("./assets/js/python-worker.js?v=6", { type: "module" });
       worker.addEventListener("message", handleWorkerMessage);
       worker.addEventListener("error", () => finishWithError("Không khởi động được môi trường Python."));
     }
@@ -370,7 +370,7 @@
 
   function renderTests(results) {
     els.tests.innerHTML = "";
-    results.forEach((result) => {
+    results.forEach((result, index) => {
       const item = document.createElement("li");
       item.className = result.passed ? "is-passed" : "is-failed";
       item.textContent = `${result.passed ? "✓" : "×"} ${result.label}${result.error ? ` — ${result.error}` : ""}`;
@@ -381,13 +381,15 @@
       }
       if (!result.passed && result.fileDifference) {
         const pre = document.createElement("pre"), d = result.fileDifference;
-        pre.textContent = d.missing ? `Chưa tạo tệp: ${d.name}` : d.unreadable ? `Không đọc được tệp ${d.name} dưới dạng văn bản UTF-8.` : `Tệp ${d.name} · Dòng ${d.line || 1}\nCần ghi: ${d.expected || "(rỗng)"}\nĐã ghi:  ${d.actual || "(rỗng)"}`;
+        pre.textContent = d.missing ? `Chưa tạo tệp: ${d.name}` : d.unreadable ? `Không đọc được tệp ${d.name} dưới dạng văn bản UTF-8.` : `Tệp ${d.name} · Dòng ${d.line || 1}\nCần ghi: ${JSON.stringify(d.expected ?? "")}\nĐã ghi:  ${JSON.stringify(d.actual ?? "")}\n${d.help || ""}`;
         item.append(pre);
       }
       if (!result.passed) {
         const details = document.createElement("details"), summary = document.createElement("summary"), pre = document.createElement("pre");
         summary.textContent = "stdin của ca này";pre.textContent = result.input || "(Không có dữ liệu stdin)";
         details.append(summary, pre);item.append(details);
+        const use = document.createElement("button");use.type = "button";use.className = "text-btn";use.textContent = "Dùng dữ liệu ca này";
+        use.addEventListener("click", () => selectSample(index));item.append(use);
       }
       els.tests.append(item);
     });
@@ -474,7 +476,7 @@
       mode,
       code: els.editor.value,
       input: els.input.value,
-      files: exercise.tests?.[0]?.files || {},
+      files: exercise.tests?.[selectedTestIndex]?.files || {},
       tests: exercise.tests,
     }); } catch (error) {
       cancelRun();finishWithError("Không khởi động được Python. Hãy tải lại trang hoặc kiểm tra mạng. " + error.message);return;
@@ -510,10 +512,18 @@
   });
   els.editor.addEventListener("scroll", syncEditorScroll);
   els.input.addEventListener("input", saveCurrentCode);
+  function selectSample(index) {
+    const exercise = currentExercise(), test = exercise?.tests?.[index];if (!test) return;
+    selectedTestIndex = index;state.testCase[currentId] = index;
+    document.getElementById("pythonSampleCase").value = String(index);
+    els.input.value = test.input || "";renderSampleFiles(exercise, index);saveCurrentCode();
+  }
+  document.getElementById("pythonSampleCase").addEventListener("change", event => selectSample(Number(event.target.value)));
   document.getElementById("exerciseSearch").addEventListener("input", renderList);
   document.getElementById("exerciseSection").addEventListener("change", renderList);
   els.editor.addEventListener("keydown", (event) => {
     if (event.isComposing) return;
+    if (event.key === "Escape") {event.preventDefault();els.editor.blur();return;}
     if ((event.ctrlKey || event.metaKey) && ["z", "y"].includes(event.key.toLowerCase())) {
       event.preventDefault();undoEdit(event.key.toLowerCase() === "y" || event.shiftKey);return;
     }
@@ -562,6 +572,7 @@
     delete state.code[exercise.id];
     delete state.input[exercise.id];
     delete state.completed[exercise.id];
+    delete state.testCase[exercise.id];
     saveState();
     selectExercise(exercise.id);
   });

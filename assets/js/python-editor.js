@@ -1,6 +1,17 @@
 // Pure editor operations; browser integration applies these edits explicitly.
 (function (root) {
   const pairs = { '(': ')', '[': ']', '{': '}' }, closers = new Set(Object.values(pairs));
+  function normalizeState(value) {
+    const state={code:{},input:{},testCase:{},completed:{},currentId:''};
+    if(!value||typeof value!=='object'||Array.isArray(value))return state;
+    const id=key=>/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(key);
+    for(const field of ['code','input','testCase','completed']) {
+      const map=value[field];if(!map||typeof map!=='object'||Array.isArray(map))continue;
+      for(const [key,item]of Object.entries(map))if(id(key)&&(field==='completed'?item===true:field==='testCase'?Number.isInteger(item)&&item>=0&&item<100:typeof item==='string'))state[field][key]=item;
+    }
+    if(typeof value.currentId==='string'&&id(value.currentId))state.currentId=value.currentId;
+    return state;
+  }
   function analyse(code, stop = code.length) {
     const stack = [], issues = [];let quote = '', triple = false, comment = false, line = 1, column = 0, opened;
     for (let i = 0; i < Math.min(code.length, stop); i++) {
@@ -30,9 +41,10 @@
     const from=value.lastIndexOf('\n',start-1)+1;
     const last=end>start&&value[end-1]==='\n'?end-1:end;
     const next=value.indexOf('\n',last),to=next<0?value.length:next;
-    const lines=value.slice(from,to).split('\n');let total=0,first=0;
-    const changed=lines.map((text,i)=>{const count=remove?(text.startsWith('\t')?1:Math.min(4,text.match(/^ */)[0].length)):4;if(i===0)first=remove?-count:count;total+=remove?-count:count;return remove?text.slice(count):'    '+text;}).join('\n');
-    return {value:value.slice(0,from)+changed+value.slice(to),start:Math.max(from,start+first),end:Math.max(from,end+total)};
+    const lines=value.slice(from,to).split('\n'),edits=[];let offset=from;
+    const changed=lines.map(text=>{const count=remove?(text.startsWith('\t')?1:Math.min(4,text.match(/^ */)[0].length)):4;edits.push({at:offset,count});offset+=text.length+1;return remove?text.slice(count):'    '+text;}).join('\n');
+    function mapPosition(position){let delta=0;for(const edit of edits){if(position<edit.at)break;if(!remove)delta+=edit.count;else if(position>=edit.at+edit.count)delta-=edit.count;else return edit.at+delta;}return position+delta;}
+    return {value:value.slice(0,from)+changed+value.slice(to),start:mapPosition(start),end:mapPosition(end)};
   }
   function enter(value,start,end) {
     const from=value.lastIndexOf('\n',start-1)+1,text=value.slice(from,start),base=text.match(/^[ \t]*/)[0].replace(/\t/g,'    '),ctx=analyse(value,start);
@@ -64,5 +76,5 @@
     const text=lines.map(l=>{if(!l.trim())return l;const out=remove?l.replace(/^(\s*)# ?/,'$1'):l.replace(/^(\s*)/,'$1# ');delta+=out.length-l.length;return out;}).join('\n');
     return {value:value.slice(0,from)+text+value.slice(to),start:from,end:Math.max(from,end+delta)};
   }
-  root.IT1140PythonEditor={analyse,indent,enter,pair,backspace,comment};
+  root.IT1140PythonEditor={analyse,indent,enter,pair,backspace,comment,normalizeState};
 })(globalThis);

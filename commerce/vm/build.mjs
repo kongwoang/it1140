@@ -67,8 +67,8 @@ lab=lab.replace('  initialize();',`  window.addEventListener('it1140:study-stopp
   initialize();`);
 lab=lab.replace('worker.addEventListener("error", () => finishWithError("Không khởi động được môi trường Python."));',
   'worker.addEventListener("error", event => { worker?.terminate(); worker = undefined; finishWithError("Không khởi động được Python: " + (event.message || "Không tải được module từ CDN. Hãy kiểm tra mạng và tải lại trang.")); });');
-assert.equal(lab.split('new Worker("./assets/js/python-worker.js?v=5", { type: "module" })').length,2);
-lab=lab.replace('new Worker("./assets/js/python-worker.js?v=5", { type: "module" })','window.IT1140CreatePythonWorker()');
+assert.equal(lab.split('new Worker("./assets/js/python-worker.js?v=6", { type: "module" })').length,2);
+lab=lab.replace('new Worker("./assets/js/python-worker.js?v=6", { type: "module" })','window.IT1140CreatePythonWorker()');
 assert.ok(!lab.includes('new Worker('),'Commercial lab must never construct an account-origin worker');
 await writeFile(resolve(out,'assets/js/python-lab.js'),lab);
 // Content hashes avoid stale cached legacy editors/clients during cutover and

@@ -6,6 +6,8 @@ import { courseRoute,bank,python } from './course.mjs';
 import { verifyWebhook,paymentCode,bankTime } from '../payments.mjs';
 import { verifyBot } from './bot.mjs';
 import { previewRoute,previewSummary } from './preview.mjs';
+import { emailAddress } from './identity.mjs';
+export { emailAddress } from './identity.mjs';
 
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8'};
 const json=(value,status=200)=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json; charset=utf-8'}});
@@ -29,11 +31,6 @@ async function bytes(request,max=16384){
   return Buffer.concat(chunks);
 }
 function parse(raw){try{const value=JSON.parse(raw.toString('utf8'));if(value&&typeof value==='object'&&!Array.isArray(value))return value;}catch{}throw new Fault(400,'invalid_json');}
-export function emailAddress(value,domains){
-  if(typeof value!=='string'||value.length>254)return null;
-  const email=value.trim().toLowerCase();const match=email.match(/^([a-z0-9.!#$%&'*+/=?^_`{|}~-]+)@([a-z0-9.-]+)$/);
-  return match&&(!domains||domains.includes(match[2]))?email:null;
-}
 function orderView(o,cfg){
   const qr=new URL('https://vietqr.app/img');
   for(const [k,v] of Object.entries({bank:'MB',acc:o.account_number,amount:o.amount,des:o.transfer_code,holder:cfg.BANK_ACCOUNT_NAME,template:'compact',showinfo:'true'}))qr.searchParams.set(k,String(v));

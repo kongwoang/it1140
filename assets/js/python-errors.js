@@ -36,27 +36,34 @@
             ? ['Có thể đang thiếu dấu hai chấm', 'Thêm dấu : sau điều kiện if/elif/else, vòng lặp for/while, def hoặc câu lệnh mở khối tương ứng.']
             : ['Cú pháp Python chưa hợp lệ', 'Kiểm tra dấu ngoặc, dấu nháy, dấu hai chấm và cách viết câu lệnh ở dòng này hoặc dòng ngay trước nó.'];
     }
+    const raw = String(d.message || '');
+    if(type === 'IndentationError' && /unexpected indent/.test(raw)) message=['Dòng này đang thụt vào quá mức','Kiểm tra xem dòng có thực sự nằm trong if/for/while/def hay không. Dùng Shift+Tab hoặc nút ← Lề để lùi một mức khi cần.'];
+    if(type === 'IndentationError' && /unindent does not match/.test(raw)) message=['Mức lùi lề không khớp khối trước','Đặt đầu dòng thẳng với một mức lề đã có. Kiểm tra cả Tab thật và dấu cách ở những dòng phía trên.'];
+    if(type === 'ValueError' && /invalid literal for int|could not convert string to float/.test(raw)) message=['Dữ liệu chưa đổi được thành số','Kiểm tra dòng stdin đang đọc: int() cần chuỗi số nguyên, float() dùng dấu chấm thập phân. Nếu một dòng có nhiều số, cần split() rồi đổi từng số.'];
+    if(type === 'ValueError' && /too many values to unpack|not enough values to unpack/.test(raw)) message=['Số giá trị đọc được không khớp số biến','Đối chiếu số biến ở bên trái với số phần tử ở bên phải. Nếu dùng input().split(), xem ca này có bao nhiêu giá trị trên một dòng.'];
+    if(type === 'TypeError' && /not iterable/.test(raw)) message=['Đang duyệt một giá trị không phải dãy','for, list(), sum() hoặc phép tách nhiều biến cần một đối tượng duyệt được, không phải một số đơn lẻ. Muốn lặp n lần thì dùng range(n).'];
+    if(type === 'TypeError' && /required positional argument/.test(raw)) message=['Lời gọi hàm đang thiếu đối số','Đối chiếu các tham số trong def với các giá trị truyền vào lúc gọi hàm. Thêm đối số còn thiếu hoặc xem lại tham số mặc định.'];
     return { type, title: message[0], help: message[1], line: Number.isInteger(d.line) && d.line > 0 ? d.line : null,
       column: Number.isInteger(d.column) && d.column > 0 ? d.column : null, source: String(d.source || ''), detail: String(d.message || ''), traceback: String(d.traceback || '') };
   }
-  function outputDifference(actual, expected) {
-    const norm = value => String(value ?? '').replace(/\r\n?/g, '\n').replace(/[ \t]+$/gm, '').trimEnd();
+  function outputDifference(actual, expected, exact = false) {
+    const norm = value => {const text = String(value ?? '').replace(/\r\n?/g, '\n');return exact ? text : text.replace(/[ \t]+$/gm, '').trimEnd();};
     const a = norm(actual), e = norm(expected);
     if (a === e) return null;
     const al = a.split('\n'), el = e.split('\n');let index = 0;
     while (index < Math.min(al.length, el.length) && al[index] === el[index]) index++;
     return { line: index + 1, actual: al[index] ?? '(không có dòng này)', expected: el[index] ?? '(không có dòng này)',
-      help: e === '' ? 'Bài này không yêu cầu in văn bản. Bỏ các print() không cần thiết.' : 'Kiểm tra công thức, thứ tự kết quả, số chữ số thập phân và yêu cầu có được in lời nhắc hay không.' };
+      help: exact ? 'Nội dung tệp cần giữ đúng dấu cách và ký tự xuống dòng như đề yêu cầu.' : e === '' ? 'Bài này không yêu cầu in văn bản. Bỏ các print() không cần thiết.' : 'Kiểm tra công thức, thứ tự kết quả, số chữ số thập phân và yêu cầu có được in lời nhắc hay không.' };
   }
   function compareCase(result, test, mode = "tests") {
-    const norm = value => String(value ?? '').replace(/\r\n?/g, '\n').replace(/[ \t]+$/gm, '').trimEnd();
+    const norm = value => String(value ?? '').replace(/\r\n?/g, '\n');
     const expectedFiles = test.expectedFiles || {}, files = result.fileResults || {};
     const wrongFile = Object.entries(expectedFiles).find(([name, expected]) => typeof files[name] !== 'string' || norm(files[name]) !== norm(expected));
     const difference = mode === 'single' || result.error || result.checkError ? null : outputDifference(result.output, test.output || '');
     const fileDifference = mode !== 'single' && wrongFile && !result.error ? {
       name:wrongFile[0],missing:!Object.prototype.hasOwnProperty.call(files,wrongFile[0]),
       unreadable:Object.prototype.hasOwnProperty.call(files,wrongFile[0]) && typeof files[wrongFile[0]] !== 'string',
-      ...outputDifference(files[wrongFile[0]],wrongFile[1]),
+      ...outputDifference(files[wrongFile[0]],wrongFile[1],true),
     } : null;
     const briefError = result.diagnostic ? explain(result.diagnostic).title : result.error;
     return {label:test.label, passed:!result.error && !result.checkError && (mode === 'single' || (!difference && !wrongFile)),
@@ -85,10 +92,14 @@ def _it1140_diagnostic(exc, code):
     frames = [f for f in _it_traceback.extract_tb(exc.__traceback__) if f.filename == "main.py"]
     if frames and not isinstance(exc, SyntaxError):
         line = frames[-1].lineno
-        column = frames[-1].colno + 1 if frames[-1].colno is not None else None
+        byte_offset = frames[-1].colno
+        # Runtime frame columns count UTF-8 bytes; SyntaxError.offset counts
+        # characters. Convert before sending a human-readable column to the UI.
+        column = len(lines[line - 1].encode("utf-8")[:byte_offset].decode("utf-8", "ignore")) + 1 if byte_offset is not None and 0 < line <= len(lines) else None
     return {"type": type(exc).__name__, "message": str(getattr(exc, "msg", exc))[:8000],
             "line": line, "column": column, "source": lines[line - 1][:2000] if isinstance(line, int) and 0 < line <= len(lines) else "",
             "traceback": "".join(_it_traceback.format_exception(type(exc), exc, exc.__traceback__))[-16000:]}
 `;
-  root.IT1140PythonErrors = { explain, outputDifference, compareCase, pythonHelpers };
+  const caseFileNames = tests => [...new Set(tests.flatMap(test => [...Object.keys(test.files || {}), ...Object.keys(test.expectedFiles || {})]))];
+  root.IT1140PythonErrors = { explain, outputDifference, compareCase, caseFileNames, pythonHelpers };
 })(globalThis);

@@ -3,7 +3,11 @@ export const token=()=>randomBytes(32).toString('base64url');
 export const hash=value=>createHash('sha256').update(Buffer.isBuffer(value)?value:String(value)).digest('hex');
 export const keyed=(secret,value)=>createHmac('sha256',secret).update(value).digest('hex');
 export const uuid=value=>typeof value==='string'&&/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i.test(value);
-export const equal=(a,b)=>typeof a==='string'&&typeof b==='string'&&a.length===b.length&&timingSafeEqual(Buffer.from(a),Buffer.from(b));
+export function equal(a,b){
+  if(typeof a!=='string'||typeof b!=='string')return false;
+  const left=Buffer.from(a),right=Buffer.from(b);
+  return left.length===right.length&&timingSafeEqual(left,right);
+}
 export class Fault extends Error {constructor(status,code,details={}){super(code);this.status=status;this.details=details;}}
 export async function transaction(pool,fn){
   const client=await pool.connect();
