@@ -41,6 +41,8 @@ if(command==='init-secrets'){
       await pool.query('select 1 from app.products');
       const role=(await pool.query('select rolsuper,rolcreatedb,rolcreaterole from pg_roles where rolname=current_user')).rows[0];
       if(role.rolsuper||role.rolcreatedb||role.rolcreaterole)throw Error('Runtime DB role is overprivileged');
+      const privileges=(await pool.query("select has_schema_privilege(current_user,'app','CREATE') ddl,has_table_privilege(current_user,'public.it1140_migrations','SELECT') migrations")).rows[0];
+      if(privileges.ddl||privileges.migrations)throw Error('Runtime role must not own schema or access migration control table');
       if(cfg.smtpReady){const smtp=mailTransport(cfg);try{await smtp.verify();}finally{smtp.close();}}
       console.log(JSON.stringify({database:true,smtp:cfg.smtpReady,payments:cfg.live,domains:cfg.domains,origin:cfg.origin}));
     }else if(command==='status'){

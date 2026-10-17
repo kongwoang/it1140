@@ -109,6 +109,9 @@ test('actual payment SQL: exact price/receiver, transactional dedupe and non-exp
     const b=f.browser();await f.login(b);const me=await (await b.call('/api/me')).json();
     assert.equal((await b.call('/api/orders',{amount:1,paid:true})).status,503);
     const o=(await f.pool.query('select * from app.create_order($1,$2,$3)',[me.id,'IT1140AAAAAAAAAAAAAAAA',f.cfg.BANK_ACCOUNT])).rows[0];assert.equal(o.amount,20000);
+    f.cfg.live=true;
+    const tampered=await b.call('/api/orders',{amount:1,user_id:randomUUID(),account_number:'ATTACKER',paid:true});
+    assert.equal(tampered.status,201);const published=await tampered.json();assert.equal(published.amount,20000);assert.equal(published.account,f.cfg.BANK_ACCOUNT);assert.equal(published.id,o.id);
     const pay=async(id,amount,valid=true)=>(await f.pool.query('select app.receive_payment($1,$2,$3,$4,$5,now(),$6) r',[id,id,o.transfer_code,amount,f.cfg.BANK_ACCOUNT,valid])).rows[0].r;
     assert.equal((await pay('bad',1)).reason,'wrong_amount');assert.equal((await pay('receiver',20000,false)).reason,'wrong_receiver');
     assert.equal((await pay('ok',20000)).outcome,'granted');assert.equal((await pay('ok',20000)).outcome,'duplicate');
@@ -117,6 +120,19 @@ test('actual payment SQL: exact price/receiver, transactional dedupe and non-exp
     const t=String(Math.floor(Date.now()/1000)),signature='sha256='+createHmac('sha256',f.cfg.SEPAY_WEBHOOK_SECRET).update(t+'.'+raw).digest('hex');
     const unsigned=await f.app.fetch(new Request(f.cfg.origin+'/api/webhooks/sepay',{method:'POST',headers:{'Content-Type':'application/json'},body:raw}));assert.equal(unsigned.status,401);
     const signed=await f.app.fetch(new Request(f.cfg.origin+'/api/webhooks/sepay',{method:'POST',headers:{'Content-Type':'application/json','X-SePay-Timestamp':t,'X-SePay-Signature':signature},body:raw}));assert.equal(signed.status,200);
+  }finally{await f.close();}
+});
+test('production sessions only use Secure HttpOnly host cookies; no tokens in JSON',async()=>{
+  const f=await fixture();try{
+    const cfg={...f.cfg,dev:false,origin:'https://staging.example.test'},mail=[];
+    const app=createApp({pool:f.pool,cfg,sendMail:async m=>mail.push(m)});
+    const start=await app.fetch(new Request(cfg.origin+'/api/auth/request',{method:'POST',headers:{Origin:cfg.origin,'Content-Type':'application/json'},body:JSON.stringify({email:'secure@sis.hust.edu.vn'})}));
+    const browser=start.headers.getSetCookie()[0].split(';')[0],challenge=await start.json();
+    assert.match(browser,/^__Host-it1140-browser=/);assert.match(start.headers.getSetCookie()[0],/Secure/);
+    const code=mail[0].text.match(/\b\d{6}\b/)[0];
+    const signed=await app.fetch(new Request(cfg.origin+'/api/auth/verify',{method:'POST',headers:{Origin:cfg.origin,'Content-Type':'application/json',Cookie:browser},body:JSON.stringify({challengeId:challenge.challengeId,code})}));
+    assert.equal(signed.status,200);assert.deepEqual(await signed.json(),{success:true});
+    for(const c of signed.headers.getSetCookie()){assert.match(c,/^__Host-/);assert.match(c,/HttpOnly/);assert.match(c,/Secure/);assert.match(c,/SameSite=Lax/);assert.doesNotMatch(c,/Domain=/);}
   }finally{await f.close();}
 });
 test('all question types grade correctly; public projection never contains answer keys',()=>{
