@@ -33,6 +33,8 @@
   let exercises = [];
   let currentId = "";
   let worker;
+  let busy = false;
+  let studyStopped = false;
   let activeRunId = 0;
   let timeoutId;
   let warningTimer;
@@ -41,6 +43,9 @@
   let selectedTestIndex = 0;
   let editHistory = [], historyIndex = -1;
   let state = loadState();
+  const P = IT1140PythonPractice;
+  const session = () => state.practice?.session?.exerciseId === currentId ? state.practice.session : null;
+  const withoutHelp = () => session() && session().phase !== "review";
 
   const pythonKeywords = new Set([
     "and", "as", "assert", "async", "await", "break", "case", "class", "continue", "def", "del",
@@ -158,6 +163,7 @@
 
   function renderWarnings() {
     els.warnings.replaceChildren();
+    if (withoutHelp()) { els.warnings.hidden = true; return; }
     const issues = IT1140PythonEditor.analyse(els.editor.value).issues;
     for (const issue of issues) {
       const li = document.createElement("li"), button = document.createElement("button");
@@ -169,6 +175,7 @@
   }
 
   function renderDiagnostic(diagnostic) {
+    if (withoutHelp()) diagnostic = null;
     els.diagnostic.replaceChildren(); els.diagnostic.hidden = !diagnostic;
     errorLine = null;
     if (diagnostic) {
@@ -194,6 +201,8 @@
   function cancelRun() {
     clearTimeout(timeoutId);activeRunId++;
     worker?.terminate();worker = undefined;
+    busy = false;
+    document.getElementById("stopPythonBtn").hidden = true;
   }
 
   function syncEditorScroll() {
@@ -226,17 +235,19 @@
 
   function loadState() {
     try {
-      return IT1140PythonEditor.normalizeState(JSON.parse(localStorage.getItem(storageKey)));
+      const raw = JSON.parse(localStorage.getItem(storageKey));
+      return { ...IT1140PythonEditor.normalizeState(raw), practice: IT1140PythonPractice.normalize(raw?.practice) };
     } catch (_error) {
-      return { code: {}, input: {}, testCase: {}, completed: {}, currentId: "" };
+      return { code: {}, input: {}, testCase: {}, completed: {}, currentId: "", practice: IT1140PythonPractice.normalize(null) };
     }
   }
 
   function saveState() {
     try {
       localStorage.setItem(storageKey, JSON.stringify(state));
+      document.getElementById("pythonStorageWarning").hidden = true;
     } catch (_error) {
-      // Trình soạn thảo vẫn hoạt động trong phiên nếu localStorage bị chặn.
+      document.getElementById("pythonStorageWarning").hidden = false;
     }
   }
 
@@ -246,6 +257,11 @@
 
   function saveCurrentCode() {
     if (!currentId) return;
+    const s = session();
+    if (s) {
+      if (s.phase === "running") {s.code = els.editor.value;s.input = els.input.value;s.testCase = selectedTestIndex;}
+      saveState(); return;
+    }
     state.code[currentId] = els.editor.value;
     state.input[currentId] = els.input.value;
     saveState();
@@ -257,8 +273,11 @@
     const fold = text => text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d");
     const query = fold(document.getElementById("exerciseSearch").value.trim()), sectionFilter = document.getElementById("exerciseSection").value;
     let shown = 0;
+    const progressFilter = document.getElementById("exerciseState").value;
     exercises.forEach((exercise, index) => {
       if ((sectionFilter && exercise.section !== sectionFilter) || (query && !fold(exercise.title + " " + exercise.library).includes(query))) return;
+      const progress = P.status(state.practice, exercise.id, state.completed[exercise.id], Boolean(state.code[exercise.id]?.trim()));
+      if (progressFilter && progress !== progressFilter) return;
       shown++;
       if (exercise.section && exercise.section !== lastSection) {
         const section = document.createElement("div");
@@ -271,26 +290,28 @@
       button.type = "button";
       button.className = "exercise-item";
       button.classList.toggle("is-active", exercise.id === currentId);
-      button.classList.toggle("is-complete", Boolean(state.completed[exercise.id]));
+      button.classList.toggle("is-complete", progress === "passed");
+      button.disabled = Boolean(state.practice.session);
       const number = document.createElement("span");
       number.className = "exercise-number";
-      number.textContent = state.completed[exercise.id] ? "✓" : index + 1;
+      number.textContent = progress === "passed" ? "✓" : index + 1;
       const description = document.createElement("span");
       const title = document.createElement("strong");
       title.textContent = exercise.title;
       const metadata = document.createElement("small");
-      metadata.textContent = `${exercise.library} · ${exercise.level}`;
+      metadata.textContent = `${exercise.library} · ${exercise.level}${progress === "review" ? " · Cần ôn lại" : ""}`;
       description.append(title, metadata);
       button.append(number, description);
       button.addEventListener("click", () => selectExercise(exercise.id));
       els.list.append(button);
     });
     if (!shown) {const empty = document.createElement("p");empty.textContent = "Không có bài phù hợp.";els.list.append(empty);}
-    const completed = exercises.filter((exercise) => state.completed[exercise.id]).length;
-    els.count.textContent = `${completed}/${exercises.length} hoàn thành`;
+    const completed = exercises.filter(exercise => P.status(state.practice, exercise.id, state.completed[exercise.id], false) === "passed").length;
+    els.count.textContent = `${completed}/${exercises.length} đã đạt`;
   }
 
   function selectExercise(id) {
+    if (state.practice.session && id !== state.practice.session.exerciseId) return;
     cancelRun();
     renderDiagnostic(null);
     saveCurrentCode();
@@ -302,15 +323,17 @@
 
     els.title.textContent = exercise.title;
     IT1140Text.render(els.task, exercise.task);
-    selectedTestIndex = Number.isInteger(state.testCase[id]) && exercise.tests?.[state.testCase[id]] ? state.testCase[id] : 0;
+    const savedTest = session()?.testCase ?? state.testCase[id];
+    selectedTestIndex = Number.isInteger(savedTest) && exercise.tests?.[savedTest] ? savedTest : 0;
+    if (session()) selectedTestIndex = 0;
     renderSampleFiles(exercise, selectedTestIndex);
     const samples = document.getElementById("pythonSampleCase");samples.replaceChildren();
-    (exercise.tests || []).forEach((test,index) => samples.append(new Option(test.label, String(index))));
+    (exercise.tests || []).forEach((test,index) => {if (!session() || index === 0) samples.append(new Option(test.label, String(index)));});
     samples.value = String(selectedTestIndex);samples.hidden = !exercise.tests?.length;
     els.library.textContent = exercise.library;
     els.level.textContent = exercise.level;
-    setEditorValue(state.code[id] ?? "");
-    els.input.value = state.input[id] ?? exercise.tests?.[selectedTestIndex]?.input ?? "";
+    setEditorValue(session()?.code ?? state.code[id] ?? "");
+    els.input.value = session()?.input ?? state.input[id] ?? exercise.tests?.[selectedTestIndex]?.input ?? "";
     IT1140Text.render(els.hintBox, exercise.hint);
     els.hintBox.hidden = true;
     els.hint.textContent = "Xem gợi ý";
@@ -332,6 +355,8 @@
       setStatus("Sẵn sàng", "ready");
     }
     renderList();
+    renderPractice();
+    checkDeadline();
   }
 
   function renderSampleFiles(exercise, testIndex = 0) {
@@ -363,7 +388,7 @@
     if (!worker) {
       worker = new Worker("./assets/js/python-worker.js?v=6", { type: "module" });
       worker.addEventListener("message", handleWorkerMessage);
-      worker.addEventListener("error", () => finishWithError("Không khởi động được môi trường Python."));
+      worker.addEventListener("error", () => {cancelRun();finishWithError("Không khởi động được môi trường Python.");});
     }
     return worker;
   }
@@ -408,6 +433,8 @@
     }
 
     clearTimeout(timeoutId);
+    busy = false;
+    document.getElementById("stopPythonBtn").hidden = true;
     els.run.disabled = false;
     els.runInput.disabled = false;
     if (message.type === "fatal") {
@@ -417,7 +444,11 @@
 
     const output = message.output || "";
     els.output.textContent = output || (message.error ? "Chương trình dừng vì lỗi." : "Chương trình chạy xong nhưng không in ra kết quả.");
+    // A timed submission is immutable; feedback becomes available after grading.
+    const timedSubmission = message.mode !== "single" && session()?.phase === "submitted";
+    if (timedSubmission) {session().phase = "review";saveState();}
     renderDiagnostic(message.diagnostic);
+    if (withoutHelp() && message.diagnostic) els.output.textContent = message.error || message.diagnostic.traceback || message.diagnostic.message;
     if (message.error && !message.diagnostic) els.output.textContent = message.error;
     if (message.mode === "single") {
       els.tests.innerHTML = "";
@@ -428,6 +459,13 @@
       setStatus(message.error ? "Mã có lỗi" : "Đã chạy", message.error ? "error" : "success");
     } else {
       const allPassed = !message.error && message.tests.length > 0 && message.tests.every((test) => test.passed);
+      if (message.tests.length) {
+        P.record(state.practice, currentId, {at:Date.now(), mode:timedSubmission ? "timed" : "practice",
+          total:message.tests.length, passed:message.tests.filter(test => test.passed).length,
+          assisted:!timedSubmission && Boolean(state.practice.hinted[currentId]),
+          elapsedMs:timedSubmission ? session().endedAt-session().startedAt : null});
+        saveState();
+      }
       renderTests(message.tests);
       if (allPassed && els.editor.value === runningCode) {
         state.completed[currentId] = true;
@@ -439,31 +477,38 @@
       } else {
         setStatus(message.error ? "Mã có lỗi" : "Chưa đạt tất cả kiểm tra", "error");
       }
+      renderList();
     }
 
     if (message.plot) {
       els.chart.src = `data:image/png;base64,${message.plot}`;
       els.chart.hidden = false;
     }
+    renderPractice();
   }
 
   function finishWithError(message) {
     clearTimeout(timeoutId);
-    els.run.disabled = false;
-    els.runInput.disabled = false;
+    busy = false;
     els.output.textContent = message;
     setStatus("Không thể chạy", "error");
+    renderPractice();
   }
 
   function startRun(mode) {
     const exercise = currentExercise();
-    if (!exercise || exercise.browserRunnable === false || els.run.disabled) return;
+    if (session()?.phase === "running" && mode === "tests") {submitTimed();return;}
+    if (!exercise || exercise.browserRunnable === false || busy || studyStopped || els.editor.disabled) return;
+    if (session()?.phase === "review" || (session()?.phase === "submitted" && mode !== "tests")) return;
+    if (session()?.phase === "running" && P.remaining(session()) === 0) {submitTimed();return;}
     if (els.editor.value.length > 200000) { finishWithError("Mã vượt 200.000 ký tự. Hãy rút gọn chương trình trước khi chạy.");return; }
     runningCode = els.editor.value;
     renderDiagnostic(null);
     saveCurrentCode();
     els.run.disabled = true;
     els.runInput.disabled = true;
+    busy = true;
+    document.getElementById("stopPythonBtn").hidden = false;
     els.tests.innerHTML = "";
     els.chart.hidden = true;
     els.output.textContent = "Đang chuẩn bị…";
@@ -483,11 +528,100 @@
     }
 
     timeoutId = setTimeout(() => {
-      worker?.terminate();
-      worker = undefined;
+      cancelRun();
       finishWithError("Chương trình chạy quá 60 giây và đã được dừng. Hãy kiểm tra vòng lặp hoặc tối ưu lại mã.");
     }, runTimeoutMs);
+    renderPractice();
   }
+
+  function renderPractice() {
+    const s = session(), exercise = currentExercise(), locked = Boolean(s && s.phase !== "running");
+    document.getElementById("timedSetup").hidden = Boolean(s);
+    document.getElementById("timedActive").hidden = !s;
+    document.getElementById("editSubmittedBtn").hidden = s?.phase !== "review";
+    document.getElementById("startTimedBtn").disabled = !exercise || !exercise.tests || exercise.browserRunnable === false || busy || studyStopped || els.editor.disabled;
+    els.editor.readOnly = locked;els.input.readOnly = locked;
+    document.getElementById("pythonSampleCase").disabled = locked || studyStopped;
+    els.hint.hidden = Boolean(s);if (s) els.hintBox.hidden = true;
+    els.reset.disabled = Boolean(s) || studyStopped;
+    for (const id of ["indentPythonBtn","outdentPythonBtn"]) document.getElementById(id).disabled = locked || studyStopped;
+    const unavailable = !exercise || !exercise.tests || exercise.browserRunnable === false || studyStopped || els.editor.disabled;
+    els.run.disabled = unavailable || (busy && s?.phase !== "running") || s?.phase === "review";
+    els.runInput.disabled = unavailable || busy || locked;
+    els.run.textContent = s?.phase === "running" ? "Nộp bài" : s?.phase === "submitted" ? "Chấm bài đã nộp" : "Chạy và kiểm tra";
+    document.getElementById("stopPythonBtn").hidden = !busy;
+    const notice = document.getElementById("timedNotice");
+    notice.hidden = !s;
+    if (s) {
+      const rows = state.practice.records[currentId] || [], last = rows.at(-1);
+      document.getElementById("timedLabel").textContent = s.phase === "running" ? "Lượt có giờ · Không gợi ý" : "Đã nộp · Mã đã khóa";
+      document.getElementById("timedClock").textContent = s.phase === "running" ? P.clock(P.remaining(s)) : P.clock(s.endedAt-s.startedAt);
+      document.getElementById("timedClock").setAttribute("aria-label", s.phase === "running" ? "Thời gian còn lại" : "Thời gian làm bài");
+      const text = s.phase === "running" ? "Hết giờ sẽ tự nộp bài. Bản nháp luyện tập được giữ riêng."
+        : s.phase === "submitted" ? (busy ? "Đang chấm bài đã nộp…" : "Bài đã lưu. Bấm “Chấm bài đã nộp” để lấy kết quả.")
+        : last?.mode === "timed" ? `Đạt ${last.passed}/${last.total} ca kiểm tra · ${P.clock(last.elapsedMs)}. Chọn “Sửa bài đã nộp” để luyện lại.` : "Lượt đã kết thúc. Về luyện tập để thử lại.";
+      if (notice.textContent !== text) notice.textContent = text;
+    }
+    const rows = state.practice?.records[currentId] || [];
+    document.getElementById("pythonHistoryTitle").textContent = `Lịch sử nộp bài${rows.length ? ` · ${rows.length} lượt gần nhất` : ""}`;
+    const list = document.getElementById("pythonAttempts");list.replaceChildren();
+    if (!rows.length) {const li = document.createElement("li");li.textContent = "Chưa có lượt kiểm tra nào.";list.append(li);}
+    for (const row of [...rows].reverse()) {
+      const li = document.createElement("li");
+      li.textContent = `${new Date(row.at).toLocaleString("vi-VN")} — ${row.mode === "timed" ? `Có giờ · ${P.clock(row.elapsedMs)}` : "Luyện tập"} — ${row.passed}/${row.total} ca đạt${row.assisted ? " · Đã mở gợi ý" : ""}`;
+      li.className = row.passed === row.total ? "attempt-passed" : "attempt-review";list.append(li);
+    }
+    renderWarnings();
+    renderExpected();
+  }
+
+  function renderExpected() {
+    const test = currentExercise()?.tests?.[selectedTestIndex], details = document.getElementById("pythonExpected");
+    const visible = !withoutHelp() && test && typeof test.output === "string" && els.input.value === (test.input || "");
+    details.hidden = !visible;
+    document.getElementById("pythonExpectedOutput").textContent = visible ? test.output || "(Không in ra màn hình)" : "";
+  }
+
+  function submitTimed() {
+    const s = session();
+    if (!s || s.phase !== "running" || studyStopped || els.editor.disabled) return;
+    saveCurrentCode();P.submit(s);saveState();cancelRun();renderPractice();startRun("tests");
+  }
+
+  function checkDeadline() {
+    const s = session();
+    if (!s || s.phase !== "running" || studyStopped) return;
+    document.getElementById("timedClock").textContent = P.clock(P.remaining(s));
+    if (P.remaining(s) === 0) submitTimed();
+  }
+
+  document.getElementById("startTimedBtn").addEventListener("click", () => {
+    const exercise = currentExercise();
+    if (!exercise?.tests || exercise.browserRunnable === false || busy || studyStopped || els.editor.disabled || session()) return;
+    saveCurrentCode();
+    state.practice.session = P.begin(currentId, Number(document.getElementById("timedMinutes").value));
+    state.practice.session.input = exercise.tests[0]?.input || "";
+    saveState();currentId = "";selectExercise(state.currentId);
+  });
+  document.getElementById("leaveTimedBtn").addEventListener("click", () => {
+    if (session()?.phase === "running" && !window.confirm("Kết thúc lượt có giờ mà không nộp bài? Mã của lượt này sẽ không được giữ. Bản nháp luyện tập vẫn còn.")) return;
+    cancelRun();state.practice.session = null;saveState();
+    // Restore the ordinary draft; never save the timed buffer over it.
+    currentId = "";selectExercise(state.currentId);
+  });
+  document.getElementById("editSubmittedBtn").addEventListener("click", () => {
+    const s = session();if (!s || s.phase !== "review" || studyStopped) return;
+    if (state.code[currentId] && state.code[currentId] !== s.code && !window.confirm("Thay bản nháp luyện tập bằng mã của bài đã nộp? Hãy tải bản nháp .py trước nếu muốn giữ cả hai.")) return;
+    state.code[currentId] = s.code;state.input[currentId] = s.input;state.testCase[currentId] = s.testCase;
+    state.practice.session = null;saveState();currentId = "";selectExercise(state.currentId);
+  });
+  document.getElementById("stopPythonBtn").addEventListener("click", () => {
+    cancelRun();els.output.textContent = "Đã dừng chương trình. Mã đang viết được giữ lại.";
+    setStatus("Đã dừng", "ready");renderPractice();
+  });
+  setInterval(checkDeadline, 500);
+  document.addEventListener("visibilitychange", checkDeadline);
+  window.addEventListener("pagehide", saveCurrentCode);
 
   async function initialize() {
     try {
@@ -495,9 +629,10 @@
       if (!response.ok) throw new Error("Không tải được danh sách bài tập.");
       const data = await response.json();
       exercises = data.exercises;
+      if (state.practice.session && !exercises.some(e => e.id === state.practice.session.exerciseId && e.browserRunnable !== false)) state.practice.session = null;
       const sections = document.getElementById("exerciseSection");
       for (const section of new Set(exercises.map(e => e.section).filter(Boolean))) sections.append(new Option(section, section));
-      selectExercise(exercises.some((item) => item.id === state.currentId) ? state.currentId : exercises[0]?.id);
+      selectExercise(state.practice.session?.exerciseId || (exercises.some((item) => item.id === state.currentId) ? state.currentId : exercises[0]?.id));
     } catch (error) {
       els.output.textContent = error.message;
       setStatus("Không tải được bài tập", "error");
@@ -511,19 +646,23 @@
     rememberEdit();
   });
   els.editor.addEventListener("scroll", syncEditorScroll);
-  els.input.addEventListener("input", saveCurrentCode);
+  els.input.addEventListener("input", () => {saveCurrentCode();renderExpected();});
   function selectSample(index) {
+    if (session() && session().phase !== "running") return;
     const exercise = currentExercise(), test = exercise?.tests?.[index];if (!test) return;
-    selectedTestIndex = index;state.testCase[currentId] = index;
+    if (session() && index !== 0) return;
+    selectedTestIndex = index;if (!session()) state.testCase[currentId] = index;
     document.getElementById("pythonSampleCase").value = String(index);
-    els.input.value = test.input || "";renderSampleFiles(exercise, index);saveCurrentCode();
+    els.input.value = test.input || "";renderSampleFiles(exercise, index);saveCurrentCode();renderExpected();
   }
   document.getElementById("pythonSampleCase").addEventListener("change", event => selectSample(Number(event.target.value)));
   document.getElementById("exerciseSearch").addEventListener("input", renderList);
   document.getElementById("exerciseSection").addEventListener("change", renderList);
+  document.getElementById("exerciseState").addEventListener("change", renderList);
   els.editor.addEventListener("keydown", (event) => {
     if (event.isComposing) return;
     if (event.key === "Escape") {event.preventDefault();els.editor.blur();return;}
+    if (els.editor.readOnly) return;
     if ((event.ctrlKey || event.metaKey) && ["z", "y"].includes(event.key.toLowerCase())) {
       event.preventDefault();undoEdit(event.key.toLowerCase() === "y" || event.shiftKey);return;
     }
@@ -551,6 +690,7 @@
     if (edit) { event.preventDefault(); applyEdit(edit); }
   });
   function applyEdit(edit) {
+    if (els.editor.readOnly || els.editor.disabled || studyStopped) return;
     // Change the smallest range, preserving textarea scroll and browser edit history
     // where supported, rather than replacing the whole document for every key.
     const value = els.editor.value;let from = 0, oldEnd = value.length, newEnd = edit.value.length;
@@ -565,8 +705,10 @@
   els.run.addEventListener("click", () => startRun("tests"));
   els.runInput.addEventListener("click", () => startRun("single"));
   els.reset.addEventListener("click", () => {
+    if (session() || studyStopped) return;
     const exercise = currentExercise();
     if (!exercise) return;
+    if (els.editor.value && !window.confirm("Xóa mã đang viết của bài này? Lịch sử nộp bài vẫn được giữ.")) return;
     setEditorValue("");
     els.input.value = exercise.tests?.[0]?.input ?? "";
     delete state.code[exercise.id];
@@ -595,9 +737,13 @@
     setStatus("Đã tải file Python", "success");
   });
   els.hint.addEventListener("click", () => {
+    if (!currentId || !state.practice || session()) return;
     els.hintBox.hidden = !els.hintBox.hidden;
+    if (!els.hintBox.hidden) {state.practice.hinted[currentId] = true;saveState();}
     els.hint.textContent = els.hintBox.hidden ? "Xem gợi ý" : "Ẩn gợi ý";
   });
+
+  window.addEventListener("it1140:study-stopped", () => {studyStopped = true;saveCurrentCode();cancelRun();renderPractice();});
 
   initialize();
 })();

@@ -836,6 +836,21 @@ button {
   min-width: 0;
 }
 
+.practice-bar { padding: 12px 16px; border-left: 3px solid var(--teal); }
+.practice-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.practice-controls label, .practice-controls strong { font-weight: 700; margin-right: auto; }
+.practice-controls select { border: 1px solid var(--line); border-radius: 7px; background: var(--surface); color: var(--ink); padding: 8px; }
+#timedClock { font: 700 1.4rem ui-monospace, SFMono-Regular, Consolas, monospace; font-variant-numeric: tabular-nums; }
+#timedNotice { margin-top: 10px; line-height: 1.5; }
+.practice-history { padding: 14px 16px; }
+.practice-history summary { cursor: pointer; font-weight: 700; }
+.practice-history ol { padding-left: 22px; }
+.practice-history li { margin-top: 12px; overflow-wrap: anywhere; }
+.attempt-passed { color: var(--teal-dark); }
+.attempt-review { color: var(--coral); }
+.exercise-item:disabled { cursor: default; opacity: .55; }
+.exercise-item:disabled.is-active { opacity: 1; }
+
 .lab-heading {
   display: flex;
   align-items: flex-start;

@@ -35,6 +35,17 @@ Trước khi bán, chủ website vẫn cần xác nhận quyền khai thác thư
 - Lời nhắc truyền vào `input("...")` được ghi vào stdout như Python thường, không âm thầm bị bỏ đi. Nếu đề chỉ yêu cầu in kết quả thì lời nhắc sẽ khiến ca sai. Dữ liệu stdin hỗ trợ xuống dòng Windows; metadata chương trình là `main.py`, thư mục làm việc được khôi phục giữa các ca. Escape rời trình soạn thảo, tránh giữ người dùng chỉ dùng bàn phím trong ô Tab-thụt-lề.
 - Chuyển bài hủy lượt chạy cũ để không đánh dấu hoàn thành nhầm bài. Nếu sửa mã trong lúc kiểm tra, kết quả đúng của bản cũ không tự đánh dấu hoàn thành bản mới.
 
+## Luyện để vào phòng thi
+
+- **Luyện tập**: có gợi ý, cảnh báo cú pháp, giải thích lỗi và xem output của ca mẫu. Output mẫu tự ẩn khi sửa stdin để không bị hiểu nhầm là đáp án cho input tự nhập. Lịch sử ghi rõ lượt đã mở gợi ý; không kết luận người học tự giải chỉ vì chưa bấm nút này.
+- **Luyện có giờ cho từng bài**: tự chọn 15/30/45/60/90 phút, bắt đầu với mã trống trong bộ đệm riêng. Bản nháp luyện tập cũ không bị ghi đè. Không có gợi ý, cảnh báo hay giải thích lỗi bằng tiếng Việt trong lúc làm; vẫn giữ thao tác IDE, chạy stdin tự nhập và thông báo lỗi gốc của Python. Chỉ ca mẫu đầu tiên được chọn trong lượt có giờ; nộp bài mới chạy toàn bộ ca kiểm tra.
+- Đồng hồ dùng thời điểm kết thúc tuyệt đối, không đặt lại khi đổi tab hoặc tải trang. Hết giờ tự nộp, hủy lần chạy input đang diễn ra; các kết quả worker cũ bị bỏ qua. Trình duyệt đang đóng/treo không thể chạy tác vụ: lượt hết hạn sẽ nộp khi mở lại và tải được đề. Không phải giám sát thi hay chống gian lận.
+- Khi nộp, khóa mã và stdin. Mất kết nối, tải lại hoặc dừng chấm có thể **chấm lại mã đã nộp**, không sửa lén mã của lượt đó. Sau khi có kết quả, **Sửa bài đã nộp** chuyển mã về luyện tập (hỏi trước nếu thay bản nháp khác); **Về luyện tập** khôi phục bản nháp cũ.
+- Giữ 10 lượt kiểm tra gần nhất mỗi bài: thời điểm, số ca đạt, chế độ, thời gian của lượt có giờ. Không lưu mã nguồn của từng lượt trong lịch sử. Chạy một input không tính là nộp bài. Lọc **Chưa làm / Đang viết / Cần ôn lại / Đã đạt**; kết quả kiểm tra gần nhất quyết định cần ôn lại, kể cả bài từng đạt trước đó.
+- **Dừng chạy** hủy worker và giữ mã. Không lưu được localStorage sẽ báo để người học tải `.py`. Mọi tiến độ và lượt có giờ vẫn ở trên thiết bị, tách theo tài khoản/học thử; không thêm ghi cơ sở dữ liệu hay gọi API theo nhịp đồng hồ.
+
+Đây là tự luyện theo bộ bài hiện có, không khẳng định thời lượng/cấu trúc đề thi HUST, không chứng nhận điểm hoặc đảm bảo đạt mọi input ngoài các ca đã kiểm tra. Sandbox cách ly và danh sách nội dung học thử không thay đổi.
+
 ## Kiểm chứng
 
 ```sh

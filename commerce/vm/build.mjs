@@ -10,7 +10,7 @@ for(const name of ['index.html','account.js','study-client.js','quiz.js','legal.
 for(const name of ['account.css','commerce-sw.js'])await cp(resolve(root,'commerce/public',name),resolve(out,name));
 await cp(resolve(import.meta.dirname,'public/commerce-access.js'),resolve(out,'commerce-access.js'));
 await cp(resolve(root,'assets/js/question-content.js'),resolve(out,'assets/js/question-content.js'));
-for(const name of ['python-errors.js','python-editor.js'])await cp(resolve(root,'assets/js',name),resolve(out,'assets/js',name));
+for(const name of ['python-errors.js','python-editor.js','python-practice.js'])await cp(resolve(root,'assets/js',name),resolve(out,'assets/js',name));
 let worker=await readFile(resolve(root,'assets/js/python-worker.js'),'utf8');
 worker=worker.replace(/^import \{ loadPyodide \} from [^\n]+\n/,'')
   .replace('import "./python-errors.js";','')
@@ -65,8 +65,8 @@ lab=lab.replace('  initialize();',`  window.addEventListener('it1140:study-stopp
     els.run.disabled = els.runInput.disabled = true; saveCurrentCode();
   });
   initialize();`);
-lab=lab.replace('worker.addEventListener("error", () => finishWithError("Không khởi động được môi trường Python."));',
-  'worker.addEventListener("error", event => { worker?.terminate(); worker = undefined; finishWithError("Không khởi động được Python: " + (event.message || "Không tải được module từ CDN. Hãy kiểm tra mạng và tải lại trang.")); });');
+lab=lab.replace('worker.addEventListener("error", () => {cancelRun();finishWithError("Không khởi động được môi trường Python.");});',
+  'worker.addEventListener("error", event => { cancelRun(); finishWithError("Không khởi động được Python: " + (event.message || "Không tải được module từ CDN. Hãy kiểm tra mạng và tải lại trang.")); });');
 assert.equal(lab.split('new Worker("./assets/js/python-worker.js?v=6", { type: "module" })').length,2);
 lab=lab.replace('new Worker("./assets/js/python-worker.js?v=6", { type: "module" })','window.IT1140CreatePythonWorker()');
 assert.ok(!lab.includes('new Worker('),'Commercial lab must never construct an account-origin worker');
@@ -83,7 +83,7 @@ async function audit(dir,prefix=''){
   for(const entry of await readdir(dir,{withFileTypes:true})){
     const p=prefix+entry.name;
     if(entry.isDirectory()){assert.ok(['assets','assets/js','assets/css'].includes(p),`Unexpected public directory ${p}`);await audit(resolve(dir,entry.name),p+'/');}
-    else assert.ok(new Set(['index.html','learn.html','preview.html','account.js','account.css','commerce-sw.js','commerce-access.js','study-client.js','legal.html','python-sandbox.js','python-sandbox.html','python-sandbox-frame.js','assets/js/question-content.js','assets/js/commerce-quiz.js','assets/js/python-lab.js','assets/js/python-errors.js','assets/js/python-editor.js','assets/css/app.css']).has(p),`Unexpected public file ${p}`);
+    else assert.ok(new Set(['index.html','learn.html','preview.html','account.js','account.css','commerce-sw.js','commerce-access.js','study-client.js','legal.html','python-sandbox.js','python-sandbox.html','python-sandbox-frame.js','assets/js/question-content.js','assets/js/commerce-quiz.js','assets/js/python-lab.js','assets/js/python-errors.js','assets/js/python-editor.js','assets/js/python-practice.js','assets/css/app.css']).has(p),`Unexpected public file ${p}`);
   }
 }
 await audit(out);console.log('VM public build ready; private bank, keys and SQL excluded.');
