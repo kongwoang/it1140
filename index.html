@@ -125,6 +125,10 @@
             <span>Bài thực hành</span>
             <strong id="exerciseProgress">0/0 hoàn thành</strong>
           </div>
+          <label class="sr-only" for="exerciseSearch">Tìm bài Python</label>
+          <input type="search" id="exerciseSearch" placeholder="Tìm tên bài hoặc thư viện" maxlength="100" />
+          <label class="sr-only" for="exerciseSection">Phần thực hành</label>
+          <select id="exerciseSection" aria-label="Phần thực hành"><option value="">Tất cả phần</option></select>
           <div class="exercise-list" id="exerciseList"></div>
         </aside>
 
@@ -157,6 +161,8 @@
                 <span id="pythonEditorStats">0 dòng · 0 ký tự</span>
               </div>
               <div class="ide-toolbar-actions">
+                <button type="button" class="ide-tool-btn" id="outdentPythonBtn" title="Shift + Tab">← Lề</button>
+                <button type="button" class="ide-tool-btn" id="indentPythonBtn" title="Tab · 4 dấu cách">Lề →</button>
                 <button type="button" class="ide-tool-btn" id="copyPythonBtn">Chép</button>
                 <button type="button" class="ide-tool-btn" id="downloadPythonBtn">Tải .py</button>
               </div>
@@ -166,9 +172,10 @@
               <div class="code-editor-viewport">
                 <pre id="pythonHighlight" class="code-highlight" aria-hidden="true"></pre>
                 <label class="sr-only" for="pythonEditor">Mã nguồn Python</label>
-                <textarea id="pythonEditor" class="code-editor" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+                <textarea id="pythonEditor" class="code-editor" maxlength="200000" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
               </div>
             </div>
+            <ul id="pythonWarnings" class="python-warnings" aria-live="polite" hidden></ul>
             <div class="editor-actions">
               <button type="button" class="secondary-btn" id="resetPythonBtn">Xóa mã đang viết</button>
               <button type="button" class="secondary-btn" id="runPythonInputBtn">Chạy input này</button>
@@ -184,6 +191,7 @@
           <div class="result-grid">
             <section class="panel result-panel">
               <div class="rail-heading"><span>Kết quả</span><strong>Đầu ra chương trình</strong></div>
+              <section id="pythonDiagnostic" class="python-diagnostic" aria-live="polite" hidden></section>
               <pre id="pythonOutput" aria-live="polite">Kết quả chạy mã sẽ xuất hiện tại đây.</pre>
               <img id="pythonChart" class="python-chart" alt="Biểu đồ do mã Python tạo" hidden />
             </section>
@@ -198,6 +206,8 @@
     </div>
     <script src="./assets/js/question-content.js?v=2" defer></script>
     <script src="./assets/js/quiz-app.js?v=9" defer></script>
-    <script src="./assets/js/python-lab.js?v=11" defer></script>
+    <script src="./assets/js/python-errors.js?v=1" defer></script>
+    <script src="./assets/js/python-editor.js?v=1" defer></script>
+    <script src="./assets/js/python-lab.js?v=12" defer></script>
   </body>
 </html>

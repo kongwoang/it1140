@@ -63,13 +63,15 @@ export async function courseRoute(path,method,url,data,db,a){
     if(!uuid(examMatch[1]))throw new Fault(404,'not_found');
     const exam=(await db.query('select * from app.exams where id=$1 and user_id=$2 for update',[examMatch[1],a.user_id])).rows[0];
     if(!exam)throw new Fault(404,'not_found');
+    // A submitted score is immutable in SQL, but its old IDs/answers must not be
+    // displayed against a different edition (or dereference removed questions).
+    if(exam.bank_version!==version)throw new Fault(409,'exam_version_changed');
     if(exam.result){
       const offset=Number(url.searchParams.get('offset')||0);
       if(!Number.isInteger(offset)||offset<0)throw new Fault(400,'invalid_batch');
       return {id:exam.id,submitted:true,offset,ids:exam.question_ids,questions:exam.question_ids.slice(offset,offset+20).map(id=>publicQuestion(questions.get(id))),...exam.result};
     }
     if(new Date(exam.expires_at)<new Date())throw new Fault(410,'exam_expired');
-    if(exam.bank_version!==version)throw new Fault(409,'exam_version_changed');
     if(examMatch[2]&&method==='POST'){
       if(!data.answers||Array.isArray(data.answers)||typeof data.answers!=='object')throw new Fault(400,'invalid_answers');
       const results=exam.question_ids.map(id=>grade(questions.get(id),data.answers[id]));

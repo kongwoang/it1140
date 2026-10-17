@@ -5,7 +5,7 @@ import { readFile,readdir } from 'node:fs/promises';
 import { fixture } from './helpers.mjs';
 import { configuration,stagingOrigin } from '../config.mjs';
 import { createApp } from '../app.mjs';
-import { bank,grade,publicQuestion,questions } from '../course.mjs';
+import { bank,python,grade,publicQuestion,questions } from '../course.mjs';
 
 test('configuration fails closed; production cannot silently use HTTP or missing secrets',()=>{
   assert.throws(()=>configuration({}),/APP_ORIGIN/);
@@ -100,7 +100,7 @@ test('private bank excluded, bounded batches, server grading and immutable exam 
     const result=await (await b.call('/api/course/exams/'+exam.id+'/submit',{answers})).json();assert.equal(result.correct,4);
     const repeated=await (await b.call('/api/course/exams/'+exam.id+'/submit',{answers:{}})).json();assert.equal(repeated.correct,4);
     await f.login(other,'other@sis.hust.edu.vn');await f.grant(other);await other.call('/api/study/claim',{});assert.equal((await other.call('/api/course/exams/'+exam.id)).status,404);
-    const catalogue=await (await b.call('/api/course/python')).json();assert.equal(catalogue.exercises.length,70);assert.equal('tests'in catalogue.exercises[0],false);
+    const catalogue=await (await b.call('/api/course/python')).json();assert.equal(catalogue.exercises.length,python.exercises.length);assert.equal('tests'in catalogue.exercises[0],false);
     const detail=await (await b.call('/api/course/python/'+catalogue.exercises[0].id)).json();assert.ok(detail.tests.length);
   }finally{await f.close();}
 });

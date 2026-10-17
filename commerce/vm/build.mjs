@@ -10,10 +10,13 @@ for(const name of ['index.html','account.js','study-client.js','quiz.js','legal.
 for(const name of ['account.css','commerce-sw.js'])await cp(resolve(root,'commerce/public',name),resolve(out,name));
 await cp(resolve(import.meta.dirname,'public/commerce-access.js'),resolve(out,'commerce-access.js'));
 await cp(resolve(root,'assets/js/question-content.js'),resolve(out,'assets/js/question-content.js'));
+for(const name of ['python-errors.js','python-editor.js'])await cp(resolve(root,'assets/js',name),resolve(out,'assets/js',name));
 let worker=await readFile(resolve(root,'assets/js/python-worker.js'),'utf8');
 worker=worker.replace(/^import \{ loadPyodide \} from [^\n]+\n/,'')
+  .replace('import "./python-errors.js";','')
   .replace('let pyodidePromise = loadPyodide({ indexURL: PYODIDE_BASE_URL });','let pyodidePromise;')
   .replace('return pyodidePromise;','return pyodidePromise ||= import(PYODIDE_BASE_URL + "pyodide.mjs").then(({ loadPyodide }) => loadPyodide({ indexURL: PYODIDE_BASE_URL }));');
+worker=(await readFile(resolve(root,'assets/js/python-errors.js'),'utf8'))+'\n'+worker;
 // Do not serve a same-origin Python worker. The opaque iframe creates it from a
 // blob and its restrictive CSP permits only pinned runtime downloads, never APIs.
 const frame=await readFile(resolve(import.meta.dirname,'public/python-sandbox-frame.js'),'utf8');
@@ -80,7 +83,7 @@ async function audit(dir,prefix=''){
   for(const entry of await readdir(dir,{withFileTypes:true})){
     const p=prefix+entry.name;
     if(entry.isDirectory()){assert.ok(['assets','assets/js','assets/css'].includes(p),`Unexpected public directory ${p}`);await audit(resolve(dir,entry.name),p+'/');}
-    else assert.ok(new Set(['index.html','learn.html','preview.html','account.js','account.css','commerce-sw.js','commerce-access.js','study-client.js','legal.html','python-sandbox.js','python-sandbox.html','python-sandbox-frame.js','assets/js/question-content.js','assets/js/commerce-quiz.js','assets/js/python-lab.js','assets/css/app.css']).has(p),`Unexpected public file ${p}`);
+    else assert.ok(new Set(['index.html','learn.html','preview.html','account.js','account.css','commerce-sw.js','commerce-access.js','study-client.js','legal.html','python-sandbox.js','python-sandbox.html','python-sandbox-frame.js','assets/js/question-content.js','assets/js/commerce-quiz.js','assets/js/python-lab.js','assets/js/python-errors.js','assets/js/python-editor.js','assets/css/app.css']).has(p),`Unexpected public file ${p}`);
   }
 }
 await audit(out);console.log('VM public build ready; private bank, keys and SQL excluded.');

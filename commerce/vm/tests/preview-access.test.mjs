@@ -8,7 +8,7 @@ import { keyed } from '../store.mjs';
 import { fixture } from './helpers.mjs';
 
 test('fixed preview covers all chapters at about 10% and validates its editable allowlist',()=>{
-  assert.equal(preview.questionIds.size,210);assert.equal(preview.pythonIds.size,7);
+  assert.equal(preview.questionIds.size,210);assert.equal(preview.pythonIds.size,Math.round(python.exercises.length/10));
   const chapters=new Map(bank.topics.map(t=>[t.id,t.chapter]));
   for(const c of bank.chapters){const all=bank.questions.filter(q=>chapters.get(q.topic)===c.id),free=all.filter(q=>preview.questionIds.has(q.id));assert.ok(free.length>0);assert.ok(Math.abs(free.length-all.length/10)<=1);}
   assert.throws(()=>previewPolicy({questionIds:bank.questions.map(q=>q.id),pythonIds:[...preview.pythonIds]}),/distinct subset/);
@@ -35,7 +35,7 @@ test('anonymous preview works without SMTP, database writes, cookies or answer k
   const q=questions.get(first.questions[0].id);
   const result=await call('/api/preview/grade',{id:q.id,answer:q.answer}).then(r=>r.json());assert.equal(result.correct,true);
   const review=await call('/api/preview/grade',{id:q.id,review:true}).then(r=>r.json());assert.deepEqual(review.answer,q.answer);
-  const meta=await call('/api/preview/python').then(r=>r.json());assert.equal(meta.exercises.length,7);assert.equal('tests'in meta.exercises[0],false);
+  const meta=await call('/api/preview/python').then(r=>r.json());assert.equal(meta.exercises.length,preview.pythonIds.size);assert.equal('tests'in meta.exercises[0],false);
   const detail=await call('/api/preview/python/'+meta.exercises[0].id).then(r=>r.json());assert.ok(detail.tests.length);
 });
 

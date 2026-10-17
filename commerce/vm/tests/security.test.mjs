@@ -10,6 +10,19 @@ import { verifyWebhook,paymentCode,bankTime } from '../../payments.mjs';
 import { createApp } from '../app.mjs';
 import { randomUUID } from 'node:crypto';
 
+test('submitted exams from an old bank cannot silently display new wording or removed IDs',async()=>{
+  const f=await fixture();try{
+    const b=f.browser();await f.login(b);await f.grant(b);await b.call('/api/study/claim',{});
+    const exam=await (await b.call('/api/course/exams',{count:1})).json();
+    const result=await (await b.call('/api/course/exams/'+exam.id+'/submit',{answers:{}})).json();
+    assert.equal(result.submitted,true);
+    await f.pool.query("update app.exams set bank_version='old-edition' where id=$1",[exam.id]);
+    const response=await b.call('/api/course/exams/'+exam.id);
+    assert.equal(response.status,409);assert.equal((await response.json()).error,'exam_version_changed');
+    assert.deepEqual((await f.pool.query('select result from app.exams where id=$1',[exam.id])).rows[0].result.results,result.results);
+  }finally{await f.close();}
+});
+
 test('rejected OTP resends do not consume global mail capacity',async()=>{
   const f=await fixture();try{
     f.cfg.OTP_MAX_PER_HOUR=2;

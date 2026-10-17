@@ -7,7 +7,10 @@
     initialized=true;const port=event.ports[0];let worker,currentRun;
     port.onmessage=event=>{
       const value=event.data;
-      if(!value||value.type!=='run'||!Number.isSafeInteger(value.runId)||typeof value.code!=='string'||value.code.length>100000||!Array.isArray(value.tests)||value.tests.length>100)return;
+      if(!value||value.type!=='run'||!Number.isSafeInteger(value.runId))return;
+      if(typeof value.code!=='string'||value.code.length>200000||!Array.isArray(value.tests)||value.tests.length>100){
+        port.postMessage({type:'fatal',runId:value.runId,error:'Mã vượt 200.000 ký tự hoặc bộ kiểm tra không hợp lệ.'});return;
+      }
       currentRun=value.runId;
       if(!worker){
         const url=URL.createObjectURL(new Blob([WORKER_SOURCE],{type:'text/javascript'}));

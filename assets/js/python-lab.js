@@ -26,6 +26,8 @@
     output: document.getElementById("pythonOutput"),
     tests: document.getElementById("pythonTests"),
     chart: document.getElementById("pythonChart"),
+    warnings: document.getElementById("pythonWarnings"),
+    diagnostic: document.getElementById("pythonDiagnostic"),
   };
 
   let exercises = [];
@@ -33,6 +35,10 @@
   let worker;
   let activeRunId = 0;
   let timeoutId;
+  let warningTimer;
+  let errorLine = null;
+  let runningCode = "";
+  let editHistory = [], historyIndex = -1;
   let state = loadState();
 
   const pythonKeywords = new Set([
@@ -131,9 +137,61 @@
     const code = els.editor.value;
     const lineCount = Math.max(1, code.split("\n").length);
     els.highlight.innerHTML = highlightPython(code);
-    els.lineNumbers.innerHTML = `<div class="line-number-list">${Array.from({ length: lineCount }, (_, index) => `<span>${index + 1}</span>`).join("")}</div>`;
+    els.lineNumbers.innerHTML = `<div class="line-number-list">${Array.from({ length: lineCount }, (_, index) => `<span${index + 1 === errorLine ? ' class="error-line"' : ''}>${index + 1}</span>`).join("")}</div>`;
     els.editorStats.textContent = `${lineCount} dòng · ${code.length} ký tự`;
     syncEditorScroll();
+    clearTimeout(warningTimer);
+    warningTimer = setTimeout(renderWarnings, 350);
+  }
+
+  function goToLine(line, column = 1) {
+    const lines = els.editor.value.split("\n");
+    const index = Math.min(lines.length, Math.max(1, line)) - 1;
+    const start = lines.slice(0, index).reduce((sum, text) => sum + text.length + 1, 0);
+    els.editor.focus();
+    els.editor.setSelectionRange(start + Math.min(lines[index].length, column - 1), start + lines[index].length);
+    els.editor.scrollTop = Math.max(0, (index - 3) * (parseFloat(getComputedStyle(els.editor).lineHeight) || 24));
+    syncEditorScroll();
+  }
+
+  function renderWarnings() {
+    els.warnings.replaceChildren();
+    const issues = IT1140PythonEditor.analyse(els.editor.value).issues;
+    for (const issue of issues) {
+      const li = document.createElement("li"), button = document.createElement("button");
+      button.type = "button"; button.textContent = `Dòng ${issue.line}: ${issue.message}`;
+      button.addEventListener("click", () => goToLine(issue.line, issue.column));
+      li.append(button); els.warnings.append(li);
+    }
+    els.warnings.hidden = !issues.length;
+  }
+
+  function renderDiagnostic(diagnostic) {
+    els.diagnostic.replaceChildren(); els.diagnostic.hidden = !diagnostic;
+    errorLine = null;
+    if (diagnostic) {
+      const info = IT1140PythonErrors.explain(diagnostic);
+      const title = document.createElement("strong"), help = document.createElement("p");
+      title.textContent = info.title; help.textContent = info.help;
+      els.diagnostic.append(title, help);
+      if (info.line) {
+        const jump = document.createElement("button");jump.type = "button";
+        const unchanged = els.editor.value === runningCode;
+        jump.textContent = unchanged ? `${info.type} · Dòng ${info.line}${info.column ? `, cột ${info.column}` : ""} — xem mã` : `${info.type} · Dòng ${info.line} trong mã đã chạy (mã hiện tại đã thay đổi)`;
+        jump.disabled = !unchanged;
+        jump.addEventListener("click", () => goToLine(info.line, info.column || 1));
+        els.diagnostic.append(jump);errorLine = unchanged ? info.line : null;
+      }
+      const details = document.createElement("details"), summary = document.createElement("summary"), pre = document.createElement("pre");
+      summary.textContent = "Thông báo Python đầy đủ";pre.textContent = info.traceback || info.detail;
+      details.append(summary, pre);els.diagnostic.append(details);
+    }
+    updateEditorChrome();
+  }
+
+  function cancelRun() {
+    clearTimeout(timeoutId);activeRunId++;
+    worker?.terminate();worker = undefined;
   }
 
   function syncEditorScroll() {
@@ -144,7 +202,24 @@
 
   function setEditorValue(value) {
     els.editor.value = value;
+    editHistory = [];historyIndex = -1;rememberEdit();
     updateEditorChrome();
+  }
+
+  function rememberEdit() {
+    const entry = { value:els.editor.value, start:els.editor.selectionStart, end:els.editor.selectionEnd };
+    if (editHistory[historyIndex]?.value === entry.value) {editHistory[historyIndex] = entry;return;}
+    editHistory.splice(historyIndex + 1);editHistory.push(entry);
+    // Bound memory even when a learner pastes a large program.
+    while (editHistory.length > 100 || (editHistory.length > 1 && editHistory.reduce((sum, item) => sum + item.value.length, 0) > 2000000)) editHistory.shift();
+    historyIndex = editHistory.length - 1;
+  }
+
+  function undoEdit(redo) {
+    historyIndex = Math.min(editHistory.length - 1, Math.max(0, historyIndex + (redo ? 1 : -1)));
+    const entry = editHistory[historyIndex];if (!entry) return;
+    els.editor.value = entry.value;els.editor.setSelectionRange(entry.start, entry.end);
+    renderDiagnostic(null);saveCurrentCode();
   }
 
   function loadState() {
@@ -183,7 +258,12 @@
   function renderList() {
     els.list.innerHTML = "";
     let lastSection = "";
+    const fold = text => text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d");
+    const query = fold(document.getElementById("exerciseSearch").value.trim()), sectionFilter = document.getElementById("exerciseSection").value;
+    let shown = 0;
     exercises.forEach((exercise, index) => {
+      if ((sectionFilter && exercise.section !== sectionFilter) || (query && !fold(exercise.title + " " + exercise.library).includes(query))) return;
+      shown++;
       if (exercise.section && exercise.section !== lastSection) {
         const section = document.createElement("div");
         section.className = "exercise-section";
@@ -209,11 +289,14 @@
       button.addEventListener("click", () => selectExercise(exercise.id));
       els.list.append(button);
     });
+    if (!shown) {const empty = document.createElement("p");empty.textContent = "Không có bài phù hợp.";els.list.append(empty);}
     const completed = exercises.filter((exercise) => state.completed[exercise.id]).length;
     els.count.textContent = `${completed}/${exercises.length} hoàn thành`;
   }
 
   function selectExercise(id) {
+    cancelRun();
+    renderDiagnostic(null);
     saveCurrentCode();
     currentId = id;
     state.currentId = id;
@@ -291,6 +374,21 @@
       const item = document.createElement("li");
       item.className = result.passed ? "is-passed" : "is-failed";
       item.textContent = `${result.passed ? "✓" : "×"} ${result.label}${result.error ? ` — ${result.error}` : ""}`;
+      if (!result.passed && result.difference) {
+        const pre = document.createElement("pre"), d = result.difference;
+        pre.textContent = `Dòng đầu tiên khác: ${d.line}\nCần in: ${d.expected}\nĐã in:  ${d.actual}\n${d.help}`;
+        item.append(pre);
+      }
+      if (!result.passed && result.fileDifference) {
+        const pre = document.createElement("pre"), d = result.fileDifference;
+        pre.textContent = d.missing ? `Chưa tạo tệp: ${d.name}` : d.unreadable ? `Không đọc được tệp ${d.name} dưới dạng văn bản UTF-8.` : `Tệp ${d.name} · Dòng ${d.line || 1}\nCần ghi: ${d.expected || "(rỗng)"}\nĐã ghi:  ${d.actual || "(rỗng)"}`;
+        item.append(pre);
+      }
+      if (!result.passed) {
+        const details = document.createElement("details"), summary = document.createElement("summary"), pre = document.createElement("pre");
+        summary.textContent = "stdin của ca này";pre.textContent = result.input || "(Không có dữ liệu stdin)";
+        details.append(summary, pre);item.append(details);
+      }
       els.tests.append(item);
     });
   }
@@ -316,7 +414,9 @@
     }
 
     const output = message.output || "";
-    els.output.textContent = message.error || output || "Chương trình chạy xong nhưng không in ra kết quả.";
+    els.output.textContent = output || (message.error ? "Chương trình dừng vì lỗi." : "Chương trình chạy xong nhưng không in ra kết quả.");
+    renderDiagnostic(message.diagnostic);
+    if (message.error && !message.diagnostic) els.output.textContent = message.error;
     if (message.mode === "single") {
       els.tests.innerHTML = "";
       const item = document.createElement("li");
@@ -327,11 +427,13 @@
     } else {
       const allPassed = !message.error && message.tests.length > 0 && message.tests.every((test) => test.passed);
       renderTests(message.tests);
-      if (allPassed) {
+      if (allPassed && els.editor.value === runningCode) {
         state.completed[currentId] = true;
         setStatus("Hoàn thành", "success");
         saveState();
         renderList();
+      } else if (allPassed) {
+        setStatus("Mã đã chạy đạt — mã hiện tại đã thay đổi", "ready");
       } else {
         setStatus(message.error ? "Mã có lỗi" : "Chưa đạt tất cả kiểm tra", "error");
       }
@@ -354,6 +456,9 @@
   function startRun(mode) {
     const exercise = currentExercise();
     if (!exercise || exercise.browserRunnable === false || els.run.disabled) return;
+    if (els.editor.value.length > 200000) { finishWithError("Mã vượt 200.000 ký tự. Hãy rút gọn chương trình trước khi chạy.");return; }
+    runningCode = els.editor.value;
+    renderDiagnostic(null);
     saveCurrentCode();
     els.run.disabled = true;
     els.runInput.disabled = true;
@@ -363,7 +468,7 @@
     setStatus("Đang chạy", "running");
     activeRunId += 1;
 
-    getWorker().postMessage({
+    try { getWorker().postMessage({
       type: "run",
       runId: activeRunId,
       mode,
@@ -371,7 +476,9 @@
       input: els.input.value,
       files: exercise.tests?.[0]?.files || {},
       tests: exercise.tests,
-    });
+    }); } catch (error) {
+      cancelRun();finishWithError("Không khởi động được Python. Hãy tải lại trang hoặc kiểm tra mạng. " + error.message);return;
+    }
 
     timeoutId = setTimeout(() => {
       worker?.terminate();
@@ -386,6 +493,8 @@
       if (!response.ok) throw new Error("Không tải được danh sách bài tập.");
       const data = await response.json();
       exercises = data.exercises;
+      const sections = document.getElementById("exerciseSection");
+      for (const section of new Set(exercises.map(e => e.section).filter(Boolean))) sections.append(new Option(section, section));
       selectExercise(exercises.some((item) => item.id === state.currentId) ? state.currentId : exercises[0]?.id);
     } catch (error) {
       els.output.textContent = error.message;
@@ -394,12 +503,21 @@
   }
 
   els.editor.addEventListener("input", () => {
+    renderDiagnostic(null);
     updateEditorChrome();
     saveCurrentCode();
+    rememberEdit();
   });
   els.editor.addEventListener("scroll", syncEditorScroll);
   els.input.addEventListener("input", saveCurrentCode);
+  document.getElementById("exerciseSearch").addEventListener("input", renderList);
+  document.getElementById("exerciseSection").addEventListener("change", renderList);
   els.editor.addEventListener("keydown", (event) => {
+    if (event.isComposing) return;
+    if ((event.ctrlKey || event.metaKey) && ["z", "y"].includes(event.key.toLowerCase())) {
+      event.preventDefault();undoEdit(event.key.toLowerCase() === "y" || event.shiftKey);return;
+    }
+    rememberEdit();
     if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
       event.preventDefault();
       startRun("tests");
@@ -411,49 +529,29 @@
       setStatus("Đã lưu trên thiết bị", "success");
       return;
     }
-    const closingBracket = { "(": ")", "[": "]", "{": "}" }[event.key];
-    if (closingBracket && els.editor.selectionStart === els.editor.selectionEnd) {
-      event.preventDefault();
-      const caret = els.editor.selectionStart;
-      els.editor.setRangeText(`${event.key}${closingBracket}`, caret, caret, "end");
-      els.editor.setSelectionRange(caret + 1, caret + 1);
-      updateEditorChrome();
-      saveCurrentCode();
-      return;
-    }
-    if (event.key === "Tab") {
-      event.preventDefault();
-      const start = els.editor.selectionStart;
-      const end = els.editor.selectionEnd;
-      const value = els.editor.value;
-      if (event.shiftKey) {
-        const lineStart = value.lastIndexOf("\n", start - 1) + 1;
-        const remove = value.slice(lineStart, lineStart + 4) === "    " ? 4 : value[lineStart] === " " ? 1 : 0;
-        if (remove) {
-          els.editor.setRangeText("", lineStart, lineStart + remove, "preserve");
-          els.editor.setSelectionRange(Math.max(lineStart, start - remove), Math.max(lineStart, end - remove));
-        }
-      } else {
-        els.editor.setRangeText("    ", start, end, "end");
-      }
-      updateEditorChrome();
-      saveCurrentCode();
-      return;
-    }
-    if (event.key === "Enter") {
-      event.preventDefault();
-      const start = els.editor.selectionStart;
-      const end = els.editor.selectionEnd;
-      const value = els.editor.value;
-      const lineStart = value.lastIndexOf("\n", start - 1) + 1;
-      const currentLine = value.slice(lineStart, start);
-      const indent = currentLine.match(/^\s*/)[0];
-      const extraIndent = currentLine.trimEnd().endsWith(":") ? "    " : "";
-      els.editor.setRangeText(`\n${indent}${extraIndent}`, start, end, "end");
-      updateEditorChrome();
-      saveCurrentCode();
-    }
+    if (event.isComposing || event.altKey) return;
+    const value = els.editor.value, start = els.editor.selectionStart, end = els.editor.selectionEnd;
+    let edit;
+    if ((event.ctrlKey || event.metaKey) && event.key === "/") edit = IT1140PythonEditor.comment(value, start, end);
+    else if (event.ctrlKey || event.metaKey) return;
+    else if (event.key === "Tab") edit = IT1140PythonEditor.indent(value, start, end, event.shiftKey);
+    else if (event.key === "Enter") edit = IT1140PythonEditor.enter(value, start, end);
+    else if (event.key === "Backspace") edit = IT1140PythonEditor.backspace(value, start, end);
+    else if (event.key.length === 1) edit = IT1140PythonEditor.pair(value, start, end, event.key);
+    if (edit) { event.preventDefault(); applyEdit(edit); }
   });
+  function applyEdit(edit) {
+    // Change the smallest range, preserving textarea scroll and browser edit history
+    // where supported, rather than replacing the whole document for every key.
+    const value = els.editor.value;let from = 0, oldEnd = value.length, newEnd = edit.value.length;
+    while (from < oldEnd && from < newEnd && value[from] === edit.value[from]) from++;
+    while (oldEnd > from && newEnd > from && value[oldEnd - 1] === edit.value[newEnd - 1]) { oldEnd--;newEnd--; }
+    els.editor.setRangeText(edit.value.slice(from, newEnd), from, oldEnd, "preserve");
+    els.editor.setSelectionRange(edit.start, edit.end);els.editor.focus();
+    renderDiagnostic(null);updateEditorChrome();saveCurrentCode();
+    rememberEdit();
+  }
+  for (const [id, remove] of [["indentPythonBtn", false], ["outdentPythonBtn", true]]) document.getElementById(id).addEventListener("click", () => applyEdit(IT1140PythonEditor.indent(els.editor.value, els.editor.selectionStart, els.editor.selectionEnd, remove)));
   els.run.addEventListener("click", () => startRun("tests"));
   els.runInput.addEventListener("click", () => startRun("single"));
   els.reset.addEventListener("click", () => {

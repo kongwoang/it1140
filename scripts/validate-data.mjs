@@ -116,7 +116,9 @@ for (const entry of manifest.subjects) {
   }
 }
 
-const pythonData = await readJson("data/python-exercises.json");
+const pythonFileIndex = process.argv.indexOf("--python-file");
+if (pythonFileIndex >= 0 && !process.argv[pythonFileIndex + 1]) throw new Error("--python-file cần đường dẫn JSON.");
+const pythonData = await readJson(pythonFileIndex >= 0 ? process.argv[pythonFileIndex + 1] : "data/python-exercises.json");
 requireValue(Array.isArray(pythonData.exercises) && pythonData.exercises.length > 0, "Cần ít nhất một bài thực hành Python.");
 const exerciseIds = new Set();
 
@@ -127,8 +129,8 @@ for (const exercise of pythonData.exercises) {
   for (const field of ["title", "level", "library", "description", "task", "hint"]) {
     requireText(exercise[field], `${exercise.id}.${field}`);
   }
+  requireValue(exercise.browserRunnable === undefined || typeof exercise.browserRunnable === "boolean", `${exercise.id}.browserRunnable phải là boolean.`);
   const browserRunnable = exercise.browserRunnable !== false;
-  requireValue(typeof browserRunnable === "boolean", `${exercise.id}.browserRunnable phải là boolean.`);
   requireValue(Array.isArray(exercise.tests), `${exercise.id}.tests phải là mảng.`);
   requireValue(browserRunnable ? exercise.tests.length > 0 : exercise.tests.length === 0, `${exercise.id} có trạng thái chạy/chấm không khớp với tests.`);
   exercise.tests.forEach((test, index) => {

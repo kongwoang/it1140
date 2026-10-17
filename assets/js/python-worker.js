@@ -1,4 +1,5 @@
 import { loadPyodide } from "https://cdn.jsdelivr.net/pyodide/v314.0.6/full/pyodide.mjs";
+import "./python-errors.js";
 
 const PYODIDE_VERSION = "314.0.6";
 const PYODIDE_BASE_URL = `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`;
@@ -7,10 +8,6 @@ let pyodidePromise = loadPyodide({ indexURL: PYODIDE_BASE_URL });
 
 function text(value) {
   return value == null ? "" : String(value);
-}
-
-function normalize(value) {
-  return text(value).replace(/\r\n/g, "\n").replace(/\r/g, "\n").replace(/[ \t]+$/gm, "").trimEnd();
 }
 
 async function getPyodide() {
@@ -32,6 +29,7 @@ import json
 import os
 import sys
 import traceback
+${globalThis.IT1140PythonErrors.pythonHelpers}
 
 _lab_files = json.loads(_lab_files_json)
 for _lab_name in json.loads(_lab_cleanup_json):
@@ -53,10 +51,12 @@ if "matplotlib.pyplot" in sys.modules:
 
 _lab_scope = {"__name__": "__main__"}
 _lab_stdin = io.StringIO(_lab_input_text)
-_lab_buffer = io.StringIO()
+_lab_buffer = _IT1140Output()
 _lab_error = ""
+_lab_diagnostic = None
 _lab_check_error = ""
 _lab_original_input = builtins.input
+_lab_original_stdin = sys.stdin
 
 def _lab_input(_lab_prompt=""):
     _lab_line = _lab_stdin.readline()
@@ -66,12 +66,16 @@ def _lab_input(_lab_prompt=""):
 
 try:
     builtins.input = _lab_input
+    sys.stdin = _lab_stdin
     with contextlib.redirect_stdout(_lab_buffer), contextlib.redirect_stderr(_lab_buffer):
-        exec(_lab_user_code, _lab_scope)
-except Exception:
-    _lab_error = traceback.format_exc()
+        exec(compile(_lab_user_code, "main.py", "exec"), _lab_scope)
+except BaseException as _lab_exc:
+    if not (isinstance(_lab_exc, SystemExit) and _lab_exc.code in (None, 0)):
+        _lab_diagnostic = _it1140_diagnostic(_lab_exc, _lab_user_code)
+        _lab_error = _lab_diagnostic["traceback"]
 finally:
     builtins.input = _lab_original_input
+    sys.stdin = _lab_original_stdin
 
 if not _lab_error:
     for _lab_check in json.loads(_lab_checks_json):
@@ -86,19 +90,21 @@ for _lab_name in json.loads(_lab_cleanup_json):
     if os.path.isfile(_lab_name):
         try:
             with open(_lab_name, "r", encoding="utf-8") as _lab_file:
-                _lab_file_results[_lab_name] = _lab_file.read()
+                _lab_file_results[_lab_name] = _lab_file.read(1000001)
         except (OSError, UnicodeDecodeError):
             _lab_file_results[_lab_name] = None
 
 _lab_output = _lab_buffer.getvalue()
 _lab_file_results_json = json.dumps(_lab_file_results, ensure_ascii=False)
+_lab_diagnostic_json = json.dumps(_lab_diagnostic, ensure_ascii=False)
 `);
 
   const output = text(pyodide.globals.get("_lab_output"));
   const error = text(pyodide.globals.get("_lab_error"));
   const checkError = text(pyodide.globals.get("_lab_check_error"));
   const fileResults = JSON.parse(text(pyodide.globals.get("_lab_file_results_json") || "{}"));
-  return { output, error, checkError, fileResults };
+  const diagnostic = JSON.parse(text(pyodide.globals.get("_lab_diagnostic_json") || "null"));
+  return { output, error, checkError, fileResults, diagnostic };
 }
 
 async function capturePlot(pyodide) {
@@ -126,6 +132,23 @@ self.addEventListener("message", async (event) => {
     self.postMessage({ type: "status", runId, status: "loading" });
     const pyodide = await getPyodide();
 
+    // Compile before import discovery: syntax errors should point to the learner's
+    // file, not an internal Pyodide/package-loader traceback.
+    pyodide.globals.set("_lab_user_code", code);
+    await pyodide.runPythonAsync(`${globalThis.IT1140PythonErrors.pythonHelpers}
+import json
+try:
+    compile(_lab_user_code, "main.py", "exec")
+    _lab_syntax_json = "null"
+except SyntaxError as exc:
+    _lab_syntax_json = json.dumps(_it1140_diagnostic(exc, _lab_user_code), ensure_ascii=False)
+`);
+    const syntax = JSON.parse(text(pyodide.globals.get("_lab_syntax_json")));
+    if (syntax) {
+      self.postMessage({ type: "result", runId, mode, output: "", error: syntax.traceback, diagnostic: syntax, tests: [], plot: "" });
+      return;
+    }
+
     self.postMessage({ type: "status", runId, status: "packages" });
     await pyodide.loadPackagesFromImports(code);
 
@@ -137,23 +160,14 @@ self.addEventListener("message", async (event) => {
     const results = [];
     let lastOutput = "";
     let firstError = "";
+    let diagnostic = null;
 
     for (const test of cases) {
       const result = await executeCase(pyodide, code, test.input || "", test.files || {}, cleanupNames, test.checks || []);
       lastOutput = result.output;
-      if (result.error && !firstError) firstError = result.error;
-      const expectedOutput = test.output || "";
-      const outputPassed = normalize(result.output) === normalize(expectedOutput);
-      const expectedFiles = test.expectedFiles || {};
-      const filesPassed = Object.entries(expectedFiles).every(([name, expected]) => (
-        Object.prototype.hasOwnProperty.call(result.fileResults, name)
-        && normalize(result.fileResults[name]) === normalize(expected)
-      ));
-      const passed = !result.error && !result.checkError && outputPassed && filesPassed;
-      const detail = result.error || result.checkError || (
-        !outputPassed ? `Đầu ra nhận được: ${normalize(result.output) || "(rỗng)"}` : ""
-      ) || (!filesPassed ? "Nội dung tệp sinh ra chưa đúng." : "");
-      results.push({ label: test.label, passed, error: detail });
+      if (result.error && !firstError) { firstError = result.error; diagnostic = result.diagnostic; }
+      results.push(globalThis.IT1140PythonErrors.compareCase(result,test,mode));
+      if (result.error) break;
     }
 
     const plot = await capturePlot(pyodide);
@@ -163,6 +177,7 @@ self.addEventListener("message", async (event) => {
       mode,
       output: lastOutput,
       error: firstError,
+      diagnostic,
       tests: results,
       plot,
     });

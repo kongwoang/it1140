@@ -16,11 +16,15 @@
         if(!value||!Number.isSafeInteger(value.runId)||value.runId!==this.runId)return;
         // Do not forward arbitrary capabilities, markup or commands from the runner.
         const short=v=>typeof v==='string'?v.slice(0,1048576):'';
+        const position=v=>Number.isSafeInteger(v)&&v>0&&v<1000000?v:null;
+        const diagnostic=d=>d&&typeof d==='object'?{type:short(d.type).slice(0,100),message:short(d.message).slice(0,8000),line:position(d.line),column:position(d.column),source:short(d.source).slice(0,2000),traceback:short(d.traceback).slice(-16000)}:null;
+        const difference=d=>d&&typeof d==='object'?{line:position(d.line),actual:short(d.actual).slice(0,4000),expected:short(d.expected).slice(0,4000),help:short(d.help).slice(0,2000)}:null;
         let message;
         if(value.type==='status'&&['loading','packages'].includes(value.status))message={type:'status',runId:value.runId,status:value.status};
         else if(value.type==='fatal')message={type:'fatal',runId:value.runId,error:short(value.error)};
         else if(value.type==='result')message={type:'result',runId:value.runId,mode:value.mode==='single'?'single':'tests',output:short(value.output),error:short(value.error),
-          tests:Array.isArray(value.tests)?value.tests.slice(0,100).map(t=>({label:short(t?.label),passed:t?.passed===true,error:short(t?.error)})):[],
+          diagnostic:diagnostic(value.diagnostic),
+          tests:Array.isArray(value.tests)?value.tests.slice(0,100).map(t=>({label:short(t?.label).slice(0,200),passed:t?.passed===true,error:short(t?.error).slice(0,4000),input:short(t?.input).slice(0,4000),difference:difference(t?.difference),fileDifference:t?.fileDifference?{...difference(t.fileDifference),name:short(t.fileDifference.name).slice(0,200),missing:t.fileDifference.missing===true,unreadable:t.fileDifference.unreadable===true}:null})):[],
           plot:typeof value.plot==='string'&&value.plot.length<=8388608&&/^[A-Za-z0-9+/=]*$/.test(value.plot)?value.plot:''};
         if(message)this.dispatchEvent(new MessageEvent('message',{data:message}));
       };
