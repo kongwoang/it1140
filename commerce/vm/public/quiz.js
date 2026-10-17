@@ -1,7 +1,7 @@
 (async()=>{
   const $=id=>document.getElementById(id),cache=new Map(),reviewResults={};
   let catalogue,state,key,ids=[],index=0,busy=false,revision=0,searchTimer,lastError='';
-  async function api(path,data){const response=await fetch(path,data===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+  async function api(path,data){path=path.replace(/^\/api\/course(?=\/)/,window.IT1140Study.apiBase);const response=await fetch(path,data===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
     const result=await response.json();if(!response.ok)throw Error(({study_conflict:'Phiên học đã chuyển sang nơi khác.',exam_expired:'Bài thi đã hết hạn. Chọn Trộn để tạo bài mới.',exam_version_changed:'Bộ đề đã cập nhật. Chọn Trộn để tạo bài thi mới.',rate_limited:'Bạn thao tác quá nhanh. Hãy thử lại sau.'})[result.error]||'Không thể tải dữ liệu. Kiểm tra mạng và thử lại.');return result;}
   function save(){try{localStorage.setItem(key,JSON.stringify(state));}catch{}}
   const answers=()=>state.mode==='exam'?state.exam?.answers||{}:state.answers;
@@ -87,7 +87,8 @@
     if(!['practice','exam','review'].includes(state.mode))state.mode='practice';
     if(!catalogue.chapters.some(c=>c.id===state.chapter)&&state.chapter!=='all')state.chapter='chuong-1';
     $('subjectSelect').append(new Option('Tin học đại cương','it1140'));
-    $('chapterFilter').append(new Option('Tất cả chương','all'));catalogue.chapters.forEach(c=>$('chapterFilter').append(new Option(c.label+' ('+c.count+')',c.id)));$('chapterFilter').value=state.chapter;$('searchInput').value=state.query;$('bookmarkOnly').checked=state.pinned;
+    if(catalogue.preview)$('previewSummary').textContent=`Học thử · ${catalogue.total}/${catalogue.totalQuestions} câu hỏi · ${catalogue.exercises}/${catalogue.totalExercises} bài Python`;
+    $('chapterFilter').append(new Option('Tất cả chương','all'));catalogue.chapters.forEach(c=>$('chapterFilter').append(new Option(c.label+' ('+c.count+(catalogue.preview?'/'+c.fullCount+' miễn phí':'')+')',c.id)));$('chapterFilter').value=state.chapter;$('searchInput').value=state.query;$('bookmarkOnly').checked=state.pinned;
     $('chapterFilter').addEventListener('change',()=>{state.chapter=$('chapterFilter').value;loadScope();});
     $('searchInput').addEventListener('input',()=>{state.query=$('searchInput').value;clearTimeout(searchTimer);searchTimer=setTimeout(()=>loadScope(),400);});
     $('bookmarkOnly').addEventListener('change',()=>{state.pinned=$('bookmarkOnly').checked;loadScope();});

@@ -144,7 +144,7 @@ test('VM build contains no data/source/secrets and no offline private-data cache
   const root=await readdir(out);assert.equal(root.includes('data'),false);assert.equal(root.includes('schema.sql'),false);
   const html=await readFile(new URL('learn.html',out),'utf8');assert.match(html,/commerce-quiz\.js/);assert.doesNotMatch(html,/quiz-app\.js/);
   const sw=await readFile(new URL('commerce-sw.js',out),'utf8');assert.doesNotMatch(sw,/addEventListener\(['"]fetch/);
-  const lab=await readFile(new URL('assets/js/python-lab.js',out),'utf8');assert.match(lab,/\/api\/course\/python\//);assert.doesNotMatch(lab,/\.\/data\//);
+  const lab=await readFile(new URL('assets/js/python-lab.js',out),'utf8');assert.match(lab,/IT1140Study\.apiBase/);assert.doesNotMatch(lab,/\.\/data\//);
 });
 test('public assets can cache but authenticated data, HTML and SW never share cache',async()=>{
   const f=await fixture();try{

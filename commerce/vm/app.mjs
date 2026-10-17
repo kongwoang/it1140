@@ -5,6 +5,7 @@ import { Fault,hash,keyed,equal,token,uuid,transaction,rate,guard,recent,devices
 import { courseRoute,bank,python } from './course.mjs';
 import { verifyWebhook,paymentCode,bankTime } from '../payments.mjs';
 import { verifyBot } from './bot.mjs';
+import { previewRoute,previewSummary } from './preview.mjs';
 
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8'};
 const json=(value,status=200)=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json; charset=utf-8'}});
@@ -39,6 +40,16 @@ function orderView(o,cfg){
   return {id:o.id,amount:o.amount,status:o.status,code:o.transfer_code,expiresAt:o.expires_at,account:o.account_number,accountName:cfg.BANK_ACCOUNT_NAME,bank:'MB',qrUrl:qr.href};
 }
 export function createApp({pool,cfg,sendMail,botVerifier=verifyBot,publicRoot=resolve(import.meta.dirname,'../../.vm-dist/public'),logger=console}){
+  // Bounded, best-effort anonymous abuse protection without creating DB users
+  // or storing public quiz attempts. Reverse-proxy/WAF limits remain recommended.
+  const previewRates=new Map();
+  function previewLimit(ip){
+    const key=keyed(cfg.OTP_SECRET,'preview-ip:'+ip),now=Date.now();let bucket=previewRates.get(key);
+    if(!bucket||bucket.until<=now)bucket={until:now+60000,hits:0};
+    previewRates.delete(key);previewRates.set(key,bucket);
+    if(previewRates.size>8000)previewRates.delete(previewRates.keys().next().value);
+    if(++bucket.hits>6000)throw new Fault(429,'rate_limited');
+  }
   const prefix=cfg.dev?'it1140-dev-':'__Host-it1140-';
   const names={session:prefix+'session',browser:prefix+'browser',enroll:prefix+'enroll'};
   const cookie=(name,value,age)=>`${name}=${value}; Path=/; HttpOnly; ${cfg.dev?'':'Secure; '}SameSite=Lax; Max-Age=${age}`;
@@ -50,10 +61,15 @@ export function createApp({pool,cfg,sendMail,botVerifier=verifyBot,publicRoot=re
     if(path==='/api/config'&&method==='GET'){
       const p=(await pool.query("select amount,active from app.products where id='it1140-lifetime'")).rows[0];
       return json({ready:cfg.smtpReady&&(cfg.dev||cfg.botReady),turnstileSiteKey:cfg.TURNSTILE_SITE_KEY||'',paymentsEnabled:cfg.live&&p?.active===true,price:p?.amount??20000,
-        domains:cfg.domains,supportEmail:cfg.SUPPORT_EMAIL||'',questions:bank.questions.length,exercises:python.exercises.length});
+        domains:cfg.domains,supportEmail:cfg.SUPPORT_EMAIL||'',questions:bank.questions.length,exercises:python.exercises.length,preview:previewSummary});
     }
     if(path.startsWith('/api/')){
       if(method!=='GET'&&path!=='/api/webhooks/sepay'&&request.headers.get('origin')!==cfg.origin)throw new Fault(403,'wrong_origin');
+      if(path.startsWith('/api/preview/')){
+        previewLimit(ip);
+        const data=method==='POST'?parse(await bytes(request)):{};
+        return json(previewRoute(path,method,url,data,cfg));
+      }
       const jar=cookies(request),sessionToken=jar[names.session],browserToken=/^[A-Za-z0-9_-]{43}$/.test(jar[names.browser]||'')?jar[names.browser]:token();
       if(path==='/api/auth/request'&&method==='POST'){
         if(!cfg.smtpReady)throw new Fault(503,'mail_not_configured');
@@ -168,11 +184,12 @@ export function createApp({pool,cfg,sendMail,botVerifier=verifyBot,publicRoot=re
     }
     if(!['GET','HEAD'].includes(method))throw new Fault(405,'method_not_allowed');
     let file=path==='/'?'index.html':path.slice(1);
+    if(path==='/preview'||path==='/preview.html')file='preview.html';
     if(path==='/learn'||path==='/learn.html'){
       const jar=cookies(request);
       try{await guard(pool,jar[names.session],{browserToken:jar[names.browser],paid:true});}catch(e){if(e instanceof Fault)return Response.redirect(cfg.origin+'/',303);throw e;}file='learn.html';
     }
-    const allowed=['index.html','account.js','account.css','commerce-sw.js','commerce-access.js','study-client.js','legal.html','python-sandbox.html','python-sandbox.js','python-sandbox-frame.js'];
+    const allowed=['index.html','preview.html','account.js','account.css','commerce-sw.js','commerce-access.js','study-client.js','legal.html','python-sandbox.html','python-sandbox.js','python-sandbox-frame.js'];
     if(file!=='learn.html'&&!allowed.includes(file)&&!/^assets\/(css|js)\/[a-z0-9-]+\.(css|js)$/.test(file))throw new Fault(404,'not_found');
     // Never expose the original client-side grading code through a spare URL.
     if(file==='assets/js/quiz-app.js'||file==='assets/js/python-worker.js')throw new Fault(404,'not_found');

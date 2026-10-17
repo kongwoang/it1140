@@ -60,6 +60,7 @@
     if('serviceWorker'in navigator){await navigator.serviceWorker.register('/commerce-sw.js',{updateViaCache:'none'});
       if(!navigator.serviceWorker.controller?.scriptURL.endsWith('/commerce-sw.js'))await new Promise((resolve,reject)=>{const t=setTimeout(()=>reject(Error('Hãy đóng các tab IT1140 cũ rồi mở lại để cập nhật.')),10000);function changed(){if(navigator.serviceWorker.controller?.scriptURL.endsWith('/commerce-sw.js')){clearTimeout(t);navigator.serviceWorker.removeEventListener('controllerchange',changed);resolve();}}navigator.serviceWorker.addEventListener('controllerchange',changed);changed();});}
     config=await api('/api/config');$('price').textContent=money(config.price);if(config.supportEmail){$('support').hidden=false;$('support').href='mailto:'+config.supportEmail;}
+    $('previewSummary').textContent=`${config.preview.questions} câu hỏi · ${config.preview.exercises} bài Python miễn phí · Không cần đăng nhập`;
     $('email').placeholder='ten@'+config.domains[0];if(!config.ready){status('Bản thương mại đang chờ cấu hình đăng nhập, chưa mở bán.');return;}await prepareBot();await showMember();
   }catch(e){status(e.message,true);}})();
 })();

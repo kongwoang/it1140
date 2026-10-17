@@ -1,4 +1,5 @@
 (() => {
+  const preview=document.body.dataset.access==='preview';
   let rejectReady,resolveReady,stopped=false,heartbeat;
   const ready=new Promise((resolve,reject)=>{resolveReady=resolve;rejectReady=reject;});
   // Both study modules await this promise. Avoid an unhandled rejection if one is absent.
@@ -21,12 +22,22 @@
     }catch{block('Không kiểm tra được phiên học. Mã và câu trả lời đang viết vẫn được giữ; hãy kết nối mạng và tải lại.');return;}
     heartbeat=setTimeout(ping,55000+Math.random()*10000);
   }
-  window.IT1140Study={ready,block};
+  window.IT1140Study={ready,block,preview,apiBase:preview?'/api/preview':'/api/course'};
   (async()=>{
-    try{const response=await fetch('/api/study/claim',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
+    try{
+      // Direct preview entry must retire the old free site's offline cache too.
+      if('serviceWorker'in navigator){await navigator.serviceWorker.register('/commerce-sw.js',{updateViaCache:'none'});
+        if(!navigator.serviceWorker.controller?.scriptURL.endsWith('/commerce-sw.js'))await new Promise((resolve,reject)=>{
+          const timer=setTimeout(()=>{navigator.serviceWorker.removeEventListener('controllerchange',changed);reject(Error('Hãy đóng các tab IT1140 cũ rồi mở lại để cập nhật.'));},10000);
+          function changed(){if(navigator.serviceWorker.controller?.scriptURL.endsWith('/commerce-sw.js')){clearTimeout(timer);navigator.serviceWorker.removeEventListener('controllerchange',changed);resolve();}}
+          navigator.serviceWorker.addEventListener('controllerchange',changed);changed();
+        });
+      }
+      if(preview){resolveReady();return;}
+      const response=await fetch('/api/study/claim',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});
       if(!response.ok)throw Error(response.status===409?'Một trình duyệt khác đang học. Quay lại tài khoản để chuyển phiên.':'Bạn cần đăng nhập và có quyền học.');
       resolveReady();heartbeat=setTimeout(ping,55000+Math.random()*10000);
     }catch(error){block(error.message);rejectReady(error);}
   })();
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!stopped){clearTimeout(heartbeat);ping();}});
+  document.addEventListener('visibilitychange',()=>{if(!preview&&!document.hidden&&!stopped){clearTimeout(heartbeat);ping();}});
 })();

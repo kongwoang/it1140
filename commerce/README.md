@@ -16,6 +16,16 @@ Các file Worker/Supabase ở thư mục commerce là nguyên mẫu đối chi�
 - Public build không có data JSON/SQL/env/key. Chỉ CSS/JS không cá nhân hóa được cache công khai 5 phút; HTML/API/service worker giữ private/no-store. Service worker thương mại không cache API và thay cache cũ. Tiến độ/mã lưu theo ID tài khoản trên thiết bị, **chưa đồng bộ cloud**.
 - Container app non-root/read-only, DB và app không mở cổng công khai; runtime DB role không phải owner. Migration riêng có checksum, health/preflight, CLI, backup/restore và bộ tải staging.
 
+## Học thử miễn phí
+
+Trang `/preview` mở không cần tài khoản: **210/2.096 câu** chia đều theo tỷ lệ từng chương và **7/70 bài Python**. Có Luyện/Ôn/Thi và IDE cách ly như bản đầy đủ. Trang tài khoản và trang học thử có nút mở toàn bộ nội dung với giá 20.000đ một lần.
+
+Danh sách miễn phí là allowlist **cố định** trong `vm/preview-access.json`, chỉ chứa ID. Không chọn ngẫu nhiên lại bộ miễn phí theo lượt tải, thiết bị hoặc tài khoản. `Trộn`, tìm kiếm và phân trang chỉ hoạt động trong tập đã chọn. Có thể chỉnh allowlist tại `COURSE_DATA_DIR/preview-access.json` trên VM (ưu tiên hơn bản mặc định); `init-content` sao chép bản khởi đầu. ID phải tồn tại, không trùng và không vượt khoảng 12% tổng nội dung; app fail-closed nếu cấu hình không hợp lệ. Khi thay bộ đề/private ID, cập nhật file này cùng lúc. Bộ hiện tại có cả chọn một/nhiều đáp án, điền số và bài Python qua 5 phần.
+
+API công khai chỉ ở `/api/preview/*`, không tạo người dùng/đơn/quyền học/lease và không ghi lượt làm bài vào DB. Mỗi endpoint lấy câu, chấm, xem lời giải và tải bài Python đều kiểm tra allowlist server-side. API `/api/course/*` vẫn yêu cầu tài khoản đã mua và phiên học hợp lệ. Không có cờ `free`, `paid` hoặc `percent` từ client để mở phần trả phí.
+
+Thi thử miễn phí dùng token HMAC riêng mục đích, có tập ID cố định và hạn 24 giờ; không thể dùng làm ID thi trả phí hay thông tin đăng nhập. Điểm học thử lưu cục bộ theo phạm vi riêng, không có kết quả thi chính thức/bất biến ở DB; submit lại chỉ chấm các câu miễn phí. Có rate limit IP trong bộ nhớ, giới hạn số bucket; cần WAF/rate limit tại proxy khi triển khai nhiều replica hoặc chống lạm dụng phân tán. HTML/API vẫn no-store; asset gắn hash phiên bản và service worker cũ được thay trước khi học thử.
+
 ## Giới hạn trước khi bán
 
 Không thể bảo đảm “không hack được” hoặc chống chia sẻ tuyệt đối. Hồ sơ trình duyệt dựa vào cookie, không chứng minh máy vật lý. Người mua vẫn có thể chuyển OTP/copy cookie/học luân phiên/chụp màn hình/tích lũy câu hỏi qua API hợp lệ. Logout không thu hồi được tài liệu đã hiển thị.
@@ -89,6 +99,7 @@ Webhook SePay: `https://STAGING-DOMAIN/api/webhooks/sepay`, JSON, chiều tiền
 - Thư HUST thực sự nhận được; OTP sai/hết hạn/replay/browser khác bị chặn. Turnstile thiếu/sai/đã dùng/khác hostname/action bị chặn; spam xin lại không làm cạn hạn mức chung. Email không tự chứng minh đang còn là sinh viên.
 - Hai hồ sơ, một phiên; hồ sơ thứ ba phải thay; thử chuyển phiên/nhiều tab/ngủ máy/mất cookie/Wi-Fi/4G/mất mạng. Không mất mã đang viết.
 - Người chưa mua/bị khóa/thu hồi không vào API; đổi ID đơn không đọc đơn khác; giá/account/paid không sửa từ browser. Không lộ answer key trong bundle/catalog.
+- Khách vào /preview không cần đăng nhập, làm được câu mẫu và chạy 7 bài Python; không đọc/chấm ID trả phí qua bất kỳ API preview nào. Reload/Trộn không tăng tập miễn phí; token thi sửa nội dung/hết hạn bị từ chối. Học thử không tạo entitlement hoặc làm mất tiến độ của tài khoản đã mua.
 - Luyện/Ôn/Thi/chương/tìm/ghim/trộn; thi không sửa kết quả sau nộp; câu số/nhiều lựa chọn. Python/file mẫu/Matplotlib trên Chrome/Safari/mobile; tải CDN lần đầu cần mạng. Xác nhận worker Python origin `null`, không đọc /api/me và không POST /api/auth/logout được kể cả yêu cầu gửi cookie. Không bỏ sandbox để khắc phục lỗi tải CDN.
 - Webhook sai chữ ký/body/timestamp, trùng/cạnh tranh, sai/thiếu/thừa/muộn/hủy và webhook trễ. Ngắt DB rồi retry không cấp trùng.
 - Backup/restore và load test trên VM thật. Chủ website hoàn thiện legal/quyền nội dung/liên hệ/chính sách/nghĩa vụ bán hàng.

@@ -15,4 +15,7 @@ for(const name of ['subjects/it1140.json','python-exercises.json']){
   const path=resolve(destination,name);await writeFile(path,data,{flag:'wx',mode:0o600});
   if(rootOwned)await chown(path,1000,1000);
 }
+const manifest=resolve(destination,'preview-access.json');
+await writeFile(manifest,await readFile(new URL('./preview-access.json',import.meta.url)),{flag:'wx',mode:0o600});
+if(rootOwned)await chown(manifest,1000,1000);
 console.log('Copied the already-public baseline into ignored private runtime content. Future edits belong there, not in tracked data/. Historical copies remain public.');

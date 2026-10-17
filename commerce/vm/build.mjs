@@ -1,6 +1,7 @@
 import { mkdir,readFile,writeFile,cp,readdir,rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 const root=resolve(import.meta.dirname,'../..'),out=resolve(root,'.vm-dist/public');
 // Retire this exact generated artifact left by an older VM build.
 await rm(resolve(out,'assets/js/python-worker.js'),{force:true});
@@ -20,16 +21,20 @@ await writeFile(resolve(out,'python-sandbox-frame.js'),'const WORKER_SOURCE='+JS
 await writeFile(resolve(out,'python-sandbox.html'),'<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>Python cách ly</title><script src="/python-sandbox-frame.js" defer></script></head><body></body></html>');
 const style=await readFile(resolve(root,'assets/css/app.css'),'utf8');
 await writeFile(resolve(out,'assets/css/app.css'),style+`\n.study-block{position:fixed;inset:0;z-index:9999;background:#edf5f2f5;display:grid;place-items:center;padding:24px}.study-block section{max-width:480px;background:white;border:1px solid #b8d4c8;border-radius:16px;padding:28px}.study-block p{line-height:1.7}.choice input{accent-color:#0f766e}.question-map select{grid-column:1/-1;max-width:100%}\n`);
+await writeFile(resolve(out,'assets/css/app.css'),(await readFile(resolve(out,'assets/css/app.css'),'utf8'))+`\n.preview-banner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 18px;margin-bottom:16px;border:1px solid #bbd9cb;border-radius:12px;background:#e7f3ed;color:#173f32}.preview-banner a{font-weight:700;color:#075e50;text-decoration:underline}\n`);
 let html=await readFile(resolve(root,'index.html'),'utf8');
 html=html.replace('<script src="./assets/js/question-content.js','<script src="/commerce-access.js" defer></script>\n    <script src="/study-client.js" defer></script>\n    <script src="/python-sandbox.js" defer></script>\n    <script src="./assets/js/question-content.js');
 html=html.replace('./assets/js/quiz-app.js?v=9','/assets/js/commerce-quiz.js');
 html=html.replace('<div class="top-actions">','<div class="top-actions"><a class="ghost-btn" href="/">Tài khoản</a>');
 await writeFile(resolve(out,'learn.html'),html);
+assert.ok(html.includes('<body>'));
+const demo=html.replace('<body>','<body data-access="preview">').replace('      <nav class="section-tabs"','      <aside class="preview-banner"><strong id="previewSummary">Học thử miễn phí · Khoảng 10% nội dung</strong><a href="/">Mở toàn bộ · 20.000đ</a></aside>\n      <nav class="section-tabs"');
+await writeFile(resolve(out,'preview.html'),demo);
 let lab=await readFile(resolve(root,'assets/js/python-lab.js'),'utf8');
 assert.equal(lab.split('./data/python-exercises.json').length,2);
 lab=lab.replace('const storageKey = "it1140-python-lab:v4";','let storageKey = "it1140-commerce-python:uninitialized";')
   .replace('let state = loadState();','let state = { code: {}, input: {}, completed: {}, currentId: "" };')
-  .replace('fetch("./data/python-exercises.json")','(await window.IT1140Study.ready, fetch("/api/course/python"))')
+  .replace('fetch("./data/python-exercises.json")','(await window.IT1140Study.ready, fetch(window.IT1140Study.apiBase + "/python"))')
   .replace('exercises = data.exercises;','storageKey = `it1140-commerce-python:v2:${data.userScope}`;\n      state = loadState();\n      exercises = data.exercises;')
   .replace('function selectExercise(id) {','let selectionGeneration = 0;\n  async function selectExercise(id) {');
 // Use a guarded asynchronous detail load: stale responses cannot switch a newer selection.
@@ -40,7 +45,7 @@ lab=lab.replace('const exercise = currentExercise();\n    if (!exercise) return;
     els.run.disabled = els.runInput.disabled = true;
     els.editor.disabled = els.input.disabled = true;
     try {
-      const response = await fetch('/api/course/python/' + encodeURIComponent(id));
+      const response = await fetch(window.IT1140Study.apiBase + '/python/' + encodeURIComponent(id));
       if (!response.ok) throw new Error('Không tải được bài tập. Hãy kiểm tra phiên học.');
       const detail = await response.json();
       if (generation !== selectionGeneration) return;
@@ -63,11 +68,19 @@ assert.equal(lab.split('new Worker("./assets/js/python-worker.js?v=5", { type: "
 lab=lab.replace('new Worker("./assets/js/python-worker.js?v=5", { type: "module" })','window.IT1140CreatePythonWorker()');
 assert.ok(!lab.includes('new Worker('),'Commercial lab must never construct an account-origin worker');
 await writeFile(resolve(out,'assets/js/python-lab.js'),lab);
+// Content hashes avoid stale cached legacy editors/clients during cutover and
+// upgrades; private HTML always references exactly the current compiled assets.
+for(const name of ['index.html','learn.html','preview.html','python-sandbox.html']){
+  let page=await readFile(resolve(out,name),'utf8');
+  const refs=[...page.matchAll(/(?:src|href)="((?:\.\/|\/)[a-z0-9/.-]+\.(?:js|css))(?:\?[^"\s]*)?"/g)];
+  for(const match of refs){const asset=match[1].replace(/^(?:\.\/|\/)/,'');const digest=createHash('sha256').update(await readFile(resolve(out,asset))).digest('hex').slice(0,12);page=page.replace(match[0],match[0].slice(0,match[0].indexOf('="')+2)+match[1]+'?v='+digest+'"');}
+  await writeFile(resolve(out,name),page);
+}
 async function audit(dir,prefix=''){
   for(const entry of await readdir(dir,{withFileTypes:true})){
     const p=prefix+entry.name;
     if(entry.isDirectory()){assert.ok(['assets','assets/js','assets/css'].includes(p),`Unexpected public directory ${p}`);await audit(resolve(dir,entry.name),p+'/');}
-    else assert.ok(new Set(['index.html','learn.html','account.js','account.css','commerce-sw.js','commerce-access.js','study-client.js','legal.html','python-sandbox.js','python-sandbox.html','python-sandbox-frame.js','assets/js/question-content.js','assets/js/commerce-quiz.js','assets/js/python-lab.js','assets/css/app.css']).has(p),`Unexpected public file ${p}`);
+    else assert.ok(new Set(['index.html','learn.html','preview.html','account.js','account.css','commerce-sw.js','commerce-access.js','study-client.js','legal.html','python-sandbox.js','python-sandbox.html','python-sandbox-frame.js','assets/js/question-content.js','assets/js/commerce-quiz.js','assets/js/python-lab.js','assets/css/app.css']).has(p),`Unexpected public file ${p}`);
   }
 }
 await audit(out);console.log('VM public build ready; private bank, keys and SQL excluded.');
