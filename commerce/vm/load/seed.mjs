@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises';
+import { writeFile,access } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { database } from '../db.mjs';
 import { hash,token,transaction } from '../store.mjs';
@@ -7,6 +7,7 @@ const url=process.env.DATABASE_URL,origin=process.env.APP_ORIGIN;
 if(process.env.ALLOW_LOAD_SEED!=='true'||process.env.PAYMENTS_ENABLED==='true'||!url||!new URL(url).pathname.endsWith('_loadtest'))throw Error('Dedicated *_loadtest database, ALLOW_LOAD_SEED=true and payments disabled required');
 if(!stagingOrigin(origin))throw Error('Staging/localhost APP_ORIGIN required');
 const count=Number(process.env.LOAD_USERS||1000);if(!Number.isInteger(count)||count<1||count>1500)throw Error('LOAD_USERS must be 1–1500');
+try{await access(new URL('./fixtures.json',import.meta.url));throw Error('Load fixture already exists; archive/remove the old disposable fixture before seeding a new empty DB.');}catch(error){if(error.code!=='ENOENT')throw error;}
 const pool=database(url,2),fixture=[];
 try{
   if((await pool.query('select count(*)::int n from app.users')).rows[0].n>0)throw Error('Load seeding requires an EMPTY dedicated database. Do not reseed an active DB.');

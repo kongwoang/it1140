@@ -14,7 +14,7 @@ function secure(response){
     'Referrer-Policy':'no-referrer','X-Frame-Options':'DENY','Strict-Transport-Security':'max-age=31536000',
     'Permissions-Policy':'camera=(), microphone=(), geolocation=()',
     'Content-Security-Policy':"default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'wasm-unsafe-eval'; worker-src 'self' blob:; connect-src 'self' https://cdn.jsdelivr.net; img-src 'self' data: blob: https://vietqr.app; style-src 'self' 'unsafe-inline'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
-  }))h.set(key,value);
+  }))if(key!=='Cache-Control'||!h.has(key))h.set(key,value);
   return new Response(response.body,{status:response.status,headers:h});
 }
 function cookies(request){
@@ -169,7 +169,11 @@ export function createApp({pool,cfg,sendMail,publicRoot=resolve(import.meta.dirn
     // Never expose the original client-side grading code through a spare URL.
     if(file==='assets/js/quiz-app.js')throw new Fault(404,'not_found');
     let content;try{content=await readFile(resolve(publicRoot,file));}catch(e){if(e.code==='ENOENT')throw new Fault(404,'not_found');throw e;}
-    return new Response(method==='HEAD'?null:content,{headers:{'Content-Type':mime[file.slice(file.lastIndexOf('.'))]||'application/octet-stream'}});
+    const headers={'Content-Type':mime[file.slice(file.lastIndexOf('.'))]||'application/octet-stream'};
+    // Only allowlisted non-personalized CSS/JS can be shared by browsers/CDNs.
+    // HTML, API and service-worker migration stay private/no-store.
+    if(/\.(?:css|js)$/.test(file)&&file!=='commerce-sw.js')headers['Cache-Control']='public, max-age=300';
+    return new Response(method==='HEAD'?null:content,{headers});
   }
   return {names,async fetch(request,ip='unknown'){
     try{return secure(await handle(request,ip));}catch(error){
