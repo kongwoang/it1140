@@ -1,0 +1,16 @@
+.git
+.agents
+.codex
+**/node_modules
+**/.wrangler
+.commerce-dist
+.vm-dist
+_site
+**/.env
+**/.env.*
+!**/.env.example
+**/secrets
+**/backups
+**/*.dump
+**/*.log
+template.html

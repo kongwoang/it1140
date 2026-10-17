@@ -1,0 +1,14 @@
+{
+  email {$ACME_EMAIL}
+}
+{$DOMAIN} {
+  encode zstd gzip
+  request_body {
+    max_size 64KB
+  }
+  reverse_proxy app:4180 {
+    header_up X-Real-IP {remote_host}
+    header_up -X-Forwarded-For
+  }
+  # No access log: avoid accidentally recording session or personal metadata.
+}

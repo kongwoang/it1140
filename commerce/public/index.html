@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tài khoản · IT1140</title><meta name="theme-color" content="#0f766e">
+  <meta name="referrer" content="no-referrer"><link rel="stylesheet" href="/account.css">
+  <script src="/account.js" defer></script>
+</head>
+<body>
+  <header class="brand"><span class="mark">IT</span><div><span>IT1140</span><strong>Tin học đại cương</strong></div></header>
+  <main>
+    <section class="intro">
+      <p class="eyebrow">ÔN TẬP THEO CHƯƠNG</p>
+      <h1>Học chắc kiến thức.<br>Chủ động luyện tập.</h1>
+      <p class="lead">Ôn câu hỏi và thực hành Python trong cùng một nơi.</p>
+      <div class="offer"><span>Mua một lần</span><strong id="price">20.000đ</strong><p>Quyền học IT1140 không thời hạn. Không gia hạn, không tự động trừ tiền.</p></div>
+      <ul><li>2.096 câu hỏi cho 12 chương</li><li>70 bài thực hành Python</li><li>Giữ tiến độ đang học trên thiết bị</li></ul>
+    </section>
+    <section class="card" aria-labelledby="accountTitle">
+      <h2 id="accountTitle">Tài khoản học tập</h2>
+      <p id="status" role="status" aria-live="polite">Đang kiểm tra hệ thống…</p>
+      <form id="authForm">
+        <label>Email<input id="email" type="email" autocomplete="email" maxlength="254" required></label>
+        <label>Mật khẩu<input id="password" type="password" autocomplete="current-password" minlength="12" maxlength="128" required><small>Ít nhất 12 ký tự.</small></label>
+        <button id="login" type="submit" disabled>Đăng nhập</button>
+        <button id="signup" type="button" class="secondary" disabled>Tạo tài khoản</button>
+      </form>
+      <div id="member" hidden>
+        <p id="identity"></p>
+        <div id="purchase" hidden><p>Mở quyền học bằng chuyển khoản QR vào tài khoản MB.</p><button id="buy" type="button" disabled>Mua quyền học · 20.000đ</button></div>
+        <a id="learn" class="button" href="/learn" hidden>Vào học</a>
+        <button id="logout" type="button" class="secondary">Đăng xuất</button>
+      </div>
+      <section id="order" hidden aria-labelledby="orderTitle">
+        <h3 id="orderTitle">Thanh toán qua MB</h3>
+        <img id="qr" width="280" height="280" alt="Mã QR chuyển khoản cho đơn hàng" referrerpolicy="no-referrer">
+        <dl><dt>Số tiền</dt><dd id="orderAmount"></dd><dt>Người nhận</dt><dd id="accountName"></dd><dt>Tài khoản MB</dt><dd id="accountNumber"></dd><dt>Nội dung</dt><dd><code id="transferCode"></code></dd><dt>Thời hạn đơn</dt><dd id="expires"></dd></dl>
+        <p>Kiểm tra tên người nhận trong ứng dụng ngân hàng. Giữ đúng số tiền và nội dung; quyền học chỉ được mở sau khi xác nhận tiền về.</p>
+        <button id="check" type="button" class="secondary">Kiểm tra thanh toán</button>
+      </section>
+    </section>
+  </main>
+  <footer>Quyền học áp dụng cho IT1140 trên nền tảng này; không đồng nghĩa được phân phối lại nội dung. <a id="support" hidden>Liên hệ hỗ trợ</a></footer>
+</body></html>

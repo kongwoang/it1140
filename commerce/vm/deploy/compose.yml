@@ -1,0 +1,101 @@
+name: it1140
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: it1140
+      POSTGRES_USER: it1140_owner
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_owner_password
+    secrets: [db_owner_password]
+    volumes: [database:/var/lib/postgresql/data]
+    command: [postgres, -c, shared_buffers=128MB, -c, max_connections=40, -c, log_statement=none, -c, log_min_error_statement=panic]
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U it1140_owner -d it1140']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [backend]
+  migrate:
+    build:
+      context: ../../..
+      dockerfile: commerce/vm/deploy/Dockerfile
+    command: [node, commerce/vm/migrate.mjs]
+    environment:
+      MIGRATION_DATABASE_URL_FILE: /run/secrets/migration_database_url
+      APP_DATABASE_PASSWORD_FILE: /run/secrets/app_database_password
+    secrets: [migration_database_url, app_database_password]
+    depends_on:
+      db: {condition: service_healthy}
+    networks: [backend]
+    profiles: [tools]
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+  app:
+    build:
+      context: ../../..
+      dockerfile: commerce/vm/deploy/Dockerfile
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      APP_ORIGIN: 'https://${DOMAIN:?Set DOMAIN in .env}'
+      DATABASE_URL_FILE: /run/secrets/runtime_database_url
+      OTP_SECRET_FILE: /run/secrets/otp_secret
+      SMTP_PASSWORD_FILE: /run/secrets/smtp_password
+      SEPAY_WEBHOOK_SECRET_FILE: /run/secrets/sepay_secret
+      SMTP_HOST: '${SMTP_HOST:?Set SMTP_HOST}'
+      SMTP_PORT: '${SMTP_PORT:-587}'
+      SMTP_SECURE: '${SMTP_SECURE:-false}'
+      SMTP_USER: '${SMTP_USER:?Set SMTP_USER}'
+      SMTP_FROM: '${SMTP_FROM:?Set SMTP_FROM}'
+      EMAIL_DOMAINS: '${EMAIL_DOMAINS:-sis.hust.edu.vn,hust.edu.vn}'
+      OTP_MAX_PER_HOUR: '${OTP_MAX_PER_HOUR:-1500}'
+      SUPPORT_EMAIL: '${SUPPORT_EMAIL:-}'
+      BANK_ACCOUNT: '${BANK_ACCOUNT:-}'
+      BANK_ACCOUNT_NAME: '${BANK_ACCOUNT_NAME:-}'
+      PAYMENTS_ENABLED: '${PAYMENTS_ENABLED:-false}'
+      SELLER_READY: '${SELLER_READY:-false}'
+      TRUST_PROXY: 'true'
+      DB_POOL_SIZE: '10'
+    secrets: [runtime_database_url, otp_secret, smtp_password, sepay_secret]
+    depends_on:
+      db: {condition: service_healthy}
+    networks: [backend, edge]
+    read_only: true
+    tmpfs: [/tmp:size=16m,mode=1777]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: [CMD, node, commerce/vm/health.mjs]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  proxy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      DOMAIN: '${DOMAIN:?Set DOMAIN}'
+      ACME_EMAIL: '${ACME_EMAIL:?Set ACME_EMAIL}'
+    ports: ['80:80', '443:443', '443:443/udp']
+    volumes: ['./Caddyfile:/etc/caddy/Caddyfile:ro', 'caddy_data:/data', 'caddy_config:/config']
+    depends_on:
+      app: {condition: service_healthy}
+    networks: [edge]
+    security_opt: [no-new-privileges:true]
+networks:
+  backend: {internal: true}
+  edge: {}
+volumes:
+  database: {}
+  caddy_data: {}
+  caddy_config: {}
+secrets:
+  db_owner_password: {file: ./secrets/db_owner_password}
+  app_database_password: {file: ./secrets/app_database_password}
+  migration_database_url: {file: ./secrets/migration_database_url}
+  runtime_database_url: {file: ./secrets/runtime_database_url}
+  otp_secret: {file: ./secrets/otp_secret}
+  smtp_password: {file: ./secrets/smtp_password}
+  sepay_secret: {file: ./secrets/sepay_secret}

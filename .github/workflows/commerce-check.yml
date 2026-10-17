@@ -1,0 +1,40 @@
+name: Kiểm tra bản thương mại (không triển khai)
+on:
+  push:
+    branches: [main, 'codex/**']
+    paths: ['commerce/**', 'assets/**', 'data/**', 'index.html', '.github/workflows/commerce-check.yml']
+  pull_request:
+    paths: ['commerce/**', 'assets/**', 'data/**', 'index.html', '.github/workflows/commerce-check.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      TEST_DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/postgres
+      ALLOW_TEST_DATABASE_CREATE: 'true'
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: commerce/package-lock.json
+      - run: npm ci --prefix commerce --ignore-scripts --no-audit --no-fund
+      - run: npm run build --prefix commerce
+      - run: npm test --prefix commerce
+      - run: npm run check:deploy --prefix commerce
+      - run: node commerce/vm/ops.mjs init-secrets
+      - run: docker compose --env-file commerce/vm/deploy/.env.example -f commerce/vm/deploy/compose.yml config --quiet
+      - run: docker build -f commerce/vm/deploy/Dockerfile -t it1140-check .

@@ -42,4 +42,10 @@ Môi trường Python chạy trong Web Worker bằng Pyodide để mã lỗi ho�
 
 ## Phát hành trên GitHub Pages
 
+### Bản thương mại đang chuẩn bị
+
+Bản mua quyền học **20.000đ một lần, không thời hạn**, nhận tiền **MB + SePay**, được tách tại [commerce/README.md](./commerce/README.md). Bản chuẩn dùng **Node.js + PostgreSQL + SMTP**, đóng gói Docker Compose cho VPS/AWS/Azure; OTP email HUST, giới hạn trình duyệt/phiên học, cấp đề theo nhóm và chấm ở server. Thanh toán mặc định tắt, chưa thay website đang chạy. Không dùng workflow GitHub Pages bên dưới để phát hành bản thương mại. Cần cấu hình dịch vụ, nghiệm thu thanh toán/thử tải, phê duyệt điều khoản và chuyển hosting trước khi mở bán. Nội dung đã công khai không thể được coi là độc quyền chỉ bằng cách thêm paywall.
+
+### Bản ôn tập tĩnh hiện tại
+
 Đẩy mã nguồn lên nhánh `main`, sau đó trong **Settings → Pages → Build and deployment**, chọn **GitHub Actions**. Workflow có sẵn sẽ phát hành website và file `CNAME` cấu hình tên miền `it1140.hoangpc.io.vn`.

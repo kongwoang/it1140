@@ -1,3 +1,15 @@
 .DS_Store
 _site/
 template.html
+.commerce-dist/
+.vm-dist/
+commerce/vm/deploy/secrets/
+commerce/vm/deploy/backups/
+commerce/vm/load/fixtures.json
+node_modules/
+.wrangler/
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+!.env.example

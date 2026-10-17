@@ -1,0 +1,16 @@
+{
+  "name": "it1140-commerce",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-17",
+  "workers_dev": true,
+  "assets": {
+    "directory": "../.commerce-dist/public",
+    "binding": "ASSETS",
+    "html_handling": "none",
+    "run_worker_first": true
+  },
+  "vars": {
+    "PAYMENTS_ENABLED": "false",
+    "BANK_CODE": "MB"
+  }
+}
