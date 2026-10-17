@@ -1,0 +1,11 @@
+# Disposable CI smoke test only; never use this override on a public VM.
+services:
+  app:
+    environment:
+      NODE_ENV: development
+      APP_ORIGIN: http://localhost:4180
+      SMTP_HOST: ''
+      SMTP_USER: ''
+      SMTP_FROM: ''
+      PAYMENTS_ENABLED: 'false'
+      SELLER_READY: 'false'

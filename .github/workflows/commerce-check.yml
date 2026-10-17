@@ -38,3 +38,17 @@ jobs:
       - run: node commerce/vm/ops.mjs init-secrets
       - run: docker compose --env-file commerce/vm/deploy/.env.example -f commerce/vm/deploy/compose.yml config --quiet
       - run: docker build -f commerce/vm/deploy/Dockerfile -t it1140-check .
+      - name: Kiểm tra container và runtime role (DB tạm)
+        working-directory: commerce/vm/deploy
+        run: |
+          sudo chown 1000:1000 secrets/*
+          docker compose --env-file .env.example -f compose.yml -f compose.ci.yml build app migrate
+          docker compose --env-file .env.example -f compose.yml -f compose.ci.yml up -d db
+          docker compose --env-file .env.example -f compose.yml -f compose.ci.yml run --rm migrate
+          docker compose --env-file .env.example -f compose.yml -f compose.ci.yml up -d --wait app
+          docker compose --env-file .env.example -f compose.yml -f compose.ci.yml exec -T app node commerce/vm/ops.mjs preflight
+          docker compose --env-file .env.example -f compose.yml -f compose.ci.yml exec -T app node commerce/vm/health.mjs
+      - name: Dọn container CI
+        if: always()
+        working-directory: commerce/vm/deploy
+        run: docker compose --env-file .env.example -f compose.yml -f compose.ci.yml down
