@@ -2,9 +2,9 @@ name: Kiểm tra bản thương mại (không triển khai)
 on:
   push:
     branches: [main, 'codex/**']
-    paths: ['commerce/**', 'assets/**', 'data/**', 'index.html', '.github/workflows/commerce-check.yml']
+    paths: ['commerce/**', 'scripts/**', 'assets/**', 'data/**', 'index.html', '.github/workflows/commerce-check.yml']
   pull_request:
-    paths: ['commerce/**', 'assets/**', 'data/**', 'index.html', '.github/workflows/commerce-check.yml']
+    paths: ['commerce/**', 'scripts/**', 'assets/**', 'data/**', 'index.html', '.github/workflows/commerce-check.yml']
 permissions:
   contents: read
 concurrency:

@@ -21,9 +21,17 @@ const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const questionIdPattern = /^it1140-[a-z0-9]+(?:-[a-z0-9]+)*-[0-9]{3}$/;
 const sourceTypes = new Set(["lecture", "textbook", "exam", "quiz", "reference"]);
 const questionKinds = new Set(["theory", "calculation", "code", "application"]);
+function fileArgument(name) {
+  const index = process.argv.indexOf("--" + name);
+  if (index < 0) return null;
+  if (!process.argv[index + 1] || process.argv[index + 1].startsWith("--")) throw new Error("--" + name + " cần đường dẫn JSON.");
+  return process.argv[index + 1];
+}
+const subjectFile = fileArgument("subject-file");
 
 const manifest = await readJson("data/manifest.json");
 requireValue(Array.isArray(manifest.subjects) && manifest.subjects.length > 0, "Danh mục phải có ít nhất một bộ câu hỏi.");
+requireValue(!subjectFile || manifest.subjects.length === 1, "--subject-file chỉ dùng với danh mục một bộ câu hỏi.");
 
 const subjectIds = new Set();
 const questionIds = new Set();
@@ -35,7 +43,7 @@ for (const entry of manifest.subjects) {
   requireValue(!subjectIds.has(entry.id), `Trùng mã bộ câu hỏi: ${entry.id}`);
   subjectIds.add(entry.id);
 
-  const subject = await readJson(entry.file.replace(/^\.\//, ""));
+  const subject = await readJson(subjectFile || entry.file.replace(/^\.\//, ""));
   requireExactKeys(subject, ["$schema", "id", "code", "title", "language", "chapters", "sources", "topics", "questions"], entry.file);
   requireValue(subject.id === entry.id, `Mã trong ${entry.file} không khớp manifest.`);
   requireValue(slugPattern.test(subject.id), `${subject.id} không phải kebab-case hợp lệ.`);
@@ -116,9 +124,7 @@ for (const entry of manifest.subjects) {
   }
 }
 
-const pythonFileIndex = process.argv.indexOf("--python-file");
-if (pythonFileIndex >= 0 && !process.argv[pythonFileIndex + 1]) throw new Error("--python-file cần đường dẫn JSON.");
-const pythonData = await readJson(pythonFileIndex >= 0 ? process.argv[pythonFileIndex + 1] : "data/python-exercises.json");
+const pythonData = await readJson(fileArgument("python-file") || "data/python-exercises.json");
 requireValue(Array.isArray(pythonData.exercises) && pythonData.exercises.length > 0, "Cần ít nhất một bài thực hành Python.");
 const exerciseIds = new Set();
 

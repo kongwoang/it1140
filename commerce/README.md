@@ -36,6 +36,8 @@ Ngân hàng hiện đã công khai trên GitHub/Pages; private repo/paywall khô
 
 ## Kiểm tra cục bộ
 
+Quy trình và tiến độ biên tập câu hỏi: [QUESTION-EDITING.md](QUESTION-EDITING.md). Nội dung mới được sửa trong bộ riêng tư; không sửa đồng loạt bộ công khai bằng thay từ tự động.
+
 Từ gốc repository:
 
 ```sh
