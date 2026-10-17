@@ -1,8 +1,8 @@
-const CACHE_NAME = "it1140-static-v25";
+const CACHE_NAME = "it1140-static-v26";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./assets/css/app.css?v=18",
+  "./assets/css/app.css?v=19",
   "./assets/js/question-content.js?v=2",
   "./assets/js/quiz-app.js?v=10",
   "./assets/js/python-lab.js?v=14",

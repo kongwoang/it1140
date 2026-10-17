@@ -30,6 +30,8 @@ html=html.replace('<script src="./assets/js/question-content.js','<script src="/
 assert.equal(html.split('./assets/js/quiz-app.js?v=10').length,2);
 html=html.replace('./assets/js/quiz-app.js?v=10','/assets/js/commerce-quiz.js');
 html=html.replace('<div class="top-actions">','<div class="top-actions"><a class="ghost-btn" href="/">Tài khoản</a>');
+// The brand remains a route back to the account when quiz actions are hidden.
+html=html.replace('<h1 id="subjectTitle">Tin học đại cương</h1>','<h1><a id="subjectTitle" href="/" aria-label="Tài khoản IT1140">Tin học đại cương</a></h1>');
 await writeFile(resolve(out,'learn.html'),html);
 assert.ok(html.includes('<body>'));
 const demo=html.replace('<body>','<body data-access="preview">').replace('      <nav class="section-tabs"','      <aside class="preview-banner"><strong id="previewSummary">Học thử miễn phí · Khoảng 10% nội dung</strong><a href="/">Mở toàn bộ · 20.000đ</a></aside>\n      <nav class="section-tabs"');
