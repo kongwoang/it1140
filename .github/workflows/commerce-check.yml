@@ -16,6 +16,7 @@ jobs:
     env:
       TEST_DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/postgres
       ALLOW_TEST_DATABASE_CREATE: 'true'
+      HTTP_SMOKE: 'true'
     services:
       postgres:
         image: postgres:17-alpine
@@ -51,6 +52,7 @@ jobs:
           docker compose --env-file .env.example -f compose.yml -f compose.ci.yml up -d --wait --wait-timeout 90 app
           docker compose --env-file .env.example -f compose.yml -f compose.ci.yml exec -T app node commerce/vm/ops.mjs preflight
           docker compose --env-file .env.example -f compose.yml -f compose.ci.yml exec -T app node commerce/vm/health.mjs
+          docker compose --env-file .env.example -f compose.yml -f compose.ci.yml run --rm --no-deps proxy caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
       - name: Dọn container CI
         if: always()
         working-directory: commerce/vm/deploy

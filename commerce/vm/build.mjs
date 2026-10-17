@@ -27,17 +27,25 @@ lab=lab.replace('const storageKey = "it1140-python-lab:v4";','let storageKey = "
   .replace('exercises = data.exercises;','storageKey = `it1140-commerce-python:v2:${data.userScope}`;\n      state = loadState();\n      exercises = data.exercises;')
   .replace('function selectExercise(id) {','let selectionGeneration = 0;\n  async function selectExercise(id) {');
 // Use a guarded asynchronous detail load: stale responses cannot switch a newer selection.
+lab=lab.replace('    currentId = id;\n    state.currentId = id;\n    saveState();\n','');
 lab=lab.replace('const exercise = currentExercise();\n    if (!exercise) return;',`const generation = ++selectionGeneration;
-    let exercise = currentExercise();
+    let exercise = exercises.find(item => item.id === id);
     if (!exercise) return;
     els.run.disabled = els.runInput.disabled = true;
+    els.editor.disabled = els.input.disabled = true;
     try {
       const response = await fetch('/api/course/python/' + encodeURIComponent(id));
       if (!response.ok) throw new Error('Không tải được bài tập. Hãy kiểm tra phiên học.');
       const detail = await response.json();
       if (generation !== selectionGeneration) return;
       Object.assign(exercise, detail);
-    } catch (error) { els.output.textContent = error.message; return; }`);
+      currentId = id; state.currentId = id; saveState();
+      els.editor.disabled = els.input.disabled = false;
+    } catch (error) {
+      if (generation !== selectionGeneration) return;
+      els.editor.disabled = els.input.disabled = false;
+      els.output.textContent = error.message; return;
+    }`);
 lab=lab.replace('  initialize();',`  window.addEventListener('it1140:study-stopped', () => {
     worker?.terminate(); worker = undefined; clearTimeout(timeoutId);
     els.run.disabled = els.runInput.disabled = true; saveCurrentCode();
