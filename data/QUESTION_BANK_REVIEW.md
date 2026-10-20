@@ -1,15 +1,15 @@
 # Rà soát và mở rộng ngân hàng IT1140
 
-Ngày biên tập: 16/10/2026. Đây là phân loại chuyên môn để ôn tập, **chưa phải độ khó được đo trên sinh viên thật**. Không suy ra tỷ lệ làm đúng từ đánh giá của LLM.
+Đợt mở rộng: 16/10/2026; đồng bộ bộ đã rà soát lên bản công khai ngày **20/10/2026**. Đây là phân loại chuyên môn để ôn tập, **chưa phải độ khó được đo trên sinh viên thật**. Không suy ra tỷ lệ làm đúng từ đánh giá của LLM.
 
 ## Kết quả
 
 - 2.096 câu, thêm 956 câu so với mốc 1.140; giữ nguyên toàn bộ ID cũ.
 - 1.242 câu một đáp án, 758 câu điền số, 96 câu chọn nhiều đáp án.
-- 604 câu Dễ, 1.223 câu Vừa, 269 câu Khó.
+- Sau lượt rà soát toàn bộ: **1.388 câu Dễ, 703 câu Vừa, 5 câu Khó**; không ép mỗi chương phải có câu Khó để đủ nhãn. Thống kê 604/1.223/269 của đợt mở rộng trước đó không còn là phân bố hiện tại.
 - Phân lại nhãn của 699 câu cũ; sửa phương án nhiễu của 87 câu; xử lý các câu thiếu tiền đề hoặc diễn đạt lệch kiểu hỏi. Số đếm sửa phương án nhiễu không gồm các câu sửa riêng cả đề và lựa chọn.
 - Mỗi chương có 8 câu nhiều đáp án: 2–3 lựa chọn đúng trong 4 lựa chọn. Câu hỏi không tiết lộ số đáp án đúng. Chọn đủ, không chọn thừa mới được chấm đúng.
-- Giữ 70 bài thực hành và ca kiểm thử đã có; mở rộng ở đây là ngân hàng ôn tập, không tự bổ sung 956 bài lập trình phải nộp.
+- Bản công khai hiện có 200 bài thực hành: 70 bài đã có và 130 bài bổ sung. Việc thêm 956 câu ôn tập không có nghĩa là thêm 956 bài lập trình phải nộp.
 
 ## Ma trận nội dung và số lượng hiện tại
 

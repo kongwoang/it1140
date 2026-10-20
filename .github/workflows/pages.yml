@@ -39,10 +39,7 @@ jobs:
       - name: Cấu hình GitHub Pages
         uses: actions/configure-pages@v6
       - name: Chuẩn bị website tĩnh
-        run: |
-          mkdir _site
-          cp index.html sw.js CNAME .nojekyll _site/
-          cp -R assets data _site/
+        run: node scripts/build-static-site.mjs
       - name: Đóng gói website tĩnh
         uses: actions/upload-pages-artifact@v5
         with:

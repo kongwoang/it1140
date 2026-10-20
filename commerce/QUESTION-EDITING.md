@@ -2,9 +2,9 @@
 
 ## Tiến độ
 
-Đã hoàn thành **một lượt đọc và biên tập 2.096 câu của cả 12 chương**, tiếp nối đợt mẫu 50 câu chương 1. Nội dung mới nằm trong bộ riêng tư tại `vm/deploy/content/`, không thay bộ đề GitHub Pages.
+Đã hoàn thành **một lượt đọc và biên tập 2.096 câu của cả 12 chương**, tiếp nối đợt mẫu 50 câu chương 1. Ngày **20/10/2026**, chủ dự án yêu cầu đồng bộ bộ đề đã rà soát và 200 bài Python vào `data/` để phát hành trên GitHub Pages. Bản runtime tại `vm/deploy/content/` vẫn được giữ riêng để vận hành; tệp biên tập, audit và lời giải tham chiếu không được công khai.
 
-So với bộ công khai: **439 câu thay câu dẫn/phương án/lời giải; 862 câu chỉ đổi mức khó; 795 câu được giữ nguyên**. Giữ nguyên ID, khóa đáp án, chương, nhóm, loại câu và các trường liên kết. Các câu có mã đã đủ ngữ cảnh không bị viết lại chỉ để tăng số câu thay đổi.
+So với bộ công khai trước đợt đồng bộ: **439 câu thay câu dẫn/phương án/lời giải; 862 câu chỉ đổi mức khó; 795 câu được giữ nguyên**. Giữ nguyên ID, khóa đáp án, chương, nhóm, loại câu và các trường liên kết. Các câu có mã đã đủ ngữ cảnh không bị viết lại chỉ để tăng số câu thay đổi.
 
 Đã đối chiếu lời giải khi sửa phương án, rà riêng cả 96 câu nhiều đáp án, sửa các lời giải nhắc sai thứ tự lựa chọn. Đối chiếu 738 chương trình hiển thị với mã kiểm thử; chạy đạt 776 ca Python/NumPy và 171 phép kiểm tra số học/thuật toán độc lập trên bộ riêng tư. Còn có kiểm tra phép tính theo từng đợt và kiểm tra độ dài đáp án đúng quá nổi bật. Các phép kiểm tra này không chứng minh tuyệt đối rằng mọi câu hoàn hảo.
 

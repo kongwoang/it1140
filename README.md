@@ -31,6 +31,8 @@ Python 3.10+ cần thiết cho các ví dụ `match/case` (CI dùng 3.12). Bộ 
 
 ## Lưu trữ dữ liệu
 
+Bản tĩnh được đồng bộ ngày **20/10/2026**: dùng bộ **2.096 câu đã biên tập lại** và **200 bài Python** (70 bài theo tài liệu giảng viên, 130 bài luyện bổ sung). Giữ nguyên ID câu hỏi và 70 bài cũ để không làm mất liên kết tiến độ. Dữ liệu này được chủ dự án yêu cầu phát hành công khai trên GitHub Pages; không phải ngân hàng độc quyền sau paywall. Không phát hành lời giải tham chiếu Python, tệp biên tập nội bộ, backup hay secrets.
+
 - Câu trả lời, tiến độ, câu đã ghim và thứ tự trộn được lưu bằng `localStorage` trên trình duyệt.
 - Mã Python đang viết và bài đã hoàn thành cũng được lưu bằng `localStorage`.
 - Bộ khung trang được lưu bằng Cache API thông qua service worker để có thể mở lại khi mất mạng.
@@ -44,7 +46,7 @@ Môi trường Python chạy trong Web Worker bằng Pyodide để mã lỗi ho�
 
 ### Bản thương mại đang chuẩn bị
 
-Bản mua quyền học **20.000đ một lần, không thời hạn**, nhận tiền **MB + SePay**, được tách tại [commerce/README.md](./commerce/README.md). Bản chuẩn dùng **Node.js + PostgreSQL + SMTP**, đóng gói Docker Compose cho VPS/AWS/Azure; OTP email HUST, giới hạn trình duyệt/phiên học, cấp đề theo nhóm và chấm ở server. Thanh toán mặc định tắt, chưa thay website đang chạy. Không dùng workflow GitHub Pages bên dưới để phát hành bản thương mại. Cần cấu hình dịch vụ, nghiệm thu thanh toán/thử tải, phê duyệt điều khoản và chuyển hosting trước khi mở bán. Nội dung đã công khai không thể được coi là độc quyền chỉ bằng cách thêm paywall.
+Bản mua quyền học **20.000đ một lần, không thời hạn**, nhận tiền **MB + SePay**, được tách tại [commerce/README.md](./commerce/README.md). Bản chuẩn dùng **Node.js + PostgreSQL + SMTP**, đóng gói Docker Compose cho VPS/AWS/Azure; OTP email HUST, giới hạn trình duyệt/phiên học, cấp đề theo nhóm và chấm ở server. Thanh toán mặc định tắt, chưa đưa tài khoản và thanh toán lên website đang chạy. Không dùng workflow GitHub Pages bên dưới để phát hành bản thương mại. Cần cấu hình dịch vụ, nghiệm thu thanh toán/thử tải, phê duyệt điều khoản và chuyển hosting trước khi mở bán. Nội dung đã công khai không thể được coi là độc quyền chỉ bằng cách thêm paywall.
 
 ### Bản ôn tập tĩnh hiện tại
 

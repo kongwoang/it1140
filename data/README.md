@@ -84,7 +84,7 @@ Với bài đọc/ghi tệp, thêm `files` để tạo tệp đầu vào và `ex
 
 Mục “Tệp dữ liệu mẫu” hiển thị tên và nội dung `files` của ca đầu tiên, đúng các tệp được nạp khi bấm “Chạy input này”. Không hiển thị nội dung `expectedFiles` như dữ liệu vào.
 
-Các bài hiện tại được lấy theo `IT1140_Tai_lieu_Giang_vien.pdf` và chia theo trường `section`. Chạy lệnh sau để kiểm tra schema trước khi đưa lên GitHub:
+Hiện có 200 bài, gồm 70 bài theo tài liệu giảng viên và 130 bài luyện tập bổ sung tự biên soạn, chia theo trường `section`. Không khẳng định các bài bổ sung là đề thi HUST. Bộ công khai được đồng bộ theo yêu cầu chủ dự án ngày 20/10/2026; dữ liệu chứa đề, gợi ý và ca kiểm tra, không chứa lời giải tham chiếu. Chạy lệnh sau để kiểm tra schema trước khi đưa lên GitHub:
 
 ```bash
 node scripts/validate-data.mjs

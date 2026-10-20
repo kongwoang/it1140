@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import vm from "node:vm";
+import { plainText } from "./question-test-utils.mjs";
 import "./test-chapter3.mjs";
 import "./test-chapter4.mjs";
 import "./test-chapters5-12.mjs";
@@ -10,7 +11,7 @@ import "./test-question-content.mjs";
 const bank = JSON.parse(await readFile("data/subjects/it1140.json", "utf8"));
 const chapter = bank.questions.filter((q) => q.source === "chuong-1-bai-giang" && Number(q.id.slice(-3))<=124);
 const question = (n) => chapter.find((q) => q.id.endsWith(`-${String(n).padStart(3, "0")}`));
-const correctText = (n) => question(n).choices[question(n).answer];
+const correctText = (n) => plainText(question(n).choices[question(n).answer]);
 assert.equal(chapter.length, 124);
 assert.equal(chapter.filter((q) => q.responseType === "number").length, 28);
 assert.deepEqual([0, 1, 2, 3].map((i) => chapter.filter((q) => q.responseType === "choice" && q.answer === i).length), [24, 24, 24, 24]);
@@ -41,18 +42,18 @@ floatBuffer.writeFloatBE(9.6875);
 const encodedFloat = floatBuffer.toString("hex").toUpperCase();
 const decodedFloat = Buffer.from("C1560000", "hex").readFloatBE();
 const calculatedChoices = new Map([
-  [16, `Mỗi giá trị chiếm ${24 / 8} byte.`], [20, `${Math.ceil(Math.log2(1000))} bit.`],
-  [21, `${7 + 1}.`], [24, `${binary(124.75)}₂`], [25, `${binary(65.125)}₂`],
+  [16, `${24 / 8} byte`], [20, `${Math.ceil(Math.log2(1000))} bit`],
+  [21, `${7 + 1}`], [24, `${binary(124.75)}₂`], [25, `${binary(65.125)}₂`],
   [27, `${String(0x2d + 10 / 16).replace(".", ",")}.`],
   [28, `${(0b110101101011).toString(16).toUpperCase()}₁₆`], [29, `${(0xb7).toString(8)}₈`],
   [30, `0.${(0b1011).toString(16).toUpperCase()}₁₆`], [32, `${binary(13)}₂`], [33, `${binary(0.375)}₂`],
   [37, `Từ 0 đến ${2 ** 8 - 1}.`], [39, `${0b10010110} và −${256 - 0b10010110}.`],
   [41, bits(~0b01011001)], [42, bits(-0b00101101)], [43, bits(-70)],
-  [46, `${2 ** 7} giá trị âm và ${2 ** 7 - 1} giá trị dương.`],
+  [46, `${2 ** 7} và ${2 ** 7 - 1}.`],
   [49, `${bits(-18, 16).slice(0, 8)} ${bits(-18, 16).slice(8)}`],
   [51, `${bits(150 + 19)}, không có bit nhớ ra ngoài.`],
-  [54, `Kết quả là ${97 - 52} và không tràn số học có dấu.`],
-  [55, `−${256 - (75 + 81)}; có tràn số học.`], [56, `${(-104 - 74 + 256) % 256}, có tràn số học.`],
+  [54, `${97 - 52}; không tràn số có dấu.`],
+  [55, `−${256 - (75 + 81)}; có tràn.`], [56, `${(-104 - 74 + 256) % 256}; có tràn.`],
   [58, bits(52 - 97)], [60, `${binary(0b1011 * 0b1101)}₂`],
   [61, `Thương ${binary(Math.floor(0b10010011 / 0b1011))}₂, dư ${binary(0b10010011 % 0b1011)}₂.`],
   [63, bits(0xaa & 0x0f)], [64, bits(0xaa | 0x0f)], [65, bits(0xaa ^ 0x0f)],
@@ -149,12 +150,12 @@ const numericKeys2 = new Map([
 ]);
 assert.equal(numericKeys2.size, 16);
 for (const [n, expected] of numericKeys2) assert.equal(q2(n).answer, expected, `Chapter 2 numeric ${n}`);
-assert.equal(q2(68).choices[q2(68).answer], `AX = ${5 + 3}; BX = 3.`);
+assert.equal(plainText(q2(68).choices[q2(68).answer]), `AX = ${5 + 3}; BX = 3.`);
 assert.equal(Buffer.byteLength("Hello, World\n", "ascii"), 13);
 for (const [n, pattern] of [[91, /^Bai.\.doc$/], [92, /^Bai\.doc$/], [94, /^.E.*\..*$/]]) {
-  assert.deepEqual(q2(n).choices.flatMap((s, i) => pattern.test(s) ? [i] : []), [q2(n).answer]);
+  assert.deepEqual(q2(n).choices.flatMap((s, i) => pattern.test(plainText(s)) ? [i] : []), [q2(n).answer]);
 }
-for (const n of [100, 101]) assert.equal(q2(n).choices[q2(n).answer], String.raw`C:\TC30\BAI_TAP\B1.c`);
+for (const n of [100, 101]) assert.equal(plainText(q2(n).choices[q2(n).answer]), String.raw`C:\TC30\BAI_TAP\B1.c`);
 for (const q of chapter2) {
   assert.equal(q.choices.some((s) => s.includes("\\\\")), false, `No double path separators: ${q.id}`);
   if (q.responseType === "choice") {

@@ -219,6 +219,19 @@
     "py-pdf-3-5",
     "py-pdf-4-1",
     "py-pdf-4-8",
-    "py-pdf-5-2"
+    "py-pdf-5-2",
+    "py-extra-distance",
+    "py-extra-packets",
+    "py-extra-divisor-count",
+    "py-extra-digit-product",
+    "py-extra-reverse-add",
+    "py-extra-clock-format",
+    "py-extra-integer-format",
+    "py-extra-second-largest",
+    "py-extra-intersection",
+    "py-extra-student-ranking",
+    "py-extra-file-nonempty",
+    "py-extra-json-cart",
+    "py-extra-weekday"
   ]
 }

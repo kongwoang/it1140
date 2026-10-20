@@ -1,16 +1,16 @@
-# Thực hành Python: nội dung riêng tư và hỗ trợ người mới
+# Thực hành Python: nội dung và hỗ trợ người mới
 
 ## Bộ bài
 
-Baseline trong Git công khai giữ nguyên 70 bài theo `IT1140_Tai_lieu_Giang_vien.pdf` mà chủ dự án cung cấp. Đây là tài liệu thực hành, **không phải bằng chứng các bài đã được dùng trong kỳ thi HUST**.
+Ngày **20/10/2026**, theo yêu cầu chủ dự án, bộ công khai trong `data/python-exercises.json` được đồng bộ lên **200 bài**. Bộ này gồm 70 bài theo `IT1140_Tai_lieu_Giang_vien.pdf` mà chủ dự án cung cấp và 130 bài bổ sung. Đây là tài liệu thực hành, **không phải bằng chứng các bài đã được dùng trong kỳ thi HUST**.
 
 Bộ thương mại tại `commerce/vm/deploy/content/python-exercises.json` gồm 200 bài: 70 bài trên và 130 bài bổ sung tự biên soạn. Có 20 bài biểu thức/rẽ nhánh, 25 bài vòng lặp/số học, 25 bài chuỗi, 30 bài dãy/ma trận/từ điển, 15 bài tệp/CSV/JSON và 15 bài thư viện/biểu đồ. Một số bài cơ bản có chủ đích; không coi mọi bài là đề thi có cùng độ khó. Đã thay các bài bổ sung trùng nhiệm vụ với baseline thay vì chỉ đổi số liệu.
 
-Bộ riêng tư và các nguồn soạn/lời giải trong `content/authoring/` đều được gitignore/dockerignore. **Clone Git không lấy được 130 bài mới.** Khi deploy, sao chép riêng các tệp nội dung bằng kênh quản trị tin cậy rồi mount `COURSE_DATA_DIR` read-only. Không copy lời giải tham chiếu vào public assets, không force-add thư mục này vào Git công khai. Phải có bản sao lưu riêng cho nội dung; backup PostgreSQL không chứa ngân hàng câu hỏi hoặc bài Python.
+Clone Git hiện lấy được cả 200 đề, gợi ý và ca kiểm tra, nhưng **không có lời giải tham chiếu**. Thư mục runtime và các nguồn soạn/lời giải trong `content/authoring/` vẫn được gitignore/dockerignore. Khi deploy bản thương mại, mount `COURSE_DATA_DIR` read-only. Không copy lời giải tham chiếu vào public assets, không force-add thư mục runtime vào Git công khai. Phải có bản sao lưu riêng cho nội dung; backup PostgreSQL không chứa ngân hàng câu hỏi hoặc bài Python.
 
 Mỗi bài bổ sung có đầu vào, đầu ra, giới hạn, quy tắc hòa/trường hợp rỗng khi phù hợp, ví dụ định dạng monospace và ít nhất 4 ca kiểm tra. 520 kết quả kỳ vọng được chỉ định riêng rồi chạy đối chiếu lời giải tham chiếu bằng Python cục bộ. Bài biểu đồ chấm dữ liệu và nhãn trên Figure, không đòi tên biến cụ thể. Đây là kiểm tra chất lượng bài, không phải bảo đảm mọi lời giải sai đều bị phát hiện; test được đưa xuống trình duyệt, không phải hidden judge chống gian lận.
 
-Học thử là allowlist cố định `content/preview-access.json`: 210/2096 câu và 20/200 bài. Không tự bốc 10% mới mỗi lần truy cập. Bản trong Git dùng 7/70 vì không mang theo bộ riêng tư. Cần chuyển manifest cùng bộ dữ liệu.
+Học thử của bản thương mại là allowlist cố định `content/preview-access.json`: 210/2096 câu và 20/200 bài; bản trong Git cũng dùng allowlist 20/200. Không tự bốc 10% mới mỗi lần truy cập. Cần chuyển manifest cùng bộ dữ liệu. GitHub Pages vẫn là bản tĩnh công khai toàn bộ nội dung, không có cơ chế khóa 90% nội dung.
 
 ## Tham khảo và xuất xứ
 

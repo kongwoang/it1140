@@ -1,6 +1,6 @@
 # IT1140 · Bản thương mại trên VPS/AWS/Azure
 
-Bản chuẩn: **Node.js 24+ + PostgreSQL 17 + SMTP + Caddy HTTPS**. Không cần Supabase. Giá server **20.000đ một lần**, quyền IT1140 không tự hết hạn. **MB + SePay HMAC webhook**; mặc định tắt thanh toán. Website GitHub Pages hiện tại chưa bị thay đổi.
+Bản chuẩn: **Node.js 24+ + PostgreSQL 17 + SMTP + Caddy HTTPS**. Không cần Supabase. Giá server **20.000đ một lần**, quyền IT1140 không tự hết hạn. **MB + SePay HMAC webhook**; mặc định tắt thanh toán. GitHub Pages vẫn dùng bản tĩnh, không chạy backend này. Theo yêu cầu ngày 20/10/2026, bộ 2.096 câu đã rà soát và 200 bài Python được đồng bộ vào dữ liệu công khai.
 
 Các file Worker/Supabase ở thư mục commerce là nguyên mẫu đối chiếu/kiểm thử. Worker mặc định đã trả 503 để không vô tình mở lại API toàn bộ đáp án. **Không deploy bằng Wrangler**; dùng `vm/deploy/compose.yml`.
 
@@ -11,14 +11,14 @@ Các file Worker/Supabase ở thư mục commerce là nguyên mẫu đối chi�
 - Tối đa 2 hồ sơ trình duyệt; hồ sơ thứ ba xác minh OTP rồi chọn thay thế. Tối đa 2 lần tự thay/thu hồi trong 30 ngày. Thao tác nhạy cảm cần xác minh trong 10 phút gần nhất; CLI hỗ trợ có audit.
 - Một phiên học hoạt động: lease 5 phút, heartbeat khoảng mỗi phút có jitter. Chuyển phiên chủ động; phiên cũ bị từ chối ở các yêu cầu tiếp theo. Nhiều tab cùng phiên không bị tính thành nhiều người. Không khóa IP hay fingerprint.
 - Cấp tối đa 20 câu/lần, không kèm đáp án/giải thích. Chấm hoặc xem lời giải một câu ở server sau khi được cấp câu đó. Thi có phạm vi cố định trong DB, tối đa 100 câu (UI 40), nộp một lần, retry trả kết quả cũ. Giữ 2.096 câu, điền số, nhiều đáp án, chương/tìm/ghim/trộn và tiến độ cục bộ.
-- Python giữ IDE, kiểm tra, file mẫu, gợi ý, tải .py; tải chi tiết khi chọn bài. Baseline công khai có 70 bài; bộ riêng tư tại máy chủ dự án có 200 bài, xem [PYTHON-LAB.md](PYTHON-LAB.md). Code chạy trong worker của iframe opaque-origin (`sandbox allow-scripts`, không `allow-same-origin`), CSP chỉ cho tải môi trường Pyodide đã ghim phiên bản, không cho gọi API tài khoản. Giao tiếp qua MessageChannel riêng, đầu ra được giới hạn và lọc. Không chạy code Python trên backend thanh toán. Điểm Python cục bộ không phải điểm thi đáng tin cậy.
+- Python giữ IDE, kiểm tra, file mẫu, gợi ý, tải .py; tải chi tiết khi chọn bài. Bộ công khai và runtime hiện cùng có 200 bài, xem [PYTHON-LAB.md](PYTHON-LAB.md). Code chạy trong worker của iframe opaque-origin (`sandbox allow-scripts`, không `allow-same-origin`), CSP chỉ cho tải môi trường Pyodide đã ghim phiên bản, không cho gọi API tài khoản. Giao tiếp qua MessageChannel riêng, đầu ra được giới hạn và lọc. Không chạy code Python trên backend thanh toán. Điểm Python cục bộ không phải điểm thi đáng tin cậy.
 - Giá, owner, người nhận lấy từ server. QR riêng, hạn 30 phút. HMAC raw body + timestamp, giao dịch trùng không cấp hai lần; ledger/paid/quyền học cùng transaction. Đúng bank/account/mã/tiền/chiều/thời gian mới cấp; sai vào đối soát. Webhook trễ nhưng tiền vào đúng hạn vẫn hợp lệ.
 - Public build không có data JSON/SQL/env/key. Chỉ CSS/JS không cá nhân hóa được cache công khai 5 phút; HTML/API/service worker giữ private/no-store. Service worker thương mại không cache API và thay cache cũ. Tiến độ/mã lưu theo ID tài khoản trên thiết bị, **chưa đồng bộ cloud**.
 - Container app non-root/read-only, DB và app không mở cổng công khai; runtime DB role không phải owner. Migration riêng có checksum, health/preflight, CLI, backup/restore và bộ tải staging.
 
 ## Học thử miễn phí
 
-Trang `/preview` mở không cần tài khoản: **210/2.096 câu** chia đều theo tỷ lệ từng chương. Baseline công khai có **7/70 bài Python**; allowlist bộ riêng tư 200 bài có **20/200**. Có Luyện/Ôn/Thi và IDE cách ly như bản đầy đủ. Trang tài khoản và trang học thử có nút mở toàn bộ nội dung với giá 20.000đ một lần. Tổng số bài hiển thị lấy từ API, không ghi cứng 70/200.
+Trang `/preview` mở không cần tài khoản: **210/2.096 câu** chia đều theo tỷ lệ từng chương và **20/200 bài Python**. Có Luyện/Ôn/Thi và IDE cách ly như bản đầy đủ. Trang tài khoản và trang học thử có nút mở toàn bộ nội dung với giá 20.000đ một lần. Tổng số bài hiển thị lấy từ API, không ghi cứng số bài.
 
 Danh sách miễn phí là allowlist **cố định** trong `vm/preview-access.json`, chỉ chứa ID. Không chọn ngẫu nhiên lại bộ miễn phí theo lượt tải, thiết bị hoặc tài khoản. `Trộn`, tìm kiếm và phân trang chỉ hoạt động trong tập đã chọn. Có thể chỉnh allowlist tại `COURSE_DATA_DIR/preview-access.json` trên VM (ưu tiên hơn bản mặc định); `init-content` sao chép bản khởi đầu. ID phải tồn tại, không trùng và không vượt khoảng 12% tổng nội dung; app fail-closed nếu cấu hình không hợp lệ. Khi thay bộ đề/private ID, cập nhật file này cùng lúc. Bộ hiện tại có cả chọn một/nhiều đáp án, điền số và bài Python qua 5 phần.
 
